@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "org.iowacityrobotics.rebuiltscoutingapp2026"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "org.iowacityrobotics.rebuiltscoutingapp2026"
