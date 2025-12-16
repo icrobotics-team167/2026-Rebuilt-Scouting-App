@@ -1,4 +1,4 @@
-package org.iowacityrobotics.rebuiltscoutingapp2026;
+package org.iowacityrobotics.rebuiltscoutingapp2026.Dependices;
 
 
 //This file is to be used to store global vars ie points
