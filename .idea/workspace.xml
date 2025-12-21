@@ -12,16 +12,20 @@
           <theme>@style/Theme.RebuiltScoutingApp2026</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/data_editor.xml">
+        <config>
+          <state>landscape</state>
+          <theme>@style/Theme.RebuiltScoutingApp2026</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d30d0ac9-93fe-4c35-a2ec-fec51907c538" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/data_editor.xml" afterDir="false" />
+    <list default="true" id="d30d0ac9-93fe-4c35-a2ec-fec51907c538" name="Changes" comment="Added Data Editor&#10;H 12/18/2025&#10;- JamesA">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,19 +186,32 @@
       <option name="presentableId" value="Default" />
       <updated>1765238818427</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added Data Editor&#10;H 12/18/2025&#10;- JamesA">
+      <option name="closed" value="true" />
+      <created>1766112166910</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766112166910</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added Data Editor&#10;H 12/18/2025&#10;- JamesA" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Data Editor&#10;H 12/18/2025&#10;- JamesA" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
       <map>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026">
           <value>
-            <CheckInfo lastCheckTimestamp="1766103039555" />
+            <CheckInfo lastCheckTimestamp="1766350706141" />
           </value>
         </entry>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1766103039555" />
+            <CheckInfo lastCheckTimestamp="1766350706143" />
           </value>
         </entry>
       </map>
