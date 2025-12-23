@@ -33,6 +33,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+    <list default="true" id="d30d0ac9-93fe-4c35-a2ec-fec51907c538" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/DataFieldNames.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/ScoutingObjectRecord/ScoutingJsonCompiler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/ScoutingObjectRecord/ScoutingMatchRecord.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
