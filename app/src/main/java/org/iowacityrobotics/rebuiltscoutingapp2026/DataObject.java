@@ -1,5 +1,5 @@
 //Ben, ZeeKonCal
-//12/18/2025-12/26/2025
+//12/18/2025-12/27/2025
 //POJO For Converting To Json
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
@@ -10,15 +10,22 @@ import org.iowacityrobotics.rebuiltscoutingapp2026.R;
 public class DataObject {
 
     public static final String[] DATA_HEADERS = {
-            "teamNumber", "scouter", "scoutingAssignment", "comments", "leaveLine",
+            "matchNumber",
+            "teamNumber",
+            "scouter",
+            "scoutingAssignment",
+            "comments",
+            "leaveLine",
             "coralL1Auto", "coralL2Auto", "coralL3Auto", "coralL4Auto",
-            "algaeProcessor", "algaeNet", "bargeClimb",
+            "algaeProcessor", "algaeNet",
+            "bargeClimb",
             "coralL1Teleop", "coralL2Teleop", "coralL3Teleop", "coralL4Teleop",
             "algaeMoved", "algaeScored"
     };
 
     @IdRes
     public static final int[] EDIT_TEXT_IDS = {
+            R.id.editMatchNumber,
             R.id.teamNumber,
             R.id.scouter,
             R.id.scoutingAssignment,
@@ -39,9 +46,13 @@ public class DataObject {
             R.id.algaeScored
     };
 
-    private final String[] dataValues = new String[DATA_HEADERS.length];
+    private String[] dataValues = new String[DATA_HEADERS.length];
 
     public String[] getDataValues() {
         return dataValues;
+    }
+
+    public void setDataValues(String[] dataValues) {
+        this.dataValues = dataValues;
     }
 }
