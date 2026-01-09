@@ -25,7 +25,7 @@ public class DataObject {
 
     @IdRes
     public static final int[] EDIT_TEXT_IDS = {
-            R.id.editMatchNumber,
+            R.id.matchNumber,
             R.id.teamNumber,
             R.id.scouter,
             R.id.scoutingAssignment,
@@ -35,15 +35,15 @@ public class DataObject {
             R.id.coralL2Auto,
             R.id.coralL3Auto,
             R.id.coralL4Auto,
-            R.id.algaeProcessor,
-            R.id.algaeNet,
+            R.id.algaeProcessorAuto,
+            R.id.algaeNetAuto,
             R.id.bargeClimb,
             R.id.coralL1Teleop,
             R.id.coralL2Teleop,
             R.id.coralL3Teleop,
             R.id.coralL4Teleop,
-            R.id.algaeMoved,
-            R.id.algaeScored
+            R.id.algaeNetTeleop,
+            R.id.algaeProcessorTeleop
     };
 
     private String[] dataValues = new String[DATA_HEADERS.length];
