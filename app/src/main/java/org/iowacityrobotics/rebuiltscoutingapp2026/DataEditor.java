@@ -27,7 +27,7 @@ public class DataEditor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.data_editor);
-        Button saveButton = findViewById(R.id.SaveExitButton);
+        Button saveButton = findViewById(R.id.saveExitButton);
         if (saveButton != null) {
             saveButton.setOnClickListener(v -> saveToFile(v));
         }
