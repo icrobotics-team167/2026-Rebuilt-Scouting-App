@@ -126,54 +126,46 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:weightSum="3"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/coralL1AutoHeader"
-                android:layout_width="wrap_content"
+                android:id="@+id/autoCyclesHeader"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="25dp"
                 android:textColor="@color/black"
-                android:text="L1 Auto:" />
+                android:text="Auto Cycles:" />
 
             <TextView
-                android:id="@+id/coralL2AutoHeader"
-                android:layout_width="wrap_content"
+                android:id="@+id/activeCyclesHeader"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="25dp"
                 android:textColor="@color/black"
-                android:text="L2 Auto:" />
+                android:text="Active Cycles:" />
 
             <TextView
-                android:id="@+id/coralL3AutoHeader"
-                android:layout_width="wrap_content"
+                android:id="@+id/inactiveCyclesHeader"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="25dp"
                 android:textColor="@color/black"
-                android:text="L3 Auto:" />
-
-            <TextView
-                android:id="@+id/coralL4AutoHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
-                android:text="L4 Auto:" />
+                android:text="Inactive Cycles:" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.9"
-            android:weightSum="4"
+            android:weightSum="3"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/coralL1Auto"
+                android:id="@+id/autoCycles"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -184,7 +176,7 @@
                 android:text="#" />
 
             <EditText
-                android:id="@+id/coralL2Auto"
+                android:id="@+id/activeCycles"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -195,7 +187,7 @@
                 android:text="#" />
 
             <EditText
-                android:id="@+id/coralL3Auto"
+                android:id="@+id/inactiveCycles"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -205,16 +197,6 @@
                 android:inputType="text"
                 android:text="#" />
 
-            <EditText
-                android:id="@+id/coralL4Auto"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
-                android:ems="10"
-                android:inputType="text"
-                android:text="#" />
         </LinearLayout>
 
         <View
@@ -228,76 +210,78 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:weightSum="3"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <TextView
-                android:id="@+id/algaeNetAutoHeader"
+                android:id="@+id/autoNeutralZoneHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:text="Auto Neutral Zone:"
                 android:textColor="@color/black"
-                android:text="Algae Net Auto:" />
+                android:textSize="25dp" />
 
             <TextView
-                android:id="@+id/algaeProcessorAutoHeader"
+                android:id="@+id/activePlayedDefenseHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:text="Active Played Defense:"
                 android:textColor="@color/black"
-                android:text="Algae Processor Auto:" />
+                android:textSize="25dp" />
 
             <TextView
-                android:id="@+id/leaveLineHeader"
+                android:id="@+id/inactivePlayedDefenseHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:text="Inactive Played Defense:"
                 android:textColor="@color/black"
-                android:text="Moved:" />
+                android:textSize="25dp" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.9"
-            android:weightSum="3"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <EditText
-                android:id="@+id/algaeNetAuto"
+                android:id="@+id/autoNeutralZone"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:text="#"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
 
             <EditText
-                android:id="@+id/algaeProcessorAuto"
+                android:id="@+id/activePlayedDefense"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:text="#"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
 
             <EditText
-                android:id="@+id/leaveLine"
+                android:id="@+id/inactivePlayedDefense"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:text="#"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
         </LinearLayout>
 
         <View
@@ -311,43 +295,44 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:weightSum="4"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/coralL1TeleopHeader"
-                android:layout_width="wrap_content"
+                android:id="@+id/endTransitionHeader"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="25dp"
                 android:textColor="@color/black"
-                android:text="L1 Tele-op:" />
+                android:text="End of Transition Score:" />
 
             <TextView
-                android:id="@+id/coralL2TeleopHeader"
-                android:layout_width="wrap_content"
+                android:id="@+id/endShift1Header"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="25dp"
                 android:textColor="@color/black"
-                android:text="L2 Tele-op:" />
+                android:text="End of Shift 1 Score:" />
 
             <TextView
-                android:id="@+id/coralL3TeleopHeader"
-                android:layout_width="wrap_content"
+                android:id="@+id/endShift2Header"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="25dp"
                 android:textColor="@color/black"
-                android:text="L3 Tele-op:" />
+                android:text="End of Shift 2 Score:" />
 
             <TextView
-                android:id="@+id/coralL4TeleopHeader"
-                android:layout_width="wrap_content"
+                android:id="@+id/endShift3Header"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="25dp"
                 android:textColor="@color/black"
-                android:text="L4 Tele-op:" />
+                android:text="End of Shift 3 Score:" />
         </LinearLayout>
 
         <LinearLayout
@@ -358,7 +343,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/coralL1Teleop"
+                android:id="@+id/endTransition"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -369,7 +354,7 @@
                 android:text="#" />
 
             <EditText
-                android:id="@+id/coralL2Teleop"
+                android:id="@+id/endShift1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -380,7 +365,7 @@
                 android:text="#" />
 
             <EditText
-                android:id="@+id/coralL3Teleop"
+                android:id="@+id/endShift2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -391,7 +376,7 @@
                 android:text="#" />
 
             <EditText
-                android:id="@+id/coralL4Teleop"
+                android:id="@+id/endShift3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -417,31 +402,31 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/algaeNetTeleopHeader"
+                android:id="@+id/towerPositionHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="25dp"
                 android:textColor="@color/black"
-                android:text="Algae Net Tele-op:"/>
+                android:text="Tower Position"/>
 
             <TextView
-                android:id="@+id/algaeProcessorTeleopHeader"
+                android:id="@+id/passedFuelHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="25dp"
                 android:textColor="@color/black"
-                android:text="Algae Processor Tele-op:" />
+                android:text="Passed Fuel:" />
 
             <TextView
-                android:id="@+id/bargeClimbHeader"
+                android:id="@+id/driverRatingHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="25dp"
                 android:textColor="@color/black"
-                android:text="Barge Level:" />
+                android:text="Driver Rating:" />
 
         </LinearLayout>
 
@@ -453,7 +438,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/algaeNetTeleop"
+                android:id="@+id/towerPosition"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -464,7 +449,7 @@
                 android:text="#" />
 
             <EditText
-                android:id="@+id/algaeProcessorTeleop"
+                android:id="@+id/passedFuel"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -475,7 +460,7 @@
                 android:text="#" />
 
             <EditText
-                android:id="@+id/bargeClimb"
+                android:id="@+id/driverRating"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
