@@ -249,7 +249,7 @@
                         android:weightSum="4">
 
                         <TextView
-                            android:id="@+id/activeCycles"
+                            android:id="@+id/activeCyclesHeader"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
