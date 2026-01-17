@@ -35,7 +35,7 @@
 
             <Button
                 style="@style/AutoResize25"
-                android:id="@+id/scoutButton"
+                android:id="@+id/editButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -189,7 +189,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/goButton"
+                    android:id="@+id/scoutButton"
                     style="@style/AutoResize60"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
