@@ -9,7 +9,7 @@
         android:layout_width="1278dp"
         android:layout_height="798dp"
         android:orientation="vertical"
-        android:weightSum="12"
+        android:weightSum="120"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="10"
             android:weightSum="12"
             android:orientation="horizontal">
 
@@ -27,6 +27,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="Team:" />
 
             <TextView
@@ -34,6 +36,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="#" />
 
             <TextView
@@ -41,6 +45,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="Match:" />
 
             <TextView
@@ -48,6 +54,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="#" />
 
             <TextView
@@ -55,6 +63,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="Name" />
 
             <TextView
@@ -62,20 +72,22 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="Assignment" />
         </LinearLayout>
 
         <View
             android:id="@+id/divider14"
             android:layout_width="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="3"
             android:layout_height="0dp"
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4"
+            android:layout_weight="40"
             android:orientation="horizontal"
             android:weightSum="64">
 
@@ -107,7 +119,9 @@
                         <TextView
                             android:id="@+id/textView8"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="25dp"
+                            android:textColor="@color/black"
                             android:text="Auto" />
                     </LinearLayout>
                 </LinearLayout>
@@ -129,12 +143,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
+                            android:textSize="20dp"
+                            android:textColor="@color/black"
                             android:text="Cycles:" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="3"
+                            android:weightSum="3"
                             android:orientation="horizontal">
 
                             <Button
@@ -149,6 +166,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:textSize="20dp"
+                                android:textColor="@color/black"
                                 android:text="#" />
 
                             <Button
@@ -172,6 +191,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
                         android:text="Crossed Into Neutral Zone" />
                 </LinearLayout>
             </LinearLayout>
@@ -204,7 +225,9 @@
                         <TextView
                             android:id="@+id/textView8"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="25dp"
+                            android:textColor="@color/black"
                             android:text="Active Hub" />
                     </LinearLayout>
                 </LinearLayout>
@@ -226,6 +249,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
+                            android:textSize="20dp"
+                            android:textColor="@color/black"
                             android:text="Cycles:" />
 
                         <LinearLayout
@@ -246,6 +271,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:textSize="20dp"
+                                android:textColor="@color/black"
                                 android:text="#" />
 
                             <Button
@@ -269,6 +296,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
                         android:text="Played Defense" />
                 </LinearLayout>
             </LinearLayout>
@@ -301,7 +330,9 @@
                         <TextView
                             android:id="@+id/textView8"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="25dp"
+                            android:textColor="@color/black"
                             android:text="Inactive Hub" />
                     </LinearLayout>
                 </LinearLayout>
@@ -323,6 +354,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
+                            android:textSize="20dp"
+                            android:textColor="@color/black"
                             android:text="Cycles:" />
 
                         <LinearLayout
@@ -343,6 +376,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:textSize="20dp"
+                                android:textColor="@color/black"
                                 android:text="#" />
 
                             <Button
@@ -366,6 +401,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
                         android:text="Played Defense" />
                 </LinearLayout>
             </LinearLayout>
@@ -382,81 +419,302 @@
         <View
             android:id="@+id/divider13"
             android:layout_width="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="3"
             android:layout_height="0dp"
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:weightSum="8"
+            android:layout_weight="64"
+            android:weightSum="64"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView25"
+            <View
+                android:id="@+id/divider7"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Total Scored in Transition Period:" />
+                android:background="?android:attr/listDivider" />
 
-            <EditText
-                android:id="@+id/editTextText"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="text"
-                android:text="" />
+                android:layout_weight="20"
+                android:weightSum="56"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView27"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Total scored in Period 1:" />
+                <View
+                    android:id="@+id/divider19"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
 
-            <EditText
-                android:id="@+id/editTextText2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="text"
-                android:text="" />
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="9"
+                    android:gravity="center"
+                    android:text="Team Score:"
+                    android:textColor="@color/black"
+                    android:textSize="25dp" />
 
-            <TextView
-                android:id="@+id/textView28"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Total Scored in Period 2:" />
+                <View
+                    android:id="@+id/divider15"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
 
-            <EditText
-                android:id="@+id/editTextText3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="text"
-                android:text="" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-            <TextView
-                android:id="@+id/textView29"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Total Scored in Period 3:" />
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="End of Transition:"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/editTextText4"
+                    <EditText
+                        android:id="@+id/editTextText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:text="#"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider16"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="End of Shift 1:"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:id="@+id/editTextText2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:text="#"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider17"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="End of Shift 2:"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:id="@+id/editTextText3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:text="#"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider18"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:orientation="horizontal"
+                    android:weightSum="3" >
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="20dp"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:text="End of Shift 3:" />
+
+                    <EditText
+                        android:id="@+id/editTextText4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:ems="10"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:inputType="text"
+                        android:text="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider11"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:background="?android:attr/listDivider" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="text"
-                android:text="" />
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="42"
+                android:layout_height="match_parent"
+                android:weightSum="24"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkBox3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:text="Passed Fuel" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:numStars="5" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:weightSum="6"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:text="Tower Position:"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Notes:"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:id="@+id/editTextText5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="0dp"
+                        android:layout_height="79dp"
+                        android:layout_weight="1"
+                        android:text="Save and Exit"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
