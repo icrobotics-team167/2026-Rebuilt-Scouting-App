@@ -1,0 +1,49 @@
+##Rebuilt Scouting App 2026 (Rebuilt)
+
+An Android-based robotics scouting application designed for FRC Team 167 (Iowa City Robotics). This app allows scouts to collect match data offline and export it via JSON to a USB drive for analysis.
+This project uses a modular Architecture. The goal is to make the app easy to update for future seasons (2027+) without rewriting complex Java logic.
+
+##Key Notes
+
+# Technical Documentation: ScoutingConfig.java
+
+**File Location:** `org.iowacityrobotics.rebuiltscoutingapp2026.data`
+**Authors:** Ben, ZeeKonCal
+**Last Updated:** 1-17-2026
+
+## Overview
+`ScoutingConfig.java` is the **central control file** for the entire application's data structure. Instead of hard-coding logic into the user interface activities, this file acts as a map that defines exactly *what* data is collected, *where* it comes from on the screen, and *how* it is named in the exported JSON file.
+
+This file uses a **Config-Driven Architecture**, meaning you can add, remove, or reorder data fields here without needing to rewrite complex Java code in `DataEditor.java` or `StorageManager.java`.
+
+---
+
+## Code Breakdown
+
+### 1. Data Types (`enum DataType`)
+The file defines three specific types of data the app can handle. This ensures the app knows how to process the input correctly before saving it.
+
+* **`NUMBER`**: For integers (e.g., Match #, Team #, Scores).
+* **`TEXT`**: For strings (e.g., Scouter Name, Comments).
+* **`BOOLEAN`**: For true/false flags (e.g., Leave Line, Climb).
+
+### 2. The Field Class (`static class Field`)
+This is a helper class that groups three critical pieces of information for every single data point:
+* **`viewId`**: The link to the UI. It points to the specific ID in the XML layout (e.g., `R.id.teamNumber`).
+* **`jsonKey`**: The link to the Output. It defines the name of the key in the JSON file (e.g., `"teamNumber"`).
+* **`type`**: The link to the Logic. It tells the app whether to read the input as text, a number, or a checkbox state.
+
+### 3. The Configuration Array (`INPUTS`)
+This is the master list. The order of elements in this array strictly dictates the order of keys in the exported JSON file.
+
+```java
+public static final Field[] INPUTS = {
+    // 1. INFO SECTION
+    new Field(R.id.matchNumber, "matchNumber", DataType.NUMBER),
+    new Field(R.id.teamNumber,  "teamNumber",  DataType.NUMBER),
+    new Field(R.id.scouter,     "scouterName", DataType.TEXT),
+
+    // 2. AUTO SECTION
+    new Field(R.id.leaveLine,   "leaveLine",   DataType.BOOLEAN),
+    // ... additional fields ...
+};
