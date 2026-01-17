@@ -1,3 +1,7 @@
+//Ben
+//1-17-2026
+//This is the Format of .json export file
+
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.R;
