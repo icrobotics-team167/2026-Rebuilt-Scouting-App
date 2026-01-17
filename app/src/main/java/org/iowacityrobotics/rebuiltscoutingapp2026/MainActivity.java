@@ -27,30 +27,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_screen); //Start screen
+        setContentView(R.layout.data_entry); //Start screen
 
-        Button scoutButton = findViewById(R.id.scoutButton);
-        Button exportButton = findViewById(R.id.exportButton);
-        Button deleteButton = findViewById(R.id.deleteButton);
-
-        scoutButton.setOnClickListener(v -> {
-            GlobalVariables.objectIndex = -1; // -1 tells the editor this is a NEW match
-            Intent intent = new Intent(MainActivity.this, DataEditor.class);
-            startActivity(intent);
-        });
-
-        exportLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                        Uri uri = result.getData().getData();
-                        writeJsonToUsb(uri);
-                    }
-                }
-        );
-
-        exportButton.setOnClickListener(v -> startExport());
-        deleteButton.setOnClickListener(v -> confirmDeleteAll());
     }
 
     private void startExport() {

@@ -29,21 +29,7 @@ public class DataObject {
             R.id.teamNumber,
             R.id.scouter,
             R.id.scoutingAssignment,
-            R.id.comments,
-            R.id.leaveLine,
-            R.id.coralL1Auto,
-            R.id.coralL2Auto,
-            R.id.coralL3Auto,
-            R.id.coralL4Auto,
-            R.id.algaeProcessorAuto,
-            R.id.algaeNetAuto,
-            R.id.bargeClimb,
-            R.id.coralL1Teleop,
-            R.id.coralL2Teleop,
-            R.id.coralL3Teleop,
-            R.id.coralL4Teleop,
-            R.id.algaeNetTeleop,
-            R.id.algaeProcessorTeleop
+            R.id.comments
     };
 
     private String[] dataValues = new String[DATA_HEADERS.length];
