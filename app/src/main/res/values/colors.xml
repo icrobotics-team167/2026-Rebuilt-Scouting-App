@@ -2,5 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="emphasis">#138808</color>
+    <color name="saveButton">#138808</color>
+    <color name="dataEntryButtons">#F28C28</color>
 </resources>

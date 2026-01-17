@@ -472,7 +472,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.2"
                 android:textSize="25sp"
-                android:backgroundTint="@color/emphasis"
+                android:backgroundTint="@color/saveButton"
                 android:text="Save and Exit" />
         </LinearLayout>
     </LinearLayout>
