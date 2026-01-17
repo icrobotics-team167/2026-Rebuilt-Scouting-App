@@ -510,18 +510,18 @@
 
                     <TextView
                         style="@style/AutoResize20"
-                        android:id="@+id/endTransitionHeader"
+                        android:id="@+id/endAutoHeader"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="End of Transition:"
+                        android:text="End of Auto:"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
                     <EditText
                         style="@style/AutoResize20"
-                        android:id="@+id/endTransition"
+                        android:id="@+id/endAuto"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
@@ -624,18 +624,18 @@
 
                     <TextView
                         style="@style/AutoResize20"
-                        android:id="@+id/endShift3Header"
+                        android:id="@+id/endGameHeader"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:textSize="20sp"
                         android:gravity="center_vertical"
                         android:textColor="@color/black"
-                        android:text="End of Shift 3:" />
+                        android:text="End of Game:" />
 
                     <EditText
                         style="@style/AutoResize20"
-                        android:id="@+id/endShift3"
+                        android:id="@+id/endGame"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
