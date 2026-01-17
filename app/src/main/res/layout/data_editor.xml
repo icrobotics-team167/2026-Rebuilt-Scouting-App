@@ -24,18 +24,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.8"
-                android:textSize="30sp"
+                android:textSize="30dp"
+                android:textColor="@color/black"
                 android:text="Match Number:" />
 
             <EditText
                 android:id="@+id/matchNumber"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="30sp"
-                android:text="" />
+                android:textSize="25dp"
+                android:textColor="@color/black"
+                android:text="#" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -47,18 +49,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
-                android:textSize="30sp"
+                android:textSize="30dp"
+                android:textColor="@color/black"
                 android:text="Team Number:" />
 
             <EditText
                 android:id="@+id/teamNumber"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1.3"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="30sp"
-                android:text="" />
+                android:textSize="25dp"
+                android:textColor="@color/black"
+                android:text="#" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -70,18 +74,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
-                android:textSize="30sp"
+                android:textSize="30dp"
+                android:textColor="@color/black"
                 android:text="Name:" />
 
             <EditText
                 android:id="@+id/scouter"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="2.7"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="30sp"
-                android:text="" />
+                android:textSize="25dp"
+                android:textColor="@color/black"
+                android:text="#" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -93,18 +99,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.1"
-                android:textSize="30sp"
+                android:textSize="30dp"
+                android:textColor="@color/black"
                 android:text="Assignment:" />
 
             <EditText
                 android:id="@+id/scoutingAssignment"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1.9"
                 android:ems="10"
                 android:inputType="text"
                 android:textSize="30sp"
-                android:text="" />
+                android:text="#" />
 
         </LinearLayout>
 
@@ -126,7 +133,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="L1 Auto:" />
 
             <TextView
@@ -134,7 +142,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="L2 Auto:" />
 
             <TextView
@@ -142,7 +151,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="L3 Auto:" />
 
             <TextView
@@ -150,7 +160,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="L4 Auto:" />
         </LinearLayout>
 
@@ -158,43 +169,52 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.9"
+            android:weightSum="4"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/coralL1Auto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
 
             <EditText
                 android:id="@+id/coralL2Auto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
 
             <EditText
                 android:id="@+id/coralL3Auto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
 
             <EditText
                 android:id="@+id/coralL4Auto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
         </LinearLayout>
 
         <View
@@ -216,7 +236,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="Algae Net Auto:" />
 
             <TextView
@@ -224,7 +245,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="Algae Processor Auto:" />
 
             <TextView
@@ -232,7 +254,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="Moved:" />
         </LinearLayout>
 
@@ -246,29 +269,35 @@
             <EditText
                 android:id="@+id/algaeNetAuto"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
 
             <EditText
                 android:id="@+id/algaeProcessorAuto"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
 
             <EditText
                 android:id="@+id/leaveLine"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
         </LinearLayout>
 
         <View
@@ -289,7 +318,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="L1 Tele-op:" />
 
             <TextView
@@ -297,7 +327,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="L2 Tele-op:" />
 
             <TextView
@@ -305,7 +336,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="L3 Tele-op:" />
 
             <TextView
@@ -313,7 +345,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="L4 Tele-op:" />
         </LinearLayout>
 
@@ -321,43 +354,52 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.9"
+            android:weightSum="4"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/coralL1Teleop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
 
             <EditText
                 android:id="@+id/coralL2Teleop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
 
             <EditText
                 android:id="@+id/coralL3Teleop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
 
             <EditText
                 android:id="@+id/coralL4Teleop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
         </LinearLayout>
 
         <View
@@ -377,17 +419,19 @@
             <TextView
                 android:id="@+id/algaeNetTeleopHeader"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="Algae Net Tele-op:"/>
 
             <TextView
                 android:id="@+id/algaeProcessorTeleopHeader"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="Algae Processor Tele-op:" />
 
             <TextView
@@ -395,7 +439,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="Barge Level:" />
 
         </LinearLayout>
@@ -410,29 +455,35 @@
             <EditText
                 android:id="@+id/algaeNetTeleop"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
 
             <EditText
                 android:id="@+id/algaeProcessorTeleop"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
 
             <EditText
                 android:id="@+id/bargeClimb"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
         </LinearLayout>
 
         <View
@@ -454,24 +505,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
-                android:textSize="25sp"
+                android:textSize="25dp"
+                android:textColor="@color/black"
                 android:text="Notes:" />
 
             <EditText
                 android:id="@+id/comments"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.7"
+                android:textSize="20dp"
+                android:textColor="@color/black"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text="#" />
 
             <Button
                 android:id="@+id/saveExitButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2"
-                android:textSize="25sp"
+                android:textSize="25dp"
                 android:backgroundTint="@color/saveButton"
                 android:text="Save and Exit" />
         </LinearLayout>
