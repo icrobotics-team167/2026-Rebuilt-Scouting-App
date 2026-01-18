@@ -8,14 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="15"
+        android:weightSum="60"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="6"
             android:weightSum="5"
             android:orientation="horizontal">
 
@@ -57,16 +57,23 @@
                 android:text="Export" />
         </LinearLayout>
 
+        <View
+            android:id="@+id/divider36"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="?android:attr/listDivider" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3" />
+            android:layout_weight="10" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            android:weightSum="10"
+            android:layout_weight="8"
+            android:weightSum="20"
             android:orientation="horizontal">
 
             <TextView
@@ -75,7 +82,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="right"
-                android:layout_weight="4"
+                android:layout_weight="8"
                 android:text="Hello," />
 
             <Space
@@ -87,7 +94,7 @@
                 android:id="@+id/scouter"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
+                android:layout_weight="6"
                 android:ems="10"
                 android:textSize="30sp"
                 android:textColor="@color/black"
@@ -95,25 +102,24 @@
                 android:text="" />
         </LinearLayout>
 
-        <LinearLayout
+        <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"></LinearLayout>
+            android:layout_weight="2" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:weightSum="10"
+            android:layout_weight="6"
+            android:weightSum="20"
             android:orientation="horizontal">
 
             <TextView
-                style="@style/AutoResize60"
                 android:id="@+id/scoutingAssignmentAndTeamNumberHeader"
+                style="@style/AutoResize45"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="8"
                 android:textColor="@color/black"
                 android:gravity="right"
                 android:text="You're scouting:" />
@@ -127,28 +133,28 @@
                 android:id="@+id/scoutingAssignmentAndTeamNumber"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="6" />
 
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_height="0dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:weightSum="10"
+            android:layout_weight="6"
+            android:weightSum="20"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/matchNumberHeader"
-                style="@style/AutoResize60"
+                style="@style/AutoResize45"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="8"
                 android:gravity="right"
                 android:textColor="@color/black"
                 android:text="Match Number:" />
@@ -169,10 +175,15 @@
 
         </LinearLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_weight="16"
             android:weightSum="5"
             android:orientation="horizontal">
 
