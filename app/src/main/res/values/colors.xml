@@ -4,5 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="saveButton">#138808</color>
     <color name="dataEntryButtons">#F28C28</color>
-    <color name="adminButtons">#D16002</color>
+    <color name="adminButtons">#FFAA33</color>
 </resources>

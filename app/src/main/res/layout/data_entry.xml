@@ -23,63 +23,57 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/AutoResize25"
                 android:id="@+id/teamNumberHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:layout_weight="1"
-                android:textSize="25sp"
-                android:textColor="@color/black"
                 android:text="Team:" />
 
             <TextView
-                style="@style/AutoResize25"
                 android:id="@+id/teamNumber"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:layout_weight="2"
-                android:textSize="25sp"
-                android:textColor="@color/black"
                 android:text="#" />
 
             <TextView
-                style="@style/AutoResize25"
                 android:id="@+id/matchNumberHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25sp"
-                android:textColor="@color/black"
+                android:gravity="center"
                 android:text="Match:" />
 
             <TextView
-                style="@style/AutoResize25"
                 android:id="@+id/matchNumber"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:textSize="25sp"
-                android:textColor="@color/black"
+                android:gravity="center_vertical"
                 android:text="#" />
 
             <TextView
-                style="@style/AutoResize25"
                 android:id="@+id/scouter"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:textSize="25sp"
-                android:textColor="@color/black"
+                android:gravity="center_vertical"
                 android:text="Name" />
 
             <TextView
-                style="@style/AutoResize25"
                 android:id="@+id/scoutingAssignment"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:textSize="25sp"
-                android:textColor="@color/black"
+                android:gravity="center_vertical"
                 android:text="Assignment" />
         </LinearLayout>
 
@@ -109,12 +103,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="20"
                 android:orientation="vertical"
-                android:weightSum="5">
+                android:weightSum="10">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -123,13 +117,74 @@
                         android:orientation="vertical">
 
                         <TextView
-                            style="@style/AutoResize25"
                             android:id="@+id/autoHeader"
+                            style="@style/AutoResize25"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textSize="25sp"
-                            android:textColor="@color/black"
+                            android:gravity="center_vertical"
                             android:text="Auto" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="2"
+                        android:weightSum="6">
+
+                        <TextView
+                            android:id="@+id/autoCyclesHeader"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:gravity="center_horizontal"
+                            android:layout_gravity="center_vertical"
+                            android:text="Cycles:" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="4"
+                            android:weightSum="5"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/autoDecButton"
+                                style="@style/AutoResize30"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:textColor="@color/white"
+                                android:backgroundTint="@color/dataEntryButtons"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/autoCycles"
+                                style="@style/AutoResize20"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:text="0" />
+
+                            <Button
+                                android:id="@+id/autoIncButton"
+                                style="@style/AutoResize30"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:backgroundTint="@color/dataEntryButtons"
+                                android:layout_weight="2"
+                                android:textColor="@color/white"
+                                android:text="+" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -139,74 +194,12 @@
                     android:layout_weight="3"
                     android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:weightSum="4">
-
-                        <TextView
-                            style="@style/AutoResize20"
-                            android:id="@+id/autoCyclesHeader"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:textSize="20sp"
-                            android:gravity="center_horizontal"
-                            android:textColor="@color/black"
-                            android:text="Cycles:" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="3"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/autoDecButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:backgroundTint="@color/dataEntryButtons"
-                                android:textSize="30sp"
-                                android:text="-" />
-
-                            <TextView
-                                style="@style/AutoResize20"
-                                android:id="@+id/autoCycles"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:textSize="20sp"
-                                android:textColor="@color/black"
-                                android:text="#" />
-
-                            <Button
-                                android:id="@+id/autoIncButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:backgroundTint="@color/dataEntryButtons"
-                                android:textSize="25sp"
-                                android:layout_weight="1"
-                                android:text="+" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
                     <CheckBox
                         style="@style/AutoResize20"
                         android:id="@+id/autoNeutralZone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
                         android:text="Crossed Into Neutral Zone" />
                 </LinearLayout>
             </LinearLayout>
@@ -223,12 +216,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="20"
                 android:orientation="vertical"
-                android:weightSum="5">
+                android:weightSum="10">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -237,13 +230,73 @@
                         android:orientation="vertical">
 
                         <TextView
-                            style="@style/AutoResize25"
                             android:id="@+id/activeHubHeader"
+                            style="@style/AutoResize25"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textSize="25sp"
-                            android:textColor="@color/black"
+                            android:gravity="center_vertical"
                             android:text="Active Hub" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:weightSum="6">
+
+                        <TextView
+                            style="@style/AutoResize20"
+                            android:id="@+id/activeCyclesHeader"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:gravity="center_horizontal"
+                            android:layout_gravity="center_vertical"
+                            android:text="Cycles:" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="4"
+                            android:weightSum="5"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/activeDecButton"
+                                style="@style/AutoResize30"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:backgroundTint="@color/dataEntryButtons"
+                                android:textColor="@color/white"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/activeCycles"
+                                style="@style/AutoResize20"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:text="0" />
+
+                            <Button
+                                android:id="@+id/activeIncButton"
+                                style="@style/AutoResize30"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:backgroundTint="@color/dataEntryButtons"
+                                android:textColor="@color/white"
+                                android:text="+" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -253,74 +306,12 @@
                     android:layout_weight="3"
                     android:orientation="horizontal">
 
-                    <LinearLayout
+                    <CheckBox
+                        android:id="@+id/activePlayedDefense"
+                        style="@style/AutoResize20"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:weightSum="4">
-
-                        <TextView
-                            style="@style/AutoResize20"
-                            android:id="@+id/activeCyclesHeader"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:textSize="20sp"
-                            android:gravity="center_horizontal"
-                            android:textColor="@color/black"
-                            android:text="Cycles:" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="3"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/activeDecButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:backgroundTint="@color/dataEntryButtons"
-                                android:textSize="25sp"
-                                android:text="-" />
-
-                            <TextView
-                                style="@style/AutoResize20"
-                                android:id="@+id/activeCycles"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:textSize="20sp"
-                                android:textColor="@color/black"
-                                android:text="#" />
-
-                            <Button
-                                android:id="@+id/activeIncButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:backgroundTint="@color/dataEntryButtons"
-                                android:textSize="25sp"
-                                android:text="+" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        style="@style/AutoResize20"
-                        android:id="@+id/activePlayedDefense"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
                         android:text="Played Defense" />
                 </LinearLayout>
             </LinearLayout>
@@ -337,12 +328,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="20"
                 android:orientation="vertical"
-                android:weightSum="5">
+                android:weightSum="10">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -355,9 +346,67 @@
                             android:id="@+id/inactiveHubHeader"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textSize="25sp"
-                            android:textColor="@color/black"
+                            android:gravity="center_vertical"
                             android:text="Inactive Hub" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:weightSum="6">
+
+                        <TextView
+                            android:id="@+id/inactiveCyclesHeader"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:gravity="center_horizontal"
+                            android:text="Cycles:" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="4"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/inactiveDecButton"
+                                style="@style/AutoResize30"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:backgroundTint="@color/dataEntryButtons"
+                                android:textColor="@color/white"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/inactiveCycles"
+                                style="@style/AutoResize20"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="0" />
+
+                            <Button
+                                android:id="@+id/inactiveIncButton"
+                                style="@style/AutoResize30"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:backgroundTint="@color/dataEntryButtons"
+                                android:textColor="@color/white"
+                                android:text="+" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -367,74 +416,12 @@
                     android:layout_weight="3"
                     android:orientation="horizontal">
 
-                    <LinearLayout
+                    <CheckBox
+                        android:id="@+id/inactivePlayedDefense"
+                        style="@style/AutoResize20"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:weightSum="4">
-
-                        <TextView
-                            style="@style/AutoResize20"
-                            android:id="@+id/inactiveCyclesHeader"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:textSize="20sp"
-                            android:gravity="center_horizontal"
-                            android:textColor="@color/black"
-                            android:text="Cycles:" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="3"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/inactiveDecButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:backgroundTint="@color/dataEntryButtons"
-                                android:textSize="25sp"
-                                android:text="-" />
-
-                            <TextView
-                                style="@style/AutoResize20"
-                                android:id="@+id/inactiveCycles"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:textSize="20sp"
-                                android:textColor="@color/black"
-                                android:text="#" />
-
-                            <Button
-                                android:id="@+id/inactiveIncButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:backgroundTint="@color/dataEntryButtons"
-                                android:textSize="25sp"
-                                android:text="+" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        style="@style/AutoResize20"
-                        android:id="@+id/inactivePlayedDefense"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:textSize="20sp"
-                        android:textColor="@color/black"
                         android:text="Played Defense" />
                 </LinearLayout>
             </LinearLayout>
@@ -484,15 +471,13 @@
                     android:background="?android:attr/listDivider" />
 
                 <TextView
-                    style="@style/AutoResize25"
                     android:id="@+id/teamScoreHeader"
+                    style="@style/AutoResize25"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="9"
                     android:gravity="center"
-                    android:text="Team Score:"
-                    android:textColor="@color/black"
-                    android:textSize="25sp" />
+                    android:text="Team Score:" />
 
                 <View
                     android:id="@+id/divider15"
@@ -509,27 +494,23 @@
                     android:weightSum="3">
 
                     <TextView
-                        style="@style/AutoResize20"
                         android:id="@+id/endAutoHeader"
+                        style="@style/AutoResize20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="End of Auto:"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:text="End of Auto:" />
 
                     <EditText
-                        style="@style/AutoResize20"
                         android:id="@+id/endAuto"
+                        style="@style/AutoResize20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:ems="10"
                         android:inputType="text"
-                        android:text="#"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:text="" />
 
                 </LinearLayout>
 
@@ -565,7 +546,7 @@
                         android:layout_weight="2"
                         android:ems="10"
                         android:inputType="text"
-                        android:text="#"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -603,7 +584,7 @@
                         android:layout_weight="2"
                         android:ems="10"
                         android:inputType="text"
-                        android:text="#"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -643,7 +624,7 @@
                         android:textSize="20sp"
                         android:textColor="@color/black"
                         android:inputType="text"
-                        android:text="#" />
+                        android:text="" />
                 </LinearLayout>
 
                 <View
@@ -682,14 +663,12 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        style="@style/AutoResize20"
                         android:id="@+id/passedFuel"
+                        style="@style/AutoResize20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Passed Fuel"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:text="Passed Fuel" />
 
                     <RatingBar
                         android:id="@+id/rating"
@@ -716,15 +695,13 @@
                     android:weightSum="6">
 
                     <TextView
-                        style="@style/AutoResize20"
                         android:id="@+id/towerPositionHeader"
+                        style="@style/AutoResize20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:gravity="center_vertical"
-                        android:text="Tower Position:"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:text="Tower Position:" />
 
                     <Spinner
                         android:id="@+id/towerPosition"
@@ -749,19 +726,17 @@
                     android:weightSum="6">
 
                     <TextView
-                        style="@style/AutoResize20"
                         android:id="@+id/commentsHeader"
+                        style="@style/AutoResize20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Notes:"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:text="Notes:" />
 
                     <EditText
-                        style="@style/AutoResize20"
                         android:id="@+id/comments"
+                        style="@style/AutoResize20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="4"
@@ -773,11 +748,11 @@
                         style="@style/AutoResize20"
                         android:id="@+id/saveExitButton"
                         android:layout_width="0dp"
-                        android:layout_height="79dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:backgroundTint="@color/saveButton"
-                        android:text="Save and Exit"
-                        android:textSize="20sp" />
+                        android:textColor="@color/white"
+                        android:text="Save and Exit" />
 
                 </LinearLayout>
 

@@ -5,6 +5,7 @@
         <item name="android:autoSizeMinTextSize">12sp</item>
         <item name="android:autoSizeMaxTextSize">20sp</item>
         <item name="android:autoSizeStepGranularity">1sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="AutoResize25">
@@ -12,6 +13,15 @@
         <item name="android:autoSizeMinTextSize">12sp</item>
         <item name="android:autoSizeMaxTextSize">25sp</item>
         <item name="android:autoSizeStepGranularity">1sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="AutoResize30">
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMinTextSize">20sp</item>
+        <item name="android:autoSizeMaxTextSize">30sp</item>
+        <item name="android:autoSizeStepGranularity">1sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="AutoResize60">
@@ -19,5 +29,7 @@
         <item name="android:autoSizeMinTextSize">40sp</item>
         <item name="android:autoSizeMaxTextSize">60sp</item>
         <item name="android:autoSizeStepGranularity">1sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
+
 </resources>

@@ -21,11 +21,11 @@
 
             <TextView
                 android:id="@+id/matchNumberHeader"
+                style="@style/AutoResize30"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="2.8"
-                android:textSize="30dp"
-                android:textColor="@color/black"
+                android:gravity="center"
                 android:text="Match Number:" />
 
             <EditText
@@ -34,9 +34,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
+                android:textSize="25sp"
                 android:inputType="text"
-                android:textSize="25dp"
-                android:textColor="@color/black"
                 android:text="#" />
 
             <Space
@@ -46,11 +45,11 @@
 
             <TextView
                 android:id="@+id/teamNumberHeader"
+                style="@style/AutoResize30"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:textSize="30dp"
-                android:textColor="@color/black"
+                android:gravity="center"
                 android:text="Team Number:" />
 
             <EditText
@@ -60,8 +59,7 @@
                 android:layout_weight="1.3"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:text="#" />
 
             <Space
@@ -71,11 +69,11 @@
 
             <TextView
                 android:id="@+id/scouterHeader"
+                style="@style/AutoResize30"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:layout_weight="1.1"
-                android:textSize="30dp"
-                android:textColor="@color/black"
                 android:text="Name:" />
 
             <EditText
@@ -85,8 +83,7 @@
                 android:layout_weight="2.7"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:text="#" />
 
             <Space
@@ -96,11 +93,11 @@
 
             <TextView
                 android:id="@+id/scoutingAssignmentHeader"
+                style="@style/AutoResize30"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="2.1"
-                android:textSize="30dp"
-                android:textColor="@color/black"
+                android:gravity="center"
                 android:text="Assignment:" />
 
             <EditText
@@ -110,7 +107,7 @@
                 android:layout_weight="1.9"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:text="#" />
 
         </LinearLayout>
@@ -131,29 +128,29 @@
 
             <TextView
                 android:id="@+id/autoCyclesHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:gravity="center_vertical"
                 android:text="Auto Cycles:" />
 
             <TextView
                 android:id="@+id/activeCyclesHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:gravity="center_vertical"
                 android:text="Active Cycles:" />
 
             <TextView
                 android:id="@+id/inactiveCyclesHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:gravity="center_vertical"
                 android:text="Inactive Cycles:" />
         </LinearLayout>
 
@@ -169,8 +166,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="#" />
@@ -180,8 +176,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="#" />
@@ -191,8 +186,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="#" />
@@ -215,30 +209,30 @@
 
             <TextView
                 android:id="@+id/autoNeutralZoneHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Auto Neutral Zone:"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
+                android:gravity="center_vertical"
+                android:text="Auto Neutral Zone:" />
 
             <TextView
                 android:id="@+id/activePlayedDefenseHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Active Played Defense:"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
+                android:gravity="center_vertical"
+                android:text="Active Played Defense:" />
 
             <TextView
                 android:id="@+id/inactivePlayedDefenseHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Inactive Played Defense:"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
+                android:gravity="center_vertical"
+                android:text="Inactive Played Defense:" />
 
         </LinearLayout>
 
@@ -257,8 +251,7 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="#"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
+                android:textSize="25sp" />
 
             <EditText
                 android:id="@+id/activePlayedDefense"
@@ -268,8 +261,7 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="#"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
+                android:textSize="25sp" />
 
             <EditText
                 android:id="@+id/inactivePlayedDefense"
@@ -279,8 +271,7 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="#"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
+                android:textSize="25sp" />
 
         </LinearLayout>
 
@@ -299,40 +290,40 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/endTransitionHeader"
+                android:id="@+id/endAutoHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
-                android:text="End of Transition Score:" />
+                android:gravity="center_vertical"
+                android:text="End of Auto Score:" />
 
             <TextView
                 android:id="@+id/endShift1Header"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:gravity="center_vertical"
                 android:text="End of Shift 1 Score:" />
 
             <TextView
                 android:id="@+id/endShift2Header"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:gravity="center_vertical"
                 android:text="End of Shift 2 Score:" />
 
             <TextView
-                android:id="@+id/endShift3Header"
+                android:id="@+id/endGameHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
-                android:text="End of Shift 3 Score:" />
+                android:gravity="center_vertical"
+                android:text="End of Game Score:" />
         </LinearLayout>
 
         <LinearLayout
@@ -343,12 +334,11 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/endTransition"
+                android:id="@+id/endAuto"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="#" />
@@ -358,8 +348,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="#" />
@@ -369,19 +358,17 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="#" />
 
             <EditText
-                android:id="@+id/endShift3"
+                android:id="@+id/endGame"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="#" />
@@ -403,29 +390,29 @@
 
             <TextView
                 android:id="@+id/towerPositionHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:gravity="center_vertical"
                 android:text="Tower Position"/>
 
             <TextView
                 android:id="@+id/passedFuelHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:gravity="center_vertical"
                 android:text="Passed Fuel:" />
 
             <TextView
                 android:id="@+id/driverRatingHeader"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:gravity="center_vertical"
                 android:text="Driver Rating:" />
 
         </LinearLayout>
@@ -442,8 +429,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="#" />
@@ -453,8 +439,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="#" />
@@ -464,8 +449,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="#" />
@@ -487,31 +471,31 @@
 
             <TextView
                 android:id="@+id/commentsHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0.1"
-                android:textSize="25dp"
-                android:textColor="@color/black"
+                android:gravity="center"
                 android:text="Notes:" />
 
             <EditText
                 android:id="@+id/comments"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.7"
-                android:textSize="20dp"
-                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="#" />
 
             <Button
                 android:id="@+id/saveExitButton"
+                style="@style/AutoResize20"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2"
-                android:textSize="25dp"
                 android:backgroundTint="@color/saveButton"
+                android:textColor="@color/white"
                 android:text="Save and Exit" />
         </LinearLayout>
     </LinearLayout>
