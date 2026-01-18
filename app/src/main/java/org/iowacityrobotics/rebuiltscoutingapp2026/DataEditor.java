@@ -58,6 +58,16 @@ public class DataEditor extends AppCompatActivity {
         setInitialValue(R.id.autoCycles, "0");
         setInitialValue(R.id.activeCycles, "0");
         setInitialValue(R.id.inactiveCycles, "0");
+
+        if (getIntent() != null) {
+            String scouter = getIntent().getStringExtra("PASS_SCOUTER");
+            String match = getIntent().getStringExtra("PASS_MATCH");
+            String assignment = getIntent().getStringExtra("PASS_ASSIGNMENT");
+
+            if(scouter != null) setInitialValue(R.id.scouter, scouter);
+            if(match != null) setInitialValue(R.id.matchNumber, match);
+            if(assignment != null) setInitialValue(R.id.scoutingAssignment, assignment);
+        }
     }
 
     private void setupCounter(int decId, int textId, int incId) {
@@ -79,9 +89,12 @@ public class DataEditor extends AppCompatActivity {
     }
 
     private void setInitialValue(int viewId, String value) {
-        View v = findViewById(viewId);
-        if (v instanceof TextView) {
-            ((TextView) v).setText(value);
+        View view = findViewById(viewId);
+
+        if (view instanceof EditText) {
+            ((EditText) view).setText(value);
+        } else if (view instanceof TextView) {
+            ((TextView) view).setText(value);
         }
     }
 
@@ -92,7 +105,12 @@ public class DataEditor extends AppCompatActivity {
             View view = findViewById(field.viewId);
             if (view != null && data.containsKey(field.jsonKey)) {
                 String val = String.valueOf(data.get(field.jsonKey));
-                if (view instanceof TextView) {
+
+                if (view instanceof RatingBar) {
+                    ((RatingBar) view).setRating((float) parseSafeDouble(val));
+                } else if (view instanceof CheckBox) {
+                    ((CheckBox) view).setChecked(Boolean.parseBoolean(val));
+                } else if (view instanceof TextView) {
                     ((TextView) view).setText(val);
                 }
             }

@@ -39,12 +39,21 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d30d0ac9-93fe-4c35-a2ec-fec51907c538" name="Changes" comment="Revert &quot;Fixing ID`s&quot;&#10;&#10;This reverts commit ddfd111b2083e0d07fb928fa89f7a957fced6053.&#10;&#10;# Conflicts:&#10;#&#9;.gradle/9.1.0/executionHistory/executionHistory.bin&#10;#&#9;.gradle/9.1.0/executionHistory/executionHistory.lock&#10;#&#9;.gradle/9.1.0/fileHashes/fileHashes.bin&#10;#&#9;.gradle/9.1.0/fileHashes/fileHashes.lock&#10;#&#9;.gradle/9.1.0/fileHashes/resourceHashesCache.bin&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/deploymentTargetSelector.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/MainActivity.java">
-      <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/checksums/checksums.lock" afterDir="false" />
+    <list default="true" id="d30d0ac9-93fe-4c35-a2ec-fec51907c538" name="Changes" comment="Revert Commit&#10;1/18/2026&#10;Ben">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/StartScreenActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/LocalTeamNumberFetcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/SetupScreenActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/DataEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/DataEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/start_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/start_screen.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,12 +124,15 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Reverting in Binding",
+    "git-widget-placeholder": "Binding",
     "kotlin-language-version-configured": "true",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.iowacityrobotics.rebuiltscoutingapp2026" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Calder\Documents\GitHub\2026-Rebuilt-Scouting-App" />
     </key>
@@ -240,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768703914298</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Revert Commit&#10;1/18/2026&#10;Ben">
+      <option name="closed" value="true" />
+      <created>1768769475250</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1768769475250</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -249,7 +269,8 @@
     <MESSAGE value="Made the json files movment modular, now only have to change ScoutingConfig.java&#10;1-17-2026&#10;Ben" />
     <MESSAGE value="Added README.me&#10;1-17-2026&#10;Ben" />
     <MESSAGE value="Fixing ID`s&#10;1-17-2026&#10;Ben" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing ID`s&#10;1-17-2026&#10;Ben" />
+    <MESSAGE value="Revert Commit&#10;1/18/2026&#10;Ben" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revert Commit&#10;1/18/2026&#10;Ben" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
