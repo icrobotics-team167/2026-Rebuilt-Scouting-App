@@ -24,7 +24,7 @@
         </activity>
 
         <activity android:name=".DataEditor" />
-        <activity android:name=".StartScreenActivity" />
+        <activity android:name=".SetupScreen" />
 
     </application>
 

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class StartScreenActivity extends AppCompatActivity {
+public class SetupScreen extends AppCompatActivity {
 
     private Spinner matchSpinner;
 
@@ -30,7 +30,7 @@ public class StartScreenActivity extends AppCompatActivity {
 
         if (GlobalVariables.dataList == null || GlobalVariables.dataList.isEmpty()) {
             Toast.makeText(this, "No matches found to edit.", Toast.LENGTH_LONG).show();
-            finish(); // Close this screen if no data
+            finish();
             return;
         }
 
@@ -55,7 +55,7 @@ public class StartScreenActivity extends AppCompatActivity {
             int selectedIndex = matchSpinner.getSelectedItemPosition();
             if (selectedIndex >= 0) {
                 GlobalVariables.objectIndex = selectedIndex;
-                Intent intent = new Intent(StartScreenActivity.this, DataEditor.class);
+                Intent intent = new Intent(SetupScreen.this, DataEditor.class);
                 startActivity(intent);
                 finish();
             }

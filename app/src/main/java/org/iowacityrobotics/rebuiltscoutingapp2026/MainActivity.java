@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         editButton.setOnClickListener(v -> {
             try {
-                Intent intent = new Intent(MainActivity.this, StartScreenActivity.class);
+                Intent intent = new Intent(MainActivity.this, SetupScreen.class);
                 startActivity(intent);
             } catch (Exception e) {
                 Toast.makeText(this, "StartScreenActivity not found yet!", Toast.LENGTH_SHORT).show();
