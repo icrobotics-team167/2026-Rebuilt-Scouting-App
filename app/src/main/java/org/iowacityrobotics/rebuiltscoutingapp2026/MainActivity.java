@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
@@ -23,19 +24,42 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_screen);
+        setContentView(R.layout.setup_screen);
+
+        StorageManager.loadData(this);
 
         Button scoutButton = findViewById(R.id.scoutButton);
         Button exportButton = findViewById(R.id.exportButton);
         Button deleteButton = findViewById(R.id.deleteButton);
+        Button editButton = findViewById(R.id.editButton);
+
+        EditText scouterInput = findViewById(R.id.scouter);
+        EditText matchInput = findViewById(R.id.matchNumber);
 
         scoutButton.setOnClickListener(v -> {
             GlobalVariables.objectIndex = -1;
             Intent intent = new Intent(MainActivity.this, DataEditor.class);
+
+            intent.putExtra("KEY_SCOUTER", scouterInput.getText().toString());
+            intent.putExtra("KEY_MATCH", matchInput.getText().toString());
+
             startActivity(intent);
         });
 
-       exportLauncher = registerForActivityResult(
+        editButton.setOnClickListener(v -> {
+            if (!GlobalVariables.dataList.isEmpty()) {
+                GlobalVariables.objectIndex = GlobalVariables.dataList.size() - 1;
+                startActivity(new Intent(MainActivity.this, DataEditor.class));
+            } else {
+                new AlertDialog.Builder(this)
+                        .setTitle("No Data")
+                        .setMessage("There are no matches to edit yet.")
+                        .setPositiveButton("OK", null)
+                        .show();
+            }
+        });
+
+        exportLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {

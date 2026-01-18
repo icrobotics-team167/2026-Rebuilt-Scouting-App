@@ -47,7 +47,7 @@ public class ScoutingConfig {
             new Field(R.id.endTransition, "endTransition", DataType.TEXT),
             new Field(R.id.endShift1, "endShift1", DataType.TEXT),
             new Field(R.id.endShift2, "endShift2", DataType.TEXT),
-            new Field(R.id.endShift3, "endShift3", DataType.TEXT),
+            new Field(R.id.endGame, "endGame", DataType.TEXT),
 
             new Field(R.id.passedFuel, "passedFuel", DataType.BOOLEAN),
             new Field(R.id.rating, "rating", DataType.NUMBER), // This matches the RatingBar

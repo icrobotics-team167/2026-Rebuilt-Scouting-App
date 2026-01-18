@@ -521,7 +521,7 @@
 
                     <EditText
                         style="@style/AutoResize20"
-                        android:id="@+id/endTransition"
+                        android:id="@+id/endAuto"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
@@ -635,7 +635,7 @@
 
                     <EditText
                         style="@style/AutoResize20"
-                        android:id="@+id/endShift3"
+                        android:id="@+id/endGame"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
