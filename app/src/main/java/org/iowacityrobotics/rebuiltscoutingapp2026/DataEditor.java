@@ -1,7 +1,6 @@
-// Ben
+//Ben
 // 1-17-2026
-// DO NOT CHANGE
-
+//DO NOT CHANGE
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 import android.os.Bundle;
@@ -24,70 +23,13 @@ import java.util.Map;
 
 public class DataEditor extends AppCompatActivity {
 
-    // Assignment options (Red/Blue positions)
-    private static final String[] ASSIGNMENTS = {
-            "Red 1", "Red 2", "Red 3",
-            "Blue 1", "Blue 2", "Blue 3"
-    };
-
-    // Live tower options (Left/Right/Center/None)
-    private static final String[] TOWER_OPTIONS = {
-            "None", "Left", "Right", "Center"
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (GlobalVariables.objectIndex == -1) {
             setContentView(R.layout.data_entry);
-
-            // Views in data_entry.xml
-            EditText scouterField = findViewById(R.id.scouter);
-            EditText matchField = findViewById(R.id.matchNumber);
-            EditText teamField = findViewById(R.id.teamNumber);
-
-            Spinner assignmentSpinner = findViewById(R.id.scoutingAssignmentAndTeamNumber);
-            Spinner towerPositionSpinner = findViewById(R.id.towerPosition);
-
-            boolean hasDedicatedAssignmentSpinner = assignmentSpinner != null;
-            boolean usingTowerForAssignment = !hasDedicatedAssignmentSpinner && towerPositionSpinner != null;
-
-            if (hasDedicatedAssignmentSpinner) {
-                ArrayAdapter<String> assignAdapter = new ArrayAdapter<>(
-                        this,
-                        android.R.layout.simple_spinner_item,
-                        ASSIGNMENTS
-                );
-                assignAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                assignmentSpinner.setAdapter(assignAdapter);
-            }
-
-            if (usingTowerForAssignment) {
-                ArrayAdapter<String> legacyAssignAdapter = new ArrayAdapter<>(
-                        this,
-                        android.R.layout.simple_spinner_item,
-                        ASSIGNMENTS
-                );
-                legacyAssignAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                towerPositionSpinner.setAdapter(legacyAssignAdapter);
-            }
-
-            Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                String scouterName = extras.getString("KEY_SCOUTER", "");
-                String matchNumber = extras.getString("KEY_MATCH", "");
-                String assignment = extras.getString("KEY_ASSIGNMENT", "Blue 1");
-
-                Spinner spinnerToUseForAssignment = hasDedicatedAssignmentSpinner ? assignmentSpinner : towerPositionSpinner;
-
-                LocalTeamNumberFetcher fetcher = new LocalTeamNumberFetcher(this);
-                fetcher.fetchAndFill(matchNumber, assignment, scouterName,
-                        teamField, matchField, scouterField, spinnerToUseForAssignment);
-            }
-
-            setupLiveScoutingFeatures(!usingTowerForAssignment);
-
+            setupLiveScoutingFeatures();
         } else {
             setContentView(R.layout.data_editor);
             loadExistingData();
@@ -99,26 +41,18 @@ public class DataEditor extends AppCompatActivity {
         }
     }
 
-    /**
-     * Set up counters and (optionally) the tower position spinner used during live scouting.
-     *
-     * @param allowTowerSetup if true, set towerPosition spinner to {"None","Left","Right","Center"}.
-     *                        if false, do not touch towerPosition (it's being used for assignment).
-     */
-    private void setupLiveScoutingFeatures(boolean allowTowerSetup) {
+    private void setupLiveScoutingFeatures() {
         // Setup the +/- Counters
         setupCounter(R.id.autoDecButton, R.id.autoCycles, R.id.autoIncButton);
         setupCounter(R.id.activeDecButton, R.id.activeCycles, R.id.activeIncButton);
         setupCounter(R.id.inactiveDecButton, R.id.inactiveCycles, R.id.inactiveIncButton);
 
-        if (allowTowerSetup) {
-            Spinner spinner = findViewById(R.id.towerPosition);
-            if (spinner != null) {
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                        android.R.layout.simple_spinner_item, TOWER_OPTIONS);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinner.setAdapter(adapter);
-            }
+        Spinner spinner = findViewById(R.id.towerPosition);
+        if (spinner != null) {
+            String[] options = {"None", "Left", "Right", "Center"};
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
         }
 
         setInitialValue(R.id.autoCycles, "0");
