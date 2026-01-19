@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="60"
+        android:weightSum="59"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
@@ -16,44 +16,43 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="6"
-            android:weightSum="5"
+            android:weightSum="22"
             android:orientation="horizontal">
-
-            <Button
-                style="@style/AutoResize25"
-                android:id="@+id/deleteButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/adminButtons"
-                android:text="Delete" />
 
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="4" />
 
             <Button
                 style="@style/AutoResize25"
                 android:id="@+id/editButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/adminButtons"
+                android:layout_weight="3"
+                android:backgroundTint="@color/secondaryForeground"
                 android:text="Edit" />
+
+            <Spinner
+                android:id="@+id/matchListSpinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center_vertical"
+                android:background="@android:drawable/btn_dropdown" />
 
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="4" />
 
             <Button
                 style="@style/AutoResize25"
                 android:id="@+id/exportButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/adminButtons"
+                android:layout_weight="3"
+                android:backgroundTint="@color/secondaryForeground"
                 android:text="Export" />
         </LinearLayout>
 
@@ -73,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
-            android:weightSum="20"
+            android:weightSum="19"
             android:orientation="horizontal">
 
             <TextView
@@ -81,15 +80,12 @@
                 android:id="@+id/scouterHeader"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="right"
+                android:gravity="end"
                 android:layout_weight="8"
+                android:paddingEnd="10dp"
+                android:paddingTop="25dp"
                 android:text="Hello," />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
+            
             <EditText
                 android:id="@+id/scouter"
                 android:layout_width="0dp"
@@ -99,7 +95,10 @@
                 android:textSize="30sp"
                 android:textColor="@color/black"
                 android:inputType="text"
-                android:text="" />
+                android:paddingLeft="5dp"
+                android:paddingBottom="20dp"
+                android:gravity="bottom"
+                android:hint="Your name" />
         </LinearLayout>
 
         <Space
@@ -111,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="6"
-            android:weightSum="20"
+            android:weightSum="19"
             android:orientation="horizontal">
 
             <TextView
@@ -121,14 +120,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="8"
                 android:textColor="@color/black"
-                android:gravity="right"
+                android:gravity="end"
+                android:paddingEnd="10dp"
                 android:text="You're scouting:" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
+            
             <Spinner
                 android:id="@+id/scoutingAssignmentAndTeamNumber"
                 android:layout_width="0dp"
@@ -145,24 +140,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="6"
-            android:weightSum="20"
+            android:layout_weight="8"
+            android:weightSum="19"
             android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/matchNumberHeader"
-                style="@style/AutoResize45"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:gravity="right"
-                android:textColor="@color/black"
-                android:text="Match Number:" />
 
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="3" />
+
+            <Spinner
+                android:id="@+id/matchHeader"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:layout_weight="5" />
 
             <EditText
                 android:id="@+id/matchNumber"
@@ -170,33 +162,27 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:ems="10"
+                android:gravity="bottom"
+                android:paddingBottom="20dp"
                 android:inputType="text"
-                android:text="" />
+                android:hint="Match Number" />
 
         </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="16"
             android:weightSum="5"
+            android:gravity="center"
             android:orientation="horizontal">
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:weightSum="4"
+                android:weightSum="3"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <Button
@@ -205,15 +191,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="2"
-                    android:backgroundTint="@color/saveButton"
-                    android:layout_gravity="center_vertical"
+                    android:backgroundTint="@color/primaryForeground"
+                    android:textColor="@color/white"
                     android:text="Go" />
             </LinearLayout>
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2" />
 
         </LinearLayout>
 

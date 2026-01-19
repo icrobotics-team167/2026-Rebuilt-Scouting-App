@@ -163,7 +163,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
                                 android:textColor="@color/white"
-                                android:backgroundTint="@color/dataEntryButtons"
+                                android:backgroundTint="@color/secondaryForeground"
                                 android:text="-" />
 
                             <TextView
@@ -180,7 +180,7 @@
                                 style="@style/AutoResize30"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:backgroundTint="@color/dataEntryButtons"
+                                android:backgroundTint="@color/secondaryForeground"
                                 android:layout_weight="2"
                                 android:textColor="@color/white"
                                 android:text="+" />
@@ -274,7 +274,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:backgroundTint="@color/dataEntryButtons"
+                                android:backgroundTint="@color/secondaryForeground"
                                 android:textColor="@color/white"
                                 android:text="-" />
 
@@ -293,7 +293,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:backgroundTint="@color/dataEntryButtons"
+                                android:backgroundTint="@color/secondaryForeground"
                                 android:textColor="@color/white"
                                 android:text="+" />
                         </LinearLayout>
@@ -384,7 +384,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:backgroundTint="@color/dataEntryButtons"
+                                android:backgroundTint="@color/secondaryForeground"
                                 android:textColor="@color/white"
                                 android:text="-" />
 
@@ -403,7 +403,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:backgroundTint="@color/dataEntryButtons"
+                                android:backgroundTint="@color/secondaryForeground"
                                 android:textColor="@color/white"
                                 android:text="+" />
                         </LinearLayout>
@@ -471,13 +471,13 @@
                     android:background="?android:attr/listDivider" />
 
                 <TextView
-                    android:id="@+id/teamScoreHeader"
+                    android:id="@+id/AllianceScoreHeader"
                     style="@style/AutoResize25"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="9"
                     android:gravity="center"
-                    android:text="Team Score:" />
+                    android:text="Alliance Score:" />
 
                 <View
                     android:id="@+id/divider15"
@@ -510,7 +510,7 @@
                         android:layout_weight="2"
                         android:ems="10"
                         android:inputType="text"
-                        android:text="" />
+                        android:hint="#" />
 
                 </LinearLayout>
 
@@ -546,7 +546,7 @@
                         android:layout_weight="2"
                         android:ems="10"
                         android:inputType="text"
-                        android:text=""
+                        android:hint="#"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -584,7 +584,7 @@
                         android:layout_weight="2"
                         android:ems="10"
                         android:inputType="text"
-                        android:text=""
+                        android:hint="#"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -624,7 +624,7 @@
                         android:textSize="20sp"
                         android:textColor="@color/black"
                         android:inputType="text"
-                        android:text="" />
+                        android:hint="#" />
                 </LinearLayout>
 
                 <View
@@ -742,7 +742,9 @@
                         android:layout_weight="4"
                         android:ems="10"
                         android:inputType="text"
-                        android:text="" />
+                        android:gravity="bottom"
+                        android:paddingBottom="25dp"
+                        android:hint="Your notes go here..." />
 
                     <Button
                         style="@style/AutoResize20"
@@ -750,7 +752,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:backgroundTint="@color/saveButton"
+                        android:backgroundTint="@color/primaryForeground"
                         android:textColor="@color/white"
                         android:text="Save and Exit" />
 

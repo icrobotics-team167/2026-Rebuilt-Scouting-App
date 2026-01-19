@@ -2,7 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="saveButton">#138808</color>
-    <color name="dataEntryButtons">#F28C28</color>
-    <color name="adminButtons">#FFAA33</color>
+    <color name="secondaryForeground">#FFC800</color>
+    <color name="primaryForeground">#3CAB14</color>
 </resources>

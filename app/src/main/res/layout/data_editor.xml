@@ -494,7 +494,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2"
-                android:backgroundTint="@color/saveButton"
+                android:backgroundTint="@color/primaryForeground"
                 android:textColor="@color/white"
                 android:text="Save and Exit" />
         </LinearLayout>
