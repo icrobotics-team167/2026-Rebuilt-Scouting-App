@@ -35,7 +35,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="8"
+                android:layout_weight="6"
                 android:orientation="horizontal"
                 android:weightSum="12">
 
@@ -45,7 +45,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
                     android:text="Team Number:" />
 
                 <EditText
@@ -107,15 +108,10 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="6"
                 android:orientation="horizontal"
                 android:weightSum="12">
 
@@ -125,6 +121,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
+                    android:gravity="center|start"
+                    android:paddingStart="10dp"
                     android:text="Dimensions of Hopper:" />
 
                 <EditText
@@ -150,11 +148,6 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -168,6 +161,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
                     android:text="Kind of Hopper:" />
 
             </LinearLayout>
@@ -177,6 +172,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="4"
                 android:orientation="horizontal"
+                android:paddingStart="10dp"
                 android:weightSum="12">
 
                 <RadioButton
@@ -211,15 +207,10 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:orientation="horizontal"
                 android:weightSum="12">
 
@@ -228,7 +219,9 @@
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:gravity="center|start"
+                    android:layout_weight="1"
+                    android:paddingStart="10dp"
                     android:text="Turret:" />
 
                 <EditText
@@ -248,15 +241,10 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:orientation="horizontal"
                 android:weightSum="12">
 
@@ -265,7 +253,9 @@
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
+                    android:gravity="center|start"
+                    android:paddingStart="10dp"
                     android:text="Intake:" />
 
                 <EditText
@@ -285,15 +275,10 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:orientation="horizontal">
 
                 <TextView
@@ -302,6 +287,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
                     android:text="Method for Crossing Hub Line:" />
             </LinearLayout>
 
@@ -309,8 +296,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:orientation="horizontal"
+                android:paddingStart="10dp"
                 android:weightSum="12">
 
                 <RadioButton
@@ -345,15 +333,10 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:orientation="horizontal">
 
                 <TextView
@@ -362,45 +345,48 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
                     android:text="What Do You Like On Your Corn?" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:layout_height="0dp"
-                android:weightSum="12"
+                android:weightSum="6"
+                android:paddingStart="10dp"
                 android:orientation="horizontal">
 
                 <CheckBox
                     android:id="@+id/yesCornOnCob"
                     style="@style/AutoResize20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Salt" />
 
                 <CheckBox
                     android:id="@+id/definitelyCornOnCob"
                     style="@style/AutoResize20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Pepper" />
 
                 <CheckBox
                     android:id="@+id/absolutelyCornOnCob"
                     style="@style/AutoResize20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Butter" />
 
                 <EditText
                     android:id="@+id/editTextText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
                     android:ems="10"
                     android:inputType="text"
                     android:hint="Other" />
