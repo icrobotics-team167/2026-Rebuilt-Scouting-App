@@ -31,6 +31,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:backgroundTint="@color/secondaryForeground"
+                android:textColor="@color/black"
                 android:text="Edit" />
 
             <Spinner
@@ -53,6 +54,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:backgroundTint="@color/secondaryForeground"
+                android:textColor="@color/black"
                 android:text="Export" />
         </LinearLayout>
 
@@ -80,24 +82,23 @@
                 android:id="@+id/scouterHeader"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="end"
+                android:gravity="center|end"
                 android:layout_weight="8"
                 android:paddingEnd="10dp"
-                android:paddingTop="25dp"
                 android:text="Hello," />
             
             <EditText
                 android:id="@+id/scouter"
+                style="@style/AutoResize30"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:ems="10"
-                android:textSize="30sp"
                 android:textColor="@color/black"
                 android:inputType="text"
                 android:paddingLeft="5dp"
-                android:paddingBottom="20dp"
-                android:gravity="bottom"
+                android:paddingTop="30dp"
+                android:gravity="center_vertical"
                 android:hint="Your name" />
         </LinearLayout>
 
@@ -119,7 +120,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
-                android:textColor="@color/black"
                 android:gravity="end"
                 android:paddingEnd="10dp"
                 android:text="You're scouting:" />
@@ -158,6 +158,7 @@
 
             <EditText
                 android:id="@+id/matchNumber"
+                style="@style/AutoResize30"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"

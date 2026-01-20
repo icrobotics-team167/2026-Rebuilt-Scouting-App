@@ -2,7 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
     <color name="background">#DEF2DE</color>
-    <color name="secondaryForeground">#FFC800</color>
+
     <color name="primaryForeground">#3CAB14</color>
+    <color name="buttonTextPrimary">#@color/white</color>
+
+    <color name="secondaryForeground">#FFC800</color>
+    <color name="buttonTextSecondary">#@color/black</color>
+
 </resources>

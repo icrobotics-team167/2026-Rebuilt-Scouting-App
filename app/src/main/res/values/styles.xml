@@ -2,42 +2,37 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="NewApi">
     <style name="AutoResize20">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMinTextSize">12sp</item>
-        <item name="android:autoSizeMaxTextSize">20sp</item>
+        <item name="android:autoSizeMinTextSize">6sp</item>
+        <item name="android:autoSizeMaxTextSize">?attr/AutoSize20</item>
         <item name="android:autoSizeStepGranularity">1sp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="AutoResize25">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMinTextSize">12sp</item>
-        <item name="android:autoSizeMaxTextSize">25sp</item>
+        <item name="android:autoSizeMinTextSize">15sp</item>
+        <item name="android:autoSizeMaxTextSize">?attr/AutoSize25</item>
         <item name="android:autoSizeStepGranularity">1sp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="AutoResize30">
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:autoSizeMinTextSize">20sp</item>
-        <item name="android:autoSizeMaxTextSize">30sp</item>
+        <item name="android:autoSizeMaxTextSize">?attr/AutoSize30</item>
         <item name="android:autoSizeStepGranularity">1sp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="AutoResize45">
         <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMinTextSize">20sp</item>
-        <item name="android:autoSizeMaxTextSize">45sp</item>
+        <item name="android:autoSizeMinTextSize">25sp</item>
+        <item name="android:autoSizeMaxTextSize">?attr/AutoSize45</item>
         <item name="android:autoSizeStepGranularity">1sp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="AutoResize60">
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:autoSizeMinTextSize">30sp</item>
-        <item name="android:autoSizeMaxTextSize">60sp</item>
+        <item name="android:autoSizeMaxTextSize">?attr/AutoSize60</item>
         <item name="android:autoSizeStepGranularity">1sp</item>
-        <item name="android:textColor">@color/black</item>
 
     </style>
 

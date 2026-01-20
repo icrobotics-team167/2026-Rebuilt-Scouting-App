@@ -1,7 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.RebuiltScoutingApp2026" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Base.Theme.RebuiltScoutingApp2026.Dark" parent="Theme.Material3.Dark.NoActionBar" >
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Tablet" parent="Base.Theme.RebuiltScoutingApp2026.Dark" >
+        <item name="AutoSize20">20sp</item>
+        <item name="AutoSize25">25sp</item>
+        <item name="AutoSize30">30sp</item>
+        <item name="AutoSize45">45sp</item>
+        <item name="AutoSize60">60sp</item>
+    </style>
+
+    <style name="Phone" parent="Base.Theme.RebuiltScoutingApp2026.Dark" >
+        <item name="AutoSize20">15sp</item>
+        <item name="AutoSize25">20sp</item>
+        <item name="AutoSize30">24sp</item>
+        <item name="AutoSize45">30sp</item>
+        <item name="AutoSize60">45sp</item>
     </style>
 </resources>
