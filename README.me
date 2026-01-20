@@ -1,4 +1,4 @@
-Rebuilt Scouting App 2026
+Rebuilt Scouting App 2026 FRC 167
 
 Version: 1.0 Team: Iowa City Robotics Season: 2026 (Reefscape)
 
@@ -20,14 +20,16 @@ An Android-based scouting application designed for offline data collection durin
     Pit Scouting: (Planned) Interface for collecting static robot data (weight, drivetrain, etc.).
 
     Project Structure
+
 Backend (src/main/java/.../data/)
 File	Description
-SetupScreen.java	The main home screen. Handles scouter login, match selection, and the "Smart Export" logic.
+SetupScreen.java	    The main home screen. Handles scouter login, match selection, and the "Smart Export" logic.
 GlobalVariables.java	Holds the main dataList (ArrayList) in memory so all screens can access match data.
-DataEntry.java	The primary scouting interface. Records button presses and inputs during the match.
-DataEditor.java	Allows users to view and manually edit saved data fields using text boxes.
-StorageManager.java	Utility class for saving/loading JSON files to internal storage and writing exports to USB.
-DataKeys.java	Contains static constant strings (e.g., "auto_cycles") to ensure data tags are consistent.
+DataEntry.java	        The primary scouting interface. Records button presses and inputs during the match.
+DataEditor.java	        Allows users to view and manually edit saved data fields using text boxes.
+StorageManager.java	    Utility class for saving/loading JSON files to internal storage and writing exports to USB.
+DataKeys.java	        Contains static constant strings (e.g., "auto_cycles") to ensure data tags are consistent.
+
 Layouts (src/main/res/layout/)
 
     setup_screen.xml: Home UI with name input, match list, and export button.
@@ -37,6 +39,8 @@ Layouts (src/main/res/layout/)
     data_editor.xml: The text-based editor interface.
 
     User Guide
+
+
 1. Starting a Session
 
     Open the app.
@@ -45,7 +49,7 @@ Layouts (src/main/res/layout/)
 
     Select your Assignment (e.g., Red 1) and Match Type (Qual, Practice, etc.).
 
-    Click "SCOUT MATCH".
+    Click "Go".
 
 2. During the Match
 
@@ -59,13 +63,13 @@ Layouts (src/main/res/layout/)
 
 3. Exporting Data
 
-    Plug a USB-C Flash Drive (or adapter) into the phone.
+    Plug a USB-C Flash Drive (or adapter) into the device.
 
     On the Setup Screen, click the "Export to USB" button.
 
-        If you have new data: The system file picker will open. Save the file as scouting_new_data.json.
+        If you have new data: The system file picker will open. Save the file.
 
-        If you have NO new data: A popup will ask if you want to re-export everything. If yes, save as scouting_FULL_backup.json.
+        If you have NO new data: A popup will ask if you want to re-export everything. If yes, save .
 
     Once saved, the app marks those matches as "Exported" (indicated by the removal of the * in the match list).
 
@@ -73,11 +77,13 @@ Layouts (src/main/res/layout/)
 
     Select a match from the dropdown list on the Setup Screen.
 
-    Click "EDIT DATA".
+    Click "Edit".
 
     Modify the text fields as needed and click "Save".
 
-    Troubleshooting
+    
+    
+ Troubleshooting
 
     "App crashes on startup":
 
@@ -95,7 +101,9 @@ Layouts (src/main/res/layout/)
 
         Go to File > Invalidate Caches / Restart.
 
-    Development Setup
+   
+   
+ Development Setup
 
     IDE: Android Studio Ladybug (or newer)
 
