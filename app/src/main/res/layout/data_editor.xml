@@ -169,7 +169,7 @@
                 android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:hint="#" />
 
             <EditText
                 android:id="@+id/activeCycles"
@@ -179,7 +179,7 @@
                 android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:hint="#" />
 
             <EditText
                 android:id="@+id/inactiveCycles"
@@ -189,7 +189,7 @@
                 android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:hint="#" />
 
         </LinearLayout>
 
@@ -250,7 +250,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#"
+                android:hint="#"
                 android:textSize="25sp" />
 
             <EditText
@@ -260,7 +260,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#"
+                android:hint="#"
                 android:textSize="25sp" />
 
             <EditText
@@ -270,7 +270,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#"
+                android:hint="#"
                 android:textSize="25sp" />
 
         </LinearLayout>
@@ -341,7 +341,7 @@
                 android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:hint="#" />
 
             <EditText
                 android:id="@+id/endShift1"
@@ -351,7 +351,7 @@
                 android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:hint="#" />
 
             <EditText
                 android:id="@+id/endShift2"
@@ -361,7 +361,7 @@
                 android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:hint="#" />
 
             <EditText
                 android:id="@+id/endGame"
@@ -371,7 +371,7 @@
                 android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:hint="#" />
         </LinearLayout>
 
         <View
@@ -432,7 +432,7 @@
                 android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:hint="#" />
 
             <EditText
                 android:id="@+id/passedFuel"
@@ -442,7 +442,7 @@
                 android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:hint="#" />
 
             <EditText
                 android:id="@+id/driverRating"
@@ -452,7 +452,7 @@
                 android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:hint="#" />
         </LinearLayout>
 
         <View
@@ -486,7 +486,7 @@
                 android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="#" />
+                android:hint="#" />
 
             <Button
                 android:id="@+id/saveExitButton"

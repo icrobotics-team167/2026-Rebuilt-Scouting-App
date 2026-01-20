@@ -33,6 +33,11 @@
           <theme>@style/Theme.RebuiltScoutingApp2026</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/pit_scouting.xml">
+        <config>
+          <theme>@style/Theme.RebuiltScoutingApp2026</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/setup_screen.xml">
         <config>
           <theme>@style/Theme.RebuiltScoutingApp2026</theme>
@@ -82,8 +87,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile" />
         <option value="valueResourceFile" />
+        <option value="layoutResourceFile" />
         <option value="Class" />
       </list>
     </option>
@@ -104,6 +109,9 @@
   }
 }</component>
   <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\bemoh\.gradle\wrapper\dists\gradle-9.1.0-bin\9agqghryom9wkf8r80qlhnts3\gradle-9.1.0" javaHome="C:\Program Files\Android\Android Studio\jbr" gradleVersion="9.1.0" />
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/SetupScreen.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -126,7 +134,7 @@
     "kotlin-language-version-configured": "true",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.iowacityrobotics.rebuiltscoutingapp2026" />
@@ -274,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768772225856</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixing bugs">
+      <option name="closed" value="true" />
+      <created>1768868160272</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1768868160272</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -286,19 +302,20 @@
     <MESSAGE value="Revert Commit&#10;1/18/2026&#10;Ben" />
     <MESSAGE value="Added complete functionality for scouting entering, and editing previous matches&#10;1/18/2026&#10;Ben" />
     <MESSAGE value="Giving myself credit&#10;1/18/2026&#10;Ben" />
-    <option name="LAST_COMMIT_MESSAGE" value="Giving myself credit&#10;1/18/2026&#10;Ben" />
+    <MESSAGE value="Fixing bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing bugs" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
       <map>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026">
           <value>
-            <CheckInfo lastCheckTimestamp="1768769286814" />
+            <CheckInfo lastCheckTimestamp="1768861155824" />
           </value>
         </entry>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1768769286815" />
+            <CheckInfo lastCheckTimestamp="1768861155816" />
           </value>
         </entry>
       </map>

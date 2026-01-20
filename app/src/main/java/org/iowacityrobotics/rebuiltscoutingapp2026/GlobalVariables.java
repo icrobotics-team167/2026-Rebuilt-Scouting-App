@@ -1,6 +1,6 @@
 //Ben
-//1-18-2026
-//These are the Global Variables.
+//1-18-2026 - 1-19-2026
+//This class acts as a central memory bank, holding the main list of match data
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 import java.util.ArrayList;
@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public class GlobalVariables {
-    // -1 = New Match
-    // 0 = Edit Match
-    public static int objectIndex = -1;
     public static List<Map<String, Object>> dataList = new ArrayList<>();
+    // -1 is new match
+    // greater is edit match
+    public static int objectIndex = -1;
 }
