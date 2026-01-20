@@ -13,8 +13,8 @@
     </style>
 
     <style name="Phone" parent="Base.Theme.RebuiltScoutingApp2026" >
-        <item name="AutoSize20">15sp</item>
-        <item name="AutoSize25">20sp</item>
+        <item name="AutoSize20">12sp</item>
+        <item name="AutoSize25">16sp</item>
         <item name="AutoSize30">24sp</item>
         <item name="AutoSize45">30sp</item>
         <item name="AutoSize60">45sp</item>

@@ -51,6 +51,7 @@
 
                 <EditText
                     android:id="@+id/teamNumber"
+                    style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -65,11 +66,13 @@
 
                 <Button
                     android:id="@+id/editButton"
-                    style="@style/AutoResize25"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_gravity="center"
                     android:backgroundTint="@color/secondaryForeground"
+                    android:textColor="@color/black"
                     android:text="Edit Old Data" />
 
                 <Space
@@ -79,11 +82,13 @@
 
                 <Button
                     android:id="@+id/exportButton"
-                    style="@style/AutoResize25"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_gravity="center"
                     android:backgroundTint="@color/secondaryForeground"
+                    android:textColor="@color/black"
                     android:text="Export" />
 
                 <Space
@@ -97,7 +102,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_gravity="center"
                     android:backgroundTint="@color/secondaryForeground"
+                    android:textColor="@color/black"
                     android:text="Delete All Data" />
             </LinearLayout>
 
@@ -127,12 +134,15 @@
 
                 <EditText
                     android:id="@+id/hopperDimensions"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:ems="10"
+                    android:paddingTop="10dp"
                     android:inputType="text"
-                    android:hint="h x l x w" />
+                    android:hint="h x l x w"
+                    android:text=""/>
 
                 <Spinner
                     android:id="@+id/spinner"
@@ -210,7 +220,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="6"
                 android:orientation="horizontal"
                 android:weightSum="12">
 
@@ -226,12 +236,16 @@
 
                 <EditText
                     android:id="@+id/turret"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="6"
                     android:ems="10"
+                    android:paddingBottom="10dp"
+                    android:gravity="bottom"
                     android:inputType="text"
-                    android:hint="Turret" />
+                    android:hint="Turret"
+                    android:text=""/>
             </LinearLayout>
 
             <View
@@ -244,7 +258,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="6"
                 android:orientation="horizontal"
                 android:weightSum="12">
 
@@ -260,9 +274,10 @@
 
                 <EditText
                     android:id="@+id/intake"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="6"
                     android:ems="10"
                     android:inputType="text"
                     android:hint="Intake" />
@@ -384,10 +399,12 @@
 
                 <EditText
                     android:id="@+id/editTextText"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:ems="10"
+                    android:paddingTop="5dp"
                     android:inputType="text"
                     android:hint="Other" />
             </LinearLayout>
@@ -402,7 +419,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="9"
+                android:layout_weight="7"
                 android:weightSum="12"
                 android:orientation="horizontal">
 
@@ -417,21 +434,22 @@
 
                 <EditText
                     android:id="@+id/comments"
+                    style="@style/AutoResize25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
                     android:ems="10"
-                    android:textSize="25sp"
                     android:inputType="text"
                     android:hint="Notes go here..." />
 
                 <Button
                     android:id="@+id/saveExitButton"
-                    style="@style/AutoResize25"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:backgroundTint="@color/secondaryForeground"
+                    android:backgroundTint="@color/primaryForeground"
+                    android:textColor="@color/white"
                     android:text="Save and Exit" />
             </LinearLayout>
 

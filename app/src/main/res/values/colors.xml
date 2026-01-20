@@ -3,7 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="background">#DEF2DE</color>
+    <color name="background">#FAFAD2</color>
 
     <color name="primaryForeground">#3CAB14</color>
     <color name="buttonTextPrimary">#@color/white</color>

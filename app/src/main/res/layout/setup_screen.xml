@@ -94,12 +94,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:ems="10"
-                android:textColor="@color/black"
                 android:inputType="text"
                 android:paddingLeft="5dp"
-                android:paddingTop="30dp"
+                android:paddingTop="20dp"
                 android:gravity="center_vertical"
-                android:hint="Your name" />
+                android:hint="Your name"
+                android:text=""/>
         </LinearLayout>
 
         <Space
@@ -158,10 +158,10 @@
 
             <EditText
                 android:id="@+id/matchNumber"
-                style="@style/AutoResize30"
+                style="@style/AutoResize20"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="3"
                 android:ems="10"
                 android:gravity="bottom"
                 android:paddingBottom="20dp"
