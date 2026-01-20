@@ -1,49 +1,108 @@
-##Rebuilt Scouting App 2026 (Rebuilt)
+Rebuilt Scouting App 2026
 
-An Android-based robotics scouting application designed for FRC Team 167 (Iowa City Robotics). This app allows scouts to collect match data offline and export it via JSON to a USB drive for analysis.
-This project uses a modular Architecture. The goal is to make the app easy to update for future seasons (2027+) without rewriting complex Java logic.
+Version: 1.0 Team: Iowa City Robotics Season: 2026 (Reefscape)
 
-##Key Notes
+An Android-based scouting application designed for offline data collection during FRC competitions. This app allows scouters to record match data, edit entries locally, and export data to a USB flash drive via JSON files.
+    Features
 
-# Technical Documentation: ScoutingConfig.java
+    Match Scouting: Intuitive interface to track Auto, Teleop, and Endgame performance (Cycles, Defense, Climbing, etc.).
 
-**File Location:** `org.iowacityrobotics.rebuiltscoutingapp2026.data`
-**Authors:** Ben, ZeeKonCal
-**Last Updated:** 1-17-2026
+    Data Persistence: Automatically saves all matches to internal storage to prevent data loss even if the app closes.
 
-## Overview
-`ScoutingConfig.java` is the **central control file** for the entire application's data structure. Instead of hard-coding logic into the user interface activities, this file acts as a map that defines exactly *what* data is collected, *where* it comes from on the screen, and *how* it is named in the exported JSON file.
+    Data Editor: A text-based editor to view and modify previously saved match data to correct errors.
 
-This file uses a **Config-Driven Architecture**, meaning you can add, remove, or reorder data fields here without needing to rewrite complex Java code in `DataEditor.java` or `StorageManager.java`.
+    Smart Export:
 
----
+        One-Click Export: Automatically detects and exports only new (un-exported) matches to a USB drive.
 
-## Code Breakdown
+        Full Backup: If no new matches exist, prompts the user to perform a full re-export of the entire database.
 
-### 1. Data Types (`enum DataType`)
-The file defines three specific types of data the app can handle. This ensures the app knows how to process the input correctly before saving it.
+    Pit Scouting: (Planned) Interface for collecting static robot data (weight, drivetrain, etc.).
 
-* **`NUMBER`**: For integers (e.g., Match #, Team #, Scores).
-* **`TEXT`**: For strings (e.g., Scouter Name, Comments).
-* **`BOOLEAN`**: For true/false flags (e.g., Leave Line, Climb).
+    Project Structure
+Backend (src/main/java/.../data/)
+File	Description
+SetupScreen.java	The main home screen. Handles scouter login, match selection, and the "Smart Export" logic.
+GlobalVariables.java	Holds the main dataList (ArrayList) in memory so all screens can access match data.
+DataEntry.java	The primary scouting interface. Records button presses and inputs during the match.
+DataEditor.java	Allows users to view and manually edit saved data fields using text boxes.
+StorageManager.java	Utility class for saving/loading JSON files to internal storage and writing exports to USB.
+DataKeys.java	Contains static constant strings (e.g., "auto_cycles") to ensure data tags are consistent.
+Layouts (src/main/res/layout/)
 
-### 2. The Field Class (`static class Field`)
-This is a helper class that groups three critical pieces of information for every single data point:
-* **`viewId`**: The link to the UI. It points to the specific ID in the XML layout (e.g., `R.id.teamNumber`).
-* **`jsonKey`**: The link to the Output. It defines the name of the key in the JSON file (e.g., `"teamNumber"`).
-* **`type`**: The link to the Logic. It tells the app whether to read the input as text, a number, or a checkbox state.
+    setup_screen.xml: Home UI with name input, match list, and export button.
 
-### 3. The Configuration Array (`INPUTS`)
-This is the master list. The order of elements in this array strictly dictates the order of keys in the exported JSON file.
+    data_entry.xml: The match scouting interface (Counters, Checkboxes, etc.).
 
-```java
-public static final Field[] INPUTS = {
-    // 1. INFO SECTION
-    new Field(R.id.matchNumber, "matchNumber", DataType.NUMBER),
-    new Field(R.id.teamNumber,  "teamNumber",  DataType.NUMBER),
-    new Field(R.id.scouter,     "scouterName", DataType.TEXT),
+    data_editor.xml: The text-based editor interface.
 
-    // 2. AUTO SECTION
-    new Field(R.id.leaveLine,   "leaveLine",   DataType.BOOLEAN),
-    // ... additional fields ...
-};
+    User Guide
+1. Starting a Session
+
+    Open the app.
+
+    Enter your Name and the current Match Number.
+
+    Select your Assignment (e.g., Red 1) and Match Type (Qual, Practice, etc.).
+
+    Click "SCOUT MATCH".
+
+2. During the Match
+
+    Auto: Record cycles, movement, and crossing lines.
+
+    Teleop: Track active/inactive cycles and defense.
+
+    Endgame: Record climb status and other endgame tasks.
+
+    Save: Click "Save & Exit" to write data to internal storage.
+
+3. Exporting Data
+
+    Plug a USB-C Flash Drive (or adapter) into the phone.
+
+    On the Setup Screen, click the "Export to USB" button.
+
+        If you have new data: The system file picker will open. Save the file as scouting_new_data.json.
+
+        If you have NO new data: A popup will ask if you want to re-export everything. If yes, save as scouting_FULL_backup.json.
+
+    Once saved, the app marks those matches as "Exported" (indicated by the removal of the * in the match list).
+
+4. Editing Data
+
+    Select a match from the dropdown list on the Setup Screen.
+
+    Click "EDIT DATA".
+
+    Modify the text fields as needed and click "Save".
+
+    Troubleshooting
+
+    "App crashes on startup":
+
+        Go to Phone Settings > Apps > RebuiltScoutingApp > Storage > Clear Storage/Data. Old/corrupt JSON files from previous versions can cause crashes.
+
+    "Export button does nothing":
+
+        Ensure you have a file manager app installed (like Files by Google).
+
+        Verify the USB drive is formatted correctly (FAT32 or exFAT).
+
+    Build Errors in Android Studio:
+
+        Go to Build > Clean Project, then Rebuild Project.
+
+        Go to File > Invalidate Caches / Restart.
+
+    Development Setup
+
+    IDE: Android Studio Ladybug (or newer)
+
+    Language: Java
+
+    Min SDK: API 24 (Android 7.0 Nougat)
+
+    Target SDK: API 34 (Android 14)
+
+Created by Ben, ZeeKonCal, and Snood for Iowa City Robotics, 2026.
