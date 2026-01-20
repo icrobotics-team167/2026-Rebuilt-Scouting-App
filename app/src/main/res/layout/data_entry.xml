@@ -699,7 +699,7 @@
                         style="@style/AutoResize20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:text="Tower Position:" />
 
@@ -707,7 +707,22 @@
                         android:id="@+id/towerPosition"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="4" />
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:id="@+id/towerLevelHeader"
+                        style="@style/AutoResize20"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Tower Level:" />
+
+                    <Spinner
+                        android:id="@+id/towerLevel"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2" />
 
                 </LinearLayout>
 

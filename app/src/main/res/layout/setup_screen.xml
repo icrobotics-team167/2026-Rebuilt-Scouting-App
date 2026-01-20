@@ -85,7 +85,7 @@
                 android:paddingEnd="10dp"
                 android:paddingTop="25dp"
                 android:text="Hello," />
-            
+
             <EditText
                 android:id="@+id/scouter"
                 android:layout_width="0dp"
@@ -123,7 +123,7 @@
                 android:gravity="end"
                 android:paddingEnd="10dp"
                 android:text="You're scouting:" />
-            
+
             <Spinner
                 android:id="@+id/scoutingAssignmentAndTeamNumber"
                 android:layout_width="0dp"
