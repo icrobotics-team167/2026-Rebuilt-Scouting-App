@@ -1,7 +1,6 @@
 //Ben
 //12-27-2025 - 1-18-2026
 //This is the Main Activity For the Project
-
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 import android.content.Context;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
@@ -37,26 +35,34 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.setup_screen);
+        setContentView(R.layout.setup_screen); // Uses your unmodified XML
 
         StorageManager.loadData(this);
 
         Button scoutButton = findViewById(R.id.scoutButton);
         Button exportButton = findViewById(R.id.exportButton);
-        Button deleteButton = findViewById(R.id.deleteButton);
+
+        // REMOVED deleteButton to match your XML
+
         Button editButton = findViewById(R.id.editButton);
 
         scouterInput = findViewById(R.id.scouter);
         matchInput = findViewById(R.id.matchNumber);
         assignmentSpinner = findViewById(R.id.scoutingAssignmentAndTeamNumber);
 
+        // Setup Spinners
         String[] assignments = {"Blue 1", "Blue 2", "Blue 3", "Red 1", "Red 2", "Red 3"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assignments);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         assignmentSpinner.setAdapter(adapter);
 
+        // Since your XML has a "matchListSpinner" but no code used it, we can ignore it or set it up here if needed.
+        Spinner matchListSpinner = findViewById(R.id.matchListSpinner);
+        // (Optional: Add adapter for matchListSpinner here if you want it to show options)
+
         loadSavedPreferences();
 
+        // --- GO BUTTON ---
         scoutButton.setOnClickListener(v -> {
             String scouter = scouterInput.getText().toString();
             String matchNumStr = matchInput.getText().toString();
@@ -80,15 +86,18 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // --- EDIT BUTTON ---
         editButton.setOnClickListener(v -> {
             try {
-                Intent intent = new Intent(MainActivity.this, SetupScreen.class);
+                // CHANGED: SetupScreen.class -> PitScouting.class
+                Intent intent = new Intent(MainActivity.this, PitScouting.class);
                 startActivity(intent);
             } catch (Exception e) {
-                Toast.makeText(this, "StartScreenActivity not found yet!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "PitScouting Activity not found!", Toast.LENGTH_SHORT).show();
             }
         });
 
+        // --- EXPORT LOGIC ---
         exportLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -106,15 +115,6 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(Intent.EXTRA_TITLE, "scouting_data.json");
             exportLauncher.launch(intent);
         });
-
-        deleteButton.setOnClickListener(v -> {
-            new AlertDialog.Builder(this)
-                    .setTitle("Delete All Data?")
-                    .setMessage("This cannot be undone.")
-                    .setPositiveButton("Delete", (dialog, which) -> StorageManager.clearAllData(this))
-                    .setNegativeButton("Cancel", null)
-                    .show();
-        });
     }
 
     @Override
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadSavedPreferences() {
         SharedPreferences prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
-       String savedScouter = prefs.getString(KEY_SCOUTER, "");
+        String savedScouter = prefs.getString(KEY_SCOUTER, "");
         scouterInput.setText(savedScouter);
 
         String savedMatch = prefs.getString(KEY_MATCH, "1");
