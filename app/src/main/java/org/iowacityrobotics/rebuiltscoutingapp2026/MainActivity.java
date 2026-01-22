@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button scoutButton = findViewById(R.id.scoutButton);
         Button exportButton = findViewById(R.id.exportButton);
-        Button deleteButton = findViewById(R.id.deleteButton);
         Button editButton = findViewById(R.id.editButton);
 
         scouterInput = findViewById(R.id.scouter);
