@@ -10,7 +10,7 @@
         android:theme="@style/main_theme">
 
         <activity
-            android:name=".SetupScreen"
+            android:name=".StartScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +18,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".data.DataEditor" />
+        <activity android:name=".SetupScreen" />
 
+        <activity android:name=".PitScouting" />
+
+        <activity android:name=".data.DataEditor" />
         <activity android:name=".data.DataEntry" />
 
     </application>

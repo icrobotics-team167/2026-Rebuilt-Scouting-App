@@ -1,9 +1,13 @@
 //Ben
-//1-19-2026
+//1-19-2026 - 1-21-2026
 //This file contains a list of constant static strings used to label and retrieve data values consistently across the entire app.
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
 public class DataKeys {
+    public static final String RECORD_TYPE = "record_type";
+    public static final String TYPE_MATCH = "MATCH_SCOUTING";
+    public static final String EXPORTED = "exported";
+
     public static final String MATCH_NUM = "match_number";
     public static final String TEAM_NUM = "team_number";
     public static final String SCOUTER = "scouter_name";

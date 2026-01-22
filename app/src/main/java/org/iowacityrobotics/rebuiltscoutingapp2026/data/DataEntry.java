@@ -44,91 +44,110 @@ public class DataEntry extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.data_entry);
+      setContentView(R.layout.data_entry);
 
-        initializeViews();
-        setupSpinners();
-        setupCounterLogic();
-        loadHeaderData();
+        try {
+            initializeViews();
+            setupSpinners();
+            setupCounterLogic();
+            loadHeaderData();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error starting Data Entry: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
 
         Button saveButton = findViewById(R.id.saveExitButton);
-        saveButton.setOnClickListener(v -> saveNewMatch());
+        if (saveButton != null) {
+            saveButton.setOnClickListener(v -> saveNewMatch());
+        } else {
+            Toast.makeText(this, "Missing Button: saveExitButton", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initializeViews() {
-        // Header
-        matchNumView = findViewById(R.id.matchNumber);
-        teamNumView = findViewById(R.id.teamNumber);
-        scouterView = findViewById(R.id.scouter);
-        assignmentView = findViewById(R.id.scoutingAssignment);
+        // Header - Using helper function to check for nulls
+        matchNumView = findViewSafe(R.id.matchNumber, "matchNumber");
+        teamNumView = findViewSafe(R.id.teamNumber, "teamNumber");
+        scouterView = findViewSafe(R.id.scouter, "scouter");
+        assignmentView = findViewSafe(R.id.scoutingAssignment, "scoutingAssignment");
 
         // Cycles
-        autoCountDisplay = findViewById(R.id.autoCycles);
-        activeCountDisplay = findViewById(R.id.activeCycles);
-        inactiveCountDisplay = findViewById(R.id.inactiveCycles);
+        autoCountDisplay = findViewSafe(R.id.autoCycles, "autoCycles");
+        activeCountDisplay = findViewSafe(R.id.activeCycles, "activeCycles");
+        inactiveCountDisplay = findViewSafe(R.id.inactiveCycles, "inactiveCycles");
 
         // Checkboxes
-        autoNeutralBox = findViewById(R.id.autoNeutralZone);
-        activeDefenseBox = findViewById(R.id.activePlayedDefense);
-        inactiveDefenseBox = findViewById(R.id.inactivePlayedDefense);
-        passedFuelBox = findViewById(R.id.passedFuel);
+        autoNeutralBox = findViewSafe(R.id.autoNeutralZone, "autoNeutralZone");
+        activeDefenseBox = findViewSafe(R.id.activePlayedDefense, "activePlayedDefense");
+        inactiveDefenseBox = findViewSafe(R.id.inactivePlayedDefense, "inactivePlayedDefense");
+        passedFuelBox = findViewSafe(R.id.passedFuel, "passedFuel");
 
         // End Game Inputs
-        endAuto = findViewById(R.id.endAuto);
-        endShift1 = findViewById(R.id.endShift1);
-        endShift2 = findViewById(R.id.endShift2);
-        endGame = findViewById(R.id.endGame);
+        endAuto = findViewSafe(R.id.endAuto, "endAuto");
+        endShift1 = findViewSafe(R.id.endShift1, "endShift1");
+        endShift2 = findViewSafe(R.id.endShift2, "endShift2");
+        endGame = findViewSafe(R.id.endGame, "endGame");
 
         // Misc
-        towerPosSpinner = findViewById(R.id.towerPosition);
-        towerLevelSpinner = findViewById(R.id.towerLevel);
-        driverRatingBar = findViewById(R.id.rating);
-        comments = findViewById(R.id.comments);
+        towerPosSpinner = findViewSafe(R.id.TowerPosition, "towerPosition");
+        towerLevelSpinner = findViewSafe(R.id.towerLevel, "towerLevel");
+        driverRatingBar = findViewSafe(R.id.rating, "rating");
+        comments = findViewSafe(R.id.comments, "comments");
+    }
+    private <T extends android.view.View> T findViewSafe(int id, String name) {
+        T view = findViewById(id);
+        if (view == null) {
+            Toast.makeText(this, "Missing ID in XML: " + name, Toast.LENGTH_SHORT).show();
+        }
+        return view;
     }
 
     private void setupSpinners() {
-        // Tower Position Options
-        String[] positions = {"None", "Left", "Center", "Right"};
-        ArrayAdapter<String> posAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, positions);
-        posAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        towerPosSpinner.setAdapter(posAdapter);
+        // Tower Position
+        if (towerPosSpinner != null) {
+            String[] positions = {"None", "Left", "Center", "Right"};
+            ArrayAdapter<String> posAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, positions);
+            posAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            towerPosSpinner.setAdapter(posAdapter);
+        }
 
-        // Tower Level Options
-        String[] levels = {"Ground", "Low", "Medium", "High", "Fall"};
-        ArrayAdapter<String> levelAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, levels);
-        levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        towerLevelSpinner.setAdapter(levelAdapter);
+        // Tower Level
+        if (towerLevelSpinner != null) {
+            String[] levels = {"Ground", "Low", "Medium", "High", "Fall"};
+            ArrayAdapter<String> levelAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, levels);
+            levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            towerLevelSpinner.setAdapter(levelAdapter);
+        }
     }
 
     private void setupCounterLogic() {
-        // Auto Buttons
-        findViewById(R.id.autoIncButton).setOnClickListener(v -> updateCount("auto", 1));
-        findViewById(R.id.autoDecButton).setOnClickListener(v -> updateCount("auto", -1));
+        setupSafeListener(R.id.autoIncButton, v -> updateCount("auto", 1));
+        setupSafeListener(R.id.autoDecButton, v -> updateCount("auto", -1));
 
-        // Active Buttons
-        findViewById(R.id.activeIncButton).setOnClickListener(v -> updateCount("active", 1));
-        findViewById(R.id.activeDecButton).setOnClickListener(v -> updateCount("active", -1));
+        setupSafeListener(R.id.activeIncButton, v -> updateCount("active", 1));
+        setupSafeListener(R.id.activeDecButton, v -> updateCount("active", -1));
 
-        // Inactive Buttons
-        findViewById(R.id.inactiveIncButton).setOnClickListener(v -> updateCount("inactive", 1));
-        findViewById(R.id.inactiveDecButton).setOnClickListener(v -> updateCount("inactive", -1));
+        setupSafeListener(R.id.inactiveIncButton, v -> updateCount("inactive", 1));
+        setupSafeListener(R.id.inactiveDecButton, v -> updateCount("inactive", -1));
+    }
+
+    private void setupSafeListener(int id, android.view.View.OnClickListener listener) {
+        Button btn = findViewById(id);
+        if (btn != null) {
+            btn.setOnClickListener(listener);
+        }
     }
 
     private void updateCount(String type, int change) {
         if (type.equals("auto")) {
-            autoCount += change;
-            if (autoCount < 0) autoCount = 0;
-            autoCountDisplay.setText(String.valueOf(autoCount));
-        }
-        else if (type.equals("active")) {
-            activeCount += change;
-            if (activeCount < 0) activeCount = 0;
-            activeCountDisplay.setText(String.valueOf(activeCount));
-        }
-        else if (type.equals("inactive")) {
-            inactiveCount += change;
-            if (inactiveCount < 0) inactiveCount = 0;
-            inactiveCountDisplay.setText(String.valueOf(inactiveCount));
+            autoCount = Math.max(0, autoCount + change);
+            if (autoCountDisplay != null) autoCountDisplay.setText(String.valueOf(autoCount));
+        } else if (type.equals("active")) {
+            activeCount = Math.max(0, activeCount + change);
+            if (activeCountDisplay != null) activeCountDisplay.setText(String.valueOf(activeCount));
+        } else if (type.equals("inactive")) {
+            inactiveCount = Math.max(0, inactiveCount + change);
+            if (inactiveCountDisplay != null) inactiveCountDisplay.setText(String.valueOf(inactiveCount));
         }
     }
 
@@ -138,45 +157,72 @@ public class DataEntry extends AppCompatActivity {
             String mNum = getIntent().getStringExtra("PASS_MATCH");
             String assign = getIntent().getStringExtra("PASS_ASSIGNMENT");
 
-            if (sName != null) scouterView.setText(sName);
-            if (mNum != null) matchNumView.setText(mNum);
-            if (assign != null) assignmentView.setText(assign);
+            if (sName != null && scouterView != null) scouterView.setText(sName);
+            if (mNum != null && matchNumView != null) matchNumView.setText(mNum);
+            if (assign != null && assignmentView != null) assignmentView.setText(assign);
         }
     }
 
     private void saveNewMatch() {
-        Map<String, Object> collectedData = new LinkedHashMap<>();
+        try {
+            Map<String, Object> collectedData = new LinkedHashMap<>();
 
-        collectedData.put(DataKeys.MATCH_NUM, matchNumView.getText().toString());
-        collectedData.put(DataKeys.TEAM_NUM, teamNumView.getText().toString());
-        collectedData.put(DataKeys.SCOUTER, scouterView.getText().toString());
-        collectedData.put(DataKeys.ASSIGNMENT, assignmentView.getText().toString());
+            collectedData.put(DataKeys.MATCH_NUM, getTextSafe(matchNumView));
+            collectedData.put(DataKeys.TEAM_NUM, getTextSafe(teamNumView));
+            collectedData.put(DataKeys.SCOUTER, getTextSafe(scouterView));
+            collectedData.put(DataKeys.ASSIGNMENT, getTextSafe(assignmentView));
 
-        collectedData.put(DataKeys.AUTO_CYCLES, autoCount);
-        collectedData.put(DataKeys.ACTIVE_CYCLES, activeCount);
-        collectedData.put(DataKeys.INACTIVE_CYCLES, inactiveCount);
+            collectedData.put(DataKeys.AUTO_CYCLES, autoCount);
+            collectedData.put(DataKeys.ACTIVE_CYCLES, activeCount);
+            collectedData.put(DataKeys.INACTIVE_CYCLES, inactiveCount);
 
-        collectedData.put(DataKeys.AUTO_NEUTRAL, autoNeutralBox.isChecked());
-        collectedData.put(DataKeys.ACTIVE_DEFENSE, activeDefenseBox.isChecked());
-        collectedData.put(DataKeys.INACTIVE_DEFENSE, inactiveDefenseBox.isChecked());
+            collectedData.put(DataKeys.AUTO_NEUTRAL, isCheckedSafe(autoNeutralBox));
+            collectedData.put(DataKeys.ACTIVE_DEFENSE, isCheckedSafe(activeDefenseBox));
+            collectedData.put(DataKeys.INACTIVE_DEFENSE, isCheckedSafe(inactiveDefenseBox));
 
-        collectedData.put(DataKeys.END_AUTO, endAuto.getText().toString());
-        collectedData.put(DataKeys.END_SHIFT_1, endShift1.getText().toString());
-        collectedData.put(DataKeys.END_SHIFT_2, endShift2.getText().toString());
-        collectedData.put(DataKeys.END_GAME, endGame.getText().toString());
+            collectedData.put(DataKeys.END_AUTO, getTextSafe(endAuto));
+            collectedData.put(DataKeys.END_SHIFT_1, getTextSafe(endShift1));
+            collectedData.put(DataKeys.END_SHIFT_2, getTextSafe(endShift2));
+            collectedData.put(DataKeys.END_GAME, getTextSafe(endGame));
 
-        collectedData.put(DataKeys.PASSED_FUEL, passedFuelBox.isChecked());
-        collectedData.put(DataKeys.TOWER_POS, towerPosSpinner.getSelectedItem().toString());
-        collectedData.put(DataKeys.TOWER_LEVEL, towerLevelSpinner.getSelectedItem().toString());
-        collectedData.put(DataKeys.DRIVER_RATING, driverRatingBar.getRating());
-        collectedData.put(DataKeys.COMMENTS, comments.getText().toString());
+            collectedData.put(DataKeys.PASSED_FUEL, isCheckedSafe(passedFuelBox));
 
-        collectedData.put("exported", false);
+            // Spinners
+            if (towerPosSpinner != null && towerPosSpinner.getSelectedItem() != null)
+                collectedData.put(DataKeys.TOWER_POS, towerPosSpinner.getSelectedItem().toString());
+            else
+                collectedData.put(DataKeys.TOWER_POS, "None");
 
-        GlobalVariables.dataList.add(collectedData);
-        StorageManager.saveData(this);
+            if (towerLevelSpinner != null && towerLevelSpinner.getSelectedItem() != null)
+                collectedData.put(DataKeys.TOWER_LEVEL, towerLevelSpinner.getSelectedItem().toString());
+            else
+                collectedData.put(DataKeys.TOWER_LEVEL, "Ground");
 
-        Toast.makeText(this, "Match Saved!", Toast.LENGTH_SHORT).show();
-        finish();
+            if (driverRatingBar != null)
+                collectedData.put(DataKeys.DRIVER_RATING, driverRatingBar.getRating());
+            else
+                collectedData.put(DataKeys.DRIVER_RATING, 0.0f);
+
+            collectedData.put(DataKeys.COMMENTS, getTextSafe(comments));
+
+            collectedData.put("exported", false);
+
+            GlobalVariables.dataList.add(collectedData);
+            StorageManager.saveData(this);
+
+            Toast.makeText(this, "Match Saved!", Toast.LENGTH_SHORT).show();
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Save Failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private String getTextSafe(TextView view) {
+        return (view != null) ? view.getText().toString() : "";
+    }
+
+    private boolean isCheckedSafe(CheckBox box) {
+        return (box != null) && box.isChecked();
     }
 }
