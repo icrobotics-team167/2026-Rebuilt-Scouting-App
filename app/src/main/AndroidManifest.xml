@@ -7,7 +7,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RebuiltScoutingApp2026">
+        android:theme="@style/main_theme">
 
         <activity
             android:name=".SetupScreen"

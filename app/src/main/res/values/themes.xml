@@ -4,15 +4,7 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="Tablet" parent="Base.Theme.RebuiltScoutingApp2026" >
-        <item name="AutoSize20">20sp</item>
-        <item name="AutoSize25">25sp</item>
-        <item name="AutoSize30">30sp</item>
-        <item name="AutoSize45">45sp</item>
-        <item name="AutoSize60">60sp</item>
-    </style>
-
-    <style name="Phone" parent="Base.Theme.RebuiltScoutingApp2026" >
+    <style name="main_theme" parent="Base.Theme.RebuiltScoutingApp2026" >
         <item name="AutoSize20">12sp</item>
         <item name="AutoSize25">16sp</item>
         <item name="AutoSize30">24sp</item>
