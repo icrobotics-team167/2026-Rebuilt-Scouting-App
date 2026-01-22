@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="AutoSize20" format="dimension" />
+    <attr name="AutoSize25" format="dimension" />
+    <attr name="AutoSize30" format="dimension" />
+    <attr name="AutoSize45" format="dimension" />
+    <attr name="AutoSize60" format="dimension" />
+</resources>

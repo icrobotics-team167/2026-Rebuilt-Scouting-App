@@ -35,7 +35,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="8"
+                android:layout_weight="6"
                 android:orientation="horizontal"
                 android:weightSum="12">
 
@@ -45,11 +45,13 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
                     android:text="Team Number:" />
 
                 <EditText
                     android:id="@+id/teamNumber"
+                    style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -64,11 +66,13 @@
 
                 <Button
                     android:id="@+id/editButton"
-                    style="@style/AutoResize25"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_gravity="center"
                     android:backgroundTint="@color/secondaryForeground"
+                    android:textColor="@color/black"
                     android:text="Edit Old Data" />
 
                 <Space
@@ -78,11 +82,13 @@
 
                 <Button
                     android:id="@+id/exportButton"
-                    style="@style/AutoResize25"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_gravity="center"
                     android:backgroundTint="@color/secondaryForeground"
+                    android:textColor="@color/black"
                     android:text="Export" />
 
                 <Space
@@ -96,7 +102,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:layout_gravity="center"
                     android:backgroundTint="@color/secondaryForeground"
+                    android:textColor="@color/black"
                     android:text="Delete All Data" />
             </LinearLayout>
 
@@ -107,15 +115,10 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="6"
                 android:orientation="horizontal"
                 android:weightSum="12">
 
@@ -125,16 +128,21 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
+                    android:gravity="center|start"
+                    android:paddingStart="10dp"
                     android:text="Dimensions of Hopper:" />
 
                 <EditText
                     android:id="@+id/hopperDimensions"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:ems="10"
+                    android:paddingTop="10dp"
                     android:inputType="text"
-                    android:hint="h x l x w" />
+                    android:hint="h x l x w"
+                    android:text=""/>
 
                 <Spinner
                     android:id="@+id/spinner"
@@ -150,11 +158,6 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -168,6 +171,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
                     android:text="Kind of Hopper:" />
 
             </LinearLayout>
@@ -177,6 +182,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="4"
                 android:orientation="horizontal"
+                android:paddingStart="10dp"
                 android:weightSum="12">
 
                 <RadioButton
@@ -211,15 +217,10 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="6"
                 android:orientation="horizontal"
                 android:weightSum="12">
 
@@ -228,17 +229,23 @@
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:gravity="center|start"
+                    android:layout_weight="1"
+                    android:paddingStart="10dp"
                     android:text="Turret:" />
 
                 <EditText
                     android:id="@+id/turret"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="6"
                     android:ems="10"
+                    android:paddingBottom="10dp"
+                    android:gravity="bottom"
                     android:inputType="text"
-                    android:hint="Turret" />
+                    android:hint="Turret"
+                    android:text=""/>
             </LinearLayout>
 
             <View
@@ -248,15 +255,10 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="6"
                 android:orientation="horizontal"
                 android:weightSum="12">
 
@@ -265,14 +267,17 @@
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
+                    android:gravity="center|start"
+                    android:paddingStart="10dp"
                     android:text="Intake:" />
 
                 <EditText
                     android:id="@+id/intake"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="6"
                     android:ems="10"
                     android:inputType="text"
                     android:hint="Intake" />
@@ -285,15 +290,10 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:orientation="horizontal">
 
                 <TextView
@@ -302,6 +302,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
                     android:text="Method for Crossing Hub Line:" />
             </LinearLayout>
 
@@ -309,8 +311,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:orientation="horizontal"
+                android:paddingStart="10dp"
                 android:weightSum="12">
 
                 <RadioButton
@@ -345,15 +348,10 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:orientation="horizontal">
 
                 <TextView
@@ -362,46 +360,51 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
                     android:text="What Do You Like On Your Corn?" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:layout_height="0dp"
-                android:weightSum="12"
+                android:weightSum="6"
+                android:paddingStart="10dp"
                 android:orientation="horizontal">
 
                 <CheckBox
                     android:id="@+id/yesCornOnCob"
                     style="@style/AutoResize20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Salt" />
 
                 <CheckBox
                     android:id="@+id/definitelyCornOnCob"
                     style="@style/AutoResize20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Pepper" />
 
                 <CheckBox
                     android:id="@+id/absolutelyCornOnCob"
                     style="@style/AutoResize20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Butter" />
 
                 <EditText
                     android:id="@+id/editTextText"
-                    android:layout_width="wrap_content"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:ems="10"
+                    android:paddingTop="5dp"
                     android:inputType="text"
                     android:hint="Other" />
             </LinearLayout>
@@ -416,7 +419,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="9"
+                android:layout_weight="7"
                 android:weightSum="12"
                 android:orientation="horizontal">
 
@@ -431,21 +434,22 @@
 
                 <EditText
                     android:id="@+id/comments"
+                    style="@style/AutoResize25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
                     android:ems="10"
-                    android:textSize="25sp"
                     android:inputType="text"
                     android:hint="Notes go here..." />
 
                 <Button
                     android:id="@+id/saveExitButton"
-                    style="@style/AutoResize25"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:backgroundTint="@color/secondaryForeground"
+                    android:backgroundTint="@color/primaryForeground"
+                    android:textColor="@color/white"
                     android:text="Save and Exit" />
             </LinearLayout>
 

@@ -3,10 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#6200EE</color>
-    <color name="purple_700">#3700B3</color>
-    <color name="teal_200">#03DAC5</color>
-    <color name="teal_700">#018786</color>
+    <color name="background">#FAFAD2</color>
 
-    <color name="secondaryForeground">#FFC800</color> <color name="primaryForeground">#3CAB14</color>   <color name="alertColor">#D32F2F</color>          <color name="adminButtons">#607D8B</color>        </resources>
+    <color name="primaryForeground">#3CAB14</color>
+    <color name="buttonTextPrimary">#@color/white</color>
+
+    <color name="secondaryForeground">#FFC800</color>
+    <color name="buttonTextSecondary">#@color/black</color>
+
+</resources>

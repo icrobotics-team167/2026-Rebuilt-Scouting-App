@@ -30,13 +30,14 @@
 
             <EditText
                 android:id="@+id/matchNumber"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textSize="25sp"
                 android:inputType="text"
-                android:text="#" />
+                android:text=""
+                android:hint="#" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -54,13 +55,14 @@
 
             <EditText
                 android:id="@+id/teamNumber"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.3"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="25sp"
-                android:text="#" />
+                android:hint="#"
+                android:text="" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -78,13 +80,14 @@
 
             <EditText
                 android:id="@+id/scouter"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.7"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="25sp"
-                android:text="#" />
+                android:hint="#"
+                android:text="" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -102,13 +105,14 @@
 
             <EditText
                 android:id="@+id/scoutingAssignment"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.9"
                 android:ems="10"
                 android:inputType="text"
-                android:textSize="25sp"
-                android:text="#" />
+                android:hint="#"
+                android:text="" />
 
         </LinearLayout>
 
@@ -163,33 +167,36 @@
 
             <EditText
                 android:id="@+id/autoCycles"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="#" />
+                android:hint="#"
+                android:text="" />
 
             <EditText
                 android:id="@+id/activeCycles"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="#" />
+                android:hint="#"
+                android:text="" />
 
             <EditText
                 android:id="@+id/inactiveCycles"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="#" />
+                android:hint="#"
+                android:text="" />
 
         </LinearLayout>
 
@@ -245,33 +252,36 @@
 
             <EditText
                 android:id="@+id/autoNeutralZone"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text"
                 android:hint="#"
-                android:textSize="25sp" />
+                android:text="" />
 
             <EditText
                 android:id="@+id/activePlayedDefense"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text"
                 android:hint="#"
-                android:textSize="25sp" />
+                android:text="" />
 
             <EditText
                 android:id="@+id/inactivePlayedDefense"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text"
                 android:hint="#"
-                android:textSize="25sp" />
+                android:text="" />
 
         </LinearLayout>
 
@@ -335,43 +345,47 @@
 
             <EditText
                 android:id="@+id/endAuto"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="#" />
+                android:hint="#"
+                android:text="" />
 
             <EditText
                 android:id="@+id/endShift1"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="#" />
+                android:hint="#"
+                android:text="" />
 
             <EditText
                 android:id="@+id/endShift2"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="#" />
+                android:hint="#"
+                android:text="" />
 
             <EditText
                 android:id="@+id/endGame"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="#" />
+                android:hint="#"
+                android:text="" />
         </LinearLayout>
 
         <View
@@ -426,33 +440,36 @@
 
             <EditText
                 android:id="@+id/towerPosition"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="#" />
+                android:hint="#"
+                android:text="" />
 
             <EditText
                 android:id="@+id/passedFuel"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="#" />
+                android:hint="#"
+                android:text="" />
 
             <EditText
                 android:id="@+id/driverRating"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="#" />
+                android:hint="#"
+                android:text="" />
         </LinearLayout>
 
         <View
@@ -480,13 +497,14 @@
 
             <EditText
                 android:id="@+id/comments"
+                style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.7"
-                android:textSize="25sp"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="#" />
+                android:hint="#"
+                android:text="" />
 
             <Button
                 android:id="@+id/saveExitButton"
