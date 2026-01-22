@@ -44,8 +44,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="813c5918-2a79-42bd-9c8a-95648a7a7486" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.me" beforeDir="false" afterPath="$PROJECT_DIR$/README.me" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values-sw600dp-night/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +55,13 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="valueResourceFile" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -63,21 +70,21 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Loreman105"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Loreman105&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/icrobotics-team167/2026-Rebuilt-Scouting-App.git",
-    "accountId": "464a8027-3a86-492e-b79e-55d5b5a6afdf"
+    "accountId": "8e962e20-05d4-4480-8eb0-8100530cf37b"
   }
 }]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="38WlQRd69AMEcB6tVQH21UejvJU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -91,7 +98,7 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Themes",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
@@ -110,12 +117,12 @@
       <map>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026">
           <value>
-            <CheckInfo lastCheckTimestamp="1768924141120" />
+            <CheckInfo lastCheckTimestamp="1769050329743" />
           </value>
         </entry>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1768924141121" />
+            <CheckInfo lastCheckTimestamp="1769050329743" />
           </value>
         </entry>
       </map>
