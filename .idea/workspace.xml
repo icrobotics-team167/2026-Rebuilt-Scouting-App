@@ -10,30 +10,28 @@
     <layouts>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
         <config>
-          <theme>@style/Theme.RebuiltScoutingApp2026</theme>
+          <theme>@style/main_theme</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/data_editor.xml">
         <config>
-          <night>night</night>
-          <theme>@style/main_theme_dark</theme>
+          <theme>@style/main_theme</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/data_entry.xml">
         <config>
-          <state>landscape</state>
           <night>night</night>
           <theme>@style/main_theme</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/pit_scouting.xml">
         <config>
-          <theme>@style/Theme.RebuiltScoutingApp2026</theme>
+          <theme>@style/main_theme</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/setup_screen.xml">
         <config>
-          <theme>@style/Theme.RebuiltScoutingApp2026</theme>
+          <theme>@style/main_theme</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/start_screen.xml">
@@ -49,6 +47,8 @@
   <component name="ChangeListManager">
     <list default="true" id="813c5918-2a79-42bd-9c8a-95648a7a7486" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/data_editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/data_editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/start_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/start_screen.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +102,7 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "button",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
