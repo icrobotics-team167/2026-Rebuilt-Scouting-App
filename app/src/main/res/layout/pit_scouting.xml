@@ -59,17 +59,38 @@
                     android:inputType="text"
                     android:hint="#" />
 
+                <TextView
+                    android:id="@+id/scouterHeader"
+                    style="@style/AutoResize25"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="10dp"
+                    android:gravity="center_vertical"
+                    android:text="Name:" />
+
+                <EditText
+                    android:id="@+id/scouter"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:hint="Your name"
+                    android:text="" />
+
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="0.5" />
 
                 <Button
                     android:id="@+id/editButton"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
                     android:layout_gravity="center"
                     android:backgroundTint="@color/secondaryForeground"
                     android:textColor="@color/black"
@@ -78,14 +99,14 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="0.5" />
 
                 <Button
                     android:id="@+id/exportButton"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
                     android:layout_gravity="center"
                     android:backgroundTint="@color/secondaryForeground"
                     android:textColor="@color/black"
@@ -94,18 +115,18 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="0.5" />
 
                 <Button
                     android:id="@+id/deleteButton"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
                     android:layout_gravity="center"
-                    android:backgroundTint="@color/secondaryForeground"
+                    android:backgroundTint="@color/red"
                     android:textColor="@color/black"
-                    android:text="Delete All Data" />
+                    android:text="Delete" />
             </LinearLayout>
 
             <View
