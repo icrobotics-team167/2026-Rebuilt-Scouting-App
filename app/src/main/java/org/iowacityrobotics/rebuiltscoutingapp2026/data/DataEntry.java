@@ -1,9 +1,11 @@
 //Ben
 //1-15-2026 - 1-19-2026
-//This is the main scouting activity where people input match data during the game.
+//This is the main scouting activity. 
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
+import org.iowacityrobotics.rebuiltscoutingapp2026.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.R;
 
 import java.util.LinkedHashMap;
@@ -22,8 +25,9 @@ import java.util.Map;
 
 public class DataEntry extends AppCompatActivity {
 
-    // Header Info
-    private TextView matchNumView, teamNumView, scouterView, assignmentView;
+    // Header Info 
+    private EditText matchNumView, teamNumView;
+    private TextView scouterView, assignmentView;
 
     // Counters
     private int autoCount = 0;
@@ -44,13 +48,16 @@ public class DataEntry extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      setContentView(R.layout.data_entry);
+        setContentView(R.layout.data_entry);
+
+        MatchSchedule.loadSchedule(this);
 
         try {
             initializeViews();
             setupSpinners();
             setupCounterLogic();
             loadHeaderData();
+            setupAutoFill(); 
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Error starting Data Entry: " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -65,7 +72,7 @@ public class DataEntry extends AppCompatActivity {
     }
 
     private void initializeViews() {
-        // Header - Using helper function to check for nulls
+        // Header
         matchNumView = findViewSafe(R.id.matchNumber, "matchNumber");
         teamNumView = findViewSafe(R.id.teamNumber, "teamNumber");
         scouterView = findViewSafe(R.id.scouter, "scouter");
@@ -94,6 +101,7 @@ public class DataEntry extends AppCompatActivity {
         driverRatingBar = findViewSafe(R.id.rating, "rating");
         comments = findViewSafe(R.id.comments, "comments");
     }
+
     private <T extends android.view.View> T findViewSafe(int id, String name) {
         T view = findViewById(id);
         if (view == null) {
@@ -103,7 +111,6 @@ public class DataEntry extends AppCompatActivity {
     }
 
     private void setupSpinners() {
-        // Tower Position
         if (towerPosSpinner != null) {
             String[] positions = {"None", "Left", "Center", "Right"};
             ArrayAdapter<String> posAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, positions);
@@ -111,7 +118,6 @@ public class DataEntry extends AppCompatActivity {
             towerPosSpinner.setAdapter(posAdapter);
         }
 
-        // Tower Level
         if (towerLevelSpinner != null) {
             String[] levels = {"Ground", "Low", "Medium", "High", "Fall"};
             ArrayAdapter<String> levelAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, levels);
@@ -160,12 +166,44 @@ public class DataEntry extends AppCompatActivity {
             if (sName != null && scouterView != null) scouterView.setText(sName);
             if (mNum != null && matchNumView != null) matchNumView.setText(mNum);
             if (assign != null && assignmentView != null) assignmentView.setText(assign);
+            updateTeamNumber();
+        }
+    }
+
+    private void setupAutoFill() {
+        if (matchNumView != null) {
+            matchNumView.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    updateTeamNumber();
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
+        }
+    }
+
+    private void updateTeamNumber() {
+        if (matchNumView == null || assignmentView == null || teamNumView == null) return;
+
+        String mNum = matchNumView.getText().toString();
+        String assign = assignmentView.getText().toString();
+
+        String foundTeam = MatchSchedule.getTeamNumber(mNum, assign);
+        
+        if (!foundTeam.isEmpty()) {
+            teamNumView.setText(foundTeam);
         }
     }
 
     private void saveNewMatch() {
         try {
             Map<String, Object> collectedData = new LinkedHashMap<>();
+            collectedData.put(DataKeys.RECORD_TYPE, DataKeys.TYPE_MATCH);
 
             collectedData.put(DataKeys.MATCH_NUM, getTextSafe(matchNumView));
             collectedData.put(DataKeys.TEAM_NUM, getTextSafe(teamNumView));
@@ -187,7 +225,6 @@ public class DataEntry extends AppCompatActivity {
 
             collectedData.put(DataKeys.PASSED_FUEL, isCheckedSafe(passedFuelBox));
 
-            // Spinners
             if (towerPosSpinner != null && towerPosSpinner.getSelectedItem() != null)
                 collectedData.put(DataKeys.TOWER_POS, towerPosSpinner.getSelectedItem().toString());
             else
@@ -204,7 +241,6 @@ public class DataEntry extends AppCompatActivity {
                 collectedData.put(DataKeys.DRIVER_RATING, 0.0f);
 
             collectedData.put(DataKeys.COMMENTS, getTextSafe(comments));
-
             collectedData.put("exported", false);
 
             GlobalVariables.dataList.add(collectedData);
