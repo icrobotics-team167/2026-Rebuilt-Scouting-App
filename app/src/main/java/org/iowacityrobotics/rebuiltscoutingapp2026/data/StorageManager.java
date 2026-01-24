@@ -1,6 +1,6 @@
 //Ben
 //1-17-2026 - 1-19-2026
-//This utility class handles the technical work of saving your data list to a JSON file on the storage and reading it back when the app opens.
+//Saves data list to a json file on the storage and reading it back when the app opens.
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
 import android.content.Context;

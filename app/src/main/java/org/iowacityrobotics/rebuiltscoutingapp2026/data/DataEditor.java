@@ -1,6 +1,6 @@
 //Ben
 //1-16-2026 - 1-19-2026
-//This activity allows users to view and modify previously saved match data to correct errors.
+//This activity allows people to view and modify saved match data.
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
 import android.os.Bundle;

@@ -1,6 +1,6 @@
 //Ben
 //1-21-2026
-//This is the format of .json for pit scouting
+//This is the format of json for pit scouting
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 public class PitKeys {

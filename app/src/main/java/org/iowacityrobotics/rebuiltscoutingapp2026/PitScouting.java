@@ -1,6 +1,6 @@
 //Ben
 //1-21-2026
-// This file manages the Pit Scouting user interface, handling the collection of team data, saving and editing records in a local list, and exporting that specific data to a JSON file.
+//This manages the Pit Scouting user interface.
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 import android.app.Activity;

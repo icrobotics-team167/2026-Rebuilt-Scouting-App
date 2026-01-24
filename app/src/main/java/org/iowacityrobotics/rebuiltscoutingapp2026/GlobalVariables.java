@@ -1,6 +1,6 @@
 //Ben
 //1-18-2026 - 1-19-2026
-//This class acts as a central memory bank, holding the main list of match data
+//This is the Global variables of data storage.
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 import java.util.ArrayList;

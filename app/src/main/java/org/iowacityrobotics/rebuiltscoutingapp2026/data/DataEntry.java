@@ -1,6 +1,6 @@
 //Ben
 //1-15-2026 - 1-19-2026
-//This is the main scouting activity where users input match data during the game using buttons, checkboxes, and text fields.
+//This is the main scouting activity where people input match data during the game.
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
 import android.os.Bundle;
