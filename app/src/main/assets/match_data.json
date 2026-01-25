@@ -173,7 +173,7 @@
     { "match_type": "Playoff", "match_id": 11, "red_alliance": [100, 101, 102], "blue_alliance": [110, 111, 112] },
     { "match_type": "Playoff", "match_id": 12, "red_alliance": [103, 104, 105], "blue_alliance": [113, 114, 115] },
     { "match_type": "Playoff", "match_id": 13, "red_alliance": [106, 107, 108], "blue_alliance": [116, 117, 118] },
-    { "match_type": "Finals", "match_id": 1, "red_alliance": [100, 110, 120], "blue_alliance": [101, 111, 121] },
-    { "match_type": "Finals", "match_id": 2, "red_alliance": [100, 110, 120], "blue_alliance": [101, 111, 121] }
+    { "match_type": "Final", "match_id": 1, "red_alliance": [100, 110, 120], "blue_alliance": [101, 111, 121] },
+    { "match_type": "Final", "match_id": 2, "red_alliance": [100, 110, 120], "blue_alliance": [101, 111, 121] }
   ]
 }

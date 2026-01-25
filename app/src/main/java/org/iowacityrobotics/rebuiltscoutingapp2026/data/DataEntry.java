@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
-import org.iowacityrobotics.rebuiltscoutingapp2026.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.R;
 
 import java.util.LinkedHashMap;
@@ -26,7 +25,7 @@ import java.util.Map;
 public class DataEntry extends AppCompatActivity {
 
     // Header Info 
-    private EditText matchNumView, teamNumView;
+    private TextView matchNumView, teamNumView;
     private TextView scouterView, assignmentView;
 
     // Counters
@@ -192,11 +191,14 @@ public class DataEntry extends AppCompatActivity {
 
         String mNum = matchNumView.getText().toString();
         String assign = assignmentView.getText().toString();
-
-        String foundTeam = MatchSchedule.getTeamNumber(mNum, assign);
-        
+        String mType = getIntent().getStringExtra("PASS_MATCH_TYPE");
+        if (mType == null) mType = "Qualification";
+        String foundTeam = MatchSchedule.getTeamNumber(mNum, assign, mType);
         if (!foundTeam.isEmpty()) {
             teamNumView.setText(foundTeam);
+        } else {
+            teamNumView.setText("");
+            teamNumView.setHint("—");
         }
     }
 

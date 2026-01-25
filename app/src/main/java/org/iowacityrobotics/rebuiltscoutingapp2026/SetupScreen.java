@@ -84,7 +84,7 @@ public class SetupScreen extends AppCompatActivity {
         assignAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         assignmentSpinner.setAdapter(assignAdapter);
 
-        String[] matchTypes = {"Qualification", "Practice", "Playoff", "Final"};
+        String[] matchTypes = {"Practice", "Qualification", "Playoff", "Final"};
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, matchTypes);
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         matchTypeSpinner.setAdapter(typeAdapter);
@@ -137,6 +137,7 @@ public class SetupScreen extends AppCompatActivity {
                 intent.putExtra("PASS_SCOUTER", scouterNameInput.getText().toString());
                 intent.putExtra("PASS_MATCH", matchNumberInput.getText().toString());
                 intent.putExtra("PASS_ASSIGNMENT", assignmentSpinner.getSelectedItem().toString());
+                intent.putExtra("PASS_MATCH_TYPE", matchTypeSpinner.getSelectedItem().toString());
                 startActivity(intent);
             }
         });
