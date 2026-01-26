@@ -168,7 +168,7 @@
 
                             <TextView
                                 android:id="@+id/autoCycles"
-                                style="@style/AutoResize20"
+                                style="@style/AutoResize25"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
@@ -280,7 +280,7 @@
 
                             <TextView
                                 android:id="@+id/activeCycles"
-                                style="@style/AutoResize20"
+                                style="@style/AutoResize25"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
@@ -390,7 +390,7 @@
 
                             <TextView
                                 android:id="@+id/inactiveCycles"
-                                style="@style/AutoResize20"
+                                style="@style/AutoResize25"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -658,14 +658,6 @@
                         android:layout_weight="1"
                         android:text="Passed Fuel" />
 
-                    <RatingBar
-                        android:id="@+id/rating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:isIndicator="true"
-                        android:numStars="5"
-                        android:stepSize="0.1" />
                 </LinearLayout>
 
                 <View
@@ -747,17 +739,24 @@
                         android:padding="20dp"
                         android:text="Notes:" />
 
-                    <EditText
-                        android:id="@+id/comments"
-                        style="@style/AutoResize20"
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="4"
-                        android:ems="10"
-                        android:inputType="text"
-                        android:gravity="bottom"
-                        android:paddingBottom="25dp"
-                        android:hint="Your notes go here..." />
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/comments"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="text"
+                            android:gravity="bottom"
+                            android:text=""
+                            android:hint="Your notes go here..." />
+                    </LinearLayout>
 
                     <Button
                         style="@style/AutoResize20"
