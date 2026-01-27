@@ -30,10 +30,14 @@ import java.util.Map;
 
 public class PitScouting extends AppCompatActivity {
 
-    private EditText teamNumber, hopperDimensions, turret, intake, cornOther, comments;
+    private EditText teamNumber, hopperDimensions, framePerimeter, numberOfShooters, intakeWidth, cornOther, comments;
     private Spinner spinner;
-    private RadioButton openHopper, extendableHopper, closedHopper;
-    private RadioButton hump, trough, none;
+    private CheckBox openHopper, extendableHopper, closedHopper;
+
+    private CheckBox tiltTurret, turnTurret;
+
+    private CheckBox humanIntake, overBumperIntake, throughBumperIntake;
+    private CheckBox hump, trough;
     private CheckBox salt, pepper, butter;
 
     private int editingIndex = -1;
@@ -58,16 +62,14 @@ public class PitScouting extends AppCompatActivity {
         initializeViews();
         setupSpinner();
         setupButtons();
-
-        setupRadioGroupLogic(openHopper, extendableHopper, closedHopper);
-        setupRadioGroupLogic(hump, trough, none);
     }
 
     private void initializeViews() {
         teamNumber = findViewById(R.id.teamNumber);
         hopperDimensions = findViewById(R.id.hopperDimensions);
-        turret = findViewById(R.id.turret);
-        intake = findViewById(R.id.intake);
+        framePerimeter = findViewById(R.id.framePerimeter);
+        numberOfShooters = findViewById(R.id.numberOfShooters);
+        intakeWidth = findViewById(R.id.intakeWidth);
         cornOther = findViewById(R.id.editTextText);
         comments = findViewById(R.id.comments);
         spinner = findViewById(R.id.spinner);
@@ -76,9 +78,15 @@ public class PitScouting extends AppCompatActivity {
         extendableHopper = findViewById(R.id.extendableHopper);
         closedHopper = findViewById(R.id.closedHopper);
 
+        tiltTurret = findViewById(R.id.tiltTurret);
+        turnTurret = findViewById(R.id.turnTurret);
+
+        humanIntake = findViewById(R.id.humanIntake);
+        overBumperIntake = findViewById(R.id.overBumperIntake);
+        throughBumperIntake = findViewById(R.id.throughBumperIntake);
+
         hump = findViewById(R.id.hump);
         trough = findViewById(R.id.trough);
-        none = findViewById(R.id.none);
 
         salt = findViewById(R.id.yesCornOnCob);
         pepper = findViewById(R.id.definitelyCornOnCob);
@@ -86,7 +94,7 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void setupSpinner() {
-        String[] options = {"Swerve", "Tank/West Coast", "Mecanum", "Other"};
+        String[] options = {"m", "cm", "ft", "in"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -114,8 +122,9 @@ public class PitScouting extends AppCompatActivity {
     private void clearFields() {
         teamNumber.setText("");
         hopperDimensions.setText("");
-        turret.setText("");
-        intake.setText("");
+        framePerimeter.setText("");
+        numberOfShooters.setText("");
+        intakeWidth.setText("");
         cornOther.setText("");
         comments.setText("");
         salt.setChecked(false);
@@ -125,9 +134,13 @@ public class PitScouting extends AppCompatActivity {
         openHopper.setChecked(false);
         extendableHopper.setChecked(false);
         closedHopper.setChecked(false);
+        tiltTurret.setChecked(false);
+        turnTurret.setChecked(false);
+        humanIntake.setChecked(false);
+        overBumperIntake.setChecked(false);
+        throughBumperIntake.setChecked(false);
         hump.setChecked(false);
         trough.setChecked(false);
-        none.setChecked(false);
     }
 
     private void loadTeamData() {
@@ -149,13 +162,16 @@ public class PitScouting extends AppCompatActivity {
                 found = true;
 
                 safeSetText(hopperDimensions, match.get(PitKeys.PIT_HOPPER_DIMENSIONS));
-                safeSetText(turret, match.get(PitKeys.PIT_TURRET));
-                safeSetText(intake, match.get(PitKeys.PIT_INTAKE));
+                safeSetText(framePerimeter, match.get(PitKeys.PIT_FRAME_PERIMETER));
+                safeSetText(numberOfShooters, match.get(PitKeys.PIT_NUMBER_OF_SHOOTERS));
+                safeSetText(intakeWidth, match.get(PitKeys.PIT_INTAKE_WIDTH));
                 safeSetText(comments, match.get(PitKeys.COMMENTS));
 
                 setSpinnerSelection(spinner, (String) match.get(PitKeys.PIT_DRIVE_TYPE));
-                setRadioSelection((String) match.get(PitKeys.PIT_HOPPER_TYPE), openHopper, extendableHopper, closedHopper);
-                setRadioSelection((String) match.get(PitKeys.PIT_CROSSING), hump, trough, none);
+                setCheckBoxSelection((String) match.get(PitKeys.PIT_HOPPER_TYPE), openHopper, extendableHopper, closedHopper);
+                setCheckBoxSelection((String) match.get(PitKeys.PIT_TURRET), tiltTurret, turnTurret);
+                setCheckBoxSelection((String) match.get(PitKeys.PIT_INTAKE), humanIntake, overBumperIntake, throughBumperIntake);
+                setCheckBoxSelection((String) match.get(PitKeys.PIT_CROSSING), hump, trough);
 
                 loadCornPreferences((String) match.get(PitKeys.PIT_CORN));
 
@@ -165,7 +181,7 @@ public class PitScouting extends AppCompatActivity {
         }
 
         if (!found) {
-            Toast.makeText(this, "Team " + targetTeam + " not found locally.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Team " + targetTeam + " not found.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -183,11 +199,13 @@ public class PitScouting extends AppCompatActivity {
         pitData.put("match_number", "PIT");
 
         pitData.put(PitKeys.PIT_HOPPER_DIMENSIONS, hopperDimensions.getText().toString());
+        pitData.put(PitKeys.PIT_FRAME_PERIMETER, framePerimeter.getText().toString());
+        pitData.put(PitKeys.PIT_NUMBER_OF_SHOOTERS, numberOfShooters.getText().toString());
+        pitData.put(PitKeys.PIT_INTAKE_WIDTH, intakeWidth.getText().toString());
         pitData.put(PitKeys.PIT_DRIVE_TYPE, spinner.getSelectedItem().toString());
-        pitData.put(PitKeys.PIT_HOPPER_TYPE, getSelectedRadioText(openHopper, extendableHopper, closedHopper));
-        pitData.put(PitKeys.PIT_TURRET, turret.getText().toString());
-        pitData.put(PitKeys.PIT_INTAKE, intake.getText().toString());
-        pitData.put(PitKeys.PIT_CROSSING, getSelectedRadioText(hump, trough, none));
+        pitData.put(PitKeys.PIT_TURRET, getSelectedCheckBoxText(tiltTurret, turnTurret));
+        pitData.put(PitKeys.PIT_INTAKE, getSelectedCheckBoxText(humanIntake, overBumperIntake, throughBumperIntake));
+        pitData.put(PitKeys.PIT_CROSSING, getSelectedCheckBoxText(hump, trough));
         pitData.put(PitKeys.COMMENTS, comments.getText().toString());
 
         List<String> cornPrefs = new ArrayList<>();
@@ -277,9 +295,9 @@ public class PitScouting extends AppCompatActivity {
         }
     }
 
-    private void setRadioSelection(String value, RadioButton... buttons) {
+    private void setCheckBoxSelection(String value, CheckBox... buttons) {
         if (value == null) return;
-        for (RadioButton btn : buttons) {
+        for (CheckBox btn : buttons) {
             if (btn.getText().toString().equals(value)) {
                 btn.setChecked(true);
             } else {
@@ -303,18 +321,8 @@ public class PitScouting extends AppCompatActivity {
         }
     }
 
-    private void setupRadioGroupLogic(RadioButton... buttons) {
-        for (RadioButton btn : buttons) {
-            btn.setOnClickListener(v -> {
-                for (RadioButton b : buttons) {
-                    if (b != btn) b.setChecked(false);
-                }
-            });
-        }
-    }
-
-    private String getSelectedRadioText(RadioButton... buttons) {
-        for (RadioButton btn : buttons) {
+    private String getSelectedCheckBoxText(CheckBox... buttons) {
+        for (CheckBox btn : buttons) {
             if (btn.isChecked()) return btn.getText().toString();
         }
         return "None";

@@ -185,7 +185,7 @@
                     android:background="?android:attr/listDivider" />
 
                 <TextView
-                    android:id="@+id/framePerimeterDimensions"
+                    android:id="@+id/framePerimeterHeader"
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -195,7 +195,7 @@
                     android:text="Frame Perimeter:" />
 
                 <EditText
-                    android:id="@+id/hopperDimensions2"
+                    android:id="@+id/framePerimeter"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -384,7 +384,7 @@
                     android:text="Over Bumper" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/intakeWidthHeader"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -393,7 +393,7 @@
                     android:text="Intake Width:" />
 
                 <EditText
-                    android:id="@+id/editTextText5"
+                    android:id="@+id/intakeWidth"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

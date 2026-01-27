@@ -12,6 +12,9 @@ public class PitKeys {
     public static final String COMMENTS = "comments";
 
     public static final String PIT_HOPPER_DIMENSIONS = "hopper_dimensions";
+    public static final String PIT_FRAME_PERIMETER = "frame_perimeter";
+    public static final String PIT_NUMBER_OF_SHOOTERS = "number_of_shooters";
+    public static final String PIT_INTAKE_WIDTH = "intake_width";
     public static final String PIT_DRIVE_TYPE = "drive_type";
     public static final String PIT_HOPPER_TYPE = "hopper_type";
     public static final String PIT_TURRET = "turret_info";
