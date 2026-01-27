@@ -483,15 +483,25 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:weightSum="1"
+            android:weightSum="10"
             android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/deleteButton"
+                style="@style/AutoResize20"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/red"
+                android:textColor="@color/black"
+                android:text="Delete" />
 
             <TextView
                 android:id="@+id/commentsHeader"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.1"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Notes:" />
 
@@ -500,7 +510,7 @@
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.7"
+                android:layout_weight="6"
                 android:ems="10"
                 android:inputType="text"
                 android:hint="#"
@@ -511,7 +521,7 @@
                 style="@style/AutoResize20"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.2"
+                android:layout_weight="2"
                 android:backgroundTint="@color/primaryForeground"
                 android:textColor="@color/white"
                 android:text="Save and Exit" />
