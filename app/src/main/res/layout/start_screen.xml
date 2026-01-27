@@ -51,14 +51,25 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <Switch
-                        android:id="@+id/themeSwitch"
+                    <TextView
+                        android:id="@+id/themeSwitchHeader"
                         style="@style/AutoResize30"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:paddingStart="20dp"
-                        android:text="Light Mode/Dark Mode" />
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:text="Light / Dark Mode" />
+
+                    <Switch
+                        android:id="@+id/themeSwitch"
+                        style="@style/AutoResize30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:scaleX="1.5"
+                        android:scaleY="1.5"
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout

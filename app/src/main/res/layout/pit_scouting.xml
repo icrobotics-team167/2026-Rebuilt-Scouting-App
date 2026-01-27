@@ -223,7 +223,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="4"
                 android:orientation="horizontal"
                 android:weightSum="12">
 
@@ -242,7 +242,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="4"
                 android:orientation="horizontal"
                 android:paddingStart="10dp"
                 android:weightSum="12">
@@ -270,24 +270,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:text="Closed" />
-
-                <CheckBox
-                    android:id="@+id/otherHopperBox"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:text="" />
-
-                <EditText
-                    android:id="@+id/editTextText2"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:hint="Other"
-                    android:text="" />
 
             </LinearLayout>
 
@@ -378,7 +360,15 @@
                     android:text="Intake:" />
 
                 <CheckBox
-                    android:id="@+id/groundIntake"
+                    android:id="@+id/humanIntake"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="Human" />
+
+                <CheckBox
+                    android:id="@+id/throughBumperIntake"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -386,7 +376,7 @@
                     android:text="Through Bumper" />
 
                 <CheckBox
-                    android:id="@+id/humanIntake"
+                    android:id="@+id/overBumperIntake"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -464,25 +454,6 @@
                     android:layout_weight="2"
                     android:text="Trough" />
 
-                <CheckBox
-                    android:id="@+id/none"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:text="" />
-
-                <EditText
-                    android:id="@+id/editTextText4"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:gravity="center_vertical"
-                    android:hint="Other"
-                    android:text="" />
             </LinearLayout>
 
             <View
