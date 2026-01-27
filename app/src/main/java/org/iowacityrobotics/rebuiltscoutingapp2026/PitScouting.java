@@ -1,5 +1,5 @@
-//Ben
-//1-21-2026
+//Ben, JamesA
+//1-21-2026 - 1-26-2026
 //This manages the Pit Scouting user interface.
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
@@ -11,13 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.activity.result                                                                                      .contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.json.JSONArray;
@@ -30,12 +30,13 @@ import java.util.Map;
 
 public class PitScouting extends AppCompatActivity {
 
-    private EditText teamNumber, hopperDimensions, framePerimeter, numberOfShooters, intakeWidth, cornOther, comments;
-    private Spinner spinner;
+    // UI Components
+    private EditText teamNumber, scouterName, hopperDimensions, framePerimeter, numberOfShooters, intakeWidth, cornOther, comments;
+    private Spinner spinner, spinner2;
+
+    // Checkboxes
     private CheckBox openHopper, extendableHopper, closedHopper;
-
     private CheckBox tiltTurret, turnTurret;
-
     private CheckBox humanIntake, overBumperIntake, throughBumperIntake;
     private CheckBox hump, trough;
     private CheckBox salt, pepper, butter;
@@ -60,50 +61,63 @@ public class PitScouting extends AppCompatActivity {
         setContentView(R.layout.pit_scouting);
 
         initializeViews();
-        setupSpinner();
+        setupSpinners();
         setupButtons();
     }
 
     private void initializeViews() {
+        // Text Fields
         teamNumber = findViewById(R.id.teamNumber);
+        scouterName = findViewById(R.id.scouter);
         hopperDimensions = findViewById(R.id.hopperDimensions);
         framePerimeter = findViewById(R.id.framePerimeter);
         numberOfShooters = findViewById(R.id.numberOfShooters);
         intakeWidth = findViewById(R.id.intakeWidth);
         cornOther = findViewById(R.id.editTextText);
         comments = findViewById(R.id.comments);
-        spinner = findViewById(R.id.spinner);
 
+        // Spinners
+        spinner = findViewById(R.id.spinner);   // Hopper Dimensions Units
+        spinner2 = findViewById(R.id.spinner2); // Frame Perimeter Units
+
+        // Checkboxes - Hopper
         openHopper = findViewById(R.id.openHopper);
         extendableHopper = findViewById(R.id.extendableHopper);
         closedHopper = findViewById(R.id.closedHopper);
 
+        // Checkboxes - Turret
         tiltTurret = findViewById(R.id.tiltTurret);
         turnTurret = findViewById(R.id.turnTurret);
 
+        // Checkboxes - Intake
         humanIntake = findViewById(R.id.humanIntake);
         overBumperIntake = findViewById(R.id.overBumperIntake);
         throughBumperIntake = findViewById(R.id.throughBumperIntake);
 
+        // Checkboxes - Crossing
         hump = findViewById(R.id.hump);
         trough = findViewById(R.id.trough);
 
+        // Checkboxes - Corn
         salt = findViewById(R.id.yesCornOnCob);
         pepper = findViewById(R.id.definitelyCornOnCob);
         butter = findViewById(R.id.absolutelyCornOnCob);
     }
 
-    private void setupSpinner() {
+    private void setupSpinners() {
         String[] options = {"m", "cm", "ft", "in"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         spinner.setAdapter(adapter);
+        spinner2.setAdapter(adapter);
     }
 
     private void setupButtons() {
         Button saveBtn = findViewById(R.id.saveExitButton);
         Button exportBtn = findViewById(R.id.exportButton);
         Button editBtn = findViewById(R.id.editButton);
+        Button deleteBtn = findViewById(R.id.exportButton2);
 
         saveBtn.setOnClickListener(v -> savePitData());
 
@@ -117,30 +131,8 @@ public class PitScouting extends AppCompatActivity {
         });
 
         editBtn.setOnClickListener(v -> loadTeamData());
-    }
 
-    private void clearFields() {
-        teamNumber.setText("");
-        hopperDimensions.setText("");
-        framePerimeter.setText("");
-        numberOfShooters.setText("");
-        intakeWidth.setText("");
-        cornOther.setText("");
-        comments.setText("");
-        salt.setChecked(false);
-        pepper.setChecked(false);
-        butter.setChecked(false);
-        spinner.setSelection(0);
-        openHopper.setChecked(false);
-        extendableHopper.setChecked(false);
-        closedHopper.setChecked(false);
-        tiltTurret.setChecked(false);
-        turnTurret.setChecked(false);
-        humanIntake.setChecked(false);
-        overBumperIntake.setChecked(false);
-        throughBumperIntake.setChecked(false);
-        hump.setChecked(false);
-        trough.setChecked(false);
+        deleteBtn.setOnClickListener(v -> deleteTeamData());
     }
 
     private void loadTeamData() {
@@ -161,13 +153,19 @@ public class PitScouting extends AppCompatActivity {
                 editingIndex = i;
                 found = true;
 
+                // Load Text Data using updated keys
+                safeSetText(scouterName, match.get(PitKeys.SCOUTER_NAME));
                 safeSetText(hopperDimensions, match.get(PitKeys.PIT_HOPPER_DIMENSIONS));
                 safeSetText(framePerimeter, match.get(PitKeys.PIT_FRAME_PERIMETER));
                 safeSetText(numberOfShooters, match.get(PitKeys.PIT_NUMBER_OF_SHOOTERS));
                 safeSetText(intakeWidth, match.get(PitKeys.PIT_INTAKE_WIDTH));
                 safeSetText(comments, match.get(PitKeys.COMMENTS));
 
-                setSpinnerSelection(spinner, (String) match.get(PitKeys.PIT_DRIVE_TYPE));
+                // Load Spinners (Units)
+                setSpinnerSelection(spinner, (String) match.get(PitKeys.PIT_HOPPER_UNITS));
+                setSpinnerSelection(spinner2, (String) match.get(PitKeys.PIT_FRAME_UNITS));
+
+                // Load Checkboxes (Multiple selection supported)
                 setCheckBoxSelection((String) match.get(PitKeys.PIT_HOPPER_TYPE), openHopper, extendableHopper, closedHopper);
                 setCheckBoxSelection((String) match.get(PitKeys.PIT_TURRET), tiltTurret, turnTurret);
                 setCheckBoxSelection((String) match.get(PitKeys.PIT_INTAKE), humanIntake, overBumperIntake, throughBumperIntake);
@@ -185,6 +183,42 @@ public class PitScouting extends AppCompatActivity {
         }
     }
 
+    private void deleteTeamData() {
+        String targetTeam = teamNumber.getText().toString().trim();
+        if (targetTeam.isEmpty()) {
+            Toast.makeText(this, "Enter Team # to Delete", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle("Delete Team " + targetTeam + "?")
+                .setMessage("Are you sure you want to delete this pit data? This cannot be undone.")
+                .setPositiveButton("Delete", (dialog, which) -> {
+                    boolean found = false;
+                    for (int i = GlobalVariables.dataList.size() - 1; i >= 0; i--) {
+                        Map<String, Object> match = GlobalVariables.dataList.get(i);
+                        if (match.containsKey(PitKeys.RECORD_TYPE) &&
+                                PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE)) &&
+                                targetTeam.equals(match.get(PitKeys.TEAM_NUMBER))) {
+
+                            GlobalVariables.dataList.remove(i);
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (found) {
+                        StorageManager.saveData(this);
+                        clearFields();
+                        Toast.makeText(this, "Team " + targetTeam + " Deleted.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Team " + targetTeam + " not found.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
     private void savePitData() {
         String team = teamNumber.getText().toString().trim();
         if (team.isEmpty()) {
@@ -198,14 +232,25 @@ public class PitScouting extends AppCompatActivity {
         pitData.put(PitKeys.TEAM_NUMBER, team);
         pitData.put("match_number", "PIT");
 
+        // Save Scouter Name
+        pitData.put(PitKeys.SCOUTER_NAME, scouterName.getText().toString());
+
+        // Save Dimensions & Units
         pitData.put(PitKeys.PIT_HOPPER_DIMENSIONS, hopperDimensions.getText().toString());
+        pitData.put(PitKeys.PIT_HOPPER_UNITS, spinner.getSelectedItem().toString());
+
         pitData.put(PitKeys.PIT_FRAME_PERIMETER, framePerimeter.getText().toString());
+        pitData.put(PitKeys.PIT_FRAME_UNITS, spinner2.getSelectedItem().toString());
+
         pitData.put(PitKeys.PIT_NUMBER_OF_SHOOTERS, numberOfShooters.getText().toString());
         pitData.put(PitKeys.PIT_INTAKE_WIDTH, intakeWidth.getText().toString());
-        pitData.put(PitKeys.PIT_DRIVE_TYPE, spinner.getSelectedItem().toString());
+
+        // Save Checkboxes (Joined by commas)
+        pitData.put(PitKeys.PIT_HOPPER_TYPE, getSelectedCheckBoxText(openHopper, extendableHopper, closedHopper));
         pitData.put(PitKeys.PIT_TURRET, getSelectedCheckBoxText(tiltTurret, turnTurret));
         pitData.put(PitKeys.PIT_INTAKE, getSelectedCheckBoxText(humanIntake, overBumperIntake, throughBumperIntake));
         pitData.put(PitKeys.PIT_CROSSING, getSelectedCheckBoxText(hump, trough));
+
         pitData.put(PitKeys.COMMENTS, comments.getText().toString());
 
         List<String> cornPrefs = new ArrayList<>();
@@ -236,6 +281,38 @@ public class PitScouting extends AppCompatActivity {
         StorageManager.saveData(this);
         finish();
     }
+
+    private void clearFields() {
+        teamNumber.setText("");
+        scouterName.setText("");
+        hopperDimensions.setText("");
+        framePerimeter.setText("");
+        numberOfShooters.setText("");
+        intakeWidth.setText("");
+        cornOther.setText("");
+        comments.setText("");
+
+        salt.setChecked(false);
+        pepper.setChecked(false);
+        butter.setChecked(false);
+
+        spinner.setSelection(0);
+        spinner2.setSelection(0);
+
+        openHopper.setChecked(false);
+        extendableHopper.setChecked(false);
+        closedHopper.setChecked(false);
+        tiltTurret.setChecked(false);
+        turnTurret.setChecked(false);
+        humanIntake.setChecked(false);
+        overBumperIntake.setChecked(false);
+        throughBumperIntake.setChecked(false);
+        hump.setChecked(false);
+        trough.setChecked(false);
+
+        editingIndex = -1;
+    }
+
     private void performExport(Uri uri) {
         if (GlobalVariables.dataList.isEmpty()) {
             Toast.makeText(this, "No data to export!", Toast.LENGTH_SHORT).show();
@@ -249,7 +326,7 @@ public class PitScouting extends AppCompatActivity {
             if (match.containsKey(PitKeys.RECORD_TYPE) &&
                     PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
                 allPitData.add(match);
-                    boolean isExported = match.containsKey(PitKeys.EXPORTED) && Boolean.TRUE.equals(match.get(PitKeys.EXPORTED));
+                boolean isExported = match.containsKey(PitKeys.EXPORTED) && Boolean.TRUE.equals(match.get(PitKeys.EXPORTED));
                 if (!isExported) {
                     newPitData.add(match);
                 }
@@ -269,7 +346,7 @@ public class PitScouting extends AppCompatActivity {
             return;
         }
 
-         JSONArray jsonArray = new JSONArray();
+        JSONArray jsonArray = new JSONArray();
         for (Map<String, Object> match : finalExportList) {
             jsonArray.put(new JSONObject(match));
             match.put(PitKeys.EXPORTED, true);
@@ -295,10 +372,14 @@ public class PitScouting extends AppCompatActivity {
         }
     }
 
+    // UPDATED: Logic to support loading multiple checkboxes (checks if saved string *contains* text)
     private void setCheckBoxSelection(String value, CheckBox... buttons) {
-        if (value == null) return;
+        if (value == null || value.equals("None")) {
+            for (CheckBox btn : buttons) btn.setChecked(false);
+            return;
+        }
         for (CheckBox btn : buttons) {
-            if (btn.getText().toString().equals(value)) {
+            if (value.contains(btn.getText().toString())) {
                 btn.setChecked(true);
             } else {
                 btn.setChecked(false);
@@ -321,10 +402,15 @@ public class PitScouting extends AppCompatActivity {
         }
     }
 
+    // UPDATED: Logic to join checked boxes with commas
     private String getSelectedCheckBoxText(CheckBox... buttons) {
+        StringBuilder selected = new StringBuilder();
         for (CheckBox btn : buttons) {
-            if (btn.isChecked()) return btn.getText().toString();
+            if (btn.isChecked()) {
+                if (selected.length() > 0) selected.append(", ");
+                selected.append(btn.getText().toString());
+            }
         }
-        return "None";
+        return selected.length() > 0 ? selected.toString() : "None";
     }
 }

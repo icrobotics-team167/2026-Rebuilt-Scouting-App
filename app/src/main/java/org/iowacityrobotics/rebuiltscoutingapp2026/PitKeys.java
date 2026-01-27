@@ -6,16 +6,17 @@ package org.iowacityrobotics.rebuiltscoutingapp2026;
 public class PitKeys {
     public static final String RECORD_TYPE = "record_type";
     public static final String TYPE_PIT = "PIT_SCOUTING";
-
     public static final String TEAM_NUMBER = "team_number";
+    public static final String SCOUTER_NAME = "scouter_name";
     public static final String EXPORTED = "exported";
     public static final String COMMENTS = "comments";
-
     public static final String PIT_HOPPER_DIMENSIONS = "hopper_dimensions";
+    public static final String PIT_HOPPER_UNITS = "hopper_units";
     public static final String PIT_FRAME_PERIMETER = "frame_perimeter";
+    public static final String PIT_FRAME_UNITS = "frame_units";
     public static final String PIT_NUMBER_OF_SHOOTERS = "number_of_shooters";
     public static final String PIT_INTAKE_WIDTH = "intake_width";
-    public static final String PIT_DRIVE_TYPE = "drive_type";
+    public static final String PIT_DRIVE_TYPE = "drive_type"; // For if we add it back
     public static final String PIT_HOPPER_TYPE = "hopper_type";
     public static final String PIT_TURRET = "turret_info";
     public static final String PIT_INTAKE = "intake_info";
