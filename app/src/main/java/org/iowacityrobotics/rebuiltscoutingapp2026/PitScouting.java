@@ -244,12 +244,24 @@ public class PitScouting extends AppCompatActivity {
 
         double multiplier = 1.0;
         switch (unit) {
-            case "cm": multiplier = 0.393701; break;
-            case "mm": multiplier = 0.0393701; break;
-            case "ft": multiplier = 12.0; break;
-            case "m":  multiplier = 39.3701; break;
-            case "yd": multiplier = 36.0; break;
-            case "in": multiplier = 1.0; break;
+            case "cm":
+                multiplier = 0.393701;
+                break;
+            case "mm":
+                multiplier = 0.0393701;
+                break;
+            case "ft":
+                multiplier = 12.0;
+                break;
+            case "m":
+                multiplier = 39.3701;
+                break;
+            case "yd":
+                multiplier = 36.0;
+                break;
+            case "in":
+                multiplier = 1.0;
+                break;
         }
 
         String[] parts = input.split("[xX]");
