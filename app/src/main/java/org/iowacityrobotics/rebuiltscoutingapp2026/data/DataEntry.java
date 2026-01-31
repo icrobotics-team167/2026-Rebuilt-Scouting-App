@@ -97,7 +97,7 @@ public class DataEntry extends AppCompatActivity {
         // Misc
         towerPosSpinner = findViewSafe(R.id.TowerPosition, "towerPosition");
         towerLevelSpinner = findViewSafe(R.id.towerLevel, "towerLevel");
-        driverRatingBar = findViewSafe(R.id.rating, "rating");
+        //driverRatingBar = findViewSafe(R.id.rating, "rating");
         comments = findViewSafe(R.id.comments, "comments");
     }
 

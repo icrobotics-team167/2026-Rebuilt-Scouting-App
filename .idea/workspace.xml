@@ -24,7 +24,7 @@
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/pit_scouting.xml">
         <config>
-          <theme>@style/Theme.RebuiltScoutingApp2026</theme>
+          <theme>@style/main_theme</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/setup_screen.xml">
@@ -50,8 +50,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/PitScouting.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/PitScouting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/DataEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/DataEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/pit_scouting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/pit_scouting.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +67,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[LocalEmulator::path=C:\Users\bemoh\.android\avd\Medium_Tablet.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[LocalEmulator::path=C:\Users\bemoh\.android\avd\Medium_Phone.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -89,13 +95,16 @@
     &quot;assignee&quot;: &quot;Loreman105&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/icrobotics-team167/2026-Rebuilt-Scouting-App.git&quot;,
-    &quot;accountId&quot;: &quot;8e962e20-05d4-4480-8eb0-8100530cf37b&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/icrobotics-team167/2026-Rebuilt-Scouting-App.git",
+    "accountId": "464a8027-3a86-492e-b79e-55d5b5a6afdf"
   }
-}</component>
-  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\bemoh\.gradle\wrapper\dists\gradle-9.1.0-bin\9agqghryom9wkf8r80qlhnts3\gradle-9.1.0" javaHome="C:\Users\bemoh\.jdks\jbr-21.0.9" gradleVersion="9.1.0" />
+}]]></component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\bemoh\.gradle\wrapper\dists\gradle-9.1.0-bin\9agqghryom9wkf8r80qlhnts3\gradle-9.1.0" javaHome="C:\Program Files\Android\Android Studio\jbr" gradleVersion="9.1.0" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -115,7 +124,8 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Fixation-of-the-bug-fixation-x12-",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
@@ -239,12 +249,12 @@
       <map>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026">
           <value>
-            <CheckInfo lastCheckTimestamp="1769298178076" />
+            <CheckInfo lastCheckTimestamp="1769885999468" />
           </value>
         </entry>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1769298178073" />
+            <CheckInfo lastCheckTimestamp="1769885999473" />
           </value>
         </entry>
       </map>
