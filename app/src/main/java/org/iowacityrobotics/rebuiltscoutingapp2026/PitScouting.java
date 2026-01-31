@@ -42,7 +42,7 @@ public class PitScouting extends AppCompatActivity {
     private CheckBox openHopper, extendableHopper, closedHopper;
     private CheckBox tiltTurret, turnTurret;
     private CheckBox humanIntake, throughBumperIntake, overBumperIntake;
-    private CheckBox hump, trough;
+    private CheckBox bump, trench;
     private CheckBox salt, pepper, butter;
 
     private int editingIndex = -1;
@@ -96,8 +96,8 @@ public class PitScouting extends AppCompatActivity {
         extendableHopper = findViewById(R.id.extendableHopper);
         closedHopper = findViewById(R.id.closedHopper);
 
-        hump = findViewById(R.id.hump);
-        trough = findViewById(R.id.trough);
+        bump = findViewById(R.id.bump);
+        trench = findViewById(R.id.trench);
 
         salt = findViewById(R.id.yesCornOnCob);
         pepper = findViewById(R.id.definitelyCornOnCob);
@@ -160,8 +160,8 @@ public class PitScouting extends AppCompatActivity {
         throughBumperIntake.setChecked(false);
         overBumperIntake.setChecked(false);
 
-        hump.setChecked(false);
-        trough.setChecked(false);
+        bump.setChecked(false);
+        trench.setChecked(false);
 
         hopperUnitSpinner.setSelection(0);
         frameUnitSpinner.setSelection(0);
@@ -205,7 +205,7 @@ public class PitScouting extends AppCompatActivity {
         pitData.put("IntakeType", getCheckBoxSelections(humanIntake, throughBumperIntake, overBumperIntake));
 
         pitData.put(PitKeys.PIT_HOPPER_TYPE, getCheckBoxSelections(openHopper, extendableHopper, closedHopper));
-        pitData.put(PitKeys.PIT_CROSSING, getCheckBoxSelections(hump, trough));
+        pitData.put(PitKeys.PIT_CROSSING, getCheckBoxSelections(bump, trench));
 
         pitData.put(PitKeys.COMMENTS, comments.getText().toString());
 
@@ -332,7 +332,7 @@ public class PitScouting extends AppCompatActivity {
                 }
 
                 setCheckBoxSelections((String) match.get(PitKeys.PIT_HOPPER_TYPE), openHopper, extendableHopper, closedHopper);
-                setCheckBoxSelections((String) match.get(PitKeys.PIT_CROSSING), hump, trough);
+                setCheckBoxSelections((String) match.get(PitKeys.PIT_CROSSING), bump, trench);
                 setCheckBoxSelections((String) match.get("TurretType"), tiltTurret, turnTurret);
                 setCheckBoxSelections((String) match.get("IntakeType"), humanIntake, throughBumperIntake, overBumperIntake);
 
