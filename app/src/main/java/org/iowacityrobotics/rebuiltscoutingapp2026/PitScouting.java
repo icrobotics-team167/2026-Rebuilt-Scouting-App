@@ -105,7 +105,7 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void setupSpinners() {
-        String[] unitOptions = {"in", "cm", "mm", "ft", "m", "yd"};
+        String[] unitOptions = {"Unknown", "in", "cm", "mm", "ft", "m", "yd"};
         ArrayAdapter<String> unitAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, unitOptions);
         unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -272,7 +272,7 @@ public class PitScouting extends AppCompatActivity {
             try {
                 double val = Double.parseDouble(parts[i].trim());
                 val = val * multiplier;
-                result.append(String.format("%.1f", val));
+                result.append(String.format("%.3f", val));
             } catch (NumberFormatException e) {
                 result.append(parts[i].trim());
             }

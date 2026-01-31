@@ -79,12 +79,12 @@ public class SetupScreen extends AppCompatActivity {
     }
 
     private void setupStaticSpinners() {
-        String[] assignments = {"Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"};
+        String[] assignments = {"Unknown", "Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"};
         ArrayAdapter<String> assignAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assignments);
         assignAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         assignmentSpinner.setAdapter(assignAdapter);
 
-        String[] matchTypes = {"Practice", "Qualification", "Playoff", "Final"};
+        String[] matchTypes = {"Unknown", "Practice", "Qualification", "Playoff", "Final"};
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, matchTypes);
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         matchTypeSpinner.setAdapter(typeAdapter);

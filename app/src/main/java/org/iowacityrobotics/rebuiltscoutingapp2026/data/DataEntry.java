@@ -111,14 +111,14 @@ public class DataEntry extends AppCompatActivity {
 
     private void setupSpinners() {
         if (towerPosSpinner != null) {
-            String[] positions = {"None", "Left", "Center", "Right"};
+            String[] positions = {"Unknown", "None", "Left", "Center", "Right"};
             ArrayAdapter<String> posAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, positions);
             posAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             towerPosSpinner.setAdapter(posAdapter);
         }
 
         if (towerLevelSpinner != null) {
-            String[] levels = {"Ground", "Low", "Medium", "High", "Fall"};
+            String[] levels = {"Unknown", "Ground", "Low", "Medium", "High", "Fall"};
             ArrayAdapter<String> levelAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, levels);
             levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             towerLevelSpinner.setAdapter(levelAdapter);
