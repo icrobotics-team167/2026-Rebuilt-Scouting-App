@@ -21,7 +21,7 @@ public class DataEditor extends AppCompatActivity {
     private EditText autoCycles, activeCycles, inactiveCycles;
     private EditText autoNeutral, activeDefense, inactiveDefense;
     private EditText endAuto, endShift1, endShift2, endGame;
-    private EditText towerPos, passedFuel, driverRating;
+    private EditText towerPos, passedFuel, towerLevel;
     private
     EditText comments;
 
@@ -58,7 +58,7 @@ public class DataEditor extends AppCompatActivity {
 
         towerPos = findViewById(R.id.towerPosition);
         passedFuel = findViewById(R.id.passedFuel);
-        driverRating = findViewById(R.id.driverRating);
+        towerLevel = findViewById(R.id.towerLevel);
         comments = findViewById(R.id.comments);
     }
 
@@ -86,7 +86,7 @@ public class DataEditor extends AppCompatActivity {
 
             setTextSafe(towerPos, data.get(DataKeys.TOWER_POS));
             setTextSafe(passedFuel, data.get(DataKeys.PASSED_FUEL));
-            setTextSafe(driverRating, data.get(DataKeys.DRIVER_RATING));
+            setTextSafe(towerLevel, data.get(DataKeys.TOWER_LEVEL));
             setTextSafe(comments, data.get(DataKeys.COMMENTS));
         }
     }
@@ -115,8 +115,7 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.END_GAME, endGame.getText().toString());
 
             data.put(DataKeys.TOWER_POS, towerPos.getText().toString());
-            data.put(DataKeys.TOWER_LEVEL, "0"); // XML is missing Tower Level, defaulting to 0
-            data.put(DataKeys.DRIVER_RATING, driverRating.getText().toString());
+            data.put(DataKeys.TOWER_LEVEL, towerLevel.getText().toString());
             data.put(DataKeys.COMMENTS, comments.getText().toString());
 
             data.put("exported", false);

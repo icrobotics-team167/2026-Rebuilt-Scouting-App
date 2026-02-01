@@ -403,6 +403,15 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/towerLevelHeader"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Tower Level:" />
+
+            <TextView
                 android:id="@+id/towerPositionHeader"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
@@ -420,15 +429,6 @@
                 android:gravity="center_vertical"
                 android:text="Passed Fuel:" />
 
-            <TextView
-                android:id="@+id/driverRatingHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Driver Rating:" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -437,6 +437,17 @@
             android:layout_weight="0.9"
             android:weightSum="3"
             android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/towerLevel"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="#"
+                android:inputType="text"
+                android:text="" />
 
             <EditText
                 android:id="@+id/towerPosition"
@@ -460,16 +471,6 @@
                 android:hint="#"
                 android:text="" />
 
-            <EditText
-                android:id="@+id/driverRating"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="text"
-                android:hint="#"
-                android:text="" />
         </LinearLayout>
 
         <View
