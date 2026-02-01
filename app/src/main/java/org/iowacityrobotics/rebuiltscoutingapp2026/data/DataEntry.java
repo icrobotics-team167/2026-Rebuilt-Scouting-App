@@ -1,11 +1,12 @@
 //Ben
-//1-15-2026 - 1-19-2026
+//1-15-2026 - 1-31-2026
 //This is the main scouting activity. 
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -24,25 +25,9 @@ import java.util.Map;
 
 public class DataEntry extends AppCompatActivity {
 
-    // Header Info 
-    private TextView matchNumView, teamNumView;
-    private TextView scouterView, assignmentView;
-
-    // Counters
-    private int autoCount = 0;
-    private int activeCount = 0;
-    private int inactiveCount = 0;
+    private TextView matchNumView, teamNumView, scouterView, assignmentView;
     private TextView autoCountDisplay, activeCountDisplay, inactiveCountDisplay;
-
-    // Booleans
-    private CheckBox autoNeutralBox, activeDefenseBox, inactiveDefenseBox, passedFuelBox;
-
-    // Text Inputs
-    private EditText endAuto, endShift1, endShift2, endGame, comments;
-
-    // Selectors
-    private Spinner towerPosSpinner, towerLevelSpinner;
-    private RatingBar driverRatingBar;
+    private int autoCount = 0, activeCount = 0, inactiveCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,217 +35,105 @@ public class DataEntry extends AppCompatActivity {
         setContentView(R.layout.data_entry);
 
         MatchSchedule.loadSchedule(this);
+        initializeViews();
+        setupSpinners();
+        setupCounterLogic();
+        loadHeaderData();
+        setupAutoFill();
 
-        try {
-            initializeViews();
-            setupSpinners();
-            setupCounterLogic();
-            loadHeaderData();
-            setupAutoFill(); 
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Error starting Data Entry: " + e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-
-        Button saveButton = findViewById(R.id.saveExitButton);
-        if (saveButton != null) {
-            saveButton.setOnClickListener(v -> saveNewMatch());
-        } else {
-            Toast.makeText(this, "Missing Button: saveExitButton", Toast.LENGTH_SHORT).show();
-        }
+        findViewById(R.id.saveExitButton).setOnClickListener(v -> saveNewMatch());
     }
 
     private void initializeViews() {
-        // Header
-        matchNumView = findViewSafe(R.id.matchNumber, "matchNumber");
-        teamNumView = findViewSafe(R.id.teamNumber, "teamNumber");
-        scouterView = findViewSafe(R.id.scouter, "scouter");
-        assignmentView = findViewSafe(R.id.scoutingAssignment, "scoutingAssignment");
-
-        // Cycles
-        autoCountDisplay = findViewSafe(R.id.autoCycles, "autoCycles");
-        activeCountDisplay = findViewSafe(R.id.activeCycles, "activeCycles");
-        inactiveCountDisplay = findViewSafe(R.id.inactiveCycles, "inactiveCycles");
-
-        // Checkboxes
-        autoNeutralBox = findViewSafe(R.id.autoNeutralZone, "autoNeutralZone");
-        activeDefenseBox = findViewSafe(R.id.activePlayedDefense, "activePlayedDefense");
-        inactiveDefenseBox = findViewSafe(R.id.inactivePlayedDefense, "inactivePlayedDefense");
-        passedFuelBox = findViewSafe(R.id.passedFuel, "passedFuel");
-
-        // End Game Inputs
-        endAuto = findViewSafe(R.id.endAuto, "endAuto");
-        endShift1 = findViewSafe(R.id.endShift1, "endShift1");
-        endShift2 = findViewSafe(R.id.endShift2, "endShift2");
-        endGame = findViewSafe(R.id.endGame, "endGame");
-
-        // Misc
-        towerPosSpinner = findViewSafe(R.id.TowerPosition, "towerPosition");
-        towerLevelSpinner = findViewSafe(R.id.towerLevel, "towerLevel");
-        //driverRatingBar = findViewSafe(R.id.rating, "rating");
-        comments = findViewSafe(R.id.comments, "comments");
-    }
-
-    private <T extends android.view.View> T findViewSafe(int id, String name) {
-        T view = findViewById(id);
-        if (view == null) {
-            Toast.makeText(this, "Missing ID in XML: " + name, Toast.LENGTH_SHORT).show();
-        }
-        return view;
+        matchNumView = findViewById(R.id.matchNumber);
+        teamNumView = findViewById(R.id.teamNumber);
+        scouterView = findViewById(R.id.scouter);
+        assignmentView = findViewById(R.id.scoutingAssignment);
+        autoCountDisplay = findViewById(R.id.autoCycles);
+        activeCountDisplay = findViewById(R.id.activeCycles);
+        inactiveCountDisplay = findViewById(R.id.inactiveCycles);
     }
 
     private void setupSpinners() {
-        if (towerPosSpinner != null) {
-            String[] positions = {"Unknown", "None", "Left", "Center", "Right"};
-            ArrayAdapter<String> posAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, positions);
-            posAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            towerPosSpinner.setAdapter(posAdapter);
-        }
+        setupSpinner(R.id.towerPosition, new String[]{"Unknown", "None", "Left", "Center", "Right"});
+        setupSpinner(R.id.towerLevel, new String[]{"Unknown", "Ground", "Low", "Medium", "High", "Fall"});
+    }
 
-        if (towerLevelSpinner != null) {
-            String[] levels = {"Unknown", "Ground", "Low", "Medium", "High", "Fall"};
-            ArrayAdapter<String> levelAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, levels);
-            levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            towerLevelSpinner.setAdapter(levelAdapter);
+    private void setupSpinner(int id, String[] items) {
+        Spinner spinner = findViewById(id);
+        if (spinner != null) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
         }
     }
 
     private void setupCounterLogic() {
-        setupSafeListener(R.id.autoIncButton, v -> updateCount("auto", 1));
-        setupSafeListener(R.id.autoDecButton, v -> updateCount("auto", -1));
-
-        setupSafeListener(R.id.activeIncButton, v -> updateCount("active", 1));
-        setupSafeListener(R.id.activeDecButton, v -> updateCount("active", -1));
-
-        setupSafeListener(R.id.inactiveIncButton, v -> updateCount("inactive", 1));
-        setupSafeListener(R.id.inactiveDecButton, v -> updateCount("inactive", -1));
-    }
-
-    private void setupSafeListener(int id, android.view.View.OnClickListener listener) {
-        Button btn = findViewById(id);
-        if (btn != null) {
-            btn.setOnClickListener(listener);
-        }
+        findViewById(R.id.autoIncButton).setOnClickListener(v -> updateCount("auto", 1));
+        findViewById(R.id.autoDecButton).setOnClickListener(v -> updateCount("auto", -1));
+        findViewById(R.id.activeIncButton).setOnClickListener(v -> updateCount("active", 1));
+        findViewById(R.id.activeDecButton).setOnClickListener(v -> updateCount("active", -1));
+        findViewById(R.id.inactiveIncButton).setOnClickListener(v -> updateCount("inactive", 1));
+        findViewById(R.id.inactiveDecButton).setOnClickListener(v -> updateCount("inactive", -1));
     }
 
     private void updateCount(String type, int change) {
-        if (type.equals("auto")) {
-            autoCount = Math.max(0, autoCount + change);
-            if (autoCountDisplay != null) autoCountDisplay.setText(String.valueOf(autoCount));
-        } else if (type.equals("active")) {
-            activeCount = Math.max(0, activeCount + change);
-            if (activeCountDisplay != null) activeCountDisplay.setText(String.valueOf(activeCount));
-        } else if (type.equals("inactive")) {
-            inactiveCount = Math.max(0, inactiveCount + change);
-            if (inactiveCountDisplay != null) inactiveCountDisplay.setText(String.valueOf(inactiveCount));
+        switch (type) {
+            case "auto": autoCount = Math.max(0, autoCount + change); autoCountDisplay.setText(String.valueOf(autoCount)); break;
+            case "active": activeCount = Math.max(0, activeCount + change); activeCountDisplay.setText(String.valueOf(activeCount)); break;
+            case "inactive": inactiveCount = Math.max(0, inactiveCount + change); inactiveCountDisplay.setText(String.valueOf(inactiveCount)); break;
         }
     }
 
     private void loadHeaderData() {
         if (getIntent() != null) {
-            String sName = getIntent().getStringExtra("PASS_SCOUTER");
-            String mNum = getIntent().getStringExtra("PASS_MATCH");
-            String assign = getIntent().getStringExtra("PASS_ASSIGNMENT");
-
-            if (sName != null && scouterView != null) scouterView.setText(sName);
-            if (mNum != null && matchNumView != null) matchNumView.setText(mNum);
-            if (assign != null && assignmentView != null) assignmentView.setText(assign);
+            scouterView.setText(getIntent().getStringExtra("PASS_SCOUTER"));
+            matchNumView.setText(getIntent().getStringExtra("PASS_MATCH"));
+            assignmentView.setText(getIntent().getStringExtra("PASS_ASSIGNMENT"));
             updateTeamNumber();
         }
     }
 
     private void setupAutoFill() {
-        if (matchNumView != null) {
-            matchNumView.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    updateTeamNumber();
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {}
-            });
-        }
+        matchNumView.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) { updateTeamNumber(); }
+            public void afterTextChanged(Editable s) {}
+        });
     }
 
     private void updateTeamNumber() {
-        if (matchNumView == null || assignmentView == null || teamNumView == null) return;
-
-        String mNum = matchNumView.getText().toString();
-        String assign = assignmentView.getText().toString();
-        String mType = getIntent().getStringExtra("PASS_MATCH_TYPE");
-        if (mType == null) mType = "Qualification";
-        String foundTeam = MatchSchedule.getTeamNumber(mNum, assign, mType);
-        if (!foundTeam.isEmpty()) {
-            teamNumView.setText(foundTeam);
-        } else {
-            teamNumView.setText("");
-            teamNumView.setHint("—");
-        }
+        String foundTeam = MatchSchedule.getTeamNumber(matchNumView.getText().toString(),
+                assignmentView.getText().toString(),
+                getIntent().getStringExtra("PASS_MATCH_TYPE"));
+        teamNumView.setText(!foundTeam.isEmpty() ? foundTeam : "");
     }
 
     private void saveNewMatch() {
-        try {
-            Map<String, Object> collectedData = new LinkedHashMap<>();
-            collectedData.put(DataKeys.RECORD_TYPE, DataKeys.TYPE_MATCH);
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put(DataKeys.RECORD_TYPE, DataKeys.TYPE_MATCH);
 
-            collectedData.put(DataKeys.MATCH_NUM, getTextSafe(matchNumView));
-            collectedData.put(DataKeys.TEAM_NUM, getTextSafe(teamNumView));
-            collectedData.put(DataKeys.SCOUTER, getTextSafe(scouterView));
-            collectedData.put(DataKeys.ASSIGNMENT, getTextSafe(assignmentView));
+        for (ScoutingConfig.Field field : ScoutingConfig.INPUTS) {
+            View v = findViewById(field.viewId);
+            if (v == null) continue;
 
-            collectedData.put(DataKeys.AUTO_CYCLES, autoCount);
-            collectedData.put(DataKeys.ACTIVE_CYCLES, activeCount);
-            collectedData.put(DataKeys.INACTIVE_CYCLES, inactiveCount);
-
-            collectedData.put(DataKeys.AUTO_NEUTRAL, isCheckedSafe(autoNeutralBox));
-            collectedData.put(DataKeys.ACTIVE_DEFENSE, isCheckedSafe(activeDefenseBox));
-            collectedData.put(DataKeys.INACTIVE_DEFENSE, isCheckedSafe(inactiveDefenseBox));
-
-            collectedData.put(DataKeys.END_AUTO, getTextSafe(endAuto));
-            collectedData.put(DataKeys.END_SHIFT_1, getTextSafe(endShift1));
-            collectedData.put(DataKeys.END_SHIFT_2, getTextSafe(endShift2));
-            collectedData.put(DataKeys.END_GAME, getTextSafe(endGame));
-
-            collectedData.put(DataKeys.PASSED_FUEL, isCheckedSafe(passedFuelBox));
-
-            if (towerPosSpinner != null && towerPosSpinner.getSelectedItem() != null)
-                collectedData.put(DataKeys.TOWER_POS, towerPosSpinner.getSelectedItem().toString());
-            else
-                collectedData.put(DataKeys.TOWER_POS, "None");
-
-            if (towerLevelSpinner != null && towerLevelSpinner.getSelectedItem() != null)
-                collectedData.put(DataKeys.TOWER_LEVEL, towerLevelSpinner.getSelectedItem().toString());
-            else
-                collectedData.put(DataKeys.TOWER_LEVEL, "Ground");
-
-            if (driverRatingBar != null)
-                collectedData.put(DataKeys.DRIVER_RATING, driverRatingBar.getRating());
-            else
-                collectedData.put(DataKeys.DRIVER_RATING, 0.0f);
-
-            collectedData.put(DataKeys.COMMENTS, getTextSafe(comments));
-            collectedData.put("exported", false);
-
-            GlobalVariables.dataList.add(collectedData);
-            StorageManager.saveData(this);
-
-            Toast.makeText(this, "Match Saved!", Toast.LENGTH_SHORT).show();
-            finish();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Save Failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            if (v instanceof EditText) data.put(field.jsonKey, ((EditText) v).getText().toString());
+            else if (v instanceof CheckBox) data.put(field.jsonKey, ((CheckBox) v).isChecked());
+            else if (v instanceof Spinner) data.put(field.jsonKey, ((Spinner) v).getSelectedItem().toString());
+            else if (v instanceof RatingBar) data.put(field.jsonKey, ((RatingBar) v).getRating());
+            else if (v instanceof TextView) {
+                String val = ((TextView) v).getText().toString();
+                if (field.type == ScoutingConfig.DataType.NUMBER) {
+                    try { data.put(field.jsonKey, Integer.parseInt(val)); } catch (Exception e) { data.put(field.jsonKey, 0); }
+                } else {
+                    data.put(field.jsonKey, val);
+                }
+            }
         }
-    }
 
-    private String getTextSafe(TextView view) {
-        return (view != null) ? view.getText().toString() : "";
-    }
-
-    private boolean isCheckedSafe(CheckBox box) {
-        return (box != null) && box.isChecked();
+        data.put(DataKeys.EXPORTED, false);
+        GlobalVariables.dataList.add(data);
+        StorageManager.saveData(this);
+        finish();
     }
 }
