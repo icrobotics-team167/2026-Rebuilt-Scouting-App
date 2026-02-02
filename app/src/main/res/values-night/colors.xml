@@ -4,12 +4,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
 
-    <color name="startScreenBackground">#FAFAD2</color>
+    <color name="startScreenBackground">@color/black</color>
 
     <color name="primaryForeground">#3CAB14</color>
     <color name="buttonTextPrimary">@color/white</color>
 
     <color name="secondaryForeground">#FFC800</color>
     <color name="buttonTextSecondary">@color/black</color>
-
 </resources>

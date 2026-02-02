@@ -443,20 +443,20 @@
                 android:weightSum="12">
 
                 <CheckBox
-                    android:id="@+id/hump"
+                    android:id="@+id/bump"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:text="Hump" />
+                    android:text="Bump" />
 
                 <CheckBox
-                    android:id="@+id/trough"
+                    android:id="@+id/trench"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:text="Trough" />
+                    android:text="Trench" />
 
             </LinearLayout>
 

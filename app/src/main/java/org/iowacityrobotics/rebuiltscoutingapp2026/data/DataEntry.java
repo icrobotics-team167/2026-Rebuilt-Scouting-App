@@ -42,7 +42,6 @@ public class DataEntry extends AppCompatActivity {
 
     // Selectors
     private Spinner towerPosSpinner, towerLevelSpinner;
-    private RatingBar driverRatingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +94,7 @@ public class DataEntry extends AppCompatActivity {
         endGame = findViewSafe(R.id.endGame, "endGame");
 
         // Misc
-        towerPosSpinner = findViewSafe(R.id.TowerPosition, "towerPosition");
+        towerPosSpinner = findViewSafe(R.id.towerPosition, "towerPosition");
         towerLevelSpinner = findViewSafe(R.id.towerLevel, "towerLevel");
         //driverRatingBar = findViewSafe(R.id.rating, "rating");
         comments = findViewSafe(R.id.comments, "comments");
@@ -236,11 +235,6 @@ public class DataEntry extends AppCompatActivity {
                 collectedData.put(DataKeys.TOWER_LEVEL, towerLevelSpinner.getSelectedItem().toString());
             else
                 collectedData.put(DataKeys.TOWER_LEVEL, "Ground");
-
-            if (driverRatingBar != null)
-                collectedData.put(DataKeys.DRIVER_RATING, driverRatingBar.getRating());
-            else
-                collectedData.put(DataKeys.DRIVER_RATING, 0.0f);
 
             collectedData.put(DataKeys.COMMENTS, getTextSafe(comments));
             collectedData.put("exported", false);
