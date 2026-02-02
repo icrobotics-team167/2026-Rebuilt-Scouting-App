@@ -1,5 +1,5 @@
 //Ben
-//1-18-2026 - 1-19-2026
+//1-18-2026 - 2-1-2026
 //Match scouting screen
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEditor;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEntry;
+import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataKeys;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,6 +37,8 @@ public class SetupScreen extends AppCompatActivity {
     private Spinner assignmentSpinner, matchTypeSpinner, matchListSpinner;
 
     private boolean isExportingAll = false;
+
+    private List<Integer> filteredIndices = new ArrayList<>();
 
     private final ActivityResultLauncher<Intent> exportLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -92,20 +95,34 @@ public class SetupScreen extends AppCompatActivity {
 
     private void updateMatchListSpinner() {
         List<String> matchOptions = new ArrayList<>();
+        filteredIndices.clear();
+
         if (GlobalVariables.dataList.isEmpty()) {
-            matchOptions.add("No Saved Matches");
+            matchOptions.add("No Saved Data");
         } else {
             for (int i = 0; i < GlobalVariables.dataList.size(); i++) {
-                Map<String, Object> match = GlobalVariables.dataList.get(i);
-                String matchNum = String.valueOf(match.get("match_number"));
-                String teamNum = String.valueOf(match.get("team_number"));
+                Map<String, Object> entry = GlobalVariables.dataList.get(i);
 
-                boolean isExported = match.containsKey("exported") && (boolean) match.get("exported");
-                String marker = isExported ? "" : " *";
+                Object type = entry.get(DataKeys.RECORD_TYPE);
+                if (DataKeys.TYPE_MATCH.equals(type)) {
 
-                matchOptions.add((i + 1) + ". Match " + matchNum + " - Team " + teamNum + marker);
+                    String matchNum = String.valueOf(entry.get(DataKeys.MATCH_NUM));
+                    String teamNum = String.valueOf(entry.get(DataKeys.TEAM_NUM));
+
+                    boolean isExported = entry.containsKey(DataKeys.EXPORTED) && (boolean) entry.get(DataKeys.EXPORTED);
+                    String marker = isExported ? "" : " *";
+
+                    matchOptions.add("Match " + matchNum + " - Team " + teamNum + marker);
+
+                    filteredIndices.add(i);
+                }
             }
         }
+
+        if (matchOptions.isEmpty()) {
+            matchOptions.add("No Matches Found");
+        }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, matchOptions);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         matchListSpinner.setAdapter(adapter);
@@ -114,9 +131,9 @@ public class SetupScreen extends AppCompatActivity {
     private void autoIncrementMatchNumber() {
         int maxMatch = 0;
         for (Map<String, Object> data : GlobalVariables.dataList) {
-            if (data.containsKey("match_number")) {
+            if (DataKeys.TYPE_MATCH.equals(data.get(DataKeys.RECORD_TYPE))) {
                 try {
-                    int current = Integer.parseInt(String.valueOf(data.get("match_number")));
+                    int current = Integer.parseInt(String.valueOf(data.get(DataKeys.MATCH_NUM)));
                     if (current > maxMatch) maxMatch = current;
                 } catch (NumberFormatException e) { }
             }
@@ -143,14 +160,15 @@ public class SetupScreen extends AppCompatActivity {
         });
 
         editButton.setOnClickListener(v -> {
-            if (GlobalVariables.dataList.isEmpty()) {
-                Toast.makeText(this, "No matches to edit!", Toast.LENGTH_SHORT).show();
-                return;
+            int selectedPosition = matchListSpinner.getSelectedItemPosition();
+
+            if (!filteredIndices.isEmpty() && selectedPosition != -1) {
+                GlobalVariables.objectIndex = filteredIndices.get(selectedPosition);
+                Intent intent = new Intent(SetupScreen.this, DataEditor.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "No matches available to edit!", Toast.LENGTH_SHORT).show();
             }
-            int selectedIndex = matchListSpinner.getSelectedItemPosition();
-            GlobalVariables.objectIndex = selectedIndex;
-            Intent intent = new Intent(SetupScreen.this, DataEditor.class);
-            startActivity(intent);
         });
 
         exportButton.setOnClickListener(v -> checkAndStartExport());
@@ -160,7 +178,7 @@ public class SetupScreen extends AppCompatActivity {
         StorageManager.saveData(this);
         boolean hasNewData = false;
         for (Map<String, Object> match : GlobalVariables.dataList) {
-            boolean isExported = match.containsKey("exported") && (boolean) match.get("exported");
+            boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
             if (!isExported) {
                 hasNewData = true;
                 break;
@@ -198,7 +216,7 @@ public class SetupScreen extends AppCompatActivity {
             exportBatch.addAll(GlobalVariables.dataList);
         } else {
             for (Map<String, Object> match : GlobalVariables.dataList) {
-                boolean isExported = match.containsKey("exported") && (boolean) match.get("exported");
+                boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
                 if (!isExported) {
                     exportBatch.add(match);
                 }
@@ -214,10 +232,11 @@ public class SetupScreen extends AppCompatActivity {
         for (Map<String, Object> match : exportBatch) {
             jsonArray.put(new JSONObject(match));
         }
-        String jsonString = jsonArray.toString();
-         StorageManager.writeJsonToUsb(this, uri, jsonString);
+
+        StorageManager.writeJsonToUsb(this, uri, jsonArray.toString());
+
         for (Map<String, Object> match : exportBatch) {
-            match.put("exported", true);
+            match.put(DataKeys.EXPORTED, true);
         }
 
         StorageManager.saveData(this);
