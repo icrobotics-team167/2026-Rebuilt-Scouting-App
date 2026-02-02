@@ -1,8 +1,9 @@
 //Ben
-//1-16-2026 - 1-19-2026
-//This activity allows people to view and modify saved match data.
+//1-16-2026 - 2-1-2026
+//This activity allows people to view and modify saved match data
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,9 +21,7 @@ public class DataEditor extends AppCompatActivity {
     private EditText autoCycles, activeCycles, inactiveCycles;
     private EditText autoNeutral, activeDefense, inactiveDefense;
     private EditText endAuto, endShift1, endShift2, endGame;
-    private EditText towerPos, passedFuel, driverRating;
-    private
-    EditText comments;
+    private EditText towerPos, towerLevel, passedFuel, driverRating, comments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +31,8 @@ public class DataEditor extends AppCompatActivity {
         initializeViews();
         loadExistingData();
 
-        Button saveButton = findViewById(R.id.saveExitButton);
-        saveButton.setOnClickListener(v -> saveEditedData());
+        findViewById(R.id.saveExitButton).setOnClickListener(v -> saveEditedData());
+        findViewById(R.id.deleteButton).setOnClickListener(v -> confirmDelete());
     }
 
     private void initializeViews() {
@@ -56,8 +55,8 @@ public class DataEditor extends AppCompatActivity {
         endGame = findViewById(R.id.endGame);
 
         towerPos = findViewById(R.id.towerPosition);
+        towerLevel = findViewById(R.id.towerLevel);
         passedFuel = findViewById(R.id.passedFuel);
-        driverRating = findViewById(R.id.driverRating);
         comments = findViewById(R.id.comments);
     }
 
@@ -84,6 +83,7 @@ public class DataEditor extends AppCompatActivity {
             setTextSafe(endGame, data.get(DataKeys.END_GAME));
 
             setTextSafe(towerPos, data.get(DataKeys.TOWER_POS));
+            setTextSafe(towerLevel, data.get(DataKeys.TOWER_LEVEL));
             setTextSafe(passedFuel, data.get(DataKeys.PASSED_FUEL));
             setTextSafe(driverRating, data.get(DataKeys.DRIVER_RATING));
             setTextSafe(comments, data.get(DataKeys.COMMENTS));
@@ -114,31 +114,56 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.END_GAME, endGame.getText().toString());
 
             data.put(DataKeys.TOWER_POS, towerPos.getText().toString());
-            data.put(DataKeys.TOWER_LEVEL, "0"); // XML is missing Tower Level, defaulting to 0
+            data.put(DataKeys.TOWER_LEVEL, towerLevel.getText().toString());
             data.put(DataKeys.DRIVER_RATING, driverRating.getText().toString());
             data.put(DataKeys.COMMENTS, comments.getText().toString());
 
-            data.put("exported", false);
+            data.put(DataKeys.EXPORTED, false);
 
             StorageManager.saveData(this);
-            Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Changes Saved!", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
 
+    private void confirmDelete() {
+        new AlertDialog.Builder(this)
+                .setTitle("Delete Match")
+                .setMessage("This will permanently remove this record. Continue?")
+                .setPositiveButton("Delete", (dialog, which) -> {
+                    if (GlobalVariables.objectIndex != -1) {
+                        GlobalVariables.dataList.remove(GlobalVariables.objectIndex);
+                        StorageManager.saveData(this);
+                        Toast.makeText(this, "Match Deleted", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
     private void setTextSafe(EditText view, Object value) {
-        if (value != null) view.setText(value.toString());
+        if (view != null) {
+            if (value instanceof Boolean) {
+                view.setText((Boolean) value ? "True" : "False");
+            } else if (value != null) {
+                view.setText(value.toString());
+            } else {
+                view.setText("");
+            }
+        }
     }
 
     private int parseInteger(EditText view) {
         try {
             return Integer.parseInt(view.getText().toString().trim());
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             return 0;
         }
     }
 
     private boolean parseBoolean(EditText view) {
-        return Boolean.parseBoolean(view.getText().toString().trim());
+        String input = view.getText().toString().trim().toLowerCase();
+        return input.equals("true") || input.equals("1") || input.equals("yes");
     }
 }

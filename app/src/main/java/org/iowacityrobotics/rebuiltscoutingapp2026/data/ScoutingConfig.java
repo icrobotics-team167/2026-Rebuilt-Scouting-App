@@ -1,5 +1,5 @@
 //Ben
-//1-11-2026 - 1-19-2026
+//1-11-2026 - 2-1-2026
 //Creates json file order
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class ScoutingConfig {
 
-    public enum DataType { NUMBER, TEXT, BOOLEAN }
+    public enum DataType {NUMBER, TEXT, BOOLEAN}
 
     public static class Field {
         public int viewId;
@@ -25,23 +25,27 @@ public class ScoutingConfig {
     public static final ArrayList<Field> INPUTS = new ArrayList<>();
 
     static {
-        INPUTS.add(new Field(R.id.scouter,                  "scouter_name",                 DataType.TEXT));
-        INPUTS.add(new Field(R.id.matchNumber,              "match_number",                 DataType.TEXT));
-        INPUTS.add(new Field(R.id.teamNumber,               "team_number",                  DataType.TEXT));
-        INPUTS.add(new Field(R.id.scoutingAssignment,       "assignment",                   DataType.TEXT));
-        INPUTS.add(new Field(R.id.autoCycles,               "auto_cycles",                  DataType.NUMBER));
-        INPUTS.add(new Field(R.id.autoNeutralZone,          "auto_neutral_zone",            DataType.BOOLEAN));
-        INPUTS.add(new Field(R.id.activeCycles,             "teleop_active_cycles",         DataType.NUMBER));
-        INPUTS.add(new Field(R.id.activePlayedDefense,      "active_defense",               DataType.BOOLEAN));
-        INPUTS.add(new Field(R.id.inactiveCycles,           "teleop_inactive_cycles",       DataType.NUMBER));
-        INPUTS.add(new Field(R.id.inactivePlayedDefense,    "inactive_defense",             DataType.BOOLEAN));
-        INPUTS.add(new Field(R.id.endAuto,                  "score_auto_end",               DataType.TEXT));
-        INPUTS.add(new Field(R.id.endShift1,                "score_shift1",                 DataType.TEXT));
-        INPUTS.add(new Field(R.id.endShift2,                "score_shift2",                 DataType.TEXT));
-        INPUTS.add(new Field(R.id.endGame,                  "score_endgame",                DataType.TEXT));
-        INPUTS.add(new Field(R.id.passedFuel,               "passed_fuel",                  DataType.BOOLEAN));
-        INPUTS.add(new Field(R.id.towerPosition,            "tower_position",               DataType.TEXT));
-        INPUTS.add(new Field(R.id.towerLevel,               "tower_level",                  DataType.TEXT));
-        INPUTS.add(new Field(R.id.comments,                 "comments",                     DataType.TEXT));
+        INPUTS.add(new Field(R.id.scouter, DataKeys.SCOUTER, DataType.TEXT));
+        INPUTS.add(new Field(R.id.matchNumber, DataKeys.MATCH_NUM, DataType.TEXT));
+        INPUTS.add(new Field(R.id.teamNumber, DataKeys.TEAM_NUM, DataType.TEXT));
+        INPUTS.add(new Field(R.id.scoutingAssignment, DataKeys.ASSIGNMENT, DataType.TEXT));
+
+        INPUTS.add(new Field(R.id.autoCycles, DataKeys.AUTO_CYCLES, DataType.NUMBER));
+        INPUTS.add(new Field(R.id.activeCycles, DataKeys.ACTIVE_CYCLES, DataType.NUMBER));
+        INPUTS.add(new Field(R.id.inactiveCycles, DataKeys.INACTIVE_CYCLES, DataType.NUMBER));
+
+        INPUTS.add(new Field(R.id.autoNeutralZone, DataKeys.AUTO_NEUTRAL, DataType.BOOLEAN));
+        INPUTS.add(new Field(R.id.activePlayedDefense, DataKeys.ACTIVE_DEFENSE, DataType.BOOLEAN));
+        INPUTS.add(new Field(R.id.inactivePlayedDefense, DataKeys.INACTIVE_DEFENSE, DataType.BOOLEAN));
+
+        INPUTS.add(new Field(R.id.endAuto, DataKeys.END_AUTO, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endShift1, DataKeys.END_SHIFT_1, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endShift2, DataKeys.END_SHIFT_2, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endGame, DataKeys.END_GAME, DataType.TEXT));
+
+        INPUTS.add(new Field(R.id.passedFuel, DataKeys.PASSED_FUEL, DataType.BOOLEAN));
+        INPUTS.add(new Field(R.id.towerPosition, DataKeys.TOWER_POS, DataType.TEXT));
+        INPUTS.add(new Field(R.id.towerLevel, DataKeys.TOWER_LEVEL, DataType.TEXT));
+        INPUTS.add(new Field(R.id.comments, DataKeys.COMMENTS, DataType.TEXT));
     }
 }

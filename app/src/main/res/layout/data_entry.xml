@@ -708,7 +708,7 @@
                         android:text="Tower Position:" />
 
                     <Spinner
-                        android:id="@+id/TowerPosition"
+                        android:id="@+id/towerPosition"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="20" />
