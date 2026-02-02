@@ -21,7 +21,7 @@ public class DataEditor extends AppCompatActivity {
     private EditText autoCycles, activeCycles, inactiveCycles;
     private EditText autoNeutral, activeDefense, inactiveDefense;
     private EditText endAuto, endShift1, endShift2, endGame;
-    private EditText towerPos, towerLevel, passedFuel, driverRating, comments;
+    private EditText towerPos, towerLevel, passedFuel, comments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +85,6 @@ public class DataEditor extends AppCompatActivity {
             setTextSafe(towerPos, data.get(DataKeys.TOWER_POS));
             setTextSafe(towerLevel, data.get(DataKeys.TOWER_LEVEL));
             setTextSafe(passedFuel, data.get(DataKeys.PASSED_FUEL));
-            setTextSafe(driverRating, data.get(DataKeys.DRIVER_RATING));
             setTextSafe(comments, data.get(DataKeys.COMMENTS));
         }
     }
@@ -115,7 +114,6 @@ public class DataEditor extends AppCompatActivity {
 
             data.put(DataKeys.TOWER_POS, towerPos.getText().toString());
             data.put(DataKeys.TOWER_LEVEL, towerLevel.getText().toString());
-            data.put(DataKeys.DRIVER_RATING, driverRating.getText().toString());
             data.put(DataKeys.COMMENTS, comments.getText().toString());
 
             data.put(DataKeys.EXPORTED, false);
