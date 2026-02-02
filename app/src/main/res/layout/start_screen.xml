@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:weightSum="64"
-        android:background="@color/startScreenBackground"
+        android:background="@color/background"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 

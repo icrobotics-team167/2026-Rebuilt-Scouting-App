@@ -4,7 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
 
-    <color name="startScreenBackground">@color/black</color>
+    <color name="background">@color/black</color>
 
     <color name="primaryForeground">#3CAB14</color>
     <color name="buttonTextPrimary">@color/white</color>
