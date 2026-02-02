@@ -147,14 +147,14 @@
                 android:layout_height="0dp"
                 android:layout_weight="6"
                 android:orientation="horizontal"
-                android:weightSum="12">
+                android:weightSum="48">
 
                 <TextView
                     android:id="@+id/hopperDimensionsHeader"
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="11"
                     android:gravity="center|start"
                     android:paddingStart="10dp"
                     android:text="Dimensions of Hopper:" />
@@ -164,7 +164,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="8.3"
                     android:ems="10"
                     android:paddingTop="10dp"
                     android:inputType="text"
@@ -175,13 +175,13 @@
                     android:id="@+id/hopperUnitSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="5" />
 
                 <View
                     android:id="@+id/divider43"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.1"
+                    android:layout_weight="0.4"
                     android:background="?android:attr/listDivider" />
 
                 <TextView
@@ -189,7 +189,7 @@
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2.9"
+                    android:layout_weight="10"
                     android:gravity="center|start"
                     android:paddingStart="10dp"
                     android:text="Frame Perimeter:" />
@@ -199,7 +199,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="8.3"
                     android:ems="10"
                     android:hint="h x l x w"
                     android:inputType="text"
@@ -210,7 +210,7 @@
                     android:id="@+id/frameUnitSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="5" />
             </LinearLayout>
 
             <View
@@ -406,7 +406,7 @@
                     android:id="@+id/intakeUnitSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3" />
+                    android:layout_weight="5" />
             </LinearLayout>
 
             <View
