@@ -159,12 +159,12 @@
 
                             <Button
                                 android:id="@+id/autoDecButton"
-                                style="@style/AutoResize30"
+                                style="@style/AutoResize60"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:textColor="@color/white"
                                 android:backgroundTint="@color/secondaryForeground"
+                                android:textColor="@color/plusMinusColor"
                                 android:text="-" />
 
                             <TextView
@@ -178,12 +178,12 @@
 
                             <Button
                                 android:id="@+id/autoIncButton"
-                                style="@style/AutoResize30"
+                                style="@style/AutoResize45"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:backgroundTint="@color/secondaryForeground"
+                                android:textColor="@color/plusMinusColor"
                                 android:layout_weight="2"
-                                android:textColor="@color/white"
                                 android:text="+" />
                         </LinearLayout>
                     </LinearLayout>
@@ -271,12 +271,12 @@
 
                             <Button
                                 android:id="@+id/activeDecButton"
-                                style="@style/AutoResize30"
+                                style="@style/AutoResize60"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
                                 android:backgroundTint="@color/secondaryForeground"
-                                android:textColor="@color/white"
+                                android:textColor="@color/plusMinusColor"
                                 android:text="-" />
 
                             <TextView
@@ -290,12 +290,12 @@
 
                             <Button
                                 android:id="@+id/activeIncButton"
-                                style="@style/AutoResize30"
+                                style="@style/AutoResize45"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
                                 android:backgroundTint="@color/secondaryForeground"
-                                android:textColor="@color/white"
+                                android:textColor="@color/plusMinusColor"
                                 android:text="+" />
                         </LinearLayout>
                     </LinearLayout>
@@ -381,12 +381,12 @@
 
                             <Button
                                 android:id="@+id/inactiveDecButton"
-                                style="@style/AutoResize30"
+                                style="@style/AutoResize60"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
                                 android:backgroundTint="@color/secondaryForeground"
-                                android:textColor="@color/white"
+                                android:textColor="@color/plusMinusColor"
                                 android:text="-" />
 
                             <TextView
@@ -400,12 +400,12 @@
 
                             <Button
                                 android:id="@+id/inactiveIncButton"
-                                style="@style/AutoResize30"
+                                style="@style/AutoResize45"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
                                 android:backgroundTint="@color/secondaryForeground"
-                                android:textColor="@color/white"
+                                android:textColor="@color/plusMinusColor"
                                 android:text="+" />
                         </LinearLayout>
                     </LinearLayout>

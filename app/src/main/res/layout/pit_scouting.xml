@@ -127,7 +127,7 @@
                     android:layout_weight="1.5"
                     android:backgroundTint="@color/red"
                     android:text="Delete Data"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <Space
                     android:layout_width="0dp"
