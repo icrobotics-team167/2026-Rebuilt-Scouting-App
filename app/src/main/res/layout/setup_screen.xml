@@ -166,7 +166,7 @@
                 android:ems="10"
                 android:gravity="bottom"
                 android:paddingBottom="20dp"
-                android:inputType="text"
+                android:inputType="number"
                 android:hint="Match Number" />
 
         </LinearLayout>
