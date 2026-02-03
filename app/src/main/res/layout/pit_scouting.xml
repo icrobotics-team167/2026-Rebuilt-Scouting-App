@@ -57,7 +57,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:hint="#" />
 
                 <TextView
@@ -331,7 +331,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:hint="#"
                     android:text="" />
             </LinearLayout>

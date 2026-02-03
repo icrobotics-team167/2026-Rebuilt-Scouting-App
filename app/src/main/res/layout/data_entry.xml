@@ -518,7 +518,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:ems="10"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:hint="#" />
 
                 </LinearLayout>
@@ -553,7 +553,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:ems="10"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:hint="#" />
                 </LinearLayout>
 
@@ -587,7 +587,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:ems="10"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:hint="#" />
                 </LinearLayout>
 
@@ -621,7 +621,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:ems="10"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:hint="#" />
                 </LinearLayout>
 
