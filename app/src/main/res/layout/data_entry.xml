@@ -84,6 +84,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:backgroundTint="@color/red"
+                android:textColor="@color/white"
                 android:text="Cancel" />
         </LinearLayout>
 
