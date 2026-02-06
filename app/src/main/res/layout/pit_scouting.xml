@@ -373,7 +373,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
+                    android:layout_weight="5"
                     android:text="Through Bumper" />
 
                 <CheckBox
@@ -381,7 +381,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="4"
                     android:text="Over Bumper" />
 
                 <TextView
@@ -407,7 +407,7 @@
                     android:id="@+id/intakeUnitSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="5" />
+                    android:layout_weight="3" />
             </LinearLayout>
 
             <View

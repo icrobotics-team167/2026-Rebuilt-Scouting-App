@@ -133,6 +133,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
+                            android:paddingStart="10dp"
                             android:text="Auto" />
                     </LinearLayout>
                 </LinearLayout>
@@ -246,6 +247,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
+                            android:paddingStart="10dp"
                             android:text="Active Hub" />
                     </LinearLayout>
                 </LinearLayout>
@@ -358,6 +360,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
+                            android:paddingStart="10dp"
                             android:text="Inactive Hub" />
                     </LinearLayout>
                 </LinearLayout>
@@ -501,14 +504,15 @@
                     android:layout_height="0dp"
                     android:layout_weight="10"
                     android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:weightSum="5">
 
                     <TextView
                         android:id="@+id/endAutoHeader"
                         style="@style/AutoResize20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
                         android:gravity="center_vertical"
                         android:text="End of Auto:" />
 
@@ -517,7 +521,7 @@
                         style="@style/AutoResize25"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="3"
                         android:ems="10"
                         android:inputType="number"
                         android:hint="#" />
@@ -536,14 +540,15 @@
                     android:layout_height="0dp"
                     android:layout_weight="10"
                     android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:weightSum="5">
 
                     <TextView
                         style="@style/AutoResize20"
                         android:id="@+id/endShift1Header"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
                         android:gravity="center_vertical"
                         android:text="End of Shift 1:" />
 
@@ -552,7 +557,7 @@
                         android:id="@+id/endShift1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="3"
                         android:ems="10"
                         android:inputType="number"
                         android:hint="#" />
@@ -570,14 +575,15 @@
                     android:layout_height="0dp"
                     android:layout_weight="10"
                     android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:weightSum="5">
 
                     <TextView
                         style="@style/AutoResize20"
                         android:id="@+id/endShift2Header"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
                         android:gravity="center_vertical"
                         android:text="End of Shift 2:" />
 
@@ -586,7 +592,7 @@
                         android:id="@+id/endShift2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="3"
                         android:ems="10"
                         android:inputType="number"
                         android:hint="#" />
@@ -604,14 +610,15 @@
                     android:layout_height="0dp"
                     android:layout_weight="10"
                     android:orientation="horizontal"
-                    android:weightSum="3" >
+                    android:weightSum="5" >
 
                     <TextView
                         style="@style/AutoResize20"
                         android:id="@+id/endGameHeader"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
                         android:gravity="center_vertical"
                         android:text="End of Game:" />
 
@@ -620,7 +627,7 @@
                         android:id="@+id/endGame"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="3"
                         android:ems="10"
                         android:inputType="number"
                         android:hint="#" />
@@ -659,6 +666,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="17"
+                    android:weightSum="71"
                     android:orientation="horizontal">
 
                     <CheckBox
@@ -666,8 +674,31 @@
                         style="@style/AutoResize20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="35"
                         android:text="Passed Fuel" />
+
+                    <View
+                        android:id="@+id/divider44"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider" />
+
+                    <TextView
+                        android:id="@+id/teamRatingHeader"
+                        style="@style/AutoResize20"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingStart="10dp"
+                        android:layout_weight="15"
+                        android:text="Team Rating:" />
+
+                    <Spinner
+                        android:id="@+id/teamRating"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20" />
 
                 </LinearLayout>
 
