@@ -42,6 +42,7 @@ public class DataEntry extends AppCompatActivity {
         setupAutoFill();
 
         findViewById(R.id.saveExitButton).setOnClickListener(v -> saveNewMatch());
+        findViewById(R.id.cancelMatch).setOnClickListener(v -> cancelMatch());
     }
 
     private void initializeViews() {
@@ -134,6 +135,11 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.EXPORTED, false);
         GlobalVariables.dataList.add(data);
         StorageManager.saveData(this);
+        finish();
+    }
+
+    private void cancelMatch() {
+        setContentView(R.layout.setup_screen);
         finish();
     }
 }
