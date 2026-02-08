@@ -36,16 +36,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="6"
+                android:layout_weight="8"
                 android:orientation="horizontal"
-                android:weightSum="12">
+                android:weightSum="48">
 
                 <TextView
                     android:id="@+id/teamNumberHeader"
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="7"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
                     android:text="Team Number:" />
@@ -55,7 +55,7 @@
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="4"
                     android:ems="10"
                     android:inputType="number"
                     android:hint="#" />
@@ -65,7 +65,7 @@
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="4"
                     android:paddingStart="10dp"
                     android:gravity="center_vertical"
                     android:text="Name:" />
@@ -75,23 +75,34 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="8"
                     android:ems="10"
                     android:inputType="text"
                     android:hint="Your name"
                     android:text="" />
 
-                <Space
+                <TextView
+                    android:id="@+id/unitSpinnerHeader"
+                    style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.9" />
+                    android:layout_weight="4"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="Units:" />
+
+                <Spinner
+                    android:id="@+id/unitSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4" />
 
                 <Button
                     android:id="@+id/editButton"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5"
+                    android:layout_weight="5"
                     android:layout_gravity="center"
                     android:backgroundTint="@color/secondaryForeground"
                     android:textColor="@color/black"
@@ -100,14 +111,14 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.2" />
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/exportButton"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5"
+                    android:layout_weight="5"
                     android:layout_gravity="center"
                     android:backgroundTint="@color/secondaryForeground"
                     android:textColor="@color/black"
@@ -116,7 +127,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.2" />
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/exportButton2"
@@ -124,15 +135,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="1.5"
+                    android:layout_weight="5"
                     android:backgroundTint="@color/red"
                     android:text="Delete Data"
                     android:textColor="@color/white" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.2" />
 
             </LinearLayout>
 
@@ -146,72 +152,113 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="6"
+                android:layout_weight="7"
                 android:orientation="horizontal"
                 android:weightSum="48">
 
                 <TextView
-                    android:id="@+id/hopperDimensionsHeader"
+                    android:id="@+id/drivebaseHeader"
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="11"
+                    android:layout_weight="6"
                     android:gravity="center|start"
                     android:paddingStart="10dp"
-                    android:text="Dimensions of Hopper:" />
+                    android:text="Drivebase:" />
 
-                <EditText
-                    android:id="@+id/hopperDimensions"
+                <CheckBox
+                    android:id="@+id/swerve"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="8.3"
-                    android:ems="10"
-                    android:paddingTop="10dp"
-                    android:inputType="text"
-                    android:hint="h x l x w"
-                    android:text=""/>
+                    android:layout_weight="6"
+                    android:text="Swerve?" />
 
-                <Spinner
-                    android:id="@+id/hopperUnitSpinner"
+                <CheckBox
+                    android:id="@+id/bump"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="5" />
+                    android:layout_weight="8"
+                    android:text="Bump?" />
 
-                <View
-                    android:id="@+id/divider43"
+                <CheckBox
+                    android:id="@+id/trench"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.4"
-                    android:background="?android:attr/listDivider" />
+                    android:layout_weight="7"
+                    android:text="Trench?" />
 
                 <TextView
-                    android:id="@+id/framePerimeterDimensions"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="10"
-                    android:gravity="center|start"
-                    android:paddingStart="10dp"
-                    android:text="Frame Perimeter:" />
-
-                <EditText
-                    android:id="@+id/hopperDimensions2"
+                    android:id="@+id/botDimensionsHeader"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="8.3"
+                    android:layout_weight="6"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="Bot Dimensions:" />
+
+                <EditText
+                    android:id="@+id/botDimensionsDepth"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:ems="10"
-                    android:hint="h x l x w"
-                    android:inputType="text"
+                    android:gravity="center"
+                    android:hint="D"
+                    android:inputType="numberDecimal"
                     android:paddingTop="10dp"
                     android:text="" />
 
-                <Spinner
-                    android:id="@+id/frameUnitSpinner"
+                <TextView
+                    android:id="@+id/botX1"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="5" />
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|bottom"
+                    android:paddingBottom="10dp"
+                    android:text="x" />
+
+                <EditText
+                    android:id="@+id/botDimensionsWidth"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="W"
+                    android:inputType="numberDecimal"
+                    android:paddingTop="10dp"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/botX2"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|bottom"
+                    android:paddingBottom="10dp"
+                    android:text="x" />
+
+                <EditText
+                    android:id="@+id/botDimensionsHeight"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="H"
+                    android:inputType="numberDecimal"
+                    android:paddingTop="10dp"
+                    android:text="" />
+
             </LinearLayout>
 
             <View
@@ -224,36 +271,99 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="7"
                 android:orientation="horizontal"
-                android:weightSum="12">
+                android:weightSum="48">
 
                 <TextView
-                    android:id="@+id/hopperTypeHeader"
+                    android:id="@+id/intakeHeader"
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="6"
+                    android:gravity="center|start"
+                    android:paddingStart="10dp"
+                    android:text="Intake:" />
+
+                <CheckBox
+                    android:id="@+id/humanIntake"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:text="Human" />
+
+                <CheckBox
+                    android:id="@+id/throughBumperIntake"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:text="Through Bumper" />
+
+                <CheckBox
+                    android:id="@+id/overBumperIntake"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:text="Over Bumper" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
-                    android:text="Kind of Hopper:" />
+                    android:text="Intake Width:" />
+
+                <EditText
+                    android:id="@+id/intakeWidth"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="W"
+                    android:inputType="numberDecimal"
+                    android:paddingTop="10dp"
+                    android:text="" />
 
             </LinearLayout>
+
+            <View
+                android:id="@+id/divider44"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="7"
                 android:orientation="horizontal"
-                android:paddingStart="10dp"
-                android:weightSum="12">
+                android:weightSum="48">
+
+                <TextView
+                    android:id="@+id/hopperHeader"
+                    style="@style/AutoResize25"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="Hopper:" />
 
                 <CheckBox
                     android:id="@+id/openHopper"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="6"
                     android:text="Open" />
 
                 <CheckBox
@@ -261,16 +371,82 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="8"
                     android:text="Extendable" />
 
-                <CheckBox
-                    android:id="@+id/closedHopper"
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="Dimensions:" />
+
+                <EditText
+                    android:id="@+id/hopperDimensionsDepth"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:text="Closed" />
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="D"
+                    android:inputType="numberDecimal"
+                    android:paddingTop="10dp"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/hopperX1"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|bottom"
+                    android:paddingBottom="10dp"
+                    android:text="x" />
+
+                <EditText
+                    android:id="@+id/hopperDimensionsWidth"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="W"
+                    android:inputType="numberDecimal"
+                    android:paddingTop="10dp"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/hopperX3"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|bottom"
+                    android:paddingBottom="10dp"
+                    android:text="x" />
+
+                <EditText
+                    android:id="@+id/hopperDimensionsHeight"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="H"
+                    android:inputType="numberDecimal"
+                    android:paddingTop="10dp"
+                    android:text="" />
 
             </LinearLayout>
 
@@ -284,9 +460,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="6"
+                android:layout_weight="7"
                 android:orientation="horizontal"
-                android:weightSum="24">
+                android:weightSum="48">
 
                 <TextView
                     android:id="@+id/turretHeader"
@@ -294,7 +470,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="center|start"
-                    android:layout_weight="2.1"
+                    android:layout_weight="6"
                     android:paddingStart="10dp"
                     android:text="Shooter:" />
 
@@ -303,7 +479,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="6"
                     android:text="Tilt" />
 
                 <CheckBox
@@ -311,24 +487,35 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="8"
                     android:text="Turn" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7" />
 
                 <TextView
                     android:id="@+id/numberOfShootersHeader"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:gravity="center"
+                    android:layout_weight="8"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
                     android:text="Number of Shooters:" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <EditText
                     android:id="@+id/numberOfShooters"
-                    style="@style/AutoResize20"
+                    style="@style/AutoResize25"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:ems="10"
                     android:gravity="center"
                     android:inputType="number"
@@ -338,131 +525,6 @@
 
             <View
                 android:id="@+id/divider28"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:orientation="horizontal"
-                android:weightSum="24">
-
-                <TextView
-                    android:id="@+id/intakeHeader"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center|start"
-                    android:paddingStart="10dp"
-                    android:text="Intake:" />
-
-                <CheckBox
-                    android:id="@+id/humanIntake"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:text="Human" />
-
-                <CheckBox
-                    android:id="@+id/throughBumperIntake"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:text="Through Bumper" />
-
-                <CheckBox
-                    android:id="@+id/overBumperIntake"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:text="Over Bumper" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:text="Intake Width:" />
-
-                <EditText
-                    android:id="@+id/editTextText5"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:hint="h x l x w"
-                    android:text="" />
-                <Spinner
-                    android:id="@+id/intakeUnitSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3" />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider29"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/crossLineHeader"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Method for Crossing Hub Line:" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:orientation="horizontal"
-                android:paddingStart="10dp"
-                android:weightSum="12">
-
-                <CheckBox
-                    android:id="@+id/bump"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:text="Bump" />
-
-                <CheckBox
-                    android:id="@+id/trench"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:text="Trench" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider30"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -546,7 +608,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="7"
+                android:layout_weight="8"
                 android:weightSum="12"
                 android:orientation="horizontal">
 

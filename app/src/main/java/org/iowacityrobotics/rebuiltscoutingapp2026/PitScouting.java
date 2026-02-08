@@ -31,18 +31,17 @@ import java.util.Map;
 public class PitScouting extends AppCompatActivity {
 
     private EditText teamNumber, scouterName;
-    private EditText hopperDimensions, framePerimeterDims;
+    private EditText botDimensionsDepth, botDimensionsWidth, botDimensionsHeight;
+    private EditText hopperDimensionsDepth, hopperDimensionsWidth, hopperDimensionsHeight;
     private EditText numberOfShooters, intakeWidth;
     private EditText cornOther, comments;
 
-    private Spinner hopperUnitSpinner;
-    private Spinner frameUnitSpinner;
-    private Spinner intakeUnitSpinner;
+    private Spinner unitSpinner;
 
-    private CheckBox openHopper, extendableHopper, closedHopper;
+    private CheckBox openHopper, extendableHopper;
     private CheckBox tiltTurret, turnTurret;
     private CheckBox humanIntake, throughBumperIntake, overBumperIntake;
-    private CheckBox bump, trench;
+    private CheckBox bump, trench, swerve;
     private CheckBox salt, pepper, butter;
 
     private int editingIndex = -1;
@@ -65,22 +64,28 @@ public class PitScouting extends AppCompatActivity {
         setContentView(R.layout.pit_scouting);
 
         initializeViews();
-        setupSpinners();
+        setupSpinner();
         setupButtons();
     }
 
     private void initializeViews() {
         teamNumber = findViewById(R.id.teamNumber);
         scouterName = findViewById(R.id.scouter);
+        unitSpinner = findViewById(R.id.unitSpinner);
 
-        hopperDimensions = findViewById(R.id.hopperDimensions);
-        framePerimeterDims = findViewById(R.id.hopperDimensions2);
+        botDimensionsDepth = findViewById(R.id.botDimensionsDepth);
+        botDimensionsWidth = findViewById(R.id.botDimensionsWidth);
+        botDimensionsHeight = findViewById(R.id.botDimensionsHeight);
+
+        hopperDimensionsDepth = findViewById(R.id.hopperDimensionsDepth);
+        hopperDimensionsWidth = findViewById(R.id.hopperDimensionsWidth);
+        hopperDimensionsHeight = findViewById(R.id.hopperDimensionsHeight);
 
         numberOfShooters = findViewById(R.id.numberOfShooters);
+        intakeWidth = findViewById(R.id.intakeWidth);
         tiltTurret = findViewById(R.id.tiltTurret);
         turnTurret = findViewById(R.id.turnTurret);
 
-        intakeWidth = findViewById(R.id.editTextText5);
         humanIntake = findViewById(R.id.humanIntake);
         throughBumperIntake = findViewById(R.id.throughBumperIntake);
         overBumperIntake = findViewById(R.id.overBumperIntake);
@@ -88,30 +93,24 @@ public class PitScouting extends AppCompatActivity {
         cornOther = findViewById(R.id.editTextText);
         comments = findViewById(R.id.comments);
 
-        hopperUnitSpinner = findViewById(R.id.hopperUnitSpinner);
-        frameUnitSpinner = findViewById(R.id.frameUnitSpinner);
-        intakeUnitSpinner = findViewById(R.id.intakeUnitSpinner);
-
         openHopper = findViewById(R.id.openHopper);
         extendableHopper = findViewById(R.id.extendableHopper);
-        closedHopper = findViewById(R.id.closedHopper);
 
         bump = findViewById(R.id.bump);
         trench = findViewById(R.id.trench);
+        swerve = findViewById(R.id.swerve);
 
         salt = findViewById(R.id.yesCornOnCob);
         pepper = findViewById(R.id.definitelyCornOnCob);
         butter = findViewById(R.id.absolutelyCornOnCob);
     }
 
-    private void setupSpinners() {
-        String[] unitOptions = {"Unknown", "in", "cm", "mm", "ft", "m", "yd"};
+    private void setupSpinner() {
+        String[] unitOptions = {"Select", "in", "ft", "cm", "m"};
         ArrayAdapter<String> unitAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, unitOptions);
         unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        hopperUnitSpinner.setAdapter(unitAdapter);
-        frameUnitSpinner.setAdapter(unitAdapter);
-        intakeUnitSpinner.setAdapter(unitAdapter);
+        unitSpinner.setAdapter(unitAdapter);
     }
 
     private void setupButtons() {
@@ -138,8 +137,12 @@ public class PitScouting extends AppCompatActivity {
     private void clearFields() {
         teamNumber.setText("");
         scouterName.setText("");
-        hopperDimensions.setText("");
-        framePerimeterDims.setText("");
+        botDimensionsDepth.setText("");
+        botDimensionsWidth.setText("");
+        botDimensionsHeight.setText("");
+        hopperDimensionsDepth.setText("");
+        hopperDimensionsWidth.setText("");
+        hopperDimensionsHeight.setText("");
         numberOfShooters.setText("");
         intakeWidth.setText("");
         cornOther.setText("");
@@ -151,7 +154,6 @@ public class PitScouting extends AppCompatActivity {
 
         openHopper.setChecked(false);
         extendableHopper.setChecked(false);
-        closedHopper.setChecked(false);
 
         tiltTurret.setChecked(false);
         turnTurret.setChecked(false);
@@ -162,10 +164,9 @@ public class PitScouting extends AppCompatActivity {
 
         bump.setChecked(false);
         trench.setChecked(false);
+        swerve.setChecked(false);
 
-        hopperUnitSpinner.setSelection(0);
-        frameUnitSpinner.setSelection(0);
-        intakeUnitSpinner.setSelection(0);
+        unitSpinner.setSelection(0);
 
         editingIndex = -1;
     }
@@ -184,28 +185,25 @@ public class PitScouting extends AppCompatActivity {
         pitData.put("match_number", "PIT");
         pitData.put("ScouterName", scouterName.getText().toString());
 
-        String hopperUnit = hopperUnitSpinner.getSelectedItem().toString();
-        String frameUnit = frameUnitSpinner.getSelectedItem().toString();
-        String intakeUnit = intakeUnitSpinner.getSelectedItem().toString();
+        String units = unitSpinner.getSelectedItem().toString();
 
-        pitData.put(PitKeys.PIT_HOPPER_DIMENSIONS, convertToInches(hopperDimensions.getText().toString(), hopperUnit));
-        pitData.put(PitKeys.PIT_INTAKE, convertToInches(intakeWidth.getText().toString(), intakeUnit));
-        pitData.put("FramePerimeter", convertToInches(framePerimeterDims.getText().toString(), frameUnit));
+        pitData.put(PitKeys.PIT_HOPPER_DIMENSIONS, combineDataDimensions(convertToInches(hopperDimensionsDepth.getText().toString(), units), convertToInches(hopperDimensionsWidth.getText().toString(), units), convertToInches(hopperDimensionsHeight.getText().toString(), units)));
+        pitData.put(PitKeys.PIT_BOT_DIMENSIONS, combineDataDimensions(convertToInches(botDimensionsDepth.getText().toString(), units), convertToInches(botDimensionsWidth.getText().toString(), units), convertToInches(botDimensionsHeight.getText().toString(), units)));
+        pitData.put(PitKeys.PIT_INTAKE, convertToInches(intakeWidth.getText().toString(), units));
 
-        pitData.put("RawHopperDims", hopperDimensions.getText().toString());
-        pitData.put("RawIntakeWidth", intakeWidth.getText().toString());
-        pitData.put("RawFrameDims", framePerimeterDims.getText().toString());
+        pitData.put("rawHopperDimensions", combineDataDimensions(hopperDimensionsDepth.getText().toString(), hopperDimensionsWidth.getText().toString(), hopperDimensionsHeight.getText().toString()));
+        pitData.put("rawBotDimensions", combineDataDimensions(botDimensionsDepth.getText().toString(), botDimensionsWidth.getText().toString(), botDimensionsHeight.getText().toString()));
+        pitData.put("rawIntakeWidth", intakeWidth.getText().toString());
 
-        pitData.put("HopperUnit", hopperUnit);
-        pitData.put("FrameUnit", frameUnit);
-        pitData.put("IntakeUnit", intakeUnit);
+        pitData.put("Units", units);
 
         pitData.put(PitKeys.PIT_TURRET, numberOfShooters.getText().toString());
         pitData.put("TurretType", getCheckBoxSelections(tiltTurret, turnTurret));
         pitData.put("IntakeType", getCheckBoxSelections(humanIntake, throughBumperIntake, overBumperIntake));
 
-        pitData.put(PitKeys.PIT_HOPPER_TYPE, getCheckBoxSelections(openHopper, extendableHopper, closedHopper));
+        pitData.put(PitKeys.PIT_HOPPER_TYPE, getCheckBoxSelections(openHopper, extendableHopper));
         pitData.put(PitKeys.PIT_CROSSING, getCheckBoxSelections(bump, trench));
+        pitData.put(PitKeys.PIT_SWERVE, getCheckBoxSelections(swerve));
 
         pitData.put(PitKeys.COMMENTS, comments.getText().toString());
 
@@ -247,17 +245,11 @@ public class PitScouting extends AppCompatActivity {
             case "cm":
                 multiplier = 0.393701;
                 break;
-            case "mm":
-                multiplier = 0.0393701;
-                break;
             case "ft":
                 multiplier = 12.0;
                 break;
             case "m":
                 multiplier = 39.3701;
-                break;
-            case "yd":
-                multiplier = 36.0;
                 break;
             case "in":
                 multiplier = 1.0;
@@ -300,39 +292,26 @@ public class PitScouting extends AppCompatActivity {
 
                 safeSetText(scouterName, match.get("ScouterName"));
 
-                if (match.containsKey("RawHopperDims")) {
-                    safeSetText(hopperDimensions, match.get("RawHopperDims"));
-                } else {
-                    safeSetText(hopperDimensions, match.get(PitKeys.PIT_HOPPER_DIMENSIONS));
-                }
+                safeSetText(botDimensionsDepth, parseDataDimensions(match.get("rawBotDimensions").toString())[0]);
+                safeSetText(botDimensionsWidth, parseDataDimensions(match.get("rawBotDimensions").toString())[1]);
+                safeSetText(botDimensionsHeight, parseDataDimensions(match.get("rawBotDimensions").toString())[2]);
 
-                if (match.containsKey("RawFrameDims")) {
-                    safeSetText(framePerimeterDims, match.get("RawFrameDims"));
-                } else {
-                    safeSetText(framePerimeterDims, match.get("FramePerimeter"));
-                }
+                safeSetText(hopperDimensionsDepth, parseDataDimensions(match.get("rawHopperDimensions").toString())[0]);
+                safeSetText(hopperDimensionsWidth, parseDataDimensions(match.get("rawHopperDimensions").toString())[1]);
+                safeSetText(hopperDimensionsHeight, parseDataDimensions(match.get("rawHopperDimensions").toString())[2]);
 
-                if (match.containsKey("RawIntakeWidth")) {
-                    safeSetText(intakeWidth, match.get("RawIntakeWidth"));
-                } else {
-                    safeSetText(intakeWidth, match.get(PitKeys.PIT_INTAKE));
-                }
+                safeSetText(intakeWidth, match.get("rawIntakeWidth"));
 
                 safeSetText(numberOfShooters, match.get(PitKeys.PIT_TURRET));
                 safeSetText(comments, match.get(PitKeys.COMMENTS));
 
-                if (match.containsKey("HopperUnit")) {
-                    setSpinnerSelection(hopperUnitSpinner, (String) match.get("HopperUnit"));
-                }
-                if (match.containsKey("FrameUnit")) {
-                    setSpinnerSelection(frameUnitSpinner, (String) match.get("FrameUnit"));
-                }
-                if (match.containsKey("IntakeUnit")) {
-                    setSpinnerSelection(intakeUnitSpinner, (String) match.get("IntakeUnit"));
+                if (match.containsKey("units")) {
+                    setSpinnerSelection(unitSpinner, (String) match.get("units"));
                 }
 
-                setCheckBoxSelections((String) match.get(PitKeys.PIT_HOPPER_TYPE), openHopper, extendableHopper, closedHopper);
+                setCheckBoxSelections((String) match.get(PitKeys.PIT_HOPPER_TYPE), openHopper, extendableHopper);
                 setCheckBoxSelections((String) match.get(PitKeys.PIT_CROSSING), bump, trench);
+                setCheckBoxSelections((String) match.get(PitKeys.PIT_SWERVE), swerve);
                 setCheckBoxSelections((String) match.get("TurretType"), tiltTurret, turnTurret);
                 setCheckBoxSelections((String) match.get("IntakeType"), humanIntake, throughBumperIntake, overBumperIntake);
 
@@ -463,5 +442,26 @@ public class PitScouting extends AppCompatActivity {
                 box.setChecked(data.contains(box.getText().toString()));
             }
         }
+    }
+
+    private String combineDataDimensions(String depth, String width, String height) {
+        return depth + "x" + width + "x" + height;
+    }
+
+    private String combineDataDimensions(String depth, String depthUnits, String width, String widthUnits, String height, String heightUnits) {
+        String data = depth + depthUnits + "x" + width + widthUnits + "x" + height + heightUnits;
+        return data;
+    }
+
+    private String combineDataDimensions(String width, String widthUnits) {
+        String data = width + widthUnits;
+        return data;
+    }
+
+    private String[] parseDataDimensions(String data) {
+        System.out.println(data);
+        String[] parsedValues = data.split("x");
+        System.out.println(parsedValues);
+        return parsedValues;
     }
 }
