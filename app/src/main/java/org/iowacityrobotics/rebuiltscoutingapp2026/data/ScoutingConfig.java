@@ -46,6 +46,7 @@ public class ScoutingConfig {
         INPUTS.add(new Field(R.id.passedFuel, DataKeys.PASSED_FUEL, DataType.BOOLEAN));
         INPUTS.add(new Field(R.id.towerPosition, DataKeys.TOWER_POS, DataType.TEXT));
         INPUTS.add(new Field(R.id.towerLevel, DataKeys.TOWER_LEVEL, DataType.TEXT));
+        INPUTS.add(new Field(R.id.teamRating, DataKeys.TEAM_RATING, DataType.TEXT));
         INPUTS.add(new Field(R.id.comments, DataKeys.COMMENTS, DataType.TEXT));
     }
 }

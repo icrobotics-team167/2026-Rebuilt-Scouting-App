@@ -21,7 +21,7 @@ public class DataEditor extends AppCompatActivity {
     private EditText autoCycles, activeCycles, inactiveCycles;
     private EditText autoNeutral, activeDefense, inactiveDefense;
     private EditText endAuto, endShift1, endShift2, endGame;
-    private EditText towerPos, towerLevel, passedFuel, comments;
+    private EditText towerPos, towerLevel, passedFuel, teamRating, comments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,7 @@ public class DataEditor extends AppCompatActivity {
         towerPos = findViewById(R.id.towerPosition);
         towerLevel = findViewById(R.id.towerLevel);
         passedFuel = findViewById(R.id.passedFuel);
+        teamRating = findViewById(R.id.teamRating);
         comments = findViewById(R.id.comments);
     }
 
@@ -85,6 +86,7 @@ public class DataEditor extends AppCompatActivity {
             setTextSafe(towerPos, data.get(DataKeys.TOWER_POS));
             setTextSafe(towerLevel, data.get(DataKeys.TOWER_LEVEL));
             setTextSafe(passedFuel, data.get(DataKeys.PASSED_FUEL));
+            setTextSafe(teamRating, data.get(DataKeys.TEAM_RATING));
             setTextSafe(comments, data.get(DataKeys.COMMENTS));
         }
     }
@@ -114,6 +116,7 @@ public class DataEditor extends AppCompatActivity {
 
             data.put(DataKeys.TOWER_POS, towerPos.getText().toString());
             data.put(DataKeys.TOWER_LEVEL, towerLevel.getText().toString());
+            data.put(DataKeys.TEAM_RATING, teamRating.getText().toString());
             data.put(DataKeys.COMMENTS, comments.getText().toString());
 
             data.put(DataKeys.EXPORTED, false);

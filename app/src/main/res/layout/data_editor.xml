@@ -400,7 +400,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:weightSum="3"
+            android:weightSum="4"
             android:orientation="horizontal">
 
             <TextView
@@ -430,13 +430,22 @@
                 android:gravity="center_vertical"
                 android:text="Tower Level:" />
 
+            <TextView
+                android:id="@+id/teamRatingHeader"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Team Rating:" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.9"
-            android:weightSum="3"
+            android:weightSum="4"
             android:orientation="horizontal">
 
             <EditText
@@ -470,6 +479,17 @@
                 android:ems="10"
                 android:inputType="text"
                 android:hint="#"
+                android:text="" />
+
+            <EditText
+                android:id="@+id/teamRating"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="#"
+                android:inputType="text"
                 android:text="" />
         </LinearLayout>
 

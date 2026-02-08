@@ -56,9 +56,9 @@ public class DataEntry extends AppCompatActivity {
     }
 
     private void setupSpinners() {
-        setupSpinner(R.id.towerPosition, new String[]{"Unknown", "None", "Left", "Center", "Right"});
-        setupSpinner(R.id.towerLevel, new String[]{"Unknown", "Ground", "Low", "Medium", "High", "Fall"});
-        setupSpinner(R.id.teamRating, new String[]{"Don't Know", "Good", "Bad"});
+        setupSpinner(R.id.towerPosition, new String[]{"Select", "Unknown", "None", "Left", "Center", "Right"});
+        setupSpinner(R.id.towerLevel, new String[]{"Select", "Unknown", "Ground", "Low", "Medium", "High", "Fall"});
+        setupSpinner(R.id.teamRating, new String[]{"Select", "Don't Know", "Good", "Bad"});
     }
 
     private void setupSpinner(int id, String[] items) {

@@ -29,6 +29,6 @@ public class DataKeys {
     public static final String TOWER_POS = "tower_position";
     public static final String TOWER_LEVEL = "tower_level";
     public static final String PASSED_FUEL = "passed_fuel";
-    public static final String DRIVER_RATING = "driver_rating";
+    public static final String TEAM_RATING = "team_rating";
     public static final String COMMENTS = "comments";
 }
