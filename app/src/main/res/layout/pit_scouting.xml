@@ -75,7 +75,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="8"
+                    android:layout_weight="7"
                     android:ems="10"
                     android:inputType="text"
                     android:hint="Your name"
@@ -95,7 +95,7 @@
                     android:id="@+id/unitSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="4" />
+                    android:layout_weight="5" />
 
                 <Button
                     android:id="@+id/editButton"
@@ -201,14 +201,14 @@
                     android:text="Bot Dimensions:" />
 
                 <EditText
-                    android:id="@+id/botDimensionsDepth"
+                    android:id="@+id/botDimensionsWidth"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="D"
+                    android:hint="W"
                     android:inputType="numberDecimal"
                     android:paddingTop="10dp"
                     android:text="" />
@@ -224,14 +224,14 @@
                     android:text="x" />
 
                 <EditText
-                    android:id="@+id/botDimensionsWidth"
+                    android:id="@+id/botDimensionsDepth"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="W"
+                    android:hint="D"
                     android:inputType="numberDecimal"
                     android:paddingTop="10dp"
                     android:text="" />
@@ -251,7 +251,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:ems="10"
                     android:gravity="center"
                     android:hint="H"
@@ -324,7 +324,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:ems="10"
                     android:gravity="center"
                     android:hint="W"
@@ -390,14 +390,14 @@
                     android:text="Dimensions:" />
 
                 <EditText
-                    android:id="@+id/hopperDimensionsDepth"
+                    android:id="@+id/hopperDimensionsWidth"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="D"
+                    android:hint="W"
                     android:inputType="numberDecimal"
                     android:paddingTop="10dp"
                     android:text="" />
@@ -413,14 +413,14 @@
                     android:text="x" />
 
                 <EditText
-                    android:id="@+id/hopperDimensionsWidth"
+                    android:id="@+id/hopperDimensionsDepth"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="W"
+                    android:hint="D"
                     android:inputType="numberDecimal"
                     android:paddingTop="10dp"
                     android:text="" />
@@ -440,7 +440,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:ems="10"
                     android:gravity="center"
                     android:hint="H"
@@ -608,7 +608,38 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="8"
+                android:layout_weight="6"
+                android:weightSum="48"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/teamRatingHeader"
+                    style="@style/AutoResize25"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="Team Rating:" />
+
+                <Spinner
+                    android:id="@+id/teamRating"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider29"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="7"
                 android:weightSum="12"
                 android:orientation="horizontal">
 

@@ -19,4 +19,5 @@ public class PitKeys {
     public static final String PIT_INTAKE = "intake_info";
     public static final String PIT_CROSSING = "crossing_method";
     public static final String PIT_CORN = "corn_preferences";
+    public static final String PIT_TEAM_RATING = "team_rating";
 }

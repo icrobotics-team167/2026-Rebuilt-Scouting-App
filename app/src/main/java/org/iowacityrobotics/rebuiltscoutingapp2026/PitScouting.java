@@ -38,6 +38,7 @@ public class PitScouting extends AppCompatActivity {
     private EditText cornOther, comments;
 
     private Spinner unitSpinner;
+    private Spinner teamRating;
 
     private CheckBox openHopper, extendableHopper;
     private CheckBox tiltTurret, turnTurret;
@@ -65,7 +66,8 @@ public class PitScouting extends AppCompatActivity {
         setContentView(R.layout.pit_scouting);
 
         initializeViews();
-        setupSpinner();
+        setupUnitsSpinner();
+        setupRatingSpinner();
         setupButtons();
     }
 
@@ -73,6 +75,7 @@ public class PitScouting extends AppCompatActivity {
         teamNumber = findViewById(R.id.teamNumber);
         scouterName = findViewById(R.id.scouter);
         unitSpinner = findViewById(R.id.unitSpinner);
+        teamRating = findViewById(R.id.teamRating);
 
         botDimensionsDepth = findViewById(R.id.botDimensionsDepth);
         botDimensionsWidth = findViewById(R.id.botDimensionsWidth);
@@ -106,12 +109,20 @@ public class PitScouting extends AppCompatActivity {
         butter = findViewById(R.id.absolutelyCornOnCob);
     }
 
-    private void setupSpinner() {
+    private void setupUnitsSpinner() {
         String[] unitOptions = {"Select", "in", "ft", "cm", "m"};
         ArrayAdapter<String> unitAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, unitOptions);
         unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         unitSpinner.setAdapter(unitAdapter);
+    }
+
+    private void setupRatingSpinner() {
+        String[] unitOptions = {"Select", "Good", "Bad"};
+        ArrayAdapter<String> unitAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, unitOptions);
+        unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        teamRating.setAdapter(unitAdapter);
     }
 
     private void setupButtons() {
@@ -168,6 +179,7 @@ public class PitScouting extends AppCompatActivity {
         swerve.setChecked(false);
 
         unitSpinner.setSelection(0);
+        teamRating.setSelection(0);
 
         editingIndex = -1;
     }
@@ -187,6 +199,7 @@ public class PitScouting extends AppCompatActivity {
         pitData.put("ScouterName", scouterName.getText().toString());
 
         String units = unitSpinner.getSelectedItem().toString();
+        pitData.put(PitKeys.PIT_TEAM_RATING, teamRating.getSelectedItem());
 
         pitData.put(PitKeys.PIT_HOPPER_DIMENSIONS, combineDataDimensions(convertToInches(hopperDimensionsDepth.getText().toString(), units), convertToInches(hopperDimensionsWidth.getText().toString(), units), convertToInches(hopperDimensionsHeight.getText().toString(), units)));
         pitData.put(PitKeys.PIT_BOT_DIMENSIONS, combineDataDimensions(convertToInches(botDimensionsDepth.getText().toString(), units), convertToInches(botDimensionsWidth.getText().toString(), units), convertToInches(botDimensionsHeight.getText().toString(), units)));
@@ -321,6 +334,8 @@ public class PitScouting extends AppCompatActivity {
                 if (match.containsKey("units")) {
                     setSpinnerSelection(unitSpinner, (String) match.get("units"));
                 }
+
+                setSpinnerSelection(teamRating, (String) match.get(PitKeys.PIT_TEAM_RATING));
 
                 setCheckBoxSelections((String) match.get(PitKeys.PIT_HOPPER_TYPE), openHopper, extendableHopper);
                 setCheckBoxSelections((String) match.get(PitKeys.PIT_CROSSING), bump, trench);
