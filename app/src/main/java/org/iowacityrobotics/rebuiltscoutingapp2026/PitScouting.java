@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -195,7 +196,7 @@ public class PitScouting extends AppCompatActivity {
         pitData.put("rawBotDimensions", combineDataDimensions(botDimensionsDepth.getText().toString(), botDimensionsWidth.getText().toString(), botDimensionsHeight.getText().toString()));
         pitData.put("rawIntakeWidth", intakeWidth.getText().toString());
 
-        pitData.put("Units", units);
+        pitData.put("units", units);
 
         pitData.put(PitKeys.PIT_TURRET, numberOfShooters.getText().toString());
         pitData.put("TurretType", getCheckBoxSelections(tiltTurret, turnTurret));
@@ -292,13 +293,25 @@ public class PitScouting extends AppCompatActivity {
 
                 safeSetText(scouterName, match.get("ScouterName"));
 
-                safeSetText(botDimensionsDepth, parseDataDimensions(match.get("rawBotDimensions").toString())[0]);
-                safeSetText(botDimensionsWidth, parseDataDimensions(match.get("rawBotDimensions").toString())[1]);
-                safeSetText(botDimensionsHeight, parseDataDimensions(match.get("rawBotDimensions").toString())[2]);
+                Object rawBot = match.get("rawBotDimensions");
+                if (rawBot != null) {
+                    String[] botDims = parseDataDimensions(rawBot.toString());
+                    if (botDims.length >= 3) {
+                        safeSetText(botDimensionsDepth, botDims[0]);
+                        safeSetText(botDimensionsWidth, botDims[1]);
+                        safeSetText(botDimensionsHeight, botDims[2]);
+                    }
+                }
 
-                safeSetText(hopperDimensionsDepth, parseDataDimensions(match.get("rawHopperDimensions").toString())[0]);
-                safeSetText(hopperDimensionsWidth, parseDataDimensions(match.get("rawHopperDimensions").toString())[1]);
-                safeSetText(hopperDimensionsHeight, parseDataDimensions(match.get("rawHopperDimensions").toString())[2]);
+                Object rawHopper = match.get("rawHopperDimensions");
+                if (rawHopper != null) {
+                    String[] hopperDims = parseDataDimensions(rawHopper.toString());
+                    if (hopperDims.length >= 3) {
+                        safeSetText(hopperDimensionsDepth, hopperDims[0]);
+                        safeSetText(hopperDimensionsWidth, hopperDims[1]);
+                        safeSetText(hopperDimensionsHeight, hopperDims[2]);
+                    }
+                }
 
                 safeSetText(intakeWidth, match.get("rawIntakeWidth"));
 
@@ -448,20 +461,10 @@ public class PitScouting extends AppCompatActivity {
         return depth + "x" + width + "x" + height;
     }
 
-    private String combineDataDimensions(String depth, String depthUnits, String width, String widthUnits, String height, String heightUnits) {
-        String data = depth + depthUnits + "x" + width + widthUnits + "x" + height + heightUnits;
-        return data;
-    }
-
-    private String combineDataDimensions(String width, String widthUnits) {
-        String data = width + widthUnits;
-        return data;
-    }
-
     private String[] parseDataDimensions(String data) {
         System.out.println(data);
-        String[] parsedValues = data.split("x");
-        System.out.println(parsedValues);
+        String[] parsedValues = data.split("x", -1);
+        System.out.println(Arrays.toString(parsedValues));
         return parsedValues;
     }
 }
