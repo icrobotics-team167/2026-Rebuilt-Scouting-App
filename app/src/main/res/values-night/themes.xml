@@ -5,10 +5,10 @@
     </style>
 
     <style name="main_theme" parent="Base.Theme.RebuiltScoutingApp2026.Dark" >
-        <item name="AutoSize20">12sp</item>
-        <item name="AutoSize25">16sp</item>
+        <item name="AutoSize20">13sp</item>
+        <item name="AutoSize25">18sp</item>
         <item name="AutoSize30">24sp</item>
-        <item name="AutoSize45">30sp</item>
-        <item name="AutoSize60">45sp</item>
+        <item name="AutoSize45">36sp</item>
+        <item name="AutoSize60">50sp</item>
     </style>
 </resources>

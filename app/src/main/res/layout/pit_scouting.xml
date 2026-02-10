@@ -75,7 +75,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="7"
+                    android:layout_weight="6"
                     android:ems="10"
                     android:inputType="text"
                     android:hint="Your name"
@@ -95,7 +95,7 @@
                     android:id="@+id/unitSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="5" />
+                    android:layout_weight="6" />
 
                 <Button
                     android:id="@+id/editButton"
@@ -195,7 +195,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="6"
+                    android:layout_weight="8"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
                     android:text="Bot Dimensions:" />
@@ -314,7 +314,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="6"
+                    android:layout_weight="8"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
                     android:text="Intake Width:" />
@@ -384,7 +384,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="6"
+                    android:layout_weight="8"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
                     android:text="Dimensions:" />
@@ -500,7 +500,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="8"
+                    android:layout_weight="10"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
                     android:text="Number of Shooters:" />
@@ -508,7 +508,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="0.5" />
 
                 <EditText
                     android:id="@+id/numberOfShooters"
