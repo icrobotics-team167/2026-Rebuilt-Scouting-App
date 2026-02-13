@@ -5,13 +5,16 @@ package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.app.AlertDialog;
 
@@ -185,12 +188,27 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void savePitData() {
-        String team = teamNumber.getText().toString().trim();
-        if (team.isEmpty()) {
-            Toast.makeText(this, "Please enter a Team Number", Toast.LENGTH_SHORT).show();
+        boolean error = false;
+        if (teamNumber.getText().toString().isEmpty()) {
+            teamNumber.setError("Name is required");
+            error = true;
+        }
+
+        String selectedUnits = unitSpinner.getSelectedItem().toString();
+        if (selectedUnits.equals("Select")) {
+            View selectedView = unitSpinner.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("Select Units");
+            }
+            error = true;
+        }
+        if (error == true) {
             return;
         }
 
+        String team = teamNumber.getText().toString().trim();
         Map<String, Object> pitData = new LinkedHashMap<>();
 
         pitData.put(PitKeys.RECORD_TYPE, PitKeys.TYPE_PIT);

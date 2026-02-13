@@ -4,9 +4,10 @@
     <shared>
       <config>
         <device id="Scouting Tablet" />
-        <device id="_device_class_phone" />
+        <device id="_android_virtual_device_id_Scouting_Tablet" />
         <device id="_device_class_tablet" />
         <device id="Nexus 7" />
+        <device id="Nexus 9" />
         <device id="Nexus 9" />
       </config>
     </shared>
@@ -19,11 +20,13 @@
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
         <config>
-          <theme>@style/Theme.RebuiltScoutingApp2026</theme>
+          <state>Landscape</state>
+          <theme>@style/main_theme</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/data_editor.xml">
         <config>
+          <state>Landscape</state>
           <theme>@style/main_theme</theme>
         </config>
       </layout>
@@ -48,7 +51,6 @@
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/start_screen.xml">
         <config>
           <state>Landscape</state>
-          <night>night</night>
           <theme>@style/main_theme</theme>
         </config>
       </layout>
@@ -70,8 +72,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="813c5918-2a79-42bd-9c8a-95648a7a7486" name="Changes" comment="Fixed App Crashing With Regex&#10;U 02/08/2026&#10;-JamesA">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values-sw500dp-night/themes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values-sw500dp/themes.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/fileHashes.bin" afterDir="false" />
@@ -79,12 +79,13 @@
       <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/pit_scouting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/pit_scouting.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-sw600dp-night/themes.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-sw600dp/themes.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/PitScouting.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/PitScouting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/SetupScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/SetupScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/start_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/start_screen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-sw500dp/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-sw500dp/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +95,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[LocalEmulator::path=C:\Users\cotc\.android\avd\Scouting_Tablet.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[LocalEmulator::path=C:\Users\acker\.android\avd\Scouting_Tablet.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -125,7 +126,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/icrobotics-team167/2026-Rebuilt-Scouting-App.git",
-    "accountId": "e097f7b4-236e-4ff7-aa73-96029afd6220"
+    "accountId": "8e962e20-05d4-4480-8eb0-8100530cf37b"
   }
 }]]></component>
   <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\acker\.gradle\wrapper\dists\gradle-9.1.0-bin\9agqghryom9wkf8r80qlhnts3\gradle-9.1.0" javaHome="C:\Program Files\Android\Android Studio\jbr" gradleVersion="9.1.0" />
@@ -331,12 +332,12 @@
       <map>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026">
           <value>
-            <CheckInfo lastCheckTimestamp="1770681798217" />
+            <CheckInfo lastCheckTimestamp="1770940962507" />
           </value>
         </entry>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1770681798219" />
+            <CheckInfo lastCheckTimestamp="1770940962507" />
           </value>
         </entry>
       </map>

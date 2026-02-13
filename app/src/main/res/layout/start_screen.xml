@@ -134,7 +134,7 @@
 
                     <Button
                         android:id="@+id/button"
-                        style="@style/AutoResize45"
+                        style="@style/AutoResize60"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="3"
@@ -163,7 +163,7 @@
 
                     <Button
                         android:id="@+id/button2"
-                        style="@style/AutoResize45"
+                        style="@style/AutoResize60"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="3"

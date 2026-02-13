@@ -7,12 +7,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -82,12 +85,12 @@ public class SetupScreen extends AppCompatActivity {
     }
 
     private void setupStaticSpinners() {
-        String[] assignments = {"Unknown", "Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"};
+        String[] assignments = {"Select", "Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"};
         ArrayAdapter<String> assignAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assignments);
         assignAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         assignmentSpinner.setAdapter(assignAdapter);
 
-        String[] matchTypes = {"Unknown", "Practice", "Qualification", "Playoff", "Final"};
+        String[] matchTypes = {"Select", "Practice", "Qualification", "Playoff", "Final"};
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, matchTypes);
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         matchTypeSpinner.setAdapter(typeAdapter);
@@ -244,15 +247,38 @@ public class SetupScreen extends AppCompatActivity {
     }
 
     private boolean validateInputs() {
+        boolean error = false;
         if (scouterNameInput.getText().toString().isEmpty()) {
             scouterNameInput.setError("Name is required");
-            return false;
+            error = true;
         }
         if (matchNumberInput.getText().toString().isEmpty()) {
             matchNumberInput.setError("Match # is required");
-            return false;
+            error = true;
         }
-        return true;
+
+        String selectedAssignment = assignmentSpinner.getSelectedItem().toString();
+        if (selectedAssignment.equals("Select")) {
+            View selectedView = assignmentSpinner.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("Please select an assignment");
+            }
+            error = true;
+        }
+
+        String selectedMatchType = matchTypeSpinner.getSelectedItem().toString();
+        if (selectedMatchType.equals("Select")) {
+            View selectedView = matchTypeSpinner.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("Please select an assignment");
+            }
+            error = true;
+        }
+        return !error;
     }
 
     private void savePreferences() {
