@@ -3,6 +3,7 @@
 //This is the main scouting activity. 
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -140,7 +141,14 @@ public class DataEntry extends AppCompatActivity {
     }
 
     private void cancelMatch() {
-        setContentView(R.layout.setup_screen);
-        finish();
+        new AlertDialog.Builder(this)
+                .setTitle("Cancel Entry")
+                .setMessage("Are you sure you want to cancel?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    Toast.makeText(this, "Entry Canceled.", Toast.LENGTH_SHORT).show();
+                    finish();
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }

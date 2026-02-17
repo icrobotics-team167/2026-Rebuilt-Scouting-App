@@ -18,6 +18,16 @@
           <theme>@style/main_theme</theme>
         </config>
       </layout>
+      <layout url="file://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-36/data/res/layout/simple_spinner_dropdown_item.xml">
+        <config>
+          <theme>@style/main_theme</theme>
+        </config>
+      </layout>
+      <layout url="file://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-36/data/res/layout/simple_spinner_item.xml">
+        <config>
+          <theme>@style/main_theme</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
         <config>
           <state>Landscape</state>
@@ -80,12 +90,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/PitScouting.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/PitScouting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/SetupScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/SetupScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/start_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/start_screen.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-sw500dp/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-sw500dp/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/DataEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/DataEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/pit_scouting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/pit_scouting.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/setup_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/setup_screen.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +104,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[LocalEmulator::path=C:\Users\acker\.android\avd\Scouting_Tablet.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[LocalEmulator::path=C:\Users\acker\.android\avd\Medium_Tablet.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -123,12 +132,12 @@
     &quot;assignee&quot;: &quot;Loreman105&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/icrobotics-team167/2026-Rebuilt-Scouting-App.git",
-    "accountId": "8e962e20-05d4-4480-8eb0-8100530cf37b"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/icrobotics-team167/2026-Rebuilt-Scouting-App.git&quot;,
+    &quot;accountId&quot;: &quot;8e962e20-05d4-4480-8eb0-8100530cf37b&quot;
   }
-}]]></component>
+}</component>
   <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\acker\.gradle\wrapper\dists\gradle-9.1.0-bin\9agqghryom9wkf8r80qlhnts3\gradle-9.1.0" javaHome="C:\Program Files\Android\Android Studio\jbr" gradleVersion="9.1.0" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -332,12 +341,12 @@
       <map>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026">
           <value>
-            <CheckInfo lastCheckTimestamp="1770940962507" />
+            <CheckInfo lastCheckTimestamp="1771350969714" />
           </value>
         </entry>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1770940962507" />
+            <CheckInfo lastCheckTimestamp="1771350969708" />
           </value>
         </entry>
       </map>

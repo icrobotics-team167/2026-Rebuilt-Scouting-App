@@ -133,6 +133,7 @@ public class PitScouting extends AppCompatActivity {
         Button exportBtn = findViewById(R.id.exportButton);
         Button editBtn = findViewById(R.id.editButton);
         Button deleteBtn = findViewById(R.id.exportButton2);
+        Button cancelBtn = findViewById(R.id.cancelButton);
 
         saveBtn.setOnClickListener(v -> savePitData());
 
@@ -147,6 +148,7 @@ public class PitScouting extends AppCompatActivity {
 
         editBtn.setOnClickListener(v -> loadTeamData());
         deleteBtn.setOnClickListener(v -> deleteCurrentTeam());
+        cancelBtn.setOnClickListener(v -> cancelPit());
     }
 
     private void clearFields() {
@@ -190,7 +192,7 @@ public class PitScouting extends AppCompatActivity {
     private void savePitData() {
         boolean error = false;
         if (teamNumber.getText().toString().isEmpty()) {
-            teamNumber.setError("Name is required");
+            teamNumber.setError("Team # is required");
             error = true;
         }
 
@@ -499,5 +501,17 @@ public class PitScouting extends AppCompatActivity {
         String[] parsedValues = data.split("x", -1);
         System.out.println(Arrays.toString(parsedValues));
         return parsedValues;
+    }
+
+    private void cancelPit() {
+        new AlertDialog.Builder(this)
+                .setTitle("Cancel Entry")
+                .setMessage("Are you sure you want to cancel?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    Toast.makeText(this, "Entry Canceled.", Toast.LENGTH_SHORT).show();
+                    finish();
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }
