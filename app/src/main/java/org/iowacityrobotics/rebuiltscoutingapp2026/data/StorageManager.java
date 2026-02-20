@@ -36,7 +36,7 @@ public class StorageManager {
                 fos.write(jsonArray.toString().getBytes());
             }
 
-            Toast.makeText(context, "Saved! (" + GlobalVariables.dataList.size() + " matches)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Saved Successfully", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(context, "Error saving: " + e.getMessage(), Toast.LENGTH_LONG).show();
