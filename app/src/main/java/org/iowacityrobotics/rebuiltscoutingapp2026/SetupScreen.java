@@ -31,8 +31,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class SetupScreen extends AppCompatActivity {
 
@@ -232,9 +234,16 @@ public class SetupScreen extends AppCompatActivity {
         }
 
         JSONArray jsonArray = new JSONArray();
+        Set<String> keysToRemove = Set.of(
+                DataKeys.RECORD_TYPE,
+                DataKeys.EXPORTED
+        );
         for (Map<String, Object> match : exportBatch) {
-            jsonArray.put(new JSONObject(match));
+            Map<String, Object> exportMap = new LinkedHashMap<>(match);
+            keysToRemove.forEach(exportMap::remove);
+            jsonArray.put(new JSONObject(exportMap));
         }
+        System.out.println(jsonArray);
 
         StorageManager.writeJsonToUsb(this, uri, jsonArray.toString());
 

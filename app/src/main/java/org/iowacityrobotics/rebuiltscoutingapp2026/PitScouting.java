@@ -28,9 +28,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class PitScouting extends AppCompatActivity {
 
@@ -239,8 +241,6 @@ public class PitScouting extends AppCompatActivity {
         pitData.put(PitKeys.PIT_CROSSING, getCheckBoxSelections(bump, trench));
         pitData.put(PitKeys.PIT_SWERVE, getCheckBoxSelections(swerve));
 
-        pitData.put(PitKeys.COMMENTS, comments.getText().toString());
-
         List<String> cornPrefs = new ArrayList<>();
         if (salt.isChecked()) cornPrefs.add("Salt");
         if (pepper.isChecked()) cornPrefs.add("Pepper");
@@ -254,6 +254,8 @@ public class PitScouting extends AppCompatActivity {
             if (i < cornPrefs.size() - 1) cornString.append(", ");
         }
         pitData.put(PitKeys.PIT_CORN, cornString.toString());
+
+        pitData.put(PitKeys.COMMENTS, comments.getText().toString());
 
         pitData.put(PitKeys.EXPORTED, false);
 
@@ -432,8 +434,23 @@ public class PitScouting extends AppCompatActivity {
         }
 
         JSONArray jsonArray = new JSONArray();
+
+        Set<String> keysToRemove = Set.of(
+                PitKeys.RECORD_TYPE,
+                "match_number", // For some reason named match_number actually just "PIT"
+                "rawHopperDimensions",
+                "rawBotDimensions",
+                "rawIntakeWidth",
+                "units",
+                PitKeys.EXPORTED
+        );
+
         for (Map<String, Object> match : finalExportList) {
-            jsonArray.put(new JSONObject(match));
+
+            Map<String, Object> exportMap = new LinkedHashMap<>(match);
+            keysToRemove.forEach(exportMap::remove);
+            jsonArray.put(new JSONObject(exportMap));
+
             match.put(PitKeys.EXPORTED, true);
         }
 

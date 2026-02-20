@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
 import org.iowacityrobotics.rebuiltscoutingapp2026.R;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -113,28 +114,65 @@ public class DataEntry extends AppCompatActivity {
     }
 
     private void saveNewMatch() {
+
         Map<String, Object> data = new LinkedHashMap<>();
         data.put(DataKeys.RECORD_TYPE, DataKeys.TYPE_MATCH);
+
+        // Grab values from views first
+        Map<String, Object> temp = new LinkedHashMap<>();
 
         for (ScoutingConfig.Field field : ScoutingConfig.INPUTS) {
             View v = findViewById(field.viewId);
             if (v == null) continue;
 
-            if (v instanceof EditText) data.put(field.jsonKey, ((EditText) v).getText().toString());
-            else if (v instanceof CheckBox) data.put(field.jsonKey, ((CheckBox) v).isChecked());
-            else if (v instanceof Spinner) data.put(field.jsonKey, ((Spinner) v).getSelectedItem().toString());
-            else if (v instanceof RatingBar) data.put(field.jsonKey, ((RatingBar) v).getRating());
+            if (v instanceof EditText)
+                temp.put(field.jsonKey, ((EditText) v).getText().toString());
+
+            else if (v instanceof CheckBox)
+                temp.put(field.jsonKey, ((CheckBox) v).isChecked());
+
+            else if (v instanceof Spinner)
+                temp.put(field.jsonKey, ((Spinner) v).getSelectedItem().toString());
+
+            else if (v instanceof RatingBar)
+                temp.put(field.jsonKey, ((RatingBar) v).getRating());
+
             else if (v instanceof TextView) {
                 String val = ((TextView) v).getText().toString();
                 if (field.type == ScoutingConfig.DataType.NUMBER) {
-                    try { data.put(field.jsonKey, Integer.parseInt(val)); } catch (Exception e) { data.put(field.jsonKey, 0); }
+                    try {
+                        temp.put(field.jsonKey, Integer.parseInt(val));
+                    } catch (Exception e) {
+                        temp.put(field.jsonKey, 0);
+                    }
                 } else {
-                    data.put(field.jsonKey, val);
+                    temp.put(field.jsonKey, val);
                 }
             }
         }
 
+        data.put(DataKeys.TEAM_NUM, temp.get(DataKeys.TEAM_NUM));
+        data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
+        data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
+        data.put(DataKeys.TEAM_RATING, temp.get(DataKeys.TEAM_RATING));
+        data.put(DataKeys.AUTO_NEUTRAL, temp.get(DataKeys.AUTO_NEUTRAL));
+        data.put(DataKeys.INACTIVE_DEFENSE, temp.get(DataKeys.INACTIVE_DEFENSE));
+        data.put(DataKeys.ACTIVE_DEFENSE, temp.get(DataKeys.ACTIVE_DEFENSE));
+        data.put(DataKeys.AUTO_CYCLES, temp.get(DataKeys.AUTO_CYCLES));
+        data.put(DataKeys.ACTIVE_CYCLES, temp.get(DataKeys.ACTIVE_CYCLES));
+        data.put(DataKeys.INACTIVE_CYCLES, temp.get(DataKeys.INACTIVE_CYCLES));
+        data.put(DataKeys.END_AUTO, temp.get(DataKeys.END_AUTO));
+        data.put(DataKeys.END_SHIFT_1, temp.get(DataKeys.END_SHIFT_1));
+        data.put(DataKeys.END_SHIFT_2, temp.get(DataKeys.END_SHIFT_2));
+        data.put(DataKeys.END_GAME, temp.get(DataKeys.END_GAME));
+        data.put(DataKeys.PASSED_FUEL, temp.get(DataKeys.PASSED_FUEL));
+        data.put(DataKeys.TOWER_LEVEL, temp.get(DataKeys.TOWER_LEVEL));
+        data.put(DataKeys.TOWER_POS, temp.get(DataKeys.TOWER_POS));
+        data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
+
         data.put(DataKeys.EXPORTED, false);
+        System.out.println(data);
+
         GlobalVariables.dataList.add(data);
         StorageManager.saveData(this);
         finish();
