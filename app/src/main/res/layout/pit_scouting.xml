@@ -45,7 +45,7 @@
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="7"
+                    android:layout_weight="7.5"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
                     android:text="Team Number:" />
@@ -55,7 +55,7 @@
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
+                    android:layout_weight="3.6"
                     android:ems="10"
                     android:inputType="number"
                     android:hint="#" />
@@ -122,7 +122,7 @@
                     android:layout_gravity="center"
                     android:backgroundTint="@color/secondaryForeground"
                     android:textColor="@color/black"
-                    android:text="Export" />
+                    android:text="Export All Data" />
 
                 <Space
                     android:layout_width="0dp"
@@ -648,7 +648,7 @@
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1.6"
                     android:backgroundTint="@color/red"
                     android:textColor="@color/white"
                     android:text="Cancel" />
@@ -667,17 +667,17 @@
                     style="@style/AutoResize25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
+                    android:layout_weight="6.8"
                     android:ems="10"
                     android:inputType="text"
                     android:hint="Notes go here..." />
 
                 <Button
                     android:id="@+id/saveExitButton"
-                    style="@style/AutoResize20"
+                    style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="2.1"
                     android:backgroundTint="@color/primaryForeground"
                     android:textColor="@color/white"
                     android:text="Save and Exit" />

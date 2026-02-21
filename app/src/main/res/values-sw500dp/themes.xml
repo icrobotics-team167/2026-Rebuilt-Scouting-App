@@ -5,6 +5,6 @@
         <item name="AutoSize25">20sp</item>
         <item name="AutoSize30">26sp</item>
         <item name="AutoSize45">32sp</item>
-        <item name="AutoSize60">40sp</item>
+        <item name="AutoSize60">36sp</item>
     </style>
 </resources>

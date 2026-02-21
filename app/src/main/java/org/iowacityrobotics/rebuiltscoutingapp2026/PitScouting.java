@@ -22,6 +22,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataKeys;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,6 +53,7 @@ public class PitScouting extends AppCompatActivity {
     private CheckBox salt, pepper, butter;
 
     private int editingIndex = -1;
+    private boolean isExportingAll = false;
 
     private final ActivityResultLauncher<Intent> exportLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -140,12 +142,7 @@ public class PitScouting extends AppCompatActivity {
         saveBtn.setOnClickListener(v -> savePitData());
 
         exportBtn.setOnClickListener(v -> {
-            StorageManager.saveData(this);
-            Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            intent.setType("application/json");
-            intent.putExtra(Intent.EXTRA_TITLE, "pit_scouting_data.json");
-            exportLauncher.launch(intent);
+            launchFilePicker();
         });
 
         editBtn.setOnClickListener(v -> loadTeamData());
@@ -265,7 +262,7 @@ public class PitScouting extends AppCompatActivity {
             editingIndex = -1;
         } else {
             GlobalVariables.dataList.add(pitData);
-            Toast.makeText(this, "Pit Data Saved!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Saved Successfully", Toast.LENGTH_SHORT).show();
         }
 
         StorageManager.saveData(this);
@@ -311,7 +308,7 @@ public class PitScouting extends AppCompatActivity {
     private void loadTeamData() {
         String targetTeam = teamNumber.getText().toString().trim();
         if (targetTeam.isEmpty()) {
-            Toast.makeText(this, "Enter Team # to Edit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter Team #.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -373,7 +370,7 @@ public class PitScouting extends AppCompatActivity {
         }
 
         if (!found) {
-            Toast.makeText(this, "Team " + targetTeam + " not found locally.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Team " + targetTeam + " not found.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -382,7 +379,6 @@ public class PitScouting extends AppCompatActivity {
         if (editingIndex == -1) {
             loadTeamData();
             if (editingIndex == -1) {
-                Toast.makeText(this, "Load a team first to delete.", Toast.LENGTH_SHORT).show();
                 return;
             }
         }
@@ -395,11 +391,28 @@ public class PitScouting extends AppCompatActivity {
                     StorageManager.saveData(this);
                     clearFields();
                     Toast.makeText(this, "Entry Deleted.", Toast.LENGTH_SHORT).show();
+                    finish();
                 })
                 .setNegativeButton("No", null)
                 .show();
     }
 
+    private void launchFilePicker() {
+        String fileName = "";
+        StorageManager.saveData(this);
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("application/json");
+
+        for (Map<String, Object> match : GlobalVariables.dataList) {
+            if (match.containsKey(PitKeys.RECORD_TYPE) &&
+                    PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
+                fileName = match.get(PitKeys.TEAM_NUMBER).toString() + " Pit Data";
+            }
+        }
+        intent.putExtra(Intent.EXTRA_TITLE, fileName);
+        exportLauncher.launch(intent);
+    }
     private void performExport(Uri uri) {
         if (GlobalVariables.dataList.isEmpty()) {
             Toast.makeText(this, "No data to export!", Toast.LENGTH_SHORT).show();
@@ -455,6 +468,10 @@ public class PitScouting extends AppCompatActivity {
         }
 
         StorageManager.writeJsonToUsb(this, uri, jsonArray.toString());
+        for (Map<String, Object> entry : GlobalVariables.dataList) {
+            System.out.println("Entry type: " + entry.get(PitKeys.RECORD_TYPE));
+        }
+        System.out.println(jsonArray);
         StorageManager.saveData(this);
     }
 

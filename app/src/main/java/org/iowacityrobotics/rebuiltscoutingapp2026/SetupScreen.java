@@ -181,6 +181,7 @@ public class SetupScreen extends AppCompatActivity {
 
     private void checkAndStartExport() {
         StorageManager.saveData(this);
+        String fileName = "";
         boolean hasNewData = false;
         for (Map<String, Object> match : GlobalVariables.dataList) {
             boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
@@ -192,7 +193,13 @@ public class SetupScreen extends AppCompatActivity {
 
         if (hasNewData) {
             isExportingAll = false;
-            launchFilePicker("scouting_new_data.json");
+            for (Map<String, Object> match : GlobalVariables.dataList) {
+                if (match.containsKey(DataKeys.RECORD_TYPE) &&
+                        DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
+                    fileName = match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " Match Data";
+                }
+            }
+            launchFilePicker(fileName);
         } else {
             new AlertDialog.Builder(this)
                     .setTitle("No New Matches")
@@ -218,12 +225,21 @@ public class SetupScreen extends AppCompatActivity {
         List<Map<String, Object>> exportBatch = new ArrayList<>();
 
         if (isExportingAll) {
-            exportBatch.addAll(GlobalVariables.dataList);
-        } else {
+            for (Map<String, Object> match : GlobalVariables.dataList) {
+                if (match.containsKey(DataKeys.RECORD_TYPE) &&
+                        DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
+                    exportBatch.add(match);
+                }
+            }
+        }
+        else {
             for (Map<String, Object> match : GlobalVariables.dataList) {
                 boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
                 if (!isExported) {
-                    exportBatch.add(match);
+                    if (match.containsKey(DataKeys.RECORD_TYPE) &&
+                            DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
+                        exportBatch.add(match);
+                    }
                 }
             }
         }

@@ -152,6 +152,7 @@ public class DataEntry extends AppCompatActivity {
         }
 
         data.put(DataKeys.TEAM_NUM, temp.get(DataKeys.TEAM_NUM));
+        data.put(DataKeys.MATCH_TYPE, getIntent().getStringExtra("PASS_MATCH_TYPE"));
         data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
         data.put(DataKeys.TEAM_RATING, temp.get(DataKeys.TEAM_RATING));
@@ -175,6 +176,7 @@ public class DataEntry extends AppCompatActivity {
 
         GlobalVariables.dataList.add(data);
         StorageManager.saveData(this);
+        Toast.makeText(this, "Saved Successfully.", Toast.LENGTH_SHORT).show();
         finish();
     }
 

@@ -7,6 +7,7 @@ public class DataKeys {
     public static final String RECORD_TYPE = "record_type";
     public static final String TYPE_MATCH = "MATCH_SCOUTING";
     public static final String EXPORTED = "exported";
+    public static final String MATCH_TYPE = "match_type";
 
     public static final String MATCH_NUM = "match_number";
     public static final String TEAM_NUM = "team_number";
