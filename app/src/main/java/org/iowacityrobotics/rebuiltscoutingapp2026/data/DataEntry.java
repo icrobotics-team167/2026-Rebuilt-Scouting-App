@@ -27,7 +27,8 @@ import java.util.Map;
 
 public class DataEntry extends AppCompatActivity {
 
-    private TextView matchNumView, teamNumView, scouterView, assignmentView;
+    private TextView matchNumView, scouterView, assignmentView;
+    private EditText teamNumView;
     private TextView autoCountDisplay, activeCountDisplay, inactiveCountDisplay;
     private int autoCount = 0, activeCount = 0, inactiveCount = 0;
 
@@ -44,7 +45,6 @@ public class DataEntry extends AppCompatActivity {
         setupAutoFill();
 
         findViewById(R.id.saveExitButton).setOnClickListener(v -> saveNewMatch());
-        findViewById(R.id.cancelMatch).setOnClickListener(v -> cancelMatch());
     }
 
     private void initializeViews() {

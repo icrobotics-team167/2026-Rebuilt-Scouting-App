@@ -137,7 +137,6 @@ public class PitScouting extends AppCompatActivity {
         Button exportBtn = findViewById(R.id.exportButton);
         Button editBtn = findViewById(R.id.editButton);
         Button deleteBtn = findViewById(R.id.exportButton2);
-        Button cancelBtn = findViewById(R.id.cancelButton);
 
         saveBtn.setOnClickListener(v -> savePitData());
 
@@ -147,7 +146,6 @@ public class PitScouting extends AppCompatActivity {
 
         editBtn.setOnClickListener(v -> loadTeamData());
         deleteBtn.setOnClickListener(v -> deleteCurrentTeam());
-        cancelBtn.setOnClickListener(v -> cancelPit());
     }
 
     private void clearFields() {
@@ -462,6 +460,9 @@ public class PitScouting extends AppCompatActivity {
 
             Map<String, Object> exportMap = new LinkedHashMap<>(match);
             keysToRemove.forEach(exportMap::remove);
+            if (match.get(PitKeys.PIT_SWERVE).equals("Swerve?")) {
+                match.replace(PitKeys.PIT_SWERVE, "Yes");
+            }
             jsonArray.put(new JSONObject(exportMap));
 
             match.put(PitKeys.EXPORTED, true);

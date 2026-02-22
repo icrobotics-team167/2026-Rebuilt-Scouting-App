@@ -32,14 +32,20 @@
                 android:layout_weight="1"
                 android:text="Team:" />
 
-            <TextView
+            <EditText
                 android:id="@+id/teamNumber"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:layout_weight="2"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:layout_weight="1"
                 android:hint="#" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/matchNumberHeader"
@@ -77,15 +83,6 @@
                 android:gravity="center_vertical"
                 android:text="Assignment" />
 
-            <Button
-                android:id="@+id/cancelMatch"
-                style="@style/AutoResize20"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/red"
-                android:textColor="@color/white"
-                android:text="Cancel" />
         </LinearLayout>
 
         <View

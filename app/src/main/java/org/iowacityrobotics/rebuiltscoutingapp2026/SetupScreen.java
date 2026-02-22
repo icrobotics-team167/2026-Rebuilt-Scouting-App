@@ -3,6 +3,8 @@
 //Match scouting screen
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
+import static android.text.TextUtils.replace;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +54,7 @@ public class SetupScreen extends AppCompatActivity {
                 if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                     Uri uri = result.getData().getData();
                     if (uri != null) {
-                        processAndExport(uri);
+                        processAndExportAll(uri);
                     }
                 }
             }
@@ -149,7 +152,8 @@ public class SetupScreen extends AppCompatActivity {
     private void setupButtons() {
         Button goButton = findViewById(R.id.scoutButton);
         Button editButton = findViewById(R.id.editButton);
-        Button exportButton = findViewById(R.id.exportButton);
+        Button exportButtonSingle = findViewById(R.id.exportButtonSingle);
+        Button exportButtonAll = findViewById(R.id.exportButtonAll);
 
         goButton.setOnClickListener(v -> {
             if (validateInputs()) {
@@ -176,13 +180,16 @@ public class SetupScreen extends AppCompatActivity {
             }
         });
 
-        exportButton.setOnClickListener(v -> checkAndStartExport());
+        exportButtonAll.setOnClickListener(v -> exportUnExported());
+        exportButtonSingle.setOnClickListener(v -> exportSelected());
     }
 
-    private void checkAndStartExport() {
+    private void exportUnExported() {
         StorageManager.saveData(this);
         String fileName = "";
         boolean hasNewData = false;
+        isExportingAll = true;
+
         for (Map<String, Object> match : GlobalVariables.dataList) {
             boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
             if (!isExported) {
@@ -192,7 +199,6 @@ public class SetupScreen extends AppCompatActivity {
         }
 
         if (hasNewData) {
-            isExportingAll = false;
             for (Map<String, Object> match : GlobalVariables.dataList) {
                 if (match.containsKey(DataKeys.RECORD_TYPE) &&
                         DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
@@ -205,12 +211,34 @@ public class SetupScreen extends AppCompatActivity {
                     .setTitle("No New Matches")
                     .setMessage("All matches have already been exported. Do you want to re-export EVERYTHING?")
                     .setPositiveButton("Re-Export All", (dialog, which) -> {
-                        isExportingAll = true;
                         launchFilePicker("scouting_FULL_backup.json");
                     })
                     .setNegativeButton("Cancel", null)
                     .show();
         }
+    }
+
+    private void exportSelected() {
+        StorageManager.saveData(this);
+        isExportingAll = false;
+        String fileName = "";
+        boolean matchSuccess = false;
+        boolean teamSuccess = false;
+        String selectedItem = matchListSpinner.getSelectedItem().toString();
+
+        String[] parts = selectedItem.split("\\D+");
+        for (Map<String, Object> match : GlobalVariables.dataList) {
+            String matchNum = match.get(DataKeys.MATCH_NUM).toString();
+            String teamNum = match.get(DataKeys.TEAM_NUM).toString();
+
+            if (matchNum.equals(parts[1]) && teamNum.equals(parts[2])) {
+                fileName = match.get(DataKeys.MATCH_TYPE).toString() + " " + matchNum + " Match Data";
+                launchFilePicker(fileName);
+                break;
+            }
+        }
+
+
     }
 
     private void launchFilePicker(String fileName) {
@@ -221,18 +249,10 @@ public class SetupScreen extends AppCompatActivity {
         exportLauncher.launch(intent);
     }
 
-    private void processAndExport(Uri uri) {
+    private void processAndExportAll(Uri uri) {
         List<Map<String, Object>> exportBatch = new ArrayList<>();
 
         if (isExportingAll) {
-            for (Map<String, Object> match : GlobalVariables.dataList) {
-                if (match.containsKey(DataKeys.RECORD_TYPE) &&
-                        DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
-                    exportBatch.add(match);
-                }
-            }
-        }
-        else {
             for (Map<String, Object> match : GlobalVariables.dataList) {
                 boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
                 if (!isExported) {
@@ -240,6 +260,22 @@ public class SetupScreen extends AppCompatActivity {
                             DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
                         exportBatch.add(match);
                     }
+                }
+            }
+        }
+        else {
+            boolean matchSuccess = false;
+            boolean teamSuccess = false;
+            String selectedItem = matchListSpinner.getSelectedItem().toString();
+
+            String[] parts = selectedItem.split("\\D+");
+            for (Map<String, Object> match : GlobalVariables.dataList) {
+                String matchNum = match.get(DataKeys.MATCH_NUM).toString();
+                String teamNum = match.get(DataKeys.TEAM_NUM).toString();
+
+                if (matchNum.equals(parts[1]) && teamNum.equals(parts[2])) {
+                    exportBatch.add(match);
+                    break;
                 }
             }
         }
@@ -257,6 +293,15 @@ public class SetupScreen extends AppCompatActivity {
         for (Map<String, Object> match : exportBatch) {
             Map<String, Object> exportMap = new LinkedHashMap<>(match);
             keysToRemove.forEach(exportMap::remove);
+            for (Map.Entry<String, Object> entry : match.entrySet()) {
+                Object value = entry.getValue();
+                if (value.toString().equals("true")) {
+                    entry.setValue("Yes");
+                }
+                else if (value.toString().equals("false")) {
+                    entry.setValue("No");
+                }
+            }
             jsonArray.put(new JSONObject(exportMap));
         }
         System.out.println(jsonArray);

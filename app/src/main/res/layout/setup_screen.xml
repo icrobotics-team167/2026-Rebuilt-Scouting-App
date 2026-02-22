@@ -23,7 +23,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4" />
+                android:layout_weight="5" />
 
             <Button
                 style="@style/AutoResize25"
@@ -43,6 +43,16 @@
                 android:gravity="center_vertical"
                 />
 
+            <Button
+                android:id="@+id/exportButtonSingle"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:backgroundTint="@color/secondaryForeground"
+                android:textColor="@color/black"
+                android:text="Export" />
+
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -50,7 +60,7 @@
 
             <Button
                 style="@style/AutoResize25"
-                android:id="@+id/exportButton"
+                android:id="@+id/exportButtonAll"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
