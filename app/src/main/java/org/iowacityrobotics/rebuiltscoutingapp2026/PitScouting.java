@@ -396,6 +396,53 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void launchFilePicker() {
+        boolean success = false;
+        boolean isExported = true;
+        for (Map<String, Object> match : GlobalVariables.dataList) {
+            if (match.containsKey(PitKeys.RECORD_TYPE) && PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
+                success = true;
+                break;
+            }
+            else {
+                continue;
+            }
+        }
+        if (!success) {
+            Toast.makeText(this, "No data to export.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        for (Map<String, Object> match : GlobalVariables.dataList) {
+            if (match.containsKey(PitKeys.RECORD_TYPE) &&
+                    PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
+                isExported = match.containsKey(PitKeys.EXPORTED) && Boolean.TRUE.equals(match.get(PitKeys.EXPORTED));
+            }
+        }
+        if (isExported) {
+            new AlertDialog.Builder(this)
+                    .setTitle("No New Data To Export")
+                    .setMessage("Are you sure you want to re-export all data?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        String fileName = "";
+                        StorageManager.saveData(this);
+                        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+                        intent.addCategory(Intent.CATEGORY_OPENABLE);
+                        intent.setType("application/json");
+
+                        for (Map<String, Object> match : GlobalVariables.dataList) {
+                            if (match.containsKey(PitKeys.RECORD_TYPE) &&
+                                    PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
+                                fileName = match.get(PitKeys.TEAM_NUMBER).toString() + " Pit Data";
+                            }
+                        }
+                        intent.putExtra(Intent.EXTRA_TITLE, fileName);
+                        exportLauncher.launch(intent);
+                    })
+                    .setNegativeButton("No", (dialog, which) -> {
+                    })
+                    .show();
+            return;
+        }
         String fileName = "";
         StorageManager.saveData(this);
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
@@ -412,10 +459,6 @@ public class PitScouting extends AppCompatActivity {
         exportLauncher.launch(intent);
     }
     private void performExport(Uri uri) {
-        if (GlobalVariables.dataList.isEmpty()) {
-            Toast.makeText(this, "No data to export!", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         List<Map<String, Object>> newPitData = new ArrayList<>();
         List<Map<String, Object>> allPitData = new ArrayList<>();
@@ -432,15 +475,13 @@ public class PitScouting extends AppCompatActivity {
         }
 
         List<Map<String, Object>> finalExportList;
-
         if (!newPitData.isEmpty()) {
             finalExportList = newPitData;
-            Toast.makeText(this, "Exporting " + newPitData.size() + " NEW entries.", Toast.LENGTH_SHORT).show();
-        } else if (!allPitData.isEmpty()) {
+        }
+        else if (!allPitData.isEmpty()) {
             finalExportList = allPitData;
-            Toast.makeText(this, "No new data. Re-exporting ALL " + allPitData.size() + " entries.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "No Pit Scouting data found at all.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No data to export.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -468,7 +509,7 @@ public class PitScouting extends AppCompatActivity {
             match.put(PitKeys.EXPORTED, true);
         }
 
-        StorageManager.writeJsonToUsb(this, uri, jsonArray.toString());
+        StorageManager.writeJsonToUsb(this, findViewById(android.R.id.content), uri, jsonArray.toString());
         for (Map<String, Object> entry : GlobalVariables.dataList) {
             System.out.println("Entry type: " + entry.get(PitKeys.RECORD_TYPE));
         }

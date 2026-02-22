@@ -5,7 +5,14 @@ package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.View;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
+
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -101,13 +108,16 @@ public class StorageManager {
         }
     }
 
-    public static void writeJsonToUsb(Context context, Uri uri, String jsonString) {
+    public static void writeJsonToUsb(Context context, View view, Uri uri, String jsonString) {
         try {
             try (OutputStream output = context.getContentResolver().openOutputStream(uri)) {
                 if (output == null) throw new Exception("Could not open USB file");
                 output.write(jsonString.getBytes());
             }
-            Toast.makeText(context, "Export Successful!", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Exporting...", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Exporting...", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Successfully Exported!", Toast.LENGTH_LONG).show();
+
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(context, "Export Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();

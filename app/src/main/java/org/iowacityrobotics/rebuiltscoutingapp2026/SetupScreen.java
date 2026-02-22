@@ -306,7 +306,7 @@ public class SetupScreen extends AppCompatActivity {
         }
         System.out.println(jsonArray);
 
-        StorageManager.writeJsonToUsb(this, uri, jsonArray.toString());
+        StorageManager.writeJsonToUsb(this, findViewById(android.R.id.content), uri, jsonArray.toString());
 
         for (Map<String, Object> match : exportBatch) {
             match.put(DataKeys.EXPORTED, true);
