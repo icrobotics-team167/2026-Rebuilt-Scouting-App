@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="128"
+        android:background="@color/background"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="16"
+            android:weightSum="32"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+
+            <TextView
+                android:id="@+id/instructionsHeader"
+                style="@style/AutoResize60"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="22"
+                android:gravity="center"
+                android:text="Instructions" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/doneButton"
+                    style="@style/AutoResize30"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/primaryForeground"
+                    android:textColor="@color/white"
+                    android:text="Done" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider43"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="110"
+            android:weightSum="128"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="63"
+                android:weightSum="64"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    style="@style/AutoResize45"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="Match Scouting" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/matchScoutingHeader"
+                            style="@style/AutoResize45"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center"
+                            android:paddingStart="10dp"
+                            android:text="Match Scouting" />
+
+                        <TextView
+                            android:id="@+id/dataQualityHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="1. Data Quality" />
+
+                        <TextView
+                            android:id="@+id/accurateDataText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:layout_margin="10dp"
+                            android:inputType="textMultiLine"
+                            android:text="Accurate data is more important than large quantities of data" />
+
+                        <TextView
+                            android:id="@+id/unsureText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:layout_margin="10dp"
+                            android:inputType="textMultiLine"
+                            android:text='Select "Unsure" if you are unsure — do not guess.' />
+
+                        <TextView
+                            android:id="@+id/cyclesText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:layout_margin="10dp"
+                            android:inputType="textMultiLine"
+                            android:text="Remember to change the cycles you are incrementing based on the period" />
+
+                        <TextView
+                            android:id="@+id/notesImportanceText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_margin="10dp"
+                            android:paddingStart="30dp"
+                            android:inputType="textMultiLine"
+                            android:text="Notes are only for out-of-the-ordinary or important events" />
+
+                        <TextView
+                            android:id="@+id/allianceScoresText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:inputType="textMultiLine"
+                            android:text="Remember to record alliance score at the end of each important period" />
+
+                        <TextView
+                            android:id="@+id/messedUpText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:inputType="textMultiLine"
+                            android:text="If you mess up a large portion of data, skip the match with the back button" />
+
+                        <TextView
+                            android:id="@+id/focusAttentionHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="2. Focus &amp; Attention" />
+
+                        <TextView
+                            android:id="@+id/payAttentionText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Remember to pay attention during matches. If you need a break, talk to A.P.P." />
+
+                        <TextView
+                            android:id="@+id/nameSettingsHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="3. Name Settings" />
+
+                        <TextView
+                            android:id="@+id/enterFirstNameText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Always enter your real first name as known by the team" />
+
+                        <TextView
+                            android:id="@+id/allCapsNameText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Put your name in ALL CAPS to unlock your special mode" />
+
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider30"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="63"
+                android:weightSum="64"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textMultiLine">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/pitScoutingHeader"
+                            style="@style/AutoResize45"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center"
+                            android:text="Pit Scouting" />
+
+                        <TextView
+                            android:id="@+id/sheetCompletionHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="1. Sheet Completion" />
+
+                        <TextView
+                            android:id="@+id/topRowText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Fill out the top row first" />
+
+                        <TextView
+                            android:id="@+id/topBottomSectionsText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Don't ask teams about the top or bottom sections" />
+
+                        <TextView
+                            android:id="@+id/nextTeamText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="If the next team you are scouting is in a match, skip them and come back later." />
+
+                        <TextView
+                            android:id="@+id/heavyNotesText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Don't go to heavy into notes - this is Day 1" />
+
+                        <TextView
+                            android:id="@+id/measurementsHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="2. Measurements" />
+
+                        <TextView
+                            android:id="@+id/measuringUnitsText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Make sure the measuring unit you select matches the one given from the team" />
+
+                        <TextView
+                            android:id="@+id/measureRobotText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="If necessary, measure the robot yourself. Don't forget to use the same units you selected." />
+
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

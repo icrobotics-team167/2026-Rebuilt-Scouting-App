@@ -25,6 +25,8 @@
         <activity android:name=".data.DataEditor" />
         <activity android:name=".data.DataEntry" />
 
+        <activity android:name=".InstructionsScreen" />
+
     </application>
 
 </manifest>

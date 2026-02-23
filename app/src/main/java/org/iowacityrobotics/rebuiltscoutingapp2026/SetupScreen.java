@@ -114,13 +114,14 @@ public class SetupScreen extends AppCompatActivity {
                 Object type = entry.get(DataKeys.RECORD_TYPE);
                 if (DataKeys.TYPE_MATCH.equals(type)) {
 
+                    String matchType = String.valueOf(entry.get(DataKeys.MATCH_TYPE));
                     String matchNum = String.valueOf(entry.get(DataKeys.MATCH_NUM));
                     String teamNum = String.valueOf(entry.get(DataKeys.TEAM_NUM));
 
                     boolean isExported = entry.containsKey(DataKeys.EXPORTED) && (boolean) entry.get(DataKeys.EXPORTED);
                     String marker = isExported ? "" : " *";
 
-                    matchOptions.add("Match " + matchNum + " - Team " + teamNum + marker);
+                    matchOptions.add(matchType + " " + matchNum + " - Team " + teamNum + marker);
 
                     filteredIndices.add(i);
                 }
@@ -222,8 +223,6 @@ public class SetupScreen extends AppCompatActivity {
         StorageManager.saveData(this);
         isExportingAll = false;
         String fileName = "";
-        boolean matchSuccess = false;
-        boolean teamSuccess = false;
         String selectedItem = matchListSpinner.getSelectedItem().toString();
 
         String[] parts = selectedItem.split("\\D+");
@@ -262,10 +261,16 @@ public class SetupScreen extends AppCompatActivity {
                     }
                 }
             }
+            if (exportBatch.isEmpty()) {
+                for (Map<String, Object> match : GlobalVariables.dataList) {
+                    if (match.containsKey(DataKeys.RECORD_TYPE) &&
+                            DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
+                        exportBatch.add(match);
+                    }
+                }
+            }
         }
         else {
-            boolean matchSuccess = false;
-            boolean teamSuccess = false;
             String selectedItem = matchListSpinner.getSelectedItem().toString();
 
             String[] parts = selectedItem.split("\\D+");

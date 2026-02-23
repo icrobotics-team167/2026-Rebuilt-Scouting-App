@@ -418,17 +418,18 @@ public class PitScouting extends AppCompatActivity {
                 isExported = match.containsKey(PitKeys.EXPORTED) && Boolean.TRUE.equals(match.get(PitKeys.EXPORTED));
             }
         }
+
+        StorageManager.saveData(this);
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("application/json");
+
         if (isExported) {
             new AlertDialog.Builder(this)
                     .setTitle("No New Data To Export")
                     .setMessage("Are you sure you want to re-export all data?")
                     .setPositiveButton("Yes", (dialog, which) -> {
                         String fileName = "";
-                        StorageManager.saveData(this);
-                        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-                        intent.addCategory(Intent.CATEGORY_OPENABLE);
-                        intent.setType("application/json");
-
                         for (Map<String, Object> match : GlobalVariables.dataList) {
                             if (match.containsKey(PitKeys.RECORD_TYPE) &&
                                     PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
@@ -443,12 +444,8 @@ public class PitScouting extends AppCompatActivity {
                     .show();
             return;
         }
-        String fileName = "";
-        StorageManager.saveData(this);
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("application/json");
 
+        String fileName = "";
         for (Map<String, Object> match : GlobalVariables.dataList) {
             if (match.containsKey(PitKeys.RECORD_TYPE) &&
                     PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
