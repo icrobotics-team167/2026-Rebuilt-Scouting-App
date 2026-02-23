@@ -58,7 +58,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="3"
-                        android:weightSum="5"
+                        android:weightSum="10"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -67,7 +67,7 @@
                             style="@style/AutoResize25"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="3"
+                            android:layout_weight="7"
                             android:backgroundTint="@color/secondaryForeground"
                             android:text="Instructions"
                             android:textColor="@color/black" />
