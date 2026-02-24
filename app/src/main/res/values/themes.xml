@@ -5,6 +5,20 @@
     </style>
 
     <style name="main_theme" parent="Base.Theme.RebuiltScoutingApp2026" >
+        <color name="primaryForeground">@color/normalPrimaryForeground</color>
+        <color name="secondaryForeground">@color/normalSecondaryForeground</color>
+        <color name="android:colorBackground">@color/normalBackground</color>
+        <item name="AutoSize20">13sp</item>
+        <item name="AutoSize25">18sp</item>
+        <item name="AutoSize30">24sp</item>
+        <item name="AutoSize45">36sp</item>
+        <item name="AutoSize60">50sp</item>
+    </style>
+
+    <style name="parker" parent="Base.Theme.RebuiltScoutingApp2026" >
+        <color name="primaryForeground">@color/parkerPrimaryForeground</color>
+        <color name="secondaryForeground">@color/parkerSecondaryForeground</color>
+        <color name="android:colorBackground">@color/parkerBackground</color>
         <item name="AutoSize20">13sp</item>
         <item name="AutoSize25">18sp</item>
         <item name="AutoSize30">24sp</item>

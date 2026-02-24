@@ -4,6 +4,8 @@
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,11 +14,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
 import org.iowacityrobotics.rebuiltscoutingapp2026.R;
@@ -36,6 +41,23 @@ public class DataEntry extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.data_entry);
+
+        SharedPreferences prefs =
+                getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE);
+
+        String name = prefs.getString("scouter_name", "");
+        LinearLayout layout = findViewById(R.id.dataEntry);
+
+        if (name.equals("PARKER")) {
+            layout.setBackgroundColor(
+                    ContextCompat.getColor(this, R.color.background)
+            );
+        }
+        else {
+            layout.setBackgroundColor(
+                    ContextCompat.getColor(this, R.color.background)
+            );
+        }
 
         MatchSchedule.loadSchedule(this);
         initializeViews();

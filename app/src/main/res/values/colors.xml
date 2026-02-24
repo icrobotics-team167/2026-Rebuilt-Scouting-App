@@ -4,13 +4,17 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
 
-    <color name="background">#FAFAD2</color>
+    <color name="normalBackground">#FAFAD2</color>
 
-    <color name="primaryForeground">#3CAB14</color>
+    <color name="normalPrimaryForeground">#3CAB14</color>
     <color name="buttonTextPrimary">@color/white</color>
     <color name="plusMinusColor">@color/white</color>
 
-    <color name="secondaryForeground">#FFC800</color>
+    <color name="normalSecondaryForeground">#FFC800</color>
     <color name="buttonTextSecondary">@color/black</color>
+
+    <color name="parkerPrimaryForeground">@color/black</color>
+    <color name="parkerSecondaryForeground">#FFC800</color>
+    <color name="parkerBackground">#FF0085</color>
 
 </resources>

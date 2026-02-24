@@ -318,6 +318,16 @@
                             android:text="Don't go to heavy into notes - this is Day 1" />
 
                         <TextView
+                            android:id="@+id/unknownMeasurementText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="If for some reason you couldn't get a measurement, input -1 to refer to notes" />
+
+                        <TextView
                             android:id="@+id/measurementsHeader"
                             style="@style/AutoResize25"
                             android:layout_width="match_parent"
