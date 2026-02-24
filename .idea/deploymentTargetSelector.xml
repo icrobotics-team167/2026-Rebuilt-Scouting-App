@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2026-02-21T23:59:05.013972600Z">
+        <DropdownSelection timestamp="2026-02-24T00:57:59.887191700Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\cotc\.android\avd\Scouting_Tablet.avd" />

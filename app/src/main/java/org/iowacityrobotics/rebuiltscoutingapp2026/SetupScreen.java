@@ -108,6 +108,7 @@ public class SetupScreen extends AppCompatActivity {
         if (GlobalVariables.dataList.isEmpty()) {
             matchOptions.add("No Saved Data");
         } else {
+            matchOptions.add("Select");
             for (int i = 0; i < GlobalVariables.dataList.size(); i++) {
                 Map<String, Object> entry = GlobalVariables.dataList.get(i);
 
@@ -172,23 +173,35 @@ public class SetupScreen extends AppCompatActivity {
         editButton.setOnClickListener(v -> {
             int selectedPosition = matchListSpinner.getSelectedItemPosition();
 
-            if (!filteredIndices.isEmpty() && selectedPosition != -1) {
+            if (!filteredIndices.isEmpty() && selectedPosition != -1 && selectedPosition != 0) {
                 GlobalVariables.objectIndex = filteredIndices.get(selectedPosition);
                 Intent intent = new Intent(SetupScreen.this, DataEditor.class);
                 startActivity(intent);
-            } else {
+            }
+            else if (selectedPosition == 0) {
+                Toast.makeText(this, "Select match to edit.", Toast.LENGTH_SHORT).show();
+            }
+            else {
                 Toast.makeText(this, "No matches available to edit!", Toast.LENGTH_SHORT).show();
             }
         });
 
         exportButtonAll.setOnClickListener(v -> exportUnExported());
-        exportButtonSingle.setOnClickListener(v -> exportSelected());
+        exportButtonSingle.setOnClickListener(v -> {
+            int selectedPosition = matchListSpinner.getSelectedItemPosition();
+            if (selectedPosition != 0) {
+                exportSelected();
+            }
+            else {
+                Toast.makeText(this, "Select match to export.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void exportUnExported() {
         StorageManager.saveData(this);
-        String fileName = "";
         boolean hasNewData = false;
+        int matchesFound = 0;
         isExportingAll = true;
 
         for (Map<String, Object> match : GlobalVariables.dataList) {
@@ -200,10 +213,21 @@ public class SetupScreen extends AppCompatActivity {
         }
 
         if (hasNewData) {
+            String fileName = "";
             for (Map<String, Object> match : GlobalVariables.dataList) {
                 if (match.containsKey(DataKeys.RECORD_TYPE) &&
                         DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
-                    fileName = match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " Match Data";
+                    boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
+                    if (!isExported) {
+                        matchesFound++;
+                        if (matchesFound == 1) {
+                            fileName = match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " Match Data";
+                        } else if (matchesFound > 1) {
+                            fileName = match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data";
+                        } else {
+                            Toast.makeText(this, "Error finding matches.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             }
             launchFilePicker(fileName);
@@ -212,7 +236,14 @@ public class SetupScreen extends AppCompatActivity {
                     .setTitle("No New Matches")
                     .setMessage("All matches have already been exported. Do you want to re-export EVERYTHING?")
                     .setPositiveButton("Re-Export All", (dialog, which) -> {
-                        launchFilePicker("scouting_FULL_backup.json");
+                        String fileName = "";
+                        for (Map<String, Object> match : GlobalVariables.dataList) {
+                            if (match.containsKey(DataKeys.RECORD_TYPE) &&
+                                    DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
+                                fileName = match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data";
+                            }
+                        }
+                        launchFilePicker(fileName);
                     })
                     .setNegativeButton("Cancel", null)
                     .show();

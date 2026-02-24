@@ -209,7 +209,7 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="W"
-                    android:inputType="numberDecimal"
+                    android:inputType="numberDecimal|numberSigned"
                     android:paddingTop="10dp"
                     android:text="" />
 
@@ -232,7 +232,7 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="D"
-                    android:inputType="numberDecimal"
+                    android:inputType="numberDecimal|numberSigned"
                     android:paddingTop="10dp"
                     android:text="" />
 
@@ -255,7 +255,7 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="H"
-                    android:inputType="numberDecimal"
+                    android:inputType="numberDecimal|numberSigned"
                     android:paddingTop="10dp"
                     android:text="" />
 
@@ -328,7 +328,7 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="W"
-                    android:inputType="numberDecimal"
+                    android:inputType="numberDecimal|numberSigned"
                     android:paddingTop="10dp"
                     android:text="" />
 
@@ -398,7 +398,7 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="W"
-                    android:inputType="numberDecimal"
+                    android:inputType="numberDecimal|numberSigned"
                     android:paddingTop="10dp"
                     android:text="" />
 
@@ -421,7 +421,7 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="D"
-                    android:inputType="numberDecimal"
+                    android:inputType="numberDecimal|numberSigned"
                     android:paddingTop="10dp"
                     android:text="" />
 
@@ -444,7 +444,7 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="H"
-                    android:inputType="numberDecimal"
+                    android:inputType="numberDecimal|numberSigned"
                     android:paddingTop="10dp"
                     android:text="" />
 
@@ -518,7 +518,7 @@
                     android:layout_weight="2"
                     android:ems="10"
                     android:gravity="center"
-                    android:inputType="number"
+                    android:inputType="numberSigned"
                     android:hint="#"
                     android:text="" />
             </LinearLayout>
