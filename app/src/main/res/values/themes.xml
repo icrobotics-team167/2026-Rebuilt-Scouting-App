@@ -5,9 +5,9 @@
     </style>
 
     <style name="main_theme" parent="Base.Theme.RebuiltScoutingApp2026" >
-        <color name="primaryForeground">@color/normalPrimaryForeground</color>
-        <color name="secondaryForeground">@color/normalSecondaryForeground</color>
-        <color name="android:colorBackground">@color/normalBackground</color>
+        <item name="colorPrimary">@color/primaryForeground</item>
+        <item name="colorSecondary">@color/secondaryForeground</item>
+        <item name="colorSurface">@color/background</item>
         <item name="AutoSize20">13sp</item>
         <item name="AutoSize25">18sp</item>
         <item name="AutoSize30">24sp</item>
@@ -15,14 +15,185 @@
         <item name="AutoSize60">50sp</item>
     </style>
 
-    <style name="parker" parent="Base.Theme.RebuiltScoutingApp2026" >
-        <color name="primaryForeground">@color/parkerPrimaryForeground</color>
-        <color name="secondaryForeground">@color/parkerSecondaryForeground</color>
-        <color name="android:colorBackground">@color/parkerBackground</color>
-        <item name="AutoSize20">13sp</item>
-        <item name="AutoSize25">18sp</item>
-        <item name="AutoSize30">24sp</item>
-        <item name="AutoSize45">36sp</item>
-        <item name="AutoSize60">50sp</item>
+    <style name="Parker" parent="main_theme">
+        <item name="colorPrimary">#2E7D32</item>
+        <item name="colorSecondary">#FF8F00</item>
+        <item name="colorSurface">#F5F0E7</item>
     </style>
+
+    <style name="Madison" parent="main_theme">
+        <item name="colorPrimary">#1565C0</item>
+        <item name="colorSecondary">#F57C00</item>
+        <item name="colorSurface">#F2F4FF</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User3" parent="main_theme">
+        <item name="colorPrimary">#6A1B9A</item>
+        <item name="colorSecondary">#FBC02D</item>
+        <item name="colorSurface">#F7F2FF</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User4" parent="main_theme">
+        <item name="colorPrimary">#00838F</item>
+        <item name="colorSecondary">#FF6F00</item>
+        <item name="colorSurface">#F0F8FA</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User5" parent="main_theme">
+        <item name="colorPrimary">#C2185B</item>
+        <item name="colorSecondary">#FFB300</item>
+        <item name="colorSurface">#FFF1F6</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User6" parent="main_theme">
+        <item name="colorPrimary">#3949AB</item>
+        <item name="colorSecondary">#FF7043</item>
+        <item name="colorSurface">#F3F5FF</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User7" parent="main_theme">
+        <item name="colorPrimary">#00897B</item>
+        <item name="colorSecondary">#FFCA28</item>
+        <item name="colorSurface">#F2FBF7</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User8" parent="main_theme">
+        <item name="colorPrimary">#D32F2F</item>
+        <item name="colorSecondary">#FFA000</item>
+        <item name="colorSurface">#FFF6F6</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User9" parent="main_theme">
+        <item name="colorPrimary">#0097A7</item>
+        <item name="colorSecondary">#FF8A65</item>
+        <item name="colorSurface">#F1FCFF</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User10" parent="main_theme">
+        <item name="colorPrimary">#7B1FA2</item>
+        <item name="colorSecondary">#FFEB3B</item>
+        <item name="colorSurface">#FBF7FF</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User11" parent="main_theme">
+        <item name="colorPrimary">#303F9F</item>
+        <item name="colorSecondary">#FF7043</item>
+        <item name="colorSurface">#F2F4FF</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User12" parent="main_theme">
+        <item name="colorPrimary">#2E7D32</item>
+        <item name="colorSecondary">#FFD600</item>
+        <item name="colorSurface">#F6FAF6</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User13" parent="main_theme">
+        <item name="colorPrimary">#0277BD</item>
+        <item name="colorSecondary">#FF8F00</item>
+        <item name="colorSurface">#F3F9FF</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User14" parent="main_theme">
+        <item name="colorPrimary">#00838F</item>
+        <item name="colorSecondary">#FFCA28</item>
+        <item name="colorSurface">#F1FAFC</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User15" parent="main_theme">
+        <item name="colorPrimary">#C2185B</item>
+        <item name="colorSecondary">#FF7043</item>
+        <item name="colorSurface">#FFF3F8</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User16" parent="main_theme">
+        <item name="colorPrimary">#00695C</item>
+        <item name="colorSecondary">#FFB300</item>
+        <item name="colorSurface">#F1FAF7</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User17" parent="main_theme">
+        <item name="colorPrimary">#283593</item>
+        <item name="colorSecondary">#FF6F00</item>
+        <item name="colorSurface">#F3F4FF</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User18" parent="main_theme">
+        <item name="colorPrimary">#00897B</item>
+        <item name="colorSecondary">#FFCA28</item>
+        <item name="colorSurface">#F2FBFA</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User19" parent="main_theme">
+        <item name="colorPrimary">#D32F2F</item>
+        <item name="colorSecondary">#FFA726</item>
+        <item name="colorSurface">#FFF4F4</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User20" parent="main_theme">
+        <item name="colorPrimary">#1565C0</item>
+        <item name="colorSecondary">#FFB74D</item>
+        <item name="colorSurface">#F4F7FF</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User21" parent="main_theme">
+        <item name="colorPrimary">#2E7D32</item>
+        <item name="colorSecondary">#FF8F00</item>
+        <item name="colorSurface">#F5FAF3</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User22" parent="main_theme">
+        <item name="colorPrimary">#6A1B9A</item>
+        <item name="colorSecondary">#FFD54F</item>
+        <item name="colorSurface">#F8F3FF</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User23" parent="main_theme">
+        <item name="colorPrimary">#00838F</item>
+        <item name="colorSecondary">#FF7043</item>
+        <item name="colorSurface">#F1F9FB</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User24" parent="main_theme">
+        <item name="colorPrimary">#C2185B</item>
+        <item name="colorSecondary">#FFCA28</item>
+        <item name="colorSurface">#FFF2F7</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User25" parent="main_theme">
+        <item name="colorPrimary">#3949AB</item>
+        <item name="colorSecondary">#FF8A65</item>
+        <item name="colorSurface">#F2F4FF</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User26" parent="main_theme">
+        <item name="colorPrimary">#00796B</item>
+        <item name="colorSecondary">#FFD600</item>
+        <item name="colorSurface">#F1FAF8</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User27" parent="main_theme">
+        <item name="colorPrimary">#D32F2F</item>
+        <item name="colorSecondary">#FF7043</item>
+        <item name="colorSurface">#FFF5F3</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User28" parent="main_theme">
+        <item name="colorPrimary">#1565C0</item>
+        <item name="colorSecondary">#FFB300</item>
+        <item name="colorSurface">#F4F6FF</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User29" parent="main_theme">
+        <item name="colorPrimary">#2E7D32</item>
+        <item name="colorSecondary">#FF8F00</item>
+        <item name="colorSurface">#F6FAF6</item>
+    </style>
+
+    <style name="Theme.ScoutingApp.User30" parent="main_theme">
+        <item name="colorPrimary">#283593</item>
+        <item name="colorSecondary">#FFD54F</item>
+        <item name="colorSurface">#F2F5FF</item>
+    </style>
+
+
 </resources>

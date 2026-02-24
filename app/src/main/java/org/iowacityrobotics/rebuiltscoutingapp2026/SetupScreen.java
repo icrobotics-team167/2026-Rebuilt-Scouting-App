@@ -175,7 +175,7 @@ public class SetupScreen extends AppCompatActivity {
             int selectedPosition = matchListSpinner.getSelectedItemPosition();
 
             if (!filteredIndices.isEmpty() && selectedPosition != -1 && selectedPosition != 0) {
-                GlobalVariables.objectIndex = filteredIndices.get(selectedPosition);
+                GlobalVariables.objectIndex = filteredIndices.get(selectedPosition - 1);
                 Intent intent = new Intent(SetupScreen.this, DataEditor.class);
                 startActivity(intent);
             }
@@ -330,7 +330,7 @@ public class SetupScreen extends AppCompatActivity {
         for (Map<String, Object> match : exportBatch) {
             Map<String, Object> exportMap = new LinkedHashMap<>(match);
             keysToRemove.forEach(exportMap::remove);
-            for (Map.Entry<String, Object> entry : match.entrySet()) {
+            for (Map.Entry<String, Object> entry : exportMap.entrySet()) {
                 Object value = entry.getValue();
                 if (value.equals(true)) {
                     entry.setValue("Yes");

@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,25 +40,9 @@ public class DataEntry extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        applyThemeFromPreferences();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.data_entry);
-
-        SharedPreferences prefs =
-                getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE);
-
-        String name = prefs.getString("scouter_name", "");
-        LinearLayout layout = findViewById(R.id.dataEntry);
-
-        if (name.equals("PARKER")) {
-            layout.setBackgroundColor(
-                    ContextCompat.getColor(this, R.color.background)
-            );
-        }
-        else {
-            layout.setBackgroundColor(
-                    ContextCompat.getColor(this, R.color.background)
-            );
-        }
 
         MatchSchedule.loadSchedule(this);
         initializeViews();
@@ -212,5 +197,24 @@ public class DataEntry extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+    private void applyThemeFromPreferences() {
+        SharedPreferences prefs = getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE);
+        String name = prefs.getString("scouter_name", "");
+
+        int style;
+
+        switch (name) {
+            case "PARKER":
+                style = R.style.Parker;
+                break;
+            case "MADISON":
+                style = R.style.Madison;
+                break;
+            default:
+                style = R.style.main_theme;
+        }
+        setTheme(style);
     }
 }
