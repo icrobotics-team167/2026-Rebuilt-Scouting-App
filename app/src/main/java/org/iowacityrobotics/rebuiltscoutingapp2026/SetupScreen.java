@@ -331,10 +331,10 @@ public class SetupScreen extends AppCompatActivity {
             keysToRemove.forEach(exportMap::remove);
             for (Map.Entry<String, Object> entry : match.entrySet()) {
                 Object value = entry.getValue();
-                if (value.toString().equals("true")) {
+                if (value.equals(true)) {
                     entry.setValue("Yes");
                 }
-                else if (value.toString().equals("false")) {
+                else if (value.equals(false)) {
                     entry.setValue("No");
                 }
             }
