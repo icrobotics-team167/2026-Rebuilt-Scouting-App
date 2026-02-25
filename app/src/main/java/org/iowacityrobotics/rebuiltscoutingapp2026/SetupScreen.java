@@ -325,6 +325,7 @@ public class SetupScreen extends AppCompatActivity {
         JSONArray jsonArray = new JSONArray();
         Set<String> keysToRemove = Set.of(
                 DataKeys.RECORD_TYPE,
+                DataKeys.ASSIGNMENT,
                 DataKeys.EXPORTED
         );
         for (Map<String, Object> match : exportBatch) {
@@ -332,11 +333,13 @@ public class SetupScreen extends AppCompatActivity {
             keysToRemove.forEach(exportMap::remove);
             for (Map.Entry<String, Object> entry : exportMap.entrySet()) {
                 Object value = entry.getValue();
-                if (value.equals(true)) {
-                    entry.setValue("Yes");
-                }
-                else if (value.equals(false)) {
-                    entry.setValue("No");
+                if (value instanceof Boolean) {
+                    entry.setValue((Boolean) value ? "Yes" : "No");
+                } else if (!value.toString().isEmpty()) {
+                    String strValue = value.toString();
+                    strValue = strValue.toLowerCase();
+                    strValue = strValue.substring(0, 1).toUpperCase() + strValue.substring(1);
+                    entry.setValue(strValue);
                 }
             }
             jsonArray.put(new JSONObject(exportMap));

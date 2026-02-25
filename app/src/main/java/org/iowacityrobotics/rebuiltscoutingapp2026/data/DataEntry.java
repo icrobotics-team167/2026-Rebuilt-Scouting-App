@@ -161,6 +161,7 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.TEAM_NUM, temp.get(DataKeys.TEAM_NUM));
         data.put(DataKeys.MATCH_TYPE, getIntent().getStringExtra("PASS_MATCH_TYPE"));
         data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
+        data.put(DataKeys.ASSIGNMENT, getIntent().getStringExtra("PASS_ASSIGNMENT"));
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
         data.put(DataKeys.TEAM_RATING, temp.get(DataKeys.TEAM_RATING));
         data.put(DataKeys.AUTO_NEUTRAL, temp.get(DataKeys.AUTO_NEUTRAL));
@@ -206,15 +207,150 @@ public class DataEntry extends AppCompatActivity {
         int style;
 
         switch (name) {
+            case "ASHVID":
+                style = R.style.Ashvid;
+                break;
+            case "DANIEL":
+                style = R.style.Daniel;
+                break;
+            case "EDMUND":
+                style = R.style.Edmund;
+                break;
+            case "TOMMY":
+                style = R.style.Tommy;
+                break;
+            case "BENM":
+                style = R.style.BenM;
+                break;
+            case "MERT":
+                style = R.style.Mert;
+                break;
+            case "AVANEESH":
+                style = R.style.Avaneesh;
+                break;
+            case "BENL":
+                style = R.style.BenL;
+                break;
+            case "CALDER":
+                style = R.style.Calder;
+                break;
+            case "CODY":
+                style = R.style.Cody;
+                break;
+            case "COLE":
+                style = R.style.Cole;
+                break;
+            case "ELLY":
+                style = R.style.Elly;
+                break;
+            case "EVAN":
+                style = R.style.Evan;
+                break;
+            case "JACK":
+                style = R.style.Jack;
+                break;
+            case "JAMES":
+                style = R.style.James;
+                break;
+            case "JERRY":
+                style = R.style.Jerry;
+                break;
+            case "LIAM":
+                style = R.style.Liam;
+                break;
+            case "NOLAN":
+                style = R.style.Nolan;
+                break;
+            case "PARSHWA":
+                style = R.style.Parshwa;
+                break;
+            case "SOMA":
+                style = R.style.Soma;
+                break;
+            case "TADA":
+                style = R.style.Tada;
+                break;
+            case "ALEX":
+                style = R.style.Alex;
+                break;
+            case "CALVIN":
+                style = R.style.Calvin;
+                break;
+            case "EMMA":
+                style = R.style.Emma;
+                break;
+            case "FARHAN":
+                style = R.style.Farhan;
+                break;
+            case "JAIME":
+                style = R.style.Jaime;
+                break;
+            case "JAYNOU":
+                style = R.style.Jaynou;
+                break;
+            case "JENNIFER":
+                style = R.style.Jennifer;
+                break;
+            case "KAZU":
+                style = R.style.Kazu;
+                break;
+            case "MAXIMILLIAN":
+                style = R.style.Maximillian;
+                break;
+            case "NATHAN":
+                style = R.style.Nathan;
+                break;
             case "PARKER":
                 style = R.style.Parker;
+                break;
+            case "SONYA":
+                style = R.style.Sonya;
+                break;
+            case "YUZUKA":
+                style = R.style.Yuzuka;
+                break;
+            case "TREY":
+                style = R.style.Trey;
+                break;
+            case "MICHAEL":
+                style = R.style.Michael;
+                break;
+            case "RAZZI":
+                style = R.style.Razzi;
+                break;
+            case "VLAD":
+                style = R.style.Vlad;
+                break;
+            case "CHRIS":
+                style = R.style.Chris;
+                break;
+            case "PENNY":
+                style = R.style.Penny;
+                break;
+            case "BOBBY":
+                style = R.style.Bobby;
+                break;
+            case "GRAYSON":
+                style = R.style.Grayson;
                 break;
             case "MADISON":
                 style = R.style.Madison;
                 break;
+            case "RYAN":
+                style = R.style.Ryan;
+                break;
             default:
-                style = R.style.main_theme;
+                if (isUpperCase(name)) {
+                    style = R.style.Default;
+                }
+                else {
+                    style = R.style.main_theme;
+                }
+                break;
         }
         setTheme(style);
+    }
+    private boolean isUpperCase(String name) {
+        return name.equals(name.toUpperCase());
     }
 }

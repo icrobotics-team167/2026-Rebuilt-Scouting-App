@@ -5,7 +5,4 @@
     <attr name="AutoSize30" format="dimension" />
     <attr name="AutoSize45" format="dimension" />
     <attr name="AutoSize60" format="dimension" />
-    <attr name="primaryForeground" format="color" />
-    <attr name="secondaryForeground" format="color" />
-    <attr name="background" format="color" />
 </resources>

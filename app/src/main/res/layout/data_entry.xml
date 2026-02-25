@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="120"
-        android:background="?attr/background"
+        android:background="?attr/colorSurface"
         android:id="@+id/dataEntry"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -172,7 +172,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:backgroundTint="@color/secondaryForeground"
+                                android:backgroundTint="?attr/colorSecondary"
                                 android:textColor="@color/plusMinusColor"
                                 android:text="-" />
 
@@ -190,7 +190,7 @@
                                 style="@style/AutoResize45"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:backgroundTint="@color/secondaryForeground"
+                                android:backgroundTint="?attr/colorSecondary"
                                 android:textColor="@color/plusMinusColor"
                                 android:layout_weight="2"
                                 android:text="+" />
@@ -285,7 +285,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:backgroundTint="@color/secondaryForeground"
+                                android:backgroundTint="?attr/colorSecondary"
                                 android:textColor="@color/plusMinusColor"
                                 android:text="-" />
 
@@ -304,7 +304,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:backgroundTint="@color/secondaryForeground"
+                                android:backgroundTint="?attr/colorSecondary"
                                 android:textColor="@color/plusMinusColor"
                                 android:text="+" />
                         </LinearLayout>
@@ -396,7 +396,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:backgroundTint="@color/secondaryForeground"
+                                android:backgroundTint="?attr/colorSecondary"
                                 android:textColor="@color/plusMinusColor"
                                 android:text="-" />
 
@@ -415,7 +415,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:backgroundTint="@color/secondaryForeground"
+                                android:backgroundTint="?attr/colorSecondary"
                                 android:textColor="@color/plusMinusColor"
                                 android:text="+" />
                         </LinearLayout>
@@ -804,7 +804,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:backgroundTint="@color/primaryForeground"
+                        android:backgroundTint="?attr/colorPrimary"
                         android:textColor="@color/white"
                         android:text="Save and Exit" />
 

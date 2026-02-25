@@ -116,6 +116,7 @@ public class StorageManager {
             }
             Toast.makeText(context, "Exporting...", Toast.LENGTH_LONG).show();
             Toast.makeText(context, "Exporting...", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Exporting...", Toast.LENGTH_SHORT).show();
             Toast.makeText(context, "Successfully Exported!", Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
