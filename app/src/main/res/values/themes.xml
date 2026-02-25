@@ -5,9 +5,9 @@
     </style>
 
     <style name="main_theme" parent="Base.Theme.RebuiltScoutingApp2026" >
-        <item name="colorPrimary">@color/primaryForeground</item>
-        <item name="colorSecondary">@color/secondaryForeground</item>
-        <item name="colorSurface">@color/background</item>
+        <item name="primaryForeground">@color/primaryForeground</item>
+        <item name="secondaryForeground">@color/secondaryForeground</item>
+        <item name="background">@color/background</item>
         <item name="AutoSize20">13sp</item>
         <item name="AutoSize25">18sp</item>
         <item name="AutoSize30">24sp</item>

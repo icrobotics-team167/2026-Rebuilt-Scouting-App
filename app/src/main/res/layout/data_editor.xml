@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:weightSum = "10"
         android:orientation="vertical"
-        android:background="@color/background"
+        android:background="?attr/background"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 

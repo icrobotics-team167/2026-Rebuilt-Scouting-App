@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="120"
-        android:background="?attr/colorSurface"
+        android:background="?attr/background"
         android:id="@+id/dataEntry"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
