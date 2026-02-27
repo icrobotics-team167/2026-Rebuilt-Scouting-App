@@ -50,8 +50,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:min="0"
-                android:max="10000"
-                android:layout_weight="1"/>
+                android:max="1000000"
+                android:layout_weight="1.06"/>
         </LinearLayout>
 
         <Space
@@ -122,7 +122,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="6"
                 android:min="0"
-                android:max="10000"
+                android:max="1000"
                 android:layout_height="match_parent" />
         </LinearLayout>
 

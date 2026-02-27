@@ -214,14 +214,19 @@ public class SetupScreen extends AppCompatActivity {
     private void exportUnExported() {
         StorageManager.saveData(this);
         boolean hasNewData = false;
+        boolean hasData = false;
         int matchesFound = 0;
         isExportingAll = true;
 
         for (Map<String, Object> match : GlobalVariables.dataList) {
-            boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
-            if (!isExported) {
-                hasNewData = true;
-                break;
+            if (match.containsKey(DataKeys.RECORD_TYPE) &&
+                        DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
+                hasData = true;
+                boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
+                if (!isExported) {
+                    hasNewData = true;
+                    break;
+                }
             }
         }
 
@@ -244,7 +249,8 @@ public class SetupScreen extends AppCompatActivity {
                 }
             }
             launchFilePicker(fileName);
-        } else {
+        } else if (hasData){
+
             new AlertDialog.Builder(this)
                     .setTitle("No New Matches")
                     .setMessage("All matches have already been exported. Do you want to re-export EVERYTHING?")
@@ -260,6 +266,9 @@ public class SetupScreen extends AppCompatActivity {
                     })
                     .setNegativeButton("Cancel", null)
                     .show();
+        }
+        else {
+            Toast.makeText(this, "No Matches to Export", Toast.LENGTH_SHORT).show();
         }
     }
 

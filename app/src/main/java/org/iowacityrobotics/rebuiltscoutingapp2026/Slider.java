@@ -6,10 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import java.util.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Slider extends AppCompatActivity {
+    private static int[] randomNumbers = {43, 85, -11, 100, 96, -32, 43, 86, -61, 59};
+    private static int index = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +24,14 @@ public class Slider extends AppCompatActivity {
         exitBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (progress == 10000) {
+                if (progress == 1000000) {
                     finish();
                 }
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+
             }
 
             @Override
@@ -48,6 +52,10 @@ public class Slider extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                alliancePoints.setText(String.valueOf(alliancePointsBar.getProgress() + randomNumbers[index]));
+                alliancePointsBar.setProgress(alliancePointsBar.getProgress() + randomNumbers[index]);
+                index++;
+                if(index >= 10) index = 0;
             }
         });
     }
