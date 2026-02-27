@@ -1,4 +1,4 @@
-//Ben
+//Ben M
 //1-19-2026 - 1-21-2026
 //This file contains a list of constant static strings used to label and retrieve data values across the app.
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;

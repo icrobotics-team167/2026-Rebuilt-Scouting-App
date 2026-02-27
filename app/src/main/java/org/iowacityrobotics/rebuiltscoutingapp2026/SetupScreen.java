@@ -1,6 +1,6 @@
-//Ben
-//1-18-2026 - 2-1-2026
-//Match scouting screen
+//Ben M, James A
+//1-18-2026 - 2-27-2026
+//Activity for Setup Screen
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 import static android.text.TextUtils.replace;

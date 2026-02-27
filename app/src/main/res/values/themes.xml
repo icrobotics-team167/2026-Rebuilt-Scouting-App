@@ -13,6 +13,7 @@
         <item name="AutoSize30">24sp</item>
         <item name="AutoSize45">36sp</item>
         <item name="AutoSize60">50sp</item>
+        <item name="SchoolLogo">@drawable/team_167_logo</item>
     </style>
 
     <style name="Ashvid" parent="main_theme">
@@ -43,6 +44,7 @@
         <item name="colorPrimary">#263238</item>
         <item name="colorSecondary">#039BE5</item>
         <item name="colorSurface">#ECEFF1</item>
+        <item name="SchoolLogo">@drawable/liberty_logo</item>
     </style>
 
     <style name="Mert" parent="main_theme">
@@ -283,6 +285,13 @@
         <item name="colorPrimary">#6A1B9A</item>
         <item name="colorSecondary">#AB47BC</item>
         <item name="colorSurface">#F3E5F5</item>
+    </style>
+
+    <style name="Kris" parent="main_theme">
+        <item name="colorPrimary">#FF0000</item>
+        <item name="colorSecondary">#FF0000</item>
+        <item name="colorSurface">#F5D4D4</item>
+        <item name="SchoolLogo">@drawable/southeast_logo</item>
     </style>
 
     <style name="Default" parent="main_theme">

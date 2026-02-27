@@ -1,3 +1,7 @@
+//James A
+//2-26-2026 - 2-27-2026
+//Activity for Special Slider Screen
+
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 import android.content.Intent;

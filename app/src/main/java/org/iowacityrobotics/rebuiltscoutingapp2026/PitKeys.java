@@ -1,5 +1,5 @@
-//Ben
-//1-21-2026
+//Ben M, James A
+//1-21-2026 - 2-27-2026
 //This is the format of json for pit scouting
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 

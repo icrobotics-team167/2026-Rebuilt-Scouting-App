@@ -1,6 +1,6 @@
-//Ben
-//1-21-2026
-//Start screen
+//Ben M, James A
+//1-21-2026 - 2-27-2026
+//Home screen of app
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 import android.content.Intent;
