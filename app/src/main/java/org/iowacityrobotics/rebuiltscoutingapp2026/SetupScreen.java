@@ -160,14 +160,26 @@ public class SetupScreen extends AppCompatActivity {
 
         goButton.setOnClickListener(v -> {
             if (validateInputs()) {
-                savePreferences();
-                GlobalVariables.objectIndex = -1;
-                Intent intent = new Intent(SetupScreen.this, DataEntry.class);
-                intent.putExtra("PASS_SCOUTER", scouterNameInput.getText().toString());
-                intent.putExtra("PASS_MATCH", matchNumberInput.getText().toString());
-                intent.putExtra("PASS_ASSIGNMENT", assignmentSpinner.getSelectedItem().toString());
-                intent.putExtra("PASS_MATCH_TYPE", matchTypeSpinner.getSelectedItem().toString());
-                startActivity(intent);
+                if (scouterNameInput.getText().toString().equals("MADISON")) {
+                    Intent intent = new Intent(SetupScreen.this, Slider.class);
+                    savePreferences();
+                    GlobalVariables.objectIndex = -1;
+                    intent.putExtra("PASS_SCOUTER", scouterNameInput.getText().toString());
+                    intent.putExtra("PASS_MATCH", matchNumberInput.getText().toString());
+                    intent.putExtra("PASS_ASSIGNMENT", assignmentSpinner.getSelectedItem().toString());
+                    intent.putExtra("PASS_MATCH_TYPE", matchTypeSpinner.getSelectedItem().toString());
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(SetupScreen.this, DataEntry.class);
+                    savePreferences();
+                    GlobalVariables.objectIndex = -1;
+                    intent.putExtra("PASS_SCOUTER", scouterNameInput.getText().toString());
+                    intent.putExtra("PASS_MATCH", matchNumberInput.getText().toString());
+                    intent.putExtra("PASS_ASSIGNMENT", assignmentSpinner.getSelectedItem().toString());
+                    intent.putExtra("PASS_MATCH_TYPE", matchTypeSpinner.getSelectedItem().toString());
+                    startActivity(intent);
+                }
             }
         });
 

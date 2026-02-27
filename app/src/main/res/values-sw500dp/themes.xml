@@ -19,8 +19,8 @@
     </style>
 
     <style name="Daniel" parent="main_theme">
-        <item name="colorPrimary">#0D47A1</item>
-        <item name="colorSecondary">#8E24AA</item>
+        <item name="colorPrimary">#D32F2F</item>
+        <item name="colorSecondary">#FBC02D</item>
         <item name="colorSurface">#E3F2FD</item>
     </style>
 
@@ -32,8 +32,8 @@
 
     <style name="Tommy" parent="main_theme">
         <item name="colorPrimary">#006064</item>
-        <item name="colorSecondary">#FF4081</item>
-        <item name="colorSurface">#E0F7FA</item>
+        <item name="colorSecondary">#000000</item>
+        <item name="colorSurface">#FF7377</item>
     </style>
 
     <style name="BenM" parent="main_theme">
@@ -43,9 +43,9 @@
     </style>
 
     <style name="Mert" parent="main_theme">
-        <item name="colorPrimary">#6A1B9A</item>
+        <item name="colorPrimary">#2E7D32</item>
         <item name="colorSecondary">#26C6DA</item>
-        <item name="colorSurface">#F3E5F5</item>
+        <item name="colorSurface">#E0F2F1</item>
     </style>
 
     <style name="Avaneesh" parent="main_theme">
@@ -97,9 +97,9 @@
     </style>
 
     <style name="Jerry" parent="main_theme">
-        <item name="colorPrimary">#2E7D32</item>
-        <item name="colorSecondary">#5C6BC0</item>
-        <item name="colorSurface">#E8F5E9</item>
+        <item name="colorPrimary">#2b0071</item>
+        <item name="colorSecondary">#00416A</item>
+        <item name="colorSurface">#e8f4f8</item>
     </style>
 
     <style name="Liam" parent="main_theme">
@@ -145,9 +145,9 @@
     </style>
 
     <style name="Calvin" parent="main_theme">
-        <item name="colorPrimary">#6A1B9A</item>
-        <item name="colorSecondary">#00ACC1</item>
-        <item name="colorSurface">#F3E5F5</item>
+        <item name="colorPrimary">#2E7D32</item>
+        <item name="colorSecondary">#000000</item>
+        <item name="colorSurface">#C62828</item>
     </style>
 
     <style name="Emma" parent="main_theme">
@@ -169,9 +169,9 @@
     </style>
 
     <style name="Jaynou" parent="main_theme">
-        <item name="colorPrimary">#004D40</item>
-        <item name="colorSecondary">#8E24AA</item>
-        <item name="colorSurface">#E0F2F1</item>
+        <item name="colorPrimary">#663399</item>
+        <item name="colorSecondary">#E6274A</item>
+        <item name="colorSurface">#e8f4f8</item>
     </style>
 
     <style name="Jennifer" parent="main_theme">
@@ -229,9 +229,9 @@
     </style>
 
     <style name="Razzi" parent="main_theme">
-        <item name="colorPrimary">#006064</item>
-        <item name="colorSecondary">#7E57C2</item>
-        <item name="colorSurface">#E0F7FA</item>
+        <item name="colorPrimary">#2b0071</item>
+        <item name="colorSecondary">#00416A</item>
+        <item name="colorSurface">#e8f4f8</item>
     </style>
 
     <style name="Vlad" parent="main_theme">
@@ -253,9 +253,9 @@
     </style>
 
     <style name="Bobby" parent="main_theme">
-        <item name="colorPrimary">#1A237E</item>
-        <item name="colorSecondary">#00ACC1</item>
-        <item name="colorSurface">#E8EAF6</item>
+        <item name="colorPrimary">#2E7D32</item>
+        <item name="colorSecondary">#6A1B9A</item>
+        <item name="colorSurface">#1565C0</item>
     </style>
 
     <style name="Grayson" parent="main_theme">
@@ -274,6 +274,12 @@
         <item name="colorPrimary">#0096FF</item>
         <item name="colorSecondary">#FFA400</item>
         <item name="colorSurface">#808080</item>
+    </style>
+
+    <style name="Mike" parent="main_theme">
+        <item name="colorPrimary">#6A1B9A</item>
+        <item name="colorSecondary">#AB47BC</item>
+        <item name="colorSurface">#F3E5F5</item>
     </style>
 
     <style name="Default" parent="main_theme">

@@ -339,6 +339,9 @@ public class DataEntry extends AppCompatActivity {
             case "RYAN":
                 style = R.style.Ryan;
                 break;
+            case "MIKE":
+                style = R.style.Mike;
+                break;
             default:
                 if (isUpperCase(name)) {
                     style = R.style.Default;
