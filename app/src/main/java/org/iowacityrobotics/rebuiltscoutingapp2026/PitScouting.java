@@ -409,18 +409,19 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void launchFilePicker() {
-        boolean success = false;
-        boolean isExported = true;
+        boolean hasPitData = false;
+        boolean allExported = true;
+        int teamsFound = 0;
         for (Map<String, Object> match : GlobalVariables.dataList) {
             if (match.containsKey(PitKeys.RECORD_TYPE) && PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
-                success = true;
+                hasPitData = true;
                 break;
             }
             else {
                 continue;
             }
         }
-        if (!success) {
+        if (!hasPitData) {
             Toast.makeText(this, "No data to export.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -428,7 +429,12 @@ public class PitScouting extends AppCompatActivity {
         for (Map<String, Object> match : GlobalVariables.dataList) {
             if (match.containsKey(PitKeys.RECORD_TYPE) &&
                     PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
-                isExported = match.containsKey(PitKeys.EXPORTED) && Boolean.TRUE.equals(match.get(PitKeys.EXPORTED));
+                boolean exported = Boolean.TRUE.equals(match.get(PitKeys.EXPORTED));
+
+                if (!exported) {
+                    allExported = false;
+                    break;
+                };
             }
         }
 
@@ -437,7 +443,7 @@ public class PitScouting extends AppCompatActivity {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("application/json");
 
-        if (isExported) {
+        if (allExported) {
             new AlertDialog.Builder(this)
                     .setTitle("No New Data To Export")
                     .setMessage("Are you sure you want to re-export all data?")
@@ -446,7 +452,7 @@ public class PitScouting extends AppCompatActivity {
                         for (Map<String, Object> match : GlobalVariables.dataList) {
                             if (match.containsKey(PitKeys.RECORD_TYPE) &&
                                     PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
-                                fileName = match.get(PitKeys.TEAM_NUMBER).toString() + " Pit Data";
+                                fileName = "Team " + match.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data";
                             }
                         }
                         intent.putExtra(Intent.EXTRA_TITLE, fileName);
@@ -462,7 +468,15 @@ public class PitScouting extends AppCompatActivity {
         for (Map<String, Object> match : GlobalVariables.dataList) {
             if (match.containsKey(PitKeys.RECORD_TYPE) &&
                     PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
-                fileName = match.get(PitKeys.TEAM_NUMBER).toString() + " Pit Data";
+                boolean exported = Boolean.TRUE.equals(match.get(PitKeys.EXPORTED));
+                if (!exported) {
+                    teamsFound++;
+                    if (teamsFound > 1) {
+                        fileName = "Team " + match.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data";
+                    } else {
+                        fileName = "Team " + match.get(PitKeys.TEAM_NUMBER).toString() + " Pit Data";
+                    }
+                }
             }
         }
         intent.putExtra(Intent.EXTRA_TITLE, fileName);

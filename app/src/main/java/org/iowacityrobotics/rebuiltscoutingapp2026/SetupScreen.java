@@ -248,7 +248,6 @@ public class SetupScreen extends AppCompatActivity {
             }
             launchFilePicker(fileName);
         } else if (hasData){
-
             new AlertDialog.Builder(this)
                     .setTitle("No New Matches")
                     .setMessage("All matches have already been exported. Do you want to re-export EVERYTHING?")

@@ -222,6 +222,9 @@ public class DataEntryCompact extends AppCompatActivity {
             case "BENM":
                 style = R.style.BenM;
                 break;
+            case "BEN M":
+                style = R.style.BenM;
+                break;
             case "MERT":
                 style = R.style.Mert;
                 break;
@@ -229,6 +232,9 @@ public class DataEntryCompact extends AppCompatActivity {
                 style = R.style.Avaneesh;
                 break;
             case "BENL":
+                style = R.style.BenL;
+                break;
+            case "BEN L":
                 style = R.style.BenL;
                 break;
             case "CALDER":
@@ -338,6 +344,12 @@ public class DataEntryCompact extends AppCompatActivity {
                 break;
             case "RYAN":
                 style = R.style.Ryan;
+                break;
+            case "MIKE":
+                style = R.style.Mike;
+                break;
+            case "KRIS":
+                style = R.style.Kris;
                 break;
             default:
                 if (isUpperCase(name)) {
