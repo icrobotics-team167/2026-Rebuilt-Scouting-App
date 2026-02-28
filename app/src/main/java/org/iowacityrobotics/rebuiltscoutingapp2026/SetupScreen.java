@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import androidx.core.content.ContextCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEditor;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEntry;
+import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEntryCompact;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataKeys;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.json.JSONArray;
@@ -153,6 +155,7 @@ public class SetupScreen extends AppCompatActivity {
     }
 
     private void setupButtons() {
+        Switch compactSwitch = findViewById(R.id.compactSwitch);
         Button goButton = findViewById(R.id.scoutButton);
         Button editButton = findViewById(R.id.editButton);
         Button exportButtonSingle = findViewById(R.id.exportButtonSingle);
@@ -162,7 +165,12 @@ public class SetupScreen extends AppCompatActivity {
             if (validateInputs()) {
                 savePreferences();
                 GlobalVariables.objectIndex = -1;
-                Intent intent = new Intent(SetupScreen.this, DataEntry.class);
+                Intent intent;
+                if(compactSwitch.isChecked()) {
+                    intent = new Intent(SetupScreen.this, DataEntryCompact.class);
+                } else {
+                    intent = new Intent(SetupScreen.this, DataEntry.class);
+                }
                 intent.putExtra("PASS_SCOUTER", scouterNameInput.getText().toString());
                 intent.putExtra("PASS_MATCH", matchNumberInput.getText().toString());
                 intent.putExtra("PASS_ASSIGNMENT", assignmentSpinner.getSelectedItem().toString());

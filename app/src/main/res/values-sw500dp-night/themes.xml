@@ -4,6 +4,7 @@
         <item name="colorPrimary">@color/primaryForeground</item>
         <item name="colorSecondary">@color/secondaryForeground</item>
         <item name="colorSurface">@color/background</item>
+        <item name="dividerColor">@color/backgroundShaded</item>
         <item name="AutoSize20">16sp</item>
         <item name="AutoSize25">20sp</item>
         <item name="AutoSize30">26sp</item>
@@ -60,9 +61,10 @@
     </style>
 
     <style name="Calder" parent="main_theme">
-        <item name="colorPrimary">#880E4F</item>
-        <item name="colorSecondary">#3949AB</item>
-        <item name="colorSurface">#21192B</item>
+        <item name="colorPrimary">#11DDBB</item>
+        <item name="colorSecondary">#11DDBB</item>
+        <item name="colorSurface">#000000</item>
+        <item name="dividerColor">#005555</item>
     </style>
 
     <style name="Cody" parent="main_theme">
@@ -78,9 +80,9 @@
     </style>
 
     <style name="Elly" parent="main_theme">
-        <item name="colorPrimary">#AD1457</item>
-        <item name="colorSecondary">#5C6BC0</item>
-        <item name="colorSurface">#211A28</item>
+        <item name="colorPrimary">#9999FF</item>
+        <item name="colorSecondary">#ECEBFF</item>
+        <item name="colorSurface">#151F5F</item>
     </style>
 
     <style name="Jack" parent="main_theme">
@@ -150,9 +152,9 @@
     </style>
 
     <style name="Emma" parent="main_theme">
-        <item name="colorPrimary">#C2185B</item>
-        <item name="colorSecondary">#7986CB</item>
-        <item name="colorSurface">#211728</item>
+        <item name="colorPrimary">#FFAABB</item>
+        <item name="colorSecondary">#75FD86</item>
+        <item name="colorSurface">#255A6A</item>
     </style>
 
     <style name="Farhan" parent="main_theme">

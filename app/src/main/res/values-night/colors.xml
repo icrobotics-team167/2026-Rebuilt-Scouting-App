@@ -6,6 +6,8 @@
 
     <color name="background">@color/black</color>
 
+    <color name="backgroundShaded">#202020</color>
+
     <color name="primaryForeground">#3CAB14</color>
     <color name="buttonTextPrimary">@color/white</color>
     <color name="plusMinusColor">@color/black</color>

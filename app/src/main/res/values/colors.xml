@@ -6,6 +6,8 @@
 
     <color name="background">#FAFAD2</color>
 
+    <color name="backgroundShaded">#DDDDBA</color>
+
     <color name="primaryForeground">#3CAB14</color>
     <color name="buttonTextPrimary">@color/white</color>
     <color name="plusMinusColor">@color/white</color>
