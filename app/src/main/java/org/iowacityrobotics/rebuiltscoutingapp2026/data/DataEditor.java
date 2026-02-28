@@ -20,7 +20,7 @@ public class DataEditor extends AppCompatActivity {
     private EditText matchNum, teamNum, scouterName, assignment;
     private EditText autoCycles, activeCycles, inactiveCycles;
     private EditText autoNeutral, activeDefense, inactiveDefense;
-    private EditText endAuto, endShift1, endShift2, endGame;
+    private EditText endAuto, endShift1, endShift2, endShift3, endGame;
     private EditText towerPos, towerLevel, passedFuel, teamRating, comments;
 
     @Override
@@ -52,6 +52,7 @@ public class DataEditor extends AppCompatActivity {
         endAuto = findViewById(R.id.endAuto);
         endShift1 = findViewById(R.id.endShift1);
         endShift2 = findViewById(R.id.endShift2);
+        endShift3 = findViewById(R.id.endShift3);
         endGame = findViewById(R.id.endGame);
 
         towerPos = findViewById(R.id.towerPosition);
@@ -81,6 +82,7 @@ public class DataEditor extends AppCompatActivity {
             setTextSafe(endAuto, data.get(DataKeys.END_AUTO));
             setTextSafe(endShift1, data.get(DataKeys.END_SHIFT_1));
             setTextSafe(endShift2, data.get(DataKeys.END_SHIFT_2));
+            setTextSafe(endShift3, data.get(DataKeys.END_SHIFT_3));
             setTextSafe(endGame, data.get(DataKeys.END_GAME));
 
             setTextSafe(towerPos, data.get(DataKeys.TOWER_POS));
@@ -112,6 +114,7 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.END_AUTO, endAuto.getText().toString());
             data.put(DataKeys.END_SHIFT_1, endShift1.getText().toString());
             data.put(DataKeys.END_SHIFT_2, endShift2.getText().toString());
+            data.put(DataKeys.END_SHIFT_3, endShift3.getText().toString());
             data.put(DataKeys.END_GAME, endGame.getText().toString());
 
             data.put(DataKeys.TOWER_POS, towerPos.getText().toString());

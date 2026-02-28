@@ -173,6 +173,7 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.END_AUTO, temp.get(DataKeys.END_AUTO));
         data.put(DataKeys.END_SHIFT_1, temp.get(DataKeys.END_SHIFT_1));
         data.put(DataKeys.END_SHIFT_2, temp.get(DataKeys.END_SHIFT_2));
+        data.put(DataKeys.END_SHIFT_3, temp.get(DataKeys.END_SHIFT_3));
         data.put(DataKeys.END_GAME, temp.get(DataKeys.END_GAME));
         data.put(DataKeys.PASSED_FUEL, temp.get(DataKeys.PASSED_FUEL));
         data.put(DataKeys.TOWER_LEVEL, temp.get(DataKeys.TOWER_LEVEL));

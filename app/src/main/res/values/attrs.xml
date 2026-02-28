@@ -6,4 +6,5 @@
     <attr name="AutoSize45" format="dimension" />
     <attr name="AutoSize60" format="dimension" />
     <attr name="SchoolLogo" format="reference" />
+    <attr name="buttonTextPrimary" format="reference" />
 </resources>

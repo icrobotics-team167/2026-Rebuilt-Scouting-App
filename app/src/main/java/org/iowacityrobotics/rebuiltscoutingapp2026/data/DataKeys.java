@@ -25,6 +25,7 @@ public class DataKeys {
     public static final String END_AUTO = "end_auto_score";
     public static final String END_SHIFT_1 = "end_shift_1_score";
     public static final String END_SHIFT_2 = "end_shift_2_score";
+    public static final String END_SHIFT_3 = "end_shift_3_score";
     public static final String END_GAME = "end_game_score";
 
     public static final String TOWER_POS = "tower_position";

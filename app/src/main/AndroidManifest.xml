@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.iowacityrobotics.rebuiltscoutingapp2026">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,7 +25,6 @@
 
         <activity android:name=".data.DataEditor" />
         <activity android:name=".data.DataEntry" />
-        <activity android:name=".data.DataEntryCompact" />
 
         <activity android:name=".InstructionsScreen" />
         <activity android:name=".Slider" />

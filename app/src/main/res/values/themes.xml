@@ -14,7 +14,8 @@
         <item name="AutoSize30">24sp</item>
         <item name="AutoSize45">36sp</item>
         <item name="AutoSize60">50sp</item>
-        <item name="SchoolLogo">@drawable/team_167_logo</item>
+        <item name="buttonTextPrimary">@color/white</item>
+        <item name="SchoolLogo">@null</item>
     </style>
 
     <style name="Ashvid" parent="main_theme">

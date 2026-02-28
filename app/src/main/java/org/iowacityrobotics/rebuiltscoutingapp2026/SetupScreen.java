@@ -3,8 +3,6 @@
 // Activity for Setup Screen
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
-import static android.text.TextUtils.replace;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,18 +23,15 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEditor;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEntry;
-import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEntryCompact;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataKeys;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,7 +150,6 @@ public class SetupScreen extends AppCompatActivity {
     }
 
     private void setupButtons() {
-        Switch compactSwitch = findViewById(R.id.compactSwitch);
         Button goButton = findViewById(R.id.scoutButton);
         Button editButton = findViewById(R.id.editButton);
         Button exportButtonSingle = findViewById(R.id.exportButtonSingle);
@@ -168,8 +162,6 @@ public class SetupScreen extends AppCompatActivity {
                 Intent intent;
                 if (scouterNameInput.getText().toString().equals("MADISON")) {
                     intent = new Intent(SetupScreen.this, Slider.class);
-                } else if(compactSwitch.isChecked()) {
-                    intent = new Intent(SetupScreen.this, DataEntryCompact.class);
                 } else {
                     intent = new Intent(SetupScreen.this, DataEntry.class);
                 }

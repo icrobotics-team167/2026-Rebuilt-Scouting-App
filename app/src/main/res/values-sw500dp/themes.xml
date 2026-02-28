@@ -11,7 +11,8 @@
         <item name="AutoSize30">26sp</item>
         <item name="AutoSize45">32sp</item>
         <item name="AutoSize60">36sp</item>
-        <item name="SchoolLogo">@drawable/team_167_logo</item>
+        <item name="buttonTextPrimary">@color/white</item>
+        <item name="SchoolLogo">@null</item>
     </style>
 
     <style name="Ashvid" parent="main_theme">
@@ -97,6 +98,7 @@
         <item name="colorPrimary">#01579B</item>
         <item name="colorSecondary">#00A36C</item>
         <item name="colorSurface">#E1F5FE</item>
+        <item name="dividerColor">#BAC8D8</item>
     </style>
 
     <style name="Jerry" parent="main_theme">
@@ -289,6 +291,7 @@
         <item name="colorPrimary">#FF0000</item>
         <item name="colorSecondary">#FF0000</item>
         <item name="colorSurface">#F5D4D4</item>
+        <item name="dividerColor">#C1B4B4</item>
         <item name="SchoolLogo">@drawable/southeast_logo</item>
     </style>
 

@@ -41,6 +41,7 @@ public class ScoutingConfig {
         INPUTS.add(new Field(R.id.endAuto, DataKeys.END_AUTO, DataType.TEXT));
         INPUTS.add(new Field(R.id.endShift1, DataKeys.END_SHIFT_1, DataType.TEXT));
         INPUTS.add(new Field(R.id.endShift2, DataKeys.END_SHIFT_2, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endShift3, DataKeys.END_SHIFT_3, DataType.TEXT));
         INPUTS.add(new Field(R.id.endGame, DataKeys.END_GAME, DataType.TEXT));
 
         INPUTS.add(new Field(R.id.passedFuel, DataKeys.PASSED_FUEL, DataType.BOOLEAN));
