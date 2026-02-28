@@ -27,6 +27,7 @@
         <activity android:name=".data.DataEntryCompact" />
 
         <activity android:name=".InstructionsScreen" />
+        <activity android:name=".Slider" />
 
     </application>
 

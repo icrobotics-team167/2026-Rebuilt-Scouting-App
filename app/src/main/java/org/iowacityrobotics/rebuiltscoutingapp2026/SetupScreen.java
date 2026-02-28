@@ -1,6 +1,6 @@
-//Ben
-//1-18-2026 - 2-1-2026
-//Match scouting screen
+// Ben M, James A, ZeeKonCal
+// 1/18/2026-2/27/2026
+// Activity for Setup Screen
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 import static android.text.TextUtils.replace;
@@ -166,7 +166,9 @@ public class SetupScreen extends AppCompatActivity {
                 savePreferences();
                 GlobalVariables.objectIndex = -1;
                 Intent intent;
-                if(compactSwitch.isChecked()) {
+                if (scouterNameInput.getText().toString().equals("MADISON")) {
+                    intent = new Intent(SetupScreen.this, Slider.class);
+                } else if(compactSwitch.isChecked()) {
                     intent = new Intent(SetupScreen.this, DataEntryCompact.class);
                 } else {
                     intent = new Intent(SetupScreen.this, DataEntry.class);
@@ -210,14 +212,19 @@ public class SetupScreen extends AppCompatActivity {
     private void exportUnExported() {
         StorageManager.saveData(this);
         boolean hasNewData = false;
+        boolean hasData = false;
         int matchesFound = 0;
         isExportingAll = true;
 
         for (Map<String, Object> match : GlobalVariables.dataList) {
-            boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
-            if (!isExported) {
-                hasNewData = true;
-                break;
+            if (match.containsKey(DataKeys.RECORD_TYPE) &&
+                        DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
+                hasData = true;
+                boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
+                if (!isExported) {
+                    hasNewData = true;
+                    break;
+                }
             }
         }
 
@@ -240,7 +247,8 @@ public class SetupScreen extends AppCompatActivity {
                 }
             }
             launchFilePicker(fileName);
-        } else {
+        } else if (hasData){
+
             new AlertDialog.Builder(this)
                     .setTitle("No New Matches")
                     .setMessage("All matches have already been exported. Do you want to re-export EVERYTHING?")
@@ -256,6 +264,9 @@ public class SetupScreen extends AppCompatActivity {
                     })
                     .setNegativeButton("Cancel", null)
                     .show();
+        }
+        else {
+            Toast.makeText(this, "No Matches to Export", Toast.LENGTH_SHORT).show();
         }
     }
 

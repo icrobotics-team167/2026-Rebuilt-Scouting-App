@@ -1,5 +1,5 @@
-//Ben
-//1-21-2026 - 1-31-2026
+//Ben M, James A
+//1-21-2026 - 2-27-2026
 //This manages the Pit Scouting user interface.
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
@@ -188,9 +188,12 @@ public class PitScouting extends AppCompatActivity {
 
     private void savePitData() {
         boolean error = false;
-        if (teamNumber.getText().toString().isEmpty()) {
-            teamNumber.setError("Team # is required");
-            error = true;
+        TextView[] textViews = {teamNumber, scouterName, botDimensionsDepth, botDimensionsWidth, botDimensionsHeight, intakeWidth, hopperDimensionsDepth, hopperDimensionsWidth, hopperDimensionsHeight, numberOfShooters};;
+        for (TextView textView : textViews) {
+            if (textView.getText().toString().isEmpty()) {
+                textView.setError("Required");
+                error = true;
+            }
         }
 
         String selectedUnits = unitSpinner.getSelectedItem().toString();
@@ -200,6 +203,16 @@ public class PitScouting extends AppCompatActivity {
                 TextView selectedTextView = (TextView) selectedView;
                 selectedTextView.setTextColor(Color.RED);
                 selectedTextView.setError("Select Units");
+            }
+            error = true;
+        }
+        String selectedRating = teamRating.getSelectedItem().toString();
+        if (selectedRating.equals("Select")) {
+            View selectedView = teamRating.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("Select Rating");
             }
             error = true;
         }

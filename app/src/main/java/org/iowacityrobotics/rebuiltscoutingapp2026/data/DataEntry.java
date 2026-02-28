@@ -1,6 +1,6 @@
-//Ben
-//1-15-2026 - 1-31-2026
-//This is the main scouting activity. 
+//Ben M, James A
+//1-15-2026 - 2-27-2026
+//This is the data entry activity.
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
 import android.app.AlertDialog;
@@ -222,6 +222,9 @@ public class DataEntry extends AppCompatActivity {
             case "BENM":
                 style = R.style.BenM;
                 break;
+            case "BEN M":
+                style = R.style.BenM;
+                break;
             case "MERT":
                 style = R.style.Mert;
                 break;
@@ -229,6 +232,9 @@ public class DataEntry extends AppCompatActivity {
                 style = R.style.Avaneesh;
                 break;
             case "BENL":
+                style = R.style.BenL;
+                break;
+            case "BEN L":
                 style = R.style.BenL;
                 break;
             case "CALDER":
@@ -338,6 +344,12 @@ public class DataEntry extends AppCompatActivity {
                 break;
             case "RYAN":
                 style = R.style.Ryan;
+                break;
+            case "MIKE":
+                style = R.style.Mike;
+                break;
+            case "KRIS":
+                style = R.style.Kris;
                 break;
             default:
                 if (isUpperCase(name)) {

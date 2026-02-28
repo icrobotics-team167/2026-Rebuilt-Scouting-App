@@ -10,10 +10,11 @@
         <item name="AutoSize30">26sp</item>
         <item name="AutoSize45">32sp</item>
         <item name="AutoSize60">38sp</item>
+        <item name="SchoolLogo">@drawable/team_167_logo</item>
     </style>
 
     <style name="Ashvid" parent="main_theme">
-        <item name="colorPrimary">#536DFE</item>
+        <item name="colorPrimary">#1A237E</item>
         <item name="colorSecondary">#26C6DA</item>
         <item name="colorSurface">#1A1F2C</item>
     </style>
@@ -40,12 +41,13 @@
         <item name="colorPrimary">#90A4AE</item>
         <item name="colorSecondary">#29B6F6</item>
         <item name="colorSurface">#1E2428</item>
+        <item name="SchoolLogo">@drawable/liberty_logo</item>
     </style>
 
     <style name="Mert" parent="main_theme">
-        <item name="colorPrimary">#9C27B0</item>
+        <item name="colorPrimary">#2E7D32</item>
         <item name="colorSecondary">#26C6DA</item>
-        <item name="colorSurface">#1F1726</item>
+        <item name="colorSurface">#11171A</item>
     </style>
 
     <style name="Avaneesh" parent="main_theme">
@@ -98,9 +100,9 @@
     </style>
 
     <style name="Jerry" parent="main_theme">
-        <item name="colorPrimary">#2E7D32</item>
-        <item name="colorSecondary">#5C6BC0</item>
-        <item name="colorSurface">#17221A</item>
+        <item name="colorPrimary">#006064</item>
+        <item name="colorSecondary">#7E57C2</item>
+        <item name="colorSurface">#0e1b40</item>
     </style>
 
     <style name="Liam" parent="main_theme">
@@ -170,9 +172,9 @@
     </style>
 
     <style name="Jaynou" parent="main_theme">
-        <item name="colorPrimary">#004D40</item>
-        <item name="colorSecondary">#8E24AA</item>
-        <item name="colorSurface">#141F1C</item>
+        <item name="colorPrimary">#663399</item>
+        <item name="colorSecondary">#E6274A</item>
+        <item name="colorSurface">#0e1b40</item>
     </style>
 
     <style name="Jennifer" parent="main_theme">
@@ -232,7 +234,7 @@
     <style name="Razzi" parent="main_theme">
         <item name="colorPrimary">#006064</item>
         <item name="colorSecondary">#7E57C2</item>
-        <item name="colorSurface">#162022</item>
+        <item name="colorSurface">#0e1b40</item>
     </style>
 
     <style name="Vlad" parent="main_theme">
@@ -275,6 +277,19 @@
         <item name="colorPrimary">#0096FF</item>
         <item name="colorSecondary">#FFA400</item>
         <item name="colorSurface">#808080</item>
+    </style>
+
+    <style name="Mike" parent="main_theme">
+        <item name="colorPrimary">#6A1B9A</item>
+        <item name="colorSecondary">#AB47BC</item>
+        <item name="colorSurface">#0F0616</item>
+    </style>
+
+    <style name="Kris" parent="main_theme">
+        <item name="colorPrimary">#FF0000</item>
+        <item name="colorSecondary">#FF0000</item>
+        <item name="colorSurface">#290202</item>
+        <item name="SchoolLogo">@drawable/southeast_logo</item>
     </style>
 
     <style name="Default" parent="main_theme">
