@@ -286,12 +286,12 @@
                     android:text="Intake:" />
 
                 <CheckBox
-                    android:id="@+id/humanIntake"
+                    android:id="@+id/overBumperIntake"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="6"
-                    android:text="Human" />
+                    android:text="Over Bumper" />
 
                 <CheckBox
                     android:id="@+id/throughBumperIntake"
@@ -301,13 +301,10 @@
                     android:layout_weight="8"
                     android:text="Through Bumper" />
 
-                <CheckBox
-                    android:id="@+id/overBumperIntake"
-                    style="@style/AutoResize20"
+                <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:text="Over Bumper" />
+                    android:layout_weight="7" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -331,6 +328,19 @@
                     android:inputType="numberDecimal|numberSigned"
                     android:paddingTop="10dp"
                     android:text="" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/humanIntake"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:text="Full Width" />
 
             </LinearLayout>
 
@@ -387,7 +397,7 @@
                     android:layout_weight="8"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
-                    android:text="Dimensions:" />
+                    android:text="Max Dimensions:" />
 
                 <EditText
                     android:id="@+id/hopperDimensionsWidth"
@@ -521,6 +531,82 @@
                     android:inputType="numberSigned"
                     android:hint="#"
                     android:text="" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider35"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:weightSum="48"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/autoHeader"
+                    style="@style/AutoResize25"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="center|start"
+                    android:paddingStart="10dp"
+                    android:text="Auto:" />
+
+                <CheckBox
+                    android:id="@+id/autoCanClimb"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:text="Can Climb" />
+
+                <TextView
+                    android:id="@+id/numberWorkingAutosHeader"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="Number of Working Autos:" />
+
+                <EditText
+                    android:id="@+id/numberOfAutos"
+                    style="@style/AutoResize25"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="#"
+                    android:inputType="numberSigned"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/autoNotesHeadaer"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="center"
+                    android:paddingStart="10dp"
+                    android:text="Auto Notes:" />
+
+                <EditText
+                    android:id="@+id/autoNotes"
+                    style="@style/AutoResize25"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="20"
+                    android:ems="10"
+                    android:inputType="textMultiLine"
+                    android:hint="Auto Notes" />
             </LinearLayout>
 
             <View
@@ -549,11 +635,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="5"
                 android:layout_height="0dp"
-                android:weightSum="6"
+                android:layout_weight="5"
+                android:orientation="horizontal"
                 android:paddingStart="10dp"
-                android:orientation="horizontal">
+                android:weightSum="6">
 
                 <CheckBox
                     android:id="@+id/yesCornOnCob"
@@ -593,40 +679,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:ems="10"
-                    android:paddingTop="5dp"
+                    android:hint="Other"
                     android:inputType="text"
-                    android:hint="Other" />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider35"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:weightSum="48"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/teamRatingHeader"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Team Rating:" />
-
-                <Spinner
-                    android:id="@+id/teamRating"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7" />
+                    android:paddingTop="5dp" />
             </LinearLayout>
 
             <View

@@ -35,6 +35,7 @@ public class ScoutingConfig {
         INPUTS.add(new Field(R.id.inactiveCycles, DataKeys.INACTIVE_CYCLES, DataType.NUMBER));
 
         INPUTS.add(new Field(R.id.autoNeutralZone, DataKeys.AUTO_NEUTRAL, DataType.BOOLEAN));
+        INPUTS.add(new Field(R.id.autoShotFuel, DataKeys.AUTO_SHOT, DataType.BOOLEAN));
         INPUTS.add(new Field(R.id.activePlayedDefense, DataKeys.ACTIVE_DEFENSE, DataType.BOOLEAN));
         INPUTS.add(new Field(R.id.inactivePlayedDefense, DataKeys.INACTIVE_DEFENSE, DataType.BOOLEAN));
 

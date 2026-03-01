@@ -167,6 +167,7 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
         data.put(DataKeys.TEAM_RATING, temp.get(DataKeys.TEAM_RATING));
         data.put(DataKeys.AUTO_NEUTRAL, temp.get(DataKeys.AUTO_NEUTRAL));
+        data.put(DataKeys.AUTO_SHOT, temp.get(DataKeys.AUTO_SHOT));
         data.put(DataKeys.INACTIVE_DEFENSE, temp.get(DataKeys.INACTIVE_DEFENSE));
         data.put(DataKeys.ACTIVE_DEFENSE, temp.get(DataKeys.ACTIVE_DEFENSE));
         data.put(DataKeys.AUTO_CYCLES, temp.get(DataKeys.AUTO_CYCLES));

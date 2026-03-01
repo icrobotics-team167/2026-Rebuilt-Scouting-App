@@ -216,6 +216,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="3"
+                    android:weightSum="2"
                     android:orientation="horizontal">
 
                     <CheckBox
@@ -224,7 +225,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:text="@string/data_entry_auto_neutral_zone" />
+
+                    <CheckBox
+                        style="@style/AutoResize20"
+                        android:id="@+id/autoShotFuel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="@string/shot_fuel" />
                 </LinearLayout>
             </LinearLayout>
 

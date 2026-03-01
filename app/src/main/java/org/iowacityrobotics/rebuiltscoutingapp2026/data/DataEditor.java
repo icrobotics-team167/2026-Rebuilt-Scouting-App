@@ -19,7 +19,7 @@ public class DataEditor extends AppCompatActivity {
 
     private EditText matchNum, teamNum, scouterName, assignment;
     private EditText autoCycles, activeCycles, inactiveCycles;
-    private EditText autoNeutral, activeDefense, inactiveDefense;
+    private EditText autoNeutral, autoShotFuel, activeDefense, inactiveDefense;
     private EditText endAuto, endShift1, endShift2, endShift3, endGame;
     private EditText towerPos, towerLevel, passedFuel, teamRating, comments;
 
@@ -46,6 +46,7 @@ public class DataEditor extends AppCompatActivity {
         inactiveCycles = findViewById(R.id.inactiveCycles);
 
         autoNeutral = findViewById(R.id.autoNeutralZone);
+        autoShotFuel = findViewById(R.id.autoShotFuel);
         activeDefense = findViewById(R.id.activePlayedDefense);
         inactiveDefense = findViewById(R.id.inactivePlayedDefense);
 
@@ -76,6 +77,7 @@ public class DataEditor extends AppCompatActivity {
             setTextSafe(inactiveCycles, data.get(DataKeys.INACTIVE_CYCLES));
 
             setTextSafe(autoNeutral, data.get(DataKeys.AUTO_NEUTRAL));
+            setTextSafe(autoShotFuel, data.get(DataKeys.AUTO_SHOT));
             setTextSafe(activeDefense, data.get(DataKeys.ACTIVE_DEFENSE));
             setTextSafe(inactiveDefense, data.get(DataKeys.INACTIVE_DEFENSE));
 
@@ -107,6 +109,7 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.INACTIVE_CYCLES, parseInteger(inactiveCycles));
 
             data.put(DataKeys.AUTO_NEUTRAL, parseBoolean(autoNeutral));
+            data.put(DataKeys.AUTO_SHOT, parseBoolean(autoShotFuel));
             data.put(DataKeys.ACTIVE_DEFENSE, parseBoolean(activeDefense));
             data.put(DataKeys.INACTIVE_DEFENSE, parseBoolean(inactiveDefense));
             data.put(DataKeys.PASSED_FUEL, parseBoolean(passedFuel));

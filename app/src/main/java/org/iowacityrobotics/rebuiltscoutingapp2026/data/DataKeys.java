@@ -19,6 +19,7 @@ public class DataKeys {
     public static final String INACTIVE_CYCLES = "inactive_cycles";
 
     public static final String AUTO_NEUTRAL = "auto_neutral";
+    public static final String AUTO_SHOT = "auto_shot";
     public static final String ACTIVE_DEFENSE = "active_defense";
     public static final String INACTIVE_DEFENSE = "inactive_defense";
 

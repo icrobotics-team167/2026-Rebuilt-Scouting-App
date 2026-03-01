@@ -18,6 +18,9 @@ public class PitKeys {
     public static final String PIT_TURRET = "turret_info";
     public static final String PIT_INTAKE = "intake_info";
     public static final String PIT_CROSSING = "crossing_method";
+    public static final String AUTO_CLIMB = "climb_auto";
+    public static final String NUMBER_AUTOS = "number_of_autos";
+    public static final String AUTO_NOTES = "auto_notes";
     public static final String PIT_CORN = "corn_preferences";
     public static final String PIT_TEAM_RATING = "team_rating";
 }

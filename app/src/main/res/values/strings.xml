@@ -11,7 +11,7 @@
     <string name="data_entry_active_hub_header">Active Hub</string>
     <string name="data_entry_inactive_hub_header">Inactive Hub</string>
     <string name="data_entry_cycles_header">Cycles:</string>
-    <string name="data_entry_auto_neutral_zone">Crossed Into Neutral Zone</string>
+    <string name="data_entry_auto_neutral_zone">Neutral Zone</string>
     <string name="data_entry_active_defense">Played Defense</string>
     <string name="data_entry_inactive_defense">Played Defense</string>
     <string name="data_entry_alliance_score_header">Alliance Score:</string>
@@ -26,4 +26,5 @@
     <string name="data_entry_tower_position_header">Tower Position:</string>
     <string name="data_entry_notes_header">Notes:</string>
     <string name="data_entry_save_exit">Save and Exit</string>
+    <string name="shot_fuel">Shot Fuel</string>
 </resources>
