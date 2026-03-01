@@ -3,4 +3,27 @@
     <string name="scout_button">scoutButton</string>
     <string name="delete_button">Delete</string>
     <string name="export_button">Export</string>
+    <string name="data_entry_team_number_header">Team:</string>
+    <string name="data_entry_match_number_header">Match:</string>
+    <string name="data_entry_scouter_name">Name:</string>
+    <string name="data_entry_scouting_assignment">Assignment:</string>
+    <string name="data_entry_auto_header">Auto</string>
+    <string name="data_entry_active_hub_header">Active Hub</string>
+    <string name="data_entry_inactive_hub_header">Inactive Hub</string>
+    <string name="data_entry_cycles_header">Cycles:</string>
+    <string name="data_entry_auto_neutral_zone">Crossed Into Neutral Zone</string>
+    <string name="data_entry_active_defense">Played Defense</string>
+    <string name="data_entry_inactive_defense">Played Defense</string>
+    <string name="data_entry_alliance_score_header">Alliance Score:</string>
+    <string name="data_entry_end_auto_header">End of Auto:</string>
+    <string name="data_entry_end_shift_1_header">End of Shift 1:</string>
+    <string name="data_entry_end_shift_2_header">End of Shift 2:</string>
+    <string name="data_entry_end_shift_3_header">End of Shift 3:</string>
+    <string name="data_entry_end_game_header">End of Game:</string>
+    <string name="data_entry_passed_fuel">Passed Fuel</string>
+    <string name="data_entry_team_rating_header">Team Rating:</string>
+    <string name="data_entry_tower_level_header">Tower Level:</string>
+    <string name="data_entry_tower_position_header">Tower Position:</string>
+    <string name="data_entry_notes_header">Notes:</string>
+    <string name="data_entry_save_exit">Save and Exit</string>
 </resources>

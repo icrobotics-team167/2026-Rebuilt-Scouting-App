@@ -40,6 +40,7 @@
         <item name="colorPrimary">#006064</item>
         <item name="colorSecondary">#FF4081</item>
         <item name="colorSurface">#E0F7FA</item>
+        <item name="dividerColor">#BAC8D8</item>
     </style>
 
     <style name="BenM" parent="main_theme">
@@ -101,6 +102,7 @@
         <item name="colorPrimary">#01579B</item>
         <item name="colorSecondary">#00A36C</item>
         <item name="colorSurface">#E1F5FE</item>
+        <item name="dividerColor">#BAC8D8</item>
     </style>
 
     <style name="Jerry" parent="main_theme">

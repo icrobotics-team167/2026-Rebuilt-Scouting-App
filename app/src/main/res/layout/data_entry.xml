@@ -31,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="Team:" />
+                android:text="@string/data_entry_team_number_header" />
 
             <EditText
                 android:id="@+id/teamNumber"
@@ -55,7 +55,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Match:" />
+                android:text="@string/data_entry_match_number_header" />
 
             <TextView
                 android:id="@+id/matchNumber"
@@ -73,7 +73,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
                 android:gravity="center_vertical"
-                android:text="Name:" />
+                android:text="@string/data_entry_scouter_name" />
 
             <TextView
                 android:id="@+id/scoutingAssignment"
@@ -82,7 +82,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
                 android:gravity="center_vertical"
-                android:text="Assignment:" />
+                android:text="@string/data_entry_scouting_assignment" />
 
             <ImageView
                 android:id="@+id/schoolLogo"
@@ -146,7 +146,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:paddingStart="10dp"
-                            android:text="Auto" />
+                            android:text="@string/data_entry_auto_header" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -171,7 +171,7 @@
                             android:layout_weight="2"
                             android:gravity="center_horizontal"
                             android:layout_gravity="center_vertical"
-                            android:text="Cycles:" />
+                            android:text="@string/data_entry_cycles_header" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -224,7 +224,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
-                        android:text="Crossed Into Neutral Zone" />
+                        android:text="@string/data_entry_auto_neutral_zone" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -261,7 +261,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:paddingStart="10dp"
-                            android:text="Active Hub" />
+                            android:text="@string/data_entry_active_hub_header" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -285,7 +285,7 @@
                             android:layout_weight="2"
                             android:gravity="center_horizontal"
                             android:layout_gravity="center_vertical"
-                            android:text="Cycles:" />
+                            android:text="@string/data_entry_cycles_header" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -338,7 +338,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
-                        android:text="Played Defense" />
+                        android:text="@string/data_entry_active_defense" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -375,7 +375,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:paddingStart="10dp"
-                            android:text="Inactive Hub" />
+                            android:text="@string/data_entry_inactive_hub_header" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -398,7 +398,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="2"
                             android:gravity="center_horizontal"
-                            android:text="Cycles:" />
+                            android:text="@string/data_entry_cycles_header" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -449,7 +449,7 @@
                         style="@style/AutoResize20"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Played Defense" />
+                        android:text="@string/data_entry_inactive_defense" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -500,7 +500,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="15"
                     android:gravity="center"
-                    android:text="Alliance Score:" />
+                    android:text="@string/data_entry_alliance_score_header" />
 
                 <View
                     android:id="@+id/divider15"
@@ -525,7 +525,7 @@
                         android:layout_weight="2"
                         android:paddingStart="10dp"
                         android:gravity="center_vertical"
-                        android:text="End of Auto:" />
+                        android:text="@string/data_entry_end_auto_header" />
 
                     <EditText
                         android:id="@+id/endAuto"
@@ -562,7 +562,7 @@
                         android:layout_weight="2"
                         android:paddingStart="10dp"
                         android:gravity="center_vertical"
-                        android:text="End of Shift 1:" />
+                        android:text="@string/data_entry_end_shift_1_header" />
 
                     <EditText
                         style="@style/AutoResize25"
@@ -598,7 +598,7 @@
                         android:layout_weight="2"
                         android:paddingStart="10dp"
                         android:gravity="center_vertical"
-                        android:text="End of Shift 2:" />
+                        android:text="@string/data_entry_end_shift_2_header" />
 
                     <EditText
                         style="@style/AutoResize25"
@@ -634,7 +634,7 @@
                         android:layout_weight="2"
                         android:paddingStart="10dp"
                         android:gravity="center_vertical"
-                        android:text="End of Shift 3:" />
+                        android:text="@string/data_entry_end_shift_3_header" />
 
                     <EditText
                         style="@style/AutoResize25"
@@ -670,7 +670,7 @@
                         android:layout_weight="2"
                         android:paddingStart="10dp"
                         android:gravity="center_vertical"
-                        android:text="End of Game:" />
+                        android:text="@string/data_entry_end_game_header" />
 
                     <EditText
                         style="@style/AutoResize25"
@@ -725,7 +725,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="34"
-                        android:text="Passed Fuel" />
+                        android:text="@string/data_entry_passed_fuel" />
 
                     <View
                         android:id="@+id/divider44"
@@ -743,7 +743,7 @@
                         android:gravity="center_vertical"
                         android:paddingStart="10dp"
                         android:layout_weight="15"
-                        android:text="Team Rating:" />
+                        android:text="@string/data_entry_team_rating_header" />
 
                     <Spinner
                         android:id="@+id/teamRating"
@@ -776,7 +776,7 @@
                         android:layout_weight="15"
                         android:gravity="center_vertical"
                         android:paddingStart="15dp"
-                        android:text="Tower Level:" />
+                        android:text="@string/data_entry_tower_level_header" />
 
                     <Spinner
                         android:id="@+id/towerLevel"
@@ -800,7 +800,7 @@
                         android:layout_weight="15"
                         android:gravity="center_vertical"
                         android:paddingStart="10dp"
-                        android:text="Tower Position:" />
+                        android:text="@string/data_entry_tower_position_header" />
 
                     <Spinner
                         android:id="@+id/towerPosition"
@@ -832,7 +832,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Notes:" />
+                        android:text="@string/data_entry_notes_header" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -868,7 +868,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:backgroundTint="?attr/colorPrimary"
-                            android:text="Save and Exit"
+                            android:text="@string/data_entry_save_exit"
                             android:textColor="?attr/buttonTextPrimary" />
                     </LinearLayout>
 

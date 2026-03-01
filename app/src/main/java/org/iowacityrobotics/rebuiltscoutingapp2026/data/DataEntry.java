@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.LocaleListCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
 import org.iowacityrobotics.rebuiltscoutingapp2026.R;
@@ -219,6 +221,7 @@ public class DataEntry extends AppCompatActivity {
                 break;
             case "TOMMY":
                 style = R.style.Tommy;
+                setAppLocale("zh");
                 break;
             case "BENM":
                 style = R.style.BenM;
@@ -365,5 +368,10 @@ public class DataEntry extends AppCompatActivity {
     }
     private boolean isUpperCase(String name) {
         return name.equals(name.toUpperCase());
+    }
+
+    public void setAppLocale(String languageCode) {
+        LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(languageCode);
+        AppCompatDelegate.setApplicationLocales(appLocale);
     }
 }
