@@ -335,7 +335,7 @@
                     android:layout_weight="1" />
 
                 <CheckBox
-                    android:id="@+id/humanIntake"
+                    android:id="@+id/fullWidthIntake"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

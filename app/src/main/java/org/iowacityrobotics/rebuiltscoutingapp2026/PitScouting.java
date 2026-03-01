@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -48,7 +49,7 @@ public class PitScouting extends AppCompatActivity {
 
     private CheckBox openHopper, extendableHopper;
     private CheckBox tiltTurret, turnTurret;
-    private CheckBox humanIntake, throughBumperIntake, overBumperIntake;
+    private CheckBox throughBumperIntake, overBumperIntake, fullWidthIntake;
     private CheckBox bump, trench, swerve;
     private CheckBox autoCanClimb;
     private CheckBox salt, pepper, butter;
@@ -76,6 +77,7 @@ public class PitScouting extends AppCompatActivity {
         initializeViews();
         setupUnitsSpinner();
         setupButtons();
+        setupFullWidthIntake();
     }
 
     private void initializeViews() {
@@ -96,9 +98,9 @@ public class PitScouting extends AppCompatActivity {
         tiltTurret = findViewById(R.id.tiltTurret);
         turnTurret = findViewById(R.id.turnTurret);
 
-        humanIntake = findViewById(R.id.humanIntake);
         throughBumperIntake = findViewById(R.id.throughBumperIntake);
         overBumperIntake = findViewById(R.id.overBumperIntake);
+        fullWidthIntake = findViewById(R.id.fullWidthIntake);
 
         cornOther = findViewById(R.id.editTextText);
         comments = findViewById(R.id.comments);
@@ -125,6 +127,21 @@ public class PitScouting extends AppCompatActivity {
         unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         unitSpinner.setAdapter(unitAdapter);
+    }
+
+    private void setupFullWidthIntake() {
+        fullWidthIntake.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Code to execute when the checkbox state changes
+                if (isChecked) {
+                    intakeWidth.setEnabled(false);
+                    intakeWidth.setText(botDimensionsWidth.getText().toString());
+                } else {
+                    intakeWidth.setEnabled(true);
+                }
+            }
+        });
     }
 
     private void setupButtons() {
@@ -169,9 +186,9 @@ public class PitScouting extends AppCompatActivity {
         tiltTurret.setChecked(false);
         turnTurret.setChecked(false);
 
-        humanIntake.setChecked(false);
         throughBumperIntake.setChecked(false);
         overBumperIntake.setChecked(false);
+        fullWidthIntake.setChecked(false);
 
         bump.setChecked(false);
         trench.setChecked(false);
@@ -218,19 +235,20 @@ public class PitScouting extends AppCompatActivity {
 
         String units = unitSpinner.getSelectedItem().toString();
 
-        pitData.put(PitKeys.PIT_HOPPER_DIMENSIONS, combineDataDimensions(convertToInches(hopperDimensionsDepth.getText().toString(), units), convertToInches(hopperDimensionsWidth.getText().toString(), units), convertToInches(hopperDimensionsHeight.getText().toString(), units)));
-        pitData.put(PitKeys.PIT_BOT_DIMENSIONS, combineDataDimensions(convertToInches(botDimensionsDepth.getText().toString(), units), convertToInches(botDimensionsWidth.getText().toString(), units), convertToInches(botDimensionsHeight.getText().toString(), units)));
+        pitData.put(PitKeys.PIT_HOPPER_DIMENSIONS, combineDataDimensions(convertToInches(hopperDimensionsWidth.getText().toString(), units), convertToInches(hopperDimensionsDepth.getText().toString(), units), convertToInches(hopperDimensionsHeight.getText().toString(), units)));
+        pitData.put(PitKeys.PIT_BOT_DIMENSIONS, combineDataDimensions(convertToInches(botDimensionsWidth.getText().toString(), units), convertToInches(botDimensionsDepth.getText().toString(), units), convertToInches(botDimensionsHeight.getText().toString(), units)));
         pitData.put(PitKeys.PIT_INTAKE, convertToInches(intakeWidth.getText().toString(), units));
 
-        pitData.put("rawHopperDimensions", combineDataDimensions(hopperDimensionsDepth.getText().toString(), hopperDimensionsWidth.getText().toString(), hopperDimensionsHeight.getText().toString()));
-        pitData.put("rawBotDimensions", combineDataDimensions(botDimensionsDepth.getText().toString(), botDimensionsWidth.getText().toString(), botDimensionsHeight.getText().toString()));
+        pitData.put("rawHopperDimensions", combineDataDimensions(hopperDimensionsWidth.getText().toString(), hopperDimensionsDepth.getText().toString(), hopperDimensionsHeight.getText().toString()));
+        pitData.put("rawBotDimensions", combineDataDimensions(botDimensionsWidth.getText().toString(), botDimensionsDepth.getText().toString(), botDimensionsHeight.getText().toString()));
         pitData.put("rawIntakeWidth", intakeWidth.getText().toString());
 
         pitData.put("units", units);
 
         pitData.put(PitKeys.PIT_TURRET, numberOfShooters.getText().toString());
         pitData.put("TurretType", getCheckBoxSelections(tiltTurret, turnTurret));
-        pitData.put("IntakeType", getCheckBoxSelections(humanIntake, throughBumperIntake, overBumperIntake));
+        pitData.put("IntakeType", getCheckBoxSelections(throughBumperIntake, overBumperIntake));
+        pitData.put("fullWidthIntake", getCheckBoxSelections(fullWidthIntake));
 
         pitData.put(PitKeys.PIT_HOPPER_TYPE, getCheckBoxSelections(openHopper, extendableHopper));
         pitData.put(PitKeys.PIT_CROSSING, getCheckBoxSelections(bump, trench));
@@ -365,7 +383,8 @@ public class PitScouting extends AppCompatActivity {
                 setCheckBoxSelections((String) match.get(PitKeys.PIT_CROSSING), bump, trench);
                 setCheckBoxSelections((String) match.get(PitKeys.PIT_SWERVE), swerve);
                 setCheckBoxSelections((String) match.get("TurretType"), tiltTurret, turnTurret);
-                setCheckBoxSelections((String) match.get("IntakeType"), humanIntake, throughBumperIntake, overBumperIntake);
+                setCheckBoxSelections((String) match.get("IntakeType"), throughBumperIntake, overBumperIntake);
+                setCheckBoxSelections((String) match.get("fullWidthIntake"), fullWidthIntake);
                 setCheckBoxSelections((String) match.get(PitKeys.AUTO_CLIMB), autoCanClimb);
 
                 loadCornPreferences((String) match.get(PitKeys.PIT_CORN));
@@ -513,15 +532,20 @@ public class PitScouting extends AppCompatActivity {
                 "rawBotDimensions",
                 "rawIntakeWidth",
                 "units",
+                "fullWidthIntake",
                 PitKeys.EXPORTED
         );
 
         for (Map<String, Object> match : finalExportList) {
 
             Map<String, Object> exportMap = new LinkedHashMap<>(match);
+            String fullWidth = (String) match.get("fullWidthIntake");
+            if (fullWidth != null && !fullWidth.equals("None")) {
+                exportMap.put(PitKeys.PIT_INTAKE, "Full Width");
+            }
             keysToRemove.forEach(exportMap::remove);
-            if (match.get(PitKeys.PIT_SWERVE).equals("Swerve?")) {
-                match.replace(PitKeys.PIT_SWERVE, "Yes");
+            if ("Swerve?".equals(match.get(PitKeys.PIT_SWERVE))) {
+                exportMap.replace(PitKeys.PIT_SWERVE, "Yes");
             }
             jsonArray.put(new JSONObject(exportMap));
 
