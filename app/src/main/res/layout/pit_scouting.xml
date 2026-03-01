@@ -522,7 +522,7 @@
 
                 <EditText
                     android:id="@+id/numberOfShooters"
-                    style="@style/AutoResize25"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
@@ -571,14 +571,14 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="8"
+                    android:layout_weight="9"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
                     android:text="Number of Working Autos:" />
 
                 <EditText
                     android:id="@+id/numberOfAutos"
-                    style="@style/AutoResize25"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
@@ -600,10 +600,10 @@
 
                 <EditText
                     android:id="@+id/autoNotes"
-                    style="@style/AutoResize25"
+                    style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="20"
+                    android:layout_weight="19"
                     android:ems="10"
                     android:inputType="textMultiLine"
                     android:hint="Auto Notes" />
