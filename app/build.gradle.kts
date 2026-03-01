@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
 }
-
 android {
     namespace = "org.iowacityrobotics.rebuiltscoutingapp2026"
     compileSdk = 36

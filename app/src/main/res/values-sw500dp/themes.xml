@@ -16,9 +16,10 @@
     </style>
 
     <style name="Ashvid" parent="main_theme">
-        <item name="colorPrimary">#1A237E</item>
-        <item name="colorSecondary">#00ACC1</item>
+        <item name="colorPrimary">#283593</item>
+        <item name="colorSecondary">#29B6F6</item>
         <item name="colorSurface">#E8EAF6</item>
+        <item name="dividerColor">#C5CAE9</item>
     </style>
 
     <style name="Daniel" parent="main_theme">
@@ -28,35 +29,40 @@
     </style>
 
     <style name="Edmund" parent="main_theme">
-        <item name="colorPrimary">#4A148C</item>
-        <item name="colorSecondary">#D81B60</item>
+        <item name="colorPrimary">#6A1B9A</item>
+        <item name="colorSecondary">#F06292</item>
         <item name="colorSurface">#F3E5F5</item>
+        <item name="dividerColor">#E1BEE7</item>
     </style>
 
     <style name="Tommy" parent="main_theme">
-        <item name="colorPrimary">#006064</item>
-        <item name="colorSecondary">#000000</item>
-        <item name="colorSurface">#FF7377</item>
-        <item name="dividerColor">#BAC8D8</item>
+        <item name="colorPrimary">#B71C1C</item>
+        <item name="colorSecondary">#FF0000</item>
+        <item name="colorSurface">#cd5c5c</item>
+        <item name="dividerColor">#cd3c3c</item>
+
     </style>
 
     <style name="BenM" parent="main_theme">
-        <item name="colorPrimary">#263238</item>
-        <item name="colorSecondary">#039BE5</item>
+        <item name="colorPrimary">#37474F</item>
+        <item name="colorSecondary">#4FC3F7</item>
         <item name="colorSurface">#ECEFF1</item>
+        <item name="dividerColor">#CFD8DC</item>
         <item name="SchoolLogo">@drawable/liberty_logo</item>
     </style>
 
     <style name="Mert" parent="main_theme">
         <item name="colorPrimary">#2E7D32</item>
-        <item name="colorSecondary">#26C6DA</item>
-        <item name="colorSurface">#E0F2F1</item>
+        <item name="colorSecondary">#66BB6A</item>
+        <item name="colorSurface">#E8F5E9</item>
+        <item name="dividerColor">#C8E6C9</item>
     </style>
 
     <style name="Avaneesh" parent="main_theme">
-        <item name="colorPrimary">#004D40</item>
-        <item name="colorSecondary">#5C6BC0</item>
-        <item name="colorSurface">#E0F2F1</item>
+        <item name="colorPrimary">#00695C</item>
+        <item name="colorSecondary">#42A5F5</item>
+        <item name="colorSurface">#E0F7FA</item>
+        <item name="dividerColor">#B2EBF2</item>
     </style>
 
     <style name="BenL" parent="main_theme">
@@ -72,27 +78,31 @@
     </style>
 
     <style name="Cody" parent="main_theme">
-        <item name="colorPrimary">#37474F</item>
-        <item name="colorSecondary">#7E57C2</item>
+        <item name="colorPrimary">#455A64</item>
+        <item name="colorSecondary">#7986CB</item>
         <item name="colorSurface">#ECEFF1</item>
+        <item name="dividerColor">#CFD8DC</item>
     </style>
 
     <style name="Cole" parent="main_theme">
-        <item name="colorPrimary">#311B92</item>
+        <item name="colorPrimary">#283593</item>
         <item name="colorSecondary">#00BCD4</item>
-        <item name="colorSurface">#EDE7F6</item>
+        <item name="colorSurface">#E8EAF6</item>
+        <item name="dividerColor">#C5CAE9</item>
     </style>
 
     <style name="Elly" parent="main_theme">
-        <item name="colorPrimary">#9999FF</item>
-        <item name="colorSecondary">#5C6BD0</item>
-        <item name="colorSurface">#C5DFDF</item>
+        <item name="colorPrimary">#7986CB</item>
+        <item name="colorSecondary">#5C6BC0</item>
+        <item name="colorSurface">#DCE4F7</item>
+        <item name="dividerColor">#B0BEC5</item>
     </style>
 
     <style name="Jack" parent="main_theme">
         <item name="colorPrimary">#1A237E</item>
-        <item name="colorSecondary">#FF4081</item>
+        <item name="colorSecondary">#F06292</item>
         <item name="colorSurface">#E8EAF6</item>
+        <item name="dividerColor">#C5CAE9</item>
     </style>
 
     <style name="James" parent="main_theme">
@@ -103,105 +113,123 @@
     </style>
 
     <style name="Jerry" parent="main_theme">
-        <item name="colorPrimary">#2b0071</item>
-        <item name="colorSecondary">#00416A</item>
-        <item name="colorSurface">#e8f4f8</item>
+        <item name="colorPrimary">#4A148C</item>
+        <item name="colorSecondary">#1E88E5</item>
+        <item name="colorSurface">#EDE7F6</item>
+        <item name="dividerColor">#D1C4E9</item>
     </style>
 
     <style name="Liam" parent="main_theme">
-        <item name="colorPrimary">#283593</item>
+        <item name="colorPrimary">#303F9F</item>
         <item name="colorSecondary">#26C6DA</item>
         <item name="colorSurface">#E8EAF6</item>
+        <item name="dividerColor">#C5CAE9</item>
     </style>
 
     <style name="Nolan" parent="main_theme">
         <item name="colorPrimary">#212121</item>
-        <item name="colorSecondary">#00ACC1</item>
+        <item name="colorSecondary">#29B6F6</item>
         <item name="colorSurface">#F5F5F5</item>
+        <item name="dividerColor">#E0E0E0</item>
     </style>
 
     <style name="Parshwa" parent="main_theme">
         <item name="colorPrimary">#3E2723</item>
-        <item name="colorSecondary">#5E35B1</item>
+        <item name="colorSecondary">#7E57C2</item>
         <item name="colorSurface">#EFEBE9</item>
+        <item name="dividerColor">#D7CCC8</item>
     </style>
 
     <style name="Soma" parent="main_theme">
         <item name="colorPrimary">#1B5E20</item>
         <item name="colorSecondary">#3949AB</item>
         <item name="colorSurface">#E8F5E9</item>
+        <item name="dividerColor">#C8E6C9</item>
     </style>
 
     <style name="Tada" parent="main_theme">
         <item name="colorPrimary">#004D40</item>
-        <item name="colorSecondary">#8E24AA</item>
+        <item name="colorSecondary">#29B6F6</item>
         <item name="colorSurface">#E0F2F1</item>
+        <item name="dividerColor">#B2DFDB</item>
     </style>
 
     <style name="Evan" parent="main_theme">
         <item name="colorPrimary">#00695C</item>
-        <item name="colorSecondary">#FF4081</item>
+        <item name="colorSecondary">#1E88E5</item>
         <item name="colorSurface">#E0F2F1</item>
+        <item name="dividerColor">#B2DFDB</item>
     </style>
 
     <style name="Alex" parent="main_theme">
         <item name="colorPrimary">#4527A0</item>
         <item name="colorSecondary">#26A69A</item>
         <item name="colorSurface">#EDE7F6</item>
+        <item name="dividerColor">#D1C4E9</item>
     </style>
 
     <style name="Calvin" parent="main_theme">
         <item name="colorPrimary">#2E7D32</item>
         <item name="colorSecondary">#000000</item>
-        <item name="colorSurface">#C62828</item>
+        <item name="colorSurface">#C8E6C9</item>
+        <item name="dividerColor">#A5D6A7</item>
     </style>
 
     <style name="Emma" parent="main_theme">
-        <item name="colorPrimary">#FFAABB</item>
-        <item name="colorSecondary">#55DD66</item>
+        <item name="colorPrimary">#FFCDD2</item>
+        <item name="colorSecondary">#4DB6AC</item>
         <item name="colorSurface">#D5FAFA</item>
+        <item name="dividerColor">#B2DFDB</item>
+        <item name="buttonTextPrimary">@color/black</item>
     </style>
 
     <style name="Farhan" parent="main_theme">
         <item name="colorPrimary">#0D47A1</item>
-        <item name="colorSecondary">#26C6DA</item>
+        <item name="colorSecondary">#29B6F6</item>
         <item name="colorSurface">#E3F2FD</item>
+        <item name="dividerColor">#BBDEFB</item>
     </style>
 
     <style name="Jaime" parent="main_theme">
         <item name="colorPrimary">#880E4F</item>
         <item name="colorSecondary">#3949AB</item>
         <item name="colorSurface">#FCE4EC</item>
+        <item name="dividerColor">#F8BBD0</item>
     </style>
 
     <style name="Jaynou" parent="main_theme">
-        <item name="colorPrimary">#663399</item>
-        <item name="colorSecondary">#E6274A</item>
-        <item name="colorSurface">#e8f4f8</item>
+        <item name="colorPrimary">#6A1B9A</item>
+        <item name="colorSecondary">#E53935</item>
+        <item name="colorSurface">#E8EAF6</item>
+        <item name="dividerColor">#C5CAE9</item>
     </style>
 
     <style name="Jennifer" parent="main_theme">
         <item name="colorPrimary">#283593</item>
         <item name="colorSecondary">#D81B60</item>
         <item name="colorSurface">#E8EAF6</item>
+        <item name="dividerColor">#C5CAE9</item>
     </style>
 
     <style name="Kazu" parent="main_theme">
         <item name="colorPrimary">#311B92</item>
         <item name="colorSecondary">#26C6DA</item>
         <item name="colorSurface">#EDE7F6</item>
+        <item name="dividerColor">#D1C4E9</item>
     </style>
 
     <style name="Maximillian" parent="main_theme">
-        <item name="colorPrimary">#263238</item>
-        <item name="colorSecondary">#7E57C2</item>
+        <item name="colorPrimary">#2E7D32</item>
+        <item name="colorSecondary">#1E88E5</item>
         <item name="colorSurface">#ECEFF1</item>
+        <item name="dividerColor">#CFD8DC</item>
     </style>
 
     <style name="Nathan" parent="main_theme">
         <item name="colorPrimary">#1B5E20</item>
         <item name="colorSecondary">#5C6BC0</item>
         <item name="colorSurface">#E8F5E9</item>
+        <item name="dividerColor">#C8E6C9</item>
     </style>
 
     <style name="Parker" parent="main_theme">
@@ -214,18 +242,21 @@
         <item name="colorPrimary">#AD1457</item>
         <item name="colorSecondary">#26C6DA</item>
         <item name="colorSurface">#FCE4EC</item>
+        <item name="dividerColor">#F8BBD0</item>
     </style>
 
     <style name="Yuzuka" parent="main_theme">
         <item name="colorPrimary">#4527A0</item>
         <item name="colorSecondary">#EC407A</item>
         <item name="colorSurface">#EDE7F6</item>
+        <item name="dividerColor">#D1C4E9</item>
     </style>
 
     <style name="Trey" parent="main_theme">
         <item name="colorPrimary">#0F3057</item>
         <item name="colorSecondary">#E43F5A</item>
         <item name="colorSurface">#E3F2FD</item>
+        <item name="dividerColor">#BBDEFB</item>
     </style>
 
     <style name="Michael" parent="main_theme">
@@ -235,51 +266,59 @@
     </style>
 
     <style name="Razzi" parent="main_theme">
-        <item name="colorPrimary">#2b0071</item>
+        <item name="colorPrimary">#2B0071</item>
         <item name="colorSecondary">#00416A</item>
-        <item name="colorSurface">#e8f4f8</item>
+        <item name="colorSurface">#E8F4F8</item>
+        <item name="dividerColor">#C5E1E8</item>
     </style>
 
     <style name="Vlad" parent="main_theme">
         <item name="colorPrimary">#3E2723</item>
         <item name="colorSecondary">#26C6DA</item>
         <item name="colorSurface">#EFEBE9</item>
+        <item name="dividerColor">#D7CCC8</item>
     </style>
 
     <style name="Chris" parent="main_theme">
         <item name="colorPrimary">#37474F</item>
         <item name="colorSecondary">#EC407A</item>
         <item name="colorSurface">#ECEFF1</item>
+        <item name="dividerColor">#CFD8DC</item>
     </style>
 
     <style name="Penny" parent="main_theme">
         <item name="colorPrimary">#AD1457</item>
         <item name="colorSecondary">#26A69A</item>
         <item name="colorSurface">#FCE4EC</item>
+        <item name="dividerColor">#F8BBD0</item>
     </style>
 
     <style name="Bobby" parent="main_theme">
         <item name="colorPrimary">#2E7D32</item>
-        <item name="colorSecondary">#6A1B9A</item>
-        <item name="colorSurface">#1565C0</item>
+        <item name="colorSecondary">#1565C0</item>
+        <item name="dividerColor">#A5D6A7</item>
+        <item name="colorSurface">#E8EAF6</item>
     </style>
 
     <style name="Grayson" parent="main_theme">
         <item name="colorPrimary">#263238</item>
         <item name="colorSecondary">#5C6BC0</item>
         <item name="colorSurface">#ECEFF1</item>
+        <item name="dividerColor">#CFD8DC</item>
     </style>
 
     <style name="Madison" parent="main_theme">
         <item name="colorPrimary">#4A148C</item>
         <item name="colorSecondary">#26C6DA</item>
         <item name="colorSurface">#F3E5F5</item>
+        <item name="dividerColor">#E1BEE7</item>
     </style>
 
     <style name="Ryan" parent="main_theme">
         <item name="colorPrimary">#0096FF</item>
         <item name="colorSecondary">#FFA400</item>
-        <item name="colorSurface">#808080</item>
+        <item name="colorSurface">#E0E0E0</item>
+        <item name="dividerColor">#BDBDBD</item>
     </style>
 
     <style name="Mike" parent="main_theme">

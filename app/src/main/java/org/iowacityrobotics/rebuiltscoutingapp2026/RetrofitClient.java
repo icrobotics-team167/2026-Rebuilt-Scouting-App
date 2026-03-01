@@ -6,8 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String API_KEY =
-            "Cg1EaqGBzK8oRJA1jCMkgpMHjd40R7QVe8tQ02t6YMw4f6vVf78UdjDWd8uEdQqb";
+    private static final String API_KEY = "Cg1EaqGBzK8oRJA1jCMkgpMHjd40R7QVe8tQ02t6YMw4f6vVf78UdjDWd8uEdQqb";
 
     private static final String BASE_URL =
             "https://www.thebluealliance.com/api/v3/";

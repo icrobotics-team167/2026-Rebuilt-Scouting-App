@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import java.io.File;
 
 public class StartScreen extends AppCompatActivity {
-    private static final String EVENT_KEY = "MNWI";
+    private static final String EVENT_KEY = "2026mnwi";
     private static final String PREFS_NAME = "my_prefs";
     private static final String SWITCH_KEY = "switch_state";
 

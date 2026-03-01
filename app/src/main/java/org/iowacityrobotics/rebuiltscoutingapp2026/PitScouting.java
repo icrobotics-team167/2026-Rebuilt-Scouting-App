@@ -80,6 +80,19 @@ public class PitScouting extends AppCompatActivity {
         setupFullWidthIntake();
     }
 
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Cancel Entry")
+                .setMessage("Are you sure you want cancel pit entry?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    super.onBackPressed();
+                    Toast.makeText(this, "Entry Canceled.", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
     private void initializeViews() {
         teamNumber = findViewById(R.id.teamNumber);
         scouterName = findViewById(R.id.scouter);
@@ -130,15 +143,30 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void setupFullWidthIntake() {
+        botDimensionsWidth.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus) {
+                        if (fullWidthIntake.isChecked()) {
+                            intakeWidth.setText(botDimensionsWidth.getText().toString());
+                        }
+                    }
+                }
+            });
         fullWidthIntake.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // Code to execute when the checkbox state changes
-                if (isChecked) {
-                    intakeWidth.setEnabled(false);
-                    intakeWidth.setText(botDimensionsWidth.getText().toString());
-                } else {
-                    intakeWidth.setEnabled(true);
+                if (botDimensionsWidth.getText().toString().isEmpty()) {
+                    botDimensionsWidth.setError("Required");
+                    fullWidthIntake.setChecked(false);
+                }
+                else {
+                    if (isChecked) {
+                        intakeWidth.setEnabled(false);
+                        intakeWidth.setText(botDimensionsWidth.getText().toString());
+                    } else {
+                        intakeWidth.setEnabled(true);
+                    }
                 }
             }
         });
@@ -150,7 +178,7 @@ public class PitScouting extends AppCompatActivity {
         Button editBtn = findViewById(R.id.editButton);
         Button deleteBtn = findViewById(R.id.exportButton2);
 
-        saveBtn.setOnClickListener(v -> savePitData());
+        saveBtn.setOnClickListener(v -> checkFieldsAndSave());
 
         exportBtn.setOnClickListener(v -> {
             launchFilePicker();
@@ -201,9 +229,9 @@ public class PitScouting extends AppCompatActivity {
         editingIndex = -1;
     }
 
-    private void savePitData() {
+    private void checkFieldsAndSave() {
         boolean error = false;
-        TextView[] textViews = {teamNumber, scouterName, botDimensionsDepth, botDimensionsWidth, botDimensionsHeight, intakeWidth, hopperDimensionsDepth, hopperDimensionsWidth, hopperDimensionsHeight, numberOfShooters, numberOfAutos};;
+        TextView[] textViews = {teamNumber, scouterName, botDimensionsDepth, botDimensionsWidth, botDimensionsHeight, intakeWidth, hopperDimensionsDepth, hopperDimensionsWidth, hopperDimensionsHeight, numberOfShooters, numberOfAutos};
         for (TextView textView : textViews) {
             if (textView.getText().toString().isEmpty()) {
                 textView.setError("Required");
@@ -222,8 +250,17 @@ public class PitScouting extends AppCompatActivity {
             error = true;
         }
         if (error == true) {
-            return;
+            new AlertDialog.Builder(this)
+                    .setTitle("Missing Data")
+                    .setMessage("Are you sure you want to save incomplete data?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        savePitData();
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
         }
+    }
+        private void savePitData() {
 
         String team = teamNumber.getText().toString().trim();
         Map<String, Object> pitData = new LinkedHashMap<>();

@@ -15,7 +15,7 @@ public class MatchSchedule {
 
     public static void loadSchedule(Context context) {
         try {
-            InputStream is = context.getAssets().open("match_data.json");
+            InputStream is = context.openFileInput("match_data.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);

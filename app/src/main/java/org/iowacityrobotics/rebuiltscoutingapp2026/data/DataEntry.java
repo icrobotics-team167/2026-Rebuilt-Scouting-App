@@ -56,6 +56,19 @@ public class DataEntry extends AppCompatActivity {
         findViewById(R.id.saveExitButton).setOnClickListener(v -> saveNewMatch());
     }
 
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Cancel Entry")
+                .setMessage("Are you sure you want cancel match entry?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    super.onBackPressed();
+                    Toast.makeText(this, "Entry Canceled.", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
     private void initializeViews() {
         matchNumView = findViewById(R.id.matchNumber);
         teamNumView = findViewById(R.id.teamNumber);
