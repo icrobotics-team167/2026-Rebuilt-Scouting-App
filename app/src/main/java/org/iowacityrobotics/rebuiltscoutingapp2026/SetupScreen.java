@@ -23,6 +23,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.LocaleListCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEditor;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEntry;
@@ -62,6 +64,7 @@ public class SetupScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setup_screen);
+        setAppLocale("en");
 
         StorageManager.loadData(this);
 
@@ -411,5 +414,10 @@ public class SetupScreen extends AppCompatActivity {
     private void restorePreferences() {
         SharedPreferences prefs = getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE);
         scouterNameInput.setText(prefs.getString("scouter_name", ""));
+    }
+
+    public void setAppLocale(String languageCode) {
+        LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(languageCode);
+        AppCompatDelegate.setApplicationLocales(appLocale);
     }
 }

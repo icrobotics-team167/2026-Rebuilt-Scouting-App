@@ -37,6 +37,7 @@
         <item name="colorPrimary">#006064</item>
         <item name="colorSecondary">#000000</item>
         <item name="colorSurface">#FF7377</item>
+        <item name="dividerColor">#BAC8D8</item>
     </style>
 
     <style name="BenM" parent="main_theme">

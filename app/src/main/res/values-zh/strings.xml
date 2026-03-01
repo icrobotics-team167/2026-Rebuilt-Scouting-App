@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">重建侦察应用 2026</string>
+    <string name="scout_button">侦察按钮</string>
+    <string name="delete_button">删除</string>
+    <string name="export_button">导出</string>
+    <string name="data_entry_team_number_header">队伍：</string>
+    <string name="data_entry_match_number_header">比赛：</string>
+    <string name="data_entry_scouter_name">姓名：</string>
+    <string name="data_entry_scouting_assignment">任务：</string>
+    <string name="data_entry_auto_header">自动</string>
+    <string name="data_entry_active_hub_header">活跃枢纽</string>
+    <string name="data_entry_inactive_hub_header">非活跃枢纽</string>
+    <string name="data_entry_cycles_header">循环：</string>
+    <string name="data_entry_auto_neutral_zone">进入中立区</string>
+    <string name="data_entry_active_defense">进行防守</string>
+    <string name="data_entry_inactive_defense">进行防守</string>
+    <string name="data_entry_alliance_score_header">联盟得分：</string>
+    <string name="data_entry_end_auto_header">自动结束：</string>
+    <string name="data_entry_end_shift_1_header">第1轮结束：</string>
+    <string name="data_entry_end_shift_2_header">第2轮结束：</string>
+    <string name="data_entry_end_shift_3_header">第3轮结束：</string>
+    <string name="data_entry_end_game_header">比赛结束：</string>
+    <string name="data_entry_passed_fuel">传送燃料</string>
+    <string name="data_entry_team_rating_header">队伍评分：</string>
+    <string name="data_entry_tower_level_header">塔等级：</string>
+    <string name="data_entry_tower_position_header">塔位置：</string>
+    <string name="data_entry_notes_header">备注：</string>
+    <string name="data_entry_save_exit">保存并退出</string>
+</resources>

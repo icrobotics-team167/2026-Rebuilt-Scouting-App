@@ -8,8 +8,8 @@ import retrofit2.http.Path;
 
 public interface TBAApi {
 
-    @GET("event/{event_key}/matches")
-    Call<List<Match>> getEventMatches(
-            @Path("event_key") String eventKey
-    );
+//    @GET("event/{event_key}/matches")
+//    Call<List<Match>> getEventMatches(
+//            @Path("event_key") String eventKey
+//    );
 }
