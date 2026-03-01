@@ -13,8 +13,10 @@ import android.widget.Switch;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-public class StartScreen extends AppCompatActivity {
+import java.io.File;
 
+public class StartScreen extends AppCompatActivity {
+    private static final String EVENT_KEY = "MNWI";
     private static final String PREFS_NAME = "my_prefs";
     private static final String SWITCH_KEY = "switch_state";
 
@@ -22,6 +24,11 @@ public class StartScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_screen);
+
+        File file = new File(getFilesDir(), "match_data.json");
+        if (!file.exists()) {
+            MatchDataGenerator.generate(this, EVENT_KEY);
+        }
 
         Button matchScoutBtn = findViewById(R.id.button);
         matchScoutBtn.setOnClickListener(new View.OnClickListener() {
