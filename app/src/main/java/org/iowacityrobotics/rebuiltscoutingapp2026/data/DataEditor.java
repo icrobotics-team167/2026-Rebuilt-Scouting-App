@@ -18,9 +18,8 @@ import java.util.Map;
 public class DataEditor extends AppCompatActivity {
 
     private EditText matchNum, teamNum, scouterName, assignment;
-    private EditText autoCycles, activeCycles, inactiveCycles;
-    private EditText autoNeutral, autoShotFuel, activeDefense, inactiveDefense;
-    private EditText endAuto, endShift1, endShift2, endShift3, endGame;
+    private EditText autoVolleysFired, autoFuelBunches, teleopVolleysFired, teleopFuelBunches;
+    private EditText activeDefense, inactiveDefense;
     private EditText towerPos, towerLevel, passedFuel, teamRating, comments;
 
     @Override
@@ -41,20 +40,13 @@ public class DataEditor extends AppCompatActivity {
         scouterName = findViewById(R.id.scouter);
         assignment = findViewById(R.id.scoutingAssignment);
 
-        autoCycles = findViewById(R.id.autoCycles);
-        activeCycles = findViewById(R.id.activeCycles);
-        inactiveCycles = findViewById(R.id.inactiveCycles);
+        autoVolleysFired = findViewById(R.id.autoVolleysFired);
+        autoFuelBunches = findViewById(R.id.autoFuelBunches);
+        teleopVolleysFired = findViewById(R.id.teleopVolleysFired);
+        teleopFuelBunches = findViewById(R.id.teleopFuelBunches);
 
-        autoNeutral = findViewById(R.id.autoNeutralZone);
-        autoShotFuel = findViewById(R.id.autoShotFuel);
         activeDefense = findViewById(R.id.activePlayedDefense);
         inactiveDefense = findViewById(R.id.inactivePlayedDefense);
-
-        endAuto = findViewById(R.id.endAuto);
-        endShift1 = findViewById(R.id.endShift1);
-        endShift2 = findViewById(R.id.endShift2);
-        endShift3 = findViewById(R.id.endShift3);
-        endGame = findViewById(R.id.endGame);
 
         towerPos = findViewById(R.id.towerPosition);
         towerLevel = findViewById(R.id.towerLevel);
@@ -72,20 +64,13 @@ public class DataEditor extends AppCompatActivity {
             setTextSafe(scouterName, data.get(DataKeys.SCOUTER));
             setTextSafe(assignment, data.get(DataKeys.ASSIGNMENT));
 
-            setTextSafe(autoCycles, data.get(DataKeys.AUTO_CYCLES));
-            setTextSafe(activeCycles, data.get(DataKeys.ACTIVE_CYCLES));
-            setTextSafe(inactiveCycles, data.get(DataKeys.INACTIVE_CYCLES));
+            setTextSafe(autoVolleysFired, data.get(DataKeys.AUTO_VOLLEYS_FIRED));
+            setTextSafe(autoFuelBunches, data.get(DataKeys.AUTO_FUEL_BUNCHES));
+            setTextSafe(teleopVolleysFired, data.get(DataKeys.TELEOP_VOLLEYS_FIRED));
+            setTextSafe(teleopFuelBunches, data.get(DataKeys.TELEOP_FUEL_BUNCHES));
 
-            setTextSafe(autoNeutral, data.get(DataKeys.AUTO_NEUTRAL));
-            setTextSafe(autoShotFuel, data.get(DataKeys.AUTO_SHOT));
             setTextSafe(activeDefense, data.get(DataKeys.ACTIVE_DEFENSE));
             setTextSafe(inactiveDefense, data.get(DataKeys.INACTIVE_DEFENSE));
-
-            setTextSafe(endAuto, data.get(DataKeys.END_AUTO));
-            setTextSafe(endShift1, data.get(DataKeys.END_SHIFT_1));
-            setTextSafe(endShift2, data.get(DataKeys.END_SHIFT_2));
-            setTextSafe(endShift3, data.get(DataKeys.END_SHIFT_3));
-            setTextSafe(endGame, data.get(DataKeys.END_GAME));
 
             setTextSafe(towerPos, data.get(DataKeys.TOWER_POS));
             setTextSafe(towerLevel, data.get(DataKeys.TOWER_LEVEL));
@@ -104,21 +89,14 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.SCOUTER, scouterName.getText().toString());
             data.put(DataKeys.ASSIGNMENT, assignment.getText().toString());
 
-            data.put(DataKeys.AUTO_CYCLES, parseInteger(autoCycles));
-            data.put(DataKeys.ACTIVE_CYCLES, parseInteger(activeCycles));
-            data.put(DataKeys.INACTIVE_CYCLES, parseInteger(inactiveCycles));
+            data.put(DataKeys.AUTO_VOLLEYS_FIRED, parseInteger(autoVolleysFired));
+            data.put(DataKeys.AUTO_FUEL_BUNCHES, parseInteger(autoFuelBunches));
+            data.put(DataKeys.TELEOP_VOLLEYS_FIRED, parseInteger(teleopVolleysFired));
+            data.put(DataKeys.TELEOP_FUEL_BUNCHES, parseInteger(teleopFuelBunches));
 
-            data.put(DataKeys.AUTO_NEUTRAL, parseBoolean(autoNeutral));
-            data.put(DataKeys.AUTO_SHOT, parseBoolean(autoShotFuel));
             data.put(DataKeys.ACTIVE_DEFENSE, parseBoolean(activeDefense));
             data.put(DataKeys.INACTIVE_DEFENSE, parseBoolean(inactiveDefense));
             data.put(DataKeys.PASSED_FUEL, parseBoolean(passedFuel));
-
-            data.put(DataKeys.END_AUTO, endAuto.getText().toString());
-            data.put(DataKeys.END_SHIFT_1, endShift1.getText().toString());
-            data.put(DataKeys.END_SHIFT_2, endShift2.getText().toString());
-            data.put(DataKeys.END_SHIFT_3, endShift3.getText().toString());
-            data.put(DataKeys.END_GAME, endGame.getText().toString());
 
             data.put(DataKeys.TOWER_POS, towerPos.getText().toString());
             data.put(DataKeys.TOWER_LEVEL, towerLevel.getText().toString());

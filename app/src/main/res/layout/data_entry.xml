@@ -110,7 +110,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="40"
+            android:layout_weight="56"
             android:orientation="horizontal"
             android:weightSum="64">
 
@@ -126,7 +126,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="20"
                 android:orientation="vertical"
-                android:weightSum="10">
+                android:weightSum="12">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -141,11 +141,10 @@
 
                         <TextView
                             android:id="@+id/autoHeader"
-                            style="@style/AutoResize25"
+                            style="@style/AutoResize30"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:paddingStart="10dp"
+                            android:gravity="center"
                             android:text="@string/data_entry_auto_header" />
                     </LinearLayout>
                 </LinearLayout>
@@ -160,28 +159,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:layout_weight="2"
                         android:weightSum="6">
 
                         <TextView
                             android:id="@+id/autoCyclesHeader"
-                            style="@style/AutoResize20"
+                            style="@style/AutoResize25"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="2"
-                            android:gravity="center_horizontal"
-                            android:layout_gravity="center_vertical"
-                            android:text="@string/data_entry_cycles_header" />
+                            android:gravity="center"
+                            android:paddingBottom="10dp"
+                            android:text="@string/data_entry_volleys_header" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="4"
+                            android:layout_weight="3.5"
                             android:weightSum="5"
                             android:orientation="horizontal">
 
                             <Button
-                                android:id="@+id/autoDecButton"
+                                android:id="@+id/autoVolleysDec"
                                 style="@style/AutoResize60"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
@@ -191,7 +189,7 @@
                                 android:text="-" />
 
                             <TextView
-                                android:id="@+id/autoCycles"
+                                android:id="@+id/autoVolleysFired"
                                 style="@style/AutoResize25"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
@@ -200,7 +198,7 @@
                                 android:text="0" />
 
                             <Button
-                                android:id="@+id/autoIncButton"
+                                android:id="@+id/autoVolleysInc"
                                 style="@style/AutoResize45"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
@@ -210,33 +208,70 @@
                                 android:text="+" />
                         </LinearLayout>
                     </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:weightSum="2"
+                    android:layout_weight="5"
                     android:orientation="horizontal">
 
-                    <CheckBox
-                        style="@style/AutoResize20"
-                        android:id="@+id/autoNeutralZone"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="@string/data_entry_auto_neutral_zone" />
+                        android:weightSum="6"
+                        android:orientation="vertical">
 
-                    <CheckBox
-                        style="@style/AutoResize20"
-                        android:id="@+id/autoShotFuel"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="@string/shot_fuel" />
+                        <TextView
+                            android:id="@+id/textView9"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="@string/data_entry_fuel_bunches_header" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="3.5"
+                            android:weightSum="5"
+                            android:orientation="horizontal">
+                            <Button
+                                android:id="@+id/autoFuelBunchesDec"
+                                style="@style/AutoResize60"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:backgroundTint="?attr/colorSecondary"
+                                android:textColor="@color/plusMinusColor"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/autoFuelBunches"
+                                style="@style/AutoResize25"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:text="0" />
+
+                            <Button
+                                android:id="@+id/autoFuelBunchesInc"
+                                style="@style/AutoResize45"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:backgroundTint="?attr/colorSecondary"
+                                android:textColor="@color/plusMinusColor"
+                                android:layout_weight="2"
+                                android:text="+" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
                 </LinearLayout>
+
             </LinearLayout>
 
             <View
@@ -244,37 +279,24 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                
+
                 android:foreground="?attr/dividerColor" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="20"
-                android:orientation="vertical"
-                android:weightSum="10">
+                android:layout_weight="41"
+                android:weightSum="12"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/teleopHeader"
+                    style="@style/AutoResize30"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="2"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/activeHubHeader"
-                            style="@style/AutoResize25"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:paddingStart="10dp"
-                            android:text="@string/data_entry_active_hub_header" />
-                    </LinearLayout>
-                </LinearLayout>
+                    android:gravity="center"
+                    android:text="Tele-op" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -283,110 +305,148 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_weight="20"
                         android:orientation="vertical"
-                        android:weightSum="6">
-
-                        <TextView
-                            style="@style/AutoResize20"
-                            android:id="@+id/activeCyclesHeader"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="2"
-                            android:gravity="center_horizontal"
-                            android:layout_gravity="center_vertical"
-                            android:text="@string/data_entry_cycles_header" />
+                        android:weightSum="5">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="4"
-                            android:weightSum="5"
+                            android:layout_weight="5"
                             android:orientation="horizontal">
 
-                            <Button
-                                android:id="@+id/activeDecButton"
-                                style="@style/AutoResize60"
-                                android:layout_width="0dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:backgroundTint="?attr/colorSecondary"
-                                android:textColor="@color/plusMinusColor"
-                                android:text="-" />
+                                android:orientation="vertical"
+                                android:weightSum="6">
 
-                            <TextView
-                                android:id="@+id/activeCycles"
-                                style="@style/AutoResize25"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:layout_weight="1"
-                                android:text="0" />
+                                <TextView
+                                    android:id="@+id/teleopVolleysFiredHeader"
+                                    style="@style/AutoResize25"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="2"
+                                    android:paddingBottom="10dp"
+                                    android:gravity="center"
+                                    android:text="@string/data_entry_volleys_header" />
 
-                            <Button
-                                android:id="@+id/activeIncButton"
-                                style="@style/AutoResize45"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:backgroundTint="?attr/colorSecondary"
-                                android:textColor="@color/plusMinusColor"
-                                android:text="+" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3.5"
+                                    android:orientation="horizontal">
+
+                                    <Button
+                                        android:id="@+id/teleopVolleysFiredDec"
+                                        style="@style/AutoResize60"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:backgroundTint="?attr/colorSecondary"
+                                        android:text="-"
+                                        android:textColor="@color/plusMinusColor" />
+
+                                    <TextView
+                                        android:id="@+id/teleopVolleysFired"
+                                        style="@style/AutoResize25"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:text="0" />
+
+                                    <Button
+                                        android:id="@+id/teleopVolleysFiredInc"
+                                        style="@style/AutoResize45"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:backgroundTint="?attr/colorSecondary"
+                                        android:text="+"
+                                        android:textColor="@color/plusMinusColor" />
+                                </LinearLayout>
+                            </LinearLayout>
                         </LinearLayout>
+
                     </LinearLayout>
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/activePlayedDefense"
-                        style="@style/AutoResize20"
-                        android:layout_width="match_parent"
+                    <Space
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/data_entry_active_defense" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider8"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                
-                android:foreground="?attr/dividerColor" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="20"
-                android:orientation="vertical"
-                android:weightSum="10">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    android:orientation="horizontal">
+                        android:layout_weight="1" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_weight="20"
+                        android:orientation="vertical"
+                        android:weightSum="5">
 
-                        <TextView
-                            style="@style/AutoResize25"
-                            android:id="@+id/inactiveHubHeader"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:paddingStart="10dp"
-                            android:text="@string/data_entry_inactive_hub_header" />
+                            android:layout_height="0dp"
+                            android:layout_weight="5"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:weightSum="6">
+
+                                <TextView
+                                    android:id="@+id/teleopFuelBunchesHeader"
+                                    style="@style/AutoResize25"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="2"
+                                    android:paddingBottom="10dp"
+                                    android:gravity="center"
+                                    android:text="@string/data_entry_fuel_bunches_header" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3.5"
+                                    android:orientation="horizontal"
+                                    android:weightSum="5">
+
+                                    <Button
+                                        android:id="@+id/teleopFuelBunchesDec"
+                                        style="@style/AutoResize60"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:backgroundTint="?attr/colorSecondary"
+                                        android:text="-"
+                                        android:textColor="@color/plusMinusColor" />
+
+                                    <TextView
+                                        android:id="@+id/teleopFuelBunches"
+                                        style="@style/AutoResize25"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:text="0" />
+
+                                    <Button
+                                        android:id="@+id/teleopFuelBunchesInc"
+                                        style="@style/AutoResize45"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:backgroundTint="?attr/colorSecondary"
+                                        android:text="+"
+                                        android:textColor="@color/plusMinusColor" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -394,73 +454,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="5"
-                    android:orientation="horizontal">
+                    android:weightSum="6"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/averageVolleySizeHeader"
+                        style="@style/AutoResize25"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Average Volley Size" />
+
+                    <TextView
+                        android:id="@+id/averageVolleySize"
+                        style="@style/AutoResize25"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:gravity="center"
+                        android:layout_weight="2"
+                        android:text="0" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:weightSum="6">
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:weightSum="8"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/inactiveCyclesHeader"
-                            style="@style/AutoResize20"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="2"
-                            android:gravity="center_horizontal"
-                            android:text="@string/data_entry_cycles_header" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="4"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/inactiveDecButton"
-                                style="@style/AutoResize60"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:backgroundTint="?attr/colorSecondary"
-                                android:textColor="@color/plusMinusColor"
-                                android:text="-" />
-
-                            <TextView
-                                android:id="@+id/inactiveCycles"
-                                style="@style/AutoResize25"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:text="0" />
-
-                            <Button
-                                android:id="@+id/inactiveIncButton"
-                                style="@style/AutoResize45"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:backgroundTint="?attr/colorSecondary"
-                                android:textColor="@color/plusMinusColor"
-                                android:text="+" />
-                        </LinearLayout>
+                        <SeekBar
+                            android:id="@+id/averageVolleySizeSlider"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6" />
                     </LinearLayout>
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/inactivePlayedDefense"
-                        style="@style/AutoResize20"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/data_entry_inactive_defense" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -469,7 +498,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                
+
                 android:foreground="?attr/dividerColor" />
 
         </LinearLayout>
@@ -479,13 +508,13 @@
             android:layout_width="match_parent"
             android:layout_weight="3"
             android:layout_height="0dp"
-            
+
                 android:foreground="?attr/dividerColor" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="64"
+            android:layout_weight="48"
             android:weightSum="64"
             android:orientation="horizontal">
 
@@ -494,7 +523,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                
+
                 android:foreground="?attr/dividerColor" />
 
             <LinearLayout
@@ -502,213 +531,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="20"
                 android:weightSum="128"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/AllianceScoreHeader"
-                    style="@style/AutoResize25"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="15"
-                    android:gravity="center"
-                    android:text="@string/data_entry_alliance_score_header" />
-
-                <View
-                    android:id="@+id/divider15"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    
-                android:foreground="?attr/dividerColor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="20"
-                    android:orientation="horizontal"
-                    android:weightSum="5">
-
-                    <TextView
-                        android:id="@+id/endAutoHeader"
-                        style="@style/AutoResize20"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:paddingStart="10dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/data_entry_end_auto_header" />
-
-                    <EditText
-                        android:id="@+id/endAuto"
-                        style="@style/AutoResize25"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:hint="#" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider16"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    
-                android:foreground="?attr/dividerColor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="20"
-                    android:orientation="horizontal"
-                    android:weightSum="5">
-
-                    <TextView
-                        style="@style/AutoResize20"
-                        android:id="@+id/endShift1Header"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:paddingStart="10dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/data_entry_end_shift_1_header" />
-
-                    <EditText
-                        style="@style/AutoResize25"
-                        android:id="@+id/endShift1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:hint="#" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider17"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    
-                android:foreground="?attr/dividerColor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="20"
-                    android:orientation="horizontal"
-                    android:weightSum="5">
-
-                    <TextView
-                        style="@style/AutoResize20"
-                        android:id="@+id/endShift2Header"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:paddingStart="10dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/data_entry_end_shift_2_header" />
-
-                    <EditText
-                        style="@style/AutoResize25"
-                        android:id="@+id/endShift2"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:hint="#" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider18"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    
-                android:foreground="?attr/dividerColor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="20"
-                    android:orientation="horizontal"
-                    android:weightSum="5" >
-
-                    <TextView
-                        style="@style/AutoResize20"
-                        android:id="@+id/endShift3Header"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:paddingStart="10dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/data_entry_end_shift_3_header" />
-
-                    <EditText
-                        style="@style/AutoResize25"
-                        android:id="@+id/endShift3"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:hint="#" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider11"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    
-                android:foreground="?attr/dividerColor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="20"
-                    android:orientation="horizontal"
-                    android:weightSum="5" >
-
-                    <TextView
-                        style="@style/AutoResize20"
-                        android:id="@+id/endGameHeader"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:paddingStart="10dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/data_entry_end_game_header" />
-
-                    <EditText
-                        style="@style/AutoResize25"
-                        android:id="@+id/endGame"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:hint="#" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider67"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    
-                    android:foreground="?attr/dividerColor" />
-            </LinearLayout>
+                android:orientation="vertical"/>
 
             <View
                 android:id="@+id/divider4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                
+
                 android:foreground="?attr/dividerColor" />
 
             <LinearLayout
@@ -716,68 +546,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="41"
                 android:orientation="vertical"
-                android:weightSum="56">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="14"
-                    android:weightSum="71"
-                    android:orientation="horizontal">
-
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <CheckBox
-                        android:id="@+id/passedFuel"
-                        style="@style/AutoResize20"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="34"
-                        android:text="@string/data_entry_passed_fuel" />
-
-                    <View
-                        android:id="@+id/divider44"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        
-                android:foreground="?attr/dividerColor" />
-
-                    <TextView
-                        android:id="@+id/teamRatingHeader"
-                        style="@style/AutoResize20"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:paddingStart="10dp"
-                        android:layout_weight="15"
-                        android:text="@string/data_entry_team_rating_header" />
-
-                    <Spinner
-                        android:id="@+id/teamRating"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="20" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider22"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    
-                android:foreground="?attr/dividerColor" />
+                android:weightSum="42">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="14"
                     android:orientation="horizontal"
-                    android:weightSum="71">
+                    android:weightSum="100">
 
                     <TextView
                         android:id="@+id/towerLevelHeader"
@@ -800,7 +576,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        
+
                 android:foreground="?attr/dividerColor" />
 
                     <TextView
@@ -819,6 +595,23 @@
                         android:layout_height="match_parent"
                         android:layout_weight="20" />
 
+                    <View
+                        android:id="@+id/divider8"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:foreground="?attr/dividerColor" />
+
+                    <CheckBox
+                        android:id="@+id/activePlayedDefense"
+                        style="@style/AutoResize20"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="28"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/data_entry_active_defense" />
+
                 </LinearLayout>
 
                 <View
@@ -826,7 +619,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    
+
                 android:foreground="?attr/dividerColor" />
 
                 <LinearLayout
@@ -889,7 +682,7 @@
                     android:id="@+id/divider20"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                 android:foreground="?attr/dividerColor" />
 
             </LinearLayout>

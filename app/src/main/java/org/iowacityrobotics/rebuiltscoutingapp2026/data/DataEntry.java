@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,8 +38,8 @@ public class DataEntry extends AppCompatActivity {
 
     private TextView matchNumView, scouterView, assignmentView;
     private EditText teamNumView;
-    private TextView autoCountDisplay, activeCountDisplay, inactiveCountDisplay;
-    private int autoCount = 0, activeCount = 0, inactiveCount = 0;
+    private TextView autoVolleys, autoFuelBunches, teleopVolleys, teleopFuelBunches, averageVolleySize;
+    private int autoVolleysCount = 0, autoFuelBunchesCount = 0, teleopVolleysCount = 0, teleopFuelBunchesCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class DataEntry extends AppCompatActivity {
         initializeViews();
         setupSpinners();
         setupCounterLogic();
+        setupSlider();
         loadHeaderData();
         setupAutoFill();
 
@@ -74,15 +76,15 @@ public class DataEntry extends AppCompatActivity {
         teamNumView = findViewById(R.id.teamNumber);
         scouterView = findViewById(R.id.scouter);
         assignmentView = findViewById(R.id.scoutingAssignment);
-        autoCountDisplay = findViewById(R.id.autoCycles);
-        activeCountDisplay = findViewById(R.id.activeCycles);
-        inactiveCountDisplay = findViewById(R.id.inactiveCycles);
+        autoVolleys = findViewById(R.id.autoVolleysFired);
+        autoFuelBunches = findViewById(R.id.autoFuelBunches);
+        teleopVolleys = findViewById(R.id.teleopVolleysFired);
+        teleopFuelBunches = findViewById(R.id.teleopFuelBunches);
     }
 
     private void setupSpinners() {
         setupSpinner(R.id.towerPosition, new String[]{"Select", "Unknown", "None", "Left", "Center", "Right"});
         setupSpinner(R.id.towerLevel, new String[]{"Select", "Unknown", "Ground", "Low", "Medium", "High", "Fall"});
-        setupSpinner(R.id.teamRating, new String[]{"Select", "Don't Know", "Good", "Bad"});
     }
 
     private void setupSpinner(int id, String[] items) {
@@ -94,20 +96,41 @@ public class DataEntry extends AppCompatActivity {
         }
     }
 
+    private void setupSlider() {
+        SeekBar averageVolleySizeSlider = findViewById(R.id.averageVolleySizeSlider);
+        averageVolleySizeSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                averageVolleySize.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+    }
+
     private void setupCounterLogic() {
-        findViewById(R.id.autoIncButton).setOnClickListener(v -> updateCount("auto", 1));
-        findViewById(R.id.autoDecButton).setOnClickListener(v -> updateCount("auto", -1));
-        findViewById(R.id.activeIncButton).setOnClickListener(v -> updateCount("active", 1));
-        findViewById(R.id.activeDecButton).setOnClickListener(v -> updateCount("active", -1));
-        findViewById(R.id.inactiveIncButton).setOnClickListener(v -> updateCount("inactive", 1));
-        findViewById(R.id.inactiveDecButton).setOnClickListener(v -> updateCount("inactive", -1));
+        findViewById(R.id.autoVolleysInc).setOnClickListener(v -> updateCount("autoVolleys", 1));
+        findViewById(R.id.autoVolleysDec).setOnClickListener(v -> updateCount("autoVolleys", -1));
+        findViewById(R.id.autoFuelBunchesInc).setOnClickListener(v -> updateCount("autoBunches", 1));
+        findViewById(R.id.autoFuelBunchesDec).setOnClickListener(v -> updateCount("autoBunches", -1));
+        findViewById(R.id.teleopVolleysFiredInc).setOnClickListener(v -> updateCount("teleopVolleys", 1));
+        findViewById(R.id.teleopVolleysFiredDec).setOnClickListener(v -> updateCount("teleopVolleys", -1));
+        findViewById(R.id.teleopFuelBunchesInc).setOnClickListener(v -> updateCount("teleopBunches", 1));
+        findViewById(R.id.teleopVolleysFiredDec).setOnClickListener(v -> updateCount("teleopBunches", -1));
     }
 
     private void updateCount(String type, int change) {
         switch (type) {
-            case "auto": autoCount = Math.max(0, autoCount + change); autoCountDisplay.setText(String.valueOf(autoCount)); break;
-            case "active": activeCount = Math.max(0, activeCount + change); activeCountDisplay.setText(String.valueOf(activeCount)); break;
-            case "inactive": inactiveCount = Math.max(0, inactiveCount + change); inactiveCountDisplay.setText(String.valueOf(inactiveCount)); break;
+            case "autoVolleys": autoVolleysCount = Math.max(0, autoVolleysCount + change); autoVolleys.setText(String.valueOf(autoVolleysCount)); break;
+            case "autoBunches": autoFuelBunchesCount = Math.max(0, autoFuelBunchesCount + change); autoFuelBunches.setText(String.valueOf(autoFuelBunchesCount)); break;
+            case "teleopVolleys": teleopVolleysCount = Math.max(0, teleopVolleysCount + change); teleopVolleys.setText(String.valueOf(teleopVolleysCount)); break;
+            case "teleopBunches": teleopFuelBunchesCount = Math.max(0, teleopFuelBunchesCount + change); teleopFuelBunches.setText(String.valueOf(teleopFuelBunchesCount)); break;
         }
     }
 
@@ -178,20 +201,12 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
         data.put(DataKeys.ASSIGNMENT, getIntent().getStringExtra("PASS_ASSIGNMENT"));
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
-        data.put(DataKeys.TEAM_RATING, temp.get(DataKeys.TEAM_RATING));
-        data.put(DataKeys.AUTO_NEUTRAL, temp.get(DataKeys.AUTO_NEUTRAL));
-        data.put(DataKeys.AUTO_SHOT, temp.get(DataKeys.AUTO_SHOT));
+        data.put(DataKeys.AUTO_VOLLEYS_FIRED, temp.get(DataKeys.AUTO_VOLLEYS_FIRED));
+        data.put(DataKeys.AUTO_FUEL_BUNCHES, temp.get(DataKeys.AUTO_FUEL_BUNCHES));
+        data.put(DataKeys.TELEOP_VOLLEYS_FIRED, temp.get(DataKeys.TELEOP_VOLLEYS_FIRED));
+        data.put(DataKeys.TELEOP_FUEL_BUNCHES, temp.get(DataKeys.TELEOP_FUEL_BUNCHES));
         data.put(DataKeys.INACTIVE_DEFENSE, temp.get(DataKeys.INACTIVE_DEFENSE));
         data.put(DataKeys.ACTIVE_DEFENSE, temp.get(DataKeys.ACTIVE_DEFENSE));
-        data.put(DataKeys.AUTO_CYCLES, temp.get(DataKeys.AUTO_CYCLES));
-        data.put(DataKeys.ACTIVE_CYCLES, temp.get(DataKeys.ACTIVE_CYCLES));
-        data.put(DataKeys.INACTIVE_CYCLES, temp.get(DataKeys.INACTIVE_CYCLES));
-        data.put(DataKeys.END_AUTO, temp.get(DataKeys.END_AUTO));
-        data.put(DataKeys.END_SHIFT_1, temp.get(DataKeys.END_SHIFT_1));
-        data.put(DataKeys.END_SHIFT_2, temp.get(DataKeys.END_SHIFT_2));
-        data.put(DataKeys.END_SHIFT_3, temp.get(DataKeys.END_SHIFT_3));
-        data.put(DataKeys.END_GAME, temp.get(DataKeys.END_GAME));
-        data.put(DataKeys.PASSED_FUEL, temp.get(DataKeys.PASSED_FUEL));
         data.put(DataKeys.TOWER_LEVEL, temp.get(DataKeys.TOWER_LEVEL));
         data.put(DataKeys.TOWER_POS, temp.get(DataKeys.TOWER_POS));
         data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));

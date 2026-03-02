@@ -14,12 +14,11 @@ public class DataKeys {
     public static final String SCOUTER = "scouter_name";
     public static final String ASSIGNMENT = "assignment";
 
-    public static final String AUTO_CYCLES = "auto_cycles";
-    public static final String ACTIVE_CYCLES = "active_cycles";
-    public static final String INACTIVE_CYCLES = "inactive_cycles";
-
-    public static final String AUTO_NEUTRAL = "auto_neutral";
-    public static final String AUTO_SHOT = "auto_shot";
+    public static final String AUTO_VOLLEYS_FIRED = "auto_volleys_fired";
+    public static final String AUTO_FUEL_BUNCHES = "auto_fuel_bunches";
+    public static final String TELEOP_VOLLEYS_FIRED = "teleop_volleys_fired";
+    public static final String TELEOP_FUEL_BUNCHES = "teleop_fuel_bunches";
+    public static final String AVERAGE_VOLLEY_SIZE = "average_volley_size";
     public static final String ACTIVE_DEFENSE = "active_defense";
     public static final String INACTIVE_DEFENSE = "inactive_defense";
 

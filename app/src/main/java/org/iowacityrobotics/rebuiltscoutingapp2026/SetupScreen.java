@@ -91,7 +91,7 @@ public class SetupScreen extends AppCompatActivity {
     }
 
     private void setupStaticSpinners() {
-        String[] assignments = {"Select", "Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"};
+        String[] assignments = {"Select", "Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3", "Scorekeeper"};
         ArrayAdapter<String> assignAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assignments);
         assignAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         assignmentSpinner.setAdapter(assignAdapter);

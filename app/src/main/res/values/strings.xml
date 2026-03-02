@@ -10,8 +10,8 @@
     <string name="data_entry_auto_header">Auto</string>
     <string name="data_entry_active_hub_header">Active Hub</string>
     <string name="data_entry_inactive_hub_header">Inactive Hub</string>
-    <string name="data_entry_cycles_header">Cycles:</string>
-    <string name="data_entry_auto_neutral_zone">Neutral Zone</string>
+    <string name="data_entry_volleys_header">Volleys Fired:</string>
+    <string name="data_entry_fuel_bunches_header">Fuel Bunches Transported:</string>
     <string name="data_entry_active_defense">Played Defense</string>
     <string name="data_entry_inactive_defense">Played Defense</string>
     <string name="data_entry_alliance_score_header">Alliance Score:</string>

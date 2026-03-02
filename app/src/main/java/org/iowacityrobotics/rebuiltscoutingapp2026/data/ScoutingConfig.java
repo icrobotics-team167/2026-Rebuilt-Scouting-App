@@ -30,12 +30,12 @@ public class ScoutingConfig {
         INPUTS.add(new Field(R.id.teamNumber, DataKeys.TEAM_NUM, DataType.TEXT));
         INPUTS.add(new Field(R.id.scoutingAssignment, DataKeys.ASSIGNMENT, DataType.TEXT));
 
-        INPUTS.add(new Field(R.id.autoCycles, DataKeys.AUTO_CYCLES, DataType.NUMBER));
-        INPUTS.add(new Field(R.id.activeCycles, DataKeys.ACTIVE_CYCLES, DataType.NUMBER));
-        INPUTS.add(new Field(R.id.inactiveCycles, DataKeys.INACTIVE_CYCLES, DataType.NUMBER));
+        INPUTS.add(new Field(R.id.autoVolleysFired, DataKeys.AUTO_VOLLEYS_FIRED, DataType.NUMBER));
+        INPUTS.add(new Field(R.id.autoFuelBunches, DataKeys.AUTO_FUEL_BUNCHES, DataType.NUMBER));
+        INPUTS.add(new Field(R.id.teleopVolleysFired, DataKeys.TELEOP_VOLLEYS_FIRED, DataType.NUMBER));
+        INPUTS.add(new Field(R.id.teleopFuelBunches, DataKeys.TELEOP_FUEL_BUNCHES, DataType.NUMBER));
+        INPUTS.add(new Field(R.id.averageVolleySize, DataKeys.AVERAGE_VOLLEY_SIZE, DataType.NUMBER));
 
-        INPUTS.add(new Field(R.id.autoNeutralZone, DataKeys.AUTO_NEUTRAL, DataType.BOOLEAN));
-        INPUTS.add(new Field(R.id.autoShotFuel, DataKeys.AUTO_SHOT, DataType.BOOLEAN));
         INPUTS.add(new Field(R.id.activePlayedDefense, DataKeys.ACTIVE_DEFENSE, DataType.BOOLEAN));
         INPUTS.add(new Field(R.id.inactivePlayedDefense, DataKeys.INACTIVE_DEFENSE, DataType.BOOLEAN));
 

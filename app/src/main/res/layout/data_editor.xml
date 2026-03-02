@@ -128,46 +128,55 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:weightSum="3"
+            android:weightSum="4"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/autoCyclesHeader"
+                android:id="@+id/autoVolleysFiredHeader"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Auto Cycles:" />
+                android:text="Auto Volleys Fired:" />
 
             <TextView
-                android:id="@+id/activeCyclesHeader"
+                android:id="@+id/autoFuelBunchesHeader"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Active Cycles:" />
+                android:text="Auto Fuel Bunches Delivered:" />
 
             <TextView
-                android:id="@+id/inactiveCyclesHeader"
+                android:id="@+id/teleopVolleysFiredHeader"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Inactive Cycles:" />
+                android:text="Teleop Volleys Transported:" />
+
+            <TextView
+                android:id="@+id/teleopFuelBunchesHeader"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Teleop Fuel Bunches Transported" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.9"
-            android:weightSum="3"
+            android:weightSum="4"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/autoCycles"
+                android:id="@+id/autoVolleysFired"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -178,7 +187,18 @@
                 android:text="" />
 
             <EditText
-                android:id="@+id/activeCycles"
+                android:id="@+id/autoFuelBunches"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="#"
+                android:inputType="number"
+                android:text="" />
+
+            <EditText
+                android:id="@+id/teleopVolleysFired"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -189,7 +209,7 @@
                 android:text="" />
 
             <EditText
-                android:id="@+id/inactiveCycles"
+                android:id="@+id/teleopFuelBunches"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

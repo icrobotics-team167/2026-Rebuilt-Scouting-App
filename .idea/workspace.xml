@@ -44,6 +44,7 @@
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/data_editor.xml">
         <config>
+          <state>Landscape</state>
           <theme>@style/main_theme</theme>
         </config>
       </layout>
@@ -102,19 +103,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.1.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/PitScouting.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/PitScouting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/RetrofitClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/RetrofitClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/StartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/StartScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/SetupScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/SetupScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/DataEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/DataEditor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/DataEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/DataEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/MatchSchedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/MatchSchedule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/pit_scouting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/pit_scouting.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-sw500dp/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-sw500dp/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-zh/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-zh/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/DataKeys.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/DataKeys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/ScoutingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/iowacityrobotics/rebuiltscoutingapp2026/data/ScoutingConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/data_editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/data_editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/data_entry.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/data_entry.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +181,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "export-fixes",
+    "git-widget-placeholder": "Scouting-App-V2",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Modules",
@@ -419,12 +416,12 @@
       <map>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026">
           <value>
-            <CheckInfo lastCheckTimestamp="1772317450141" />
+            <CheckInfo lastCheckTimestamp="1772414220001" />
           </value>
         </entry>
         <entry key="org.iowacityrobotics.rebuiltscoutingapp2026.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1772317450135" />
+            <CheckInfo lastCheckTimestamp="1772414220005" />
           </value>
         </entry>
       </map>
