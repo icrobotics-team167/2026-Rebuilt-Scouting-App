@@ -80,6 +80,7 @@ public class DataEntry extends AppCompatActivity {
         autoFuelBunches = findViewById(R.id.autoFuelBunches);
         teleopVolleys = findViewById(R.id.teleopVolleysFired);
         teleopFuelBunches = findViewById(R.id.teleopFuelBunches);
+        averageVolleySize = findViewById((R.id.averageVolleySize));
     }
 
     private void setupSpinners() {
@@ -122,7 +123,7 @@ public class DataEntry extends AppCompatActivity {
         findViewById(R.id.teleopVolleysFiredInc).setOnClickListener(v -> updateCount("teleopVolleys", 1));
         findViewById(R.id.teleopVolleysFiredDec).setOnClickListener(v -> updateCount("teleopVolleys", -1));
         findViewById(R.id.teleopFuelBunchesInc).setOnClickListener(v -> updateCount("teleopBunches", 1));
-        findViewById(R.id.teleopVolleysFiredDec).setOnClickListener(v -> updateCount("teleopBunches", -1));
+        findViewById(R.id.teleopFuelBunchesDec).setOnClickListener(v -> updateCount("teleopBunches", -1));
     }
 
     private void updateCount(String type, int change) {
@@ -205,6 +206,7 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.AUTO_FUEL_BUNCHES, temp.get(DataKeys.AUTO_FUEL_BUNCHES));
         data.put(DataKeys.TELEOP_VOLLEYS_FIRED, temp.get(DataKeys.TELEOP_VOLLEYS_FIRED));
         data.put(DataKeys.TELEOP_FUEL_BUNCHES, temp.get(DataKeys.TELEOP_FUEL_BUNCHES));
+        data.put(DataKeys.AVERAGE_VOLLEY_SIZE, temp.get(DataKeys.AVERAGE_VOLLEY_SIZE));
         data.put(DataKeys.INACTIVE_DEFENSE, temp.get(DataKeys.INACTIVE_DEFENSE));
         data.put(DataKeys.ACTIVE_DEFENSE, temp.get(DataKeys.ACTIVE_DEFENSE));
         data.put(DataKeys.TOWER_LEVEL, temp.get(DataKeys.TOWER_LEVEL));
@@ -214,7 +216,11 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.EXPORTED, false);
         System.out.println(data);
 
-        GlobalVariables.dataList.add(data);
+        if (GlobalVariables.objectIndex != -1) {
+            GlobalVariables.dataList.set(GlobalVariables.objectIndex, data);
+        } else {
+            GlobalVariables.dataList.add(data);
+        }
         StorageManager.saveData(this);
         Toast.makeText(this, "Saved Successfully.", Toast.LENGTH_SHORT).show();
         finish();

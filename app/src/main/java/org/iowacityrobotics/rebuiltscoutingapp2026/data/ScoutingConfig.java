@@ -39,16 +39,29 @@ public class ScoutingConfig {
         INPUTS.add(new Field(R.id.activePlayedDefense, DataKeys.ACTIVE_DEFENSE, DataType.BOOLEAN));
         INPUTS.add(new Field(R.id.inactivePlayedDefense, DataKeys.INACTIVE_DEFENSE, DataType.BOOLEAN));
 
-        INPUTS.add(new Field(R.id.endAuto, DataKeys.END_AUTO, DataType.TEXT));
-        INPUTS.add(new Field(R.id.endShift1, DataKeys.END_SHIFT_1, DataType.TEXT));
-        INPUTS.add(new Field(R.id.endShift2, DataKeys.END_SHIFT_2, DataType.TEXT));
-        INPUTS.add(new Field(R.id.endShift3, DataKeys.END_SHIFT_3, DataType.TEXT));
-        INPUTS.add(new Field(R.id.endGame, DataKeys.END_GAME, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endAutoBlue, DataKeys.END_AUTO_BLUE, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endTransitionBlue, DataKeys.END_TRANSITION_BLUE, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endShift1Blue, DataKeys.END_SHIFT_1_BLUE, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endShift2Blue, DataKeys.END_SHIFT_2_BLUE, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endShift3Blue, DataKeys.END_SHIFT_3_BLUE, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endShift4Blue, DataKeys.END_SHIFT_4_BLUE, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endGameBlue, DataKeys.END_GAME_BLUE, DataType.TEXT));
+
+        INPUTS.add(new Field(R.id.endAutoRed, DataKeys.END_AUTO_RED, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endTransitionRed, DataKeys.END_TRANSITION_RED, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endShift1Red, DataKeys.END_SHIFT_1_RED, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endShift2Red, DataKeys.END_SHIFT_2_RED, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endShift3Red, DataKeys.END_SHIFT_3_RED, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endShift4Red, DataKeys.END_SHIFT_4_RED, DataType.TEXT));
+        INPUTS.add(new Field(R.id.endGameRed, DataKeys.END_GAME_RED, DataType.TEXT));
 
         INPUTS.add(new Field(R.id.passedFuel, DataKeys.PASSED_FUEL, DataType.BOOLEAN));
         INPUTS.add(new Field(R.id.towerPosition, DataKeys.TOWER_POS, DataType.TEXT));
         INPUTS.add(new Field(R.id.towerLevel, DataKeys.TOWER_LEVEL, DataType.TEXT));
         INPUTS.add(new Field(R.id.teamRating, DataKeys.TEAM_RATING, DataType.TEXT));
         INPUTS.add(new Field(R.id.comments, DataKeys.COMMENTS, DataType.TEXT));
+
+        INPUTS.add(new Field(R.id.blueAllianceNotes, DataKeys.BLUE_ALLIANCE_NOTES, DataType.TEXT));
+        INPUTS.add(new Field(R.id.redAllianceNotes, DataKeys.RED_ALLIANCE_NOTES, DataType.TEXT));
     }
 }

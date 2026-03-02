@@ -249,7 +249,7 @@ public class PitScouting extends AppCompatActivity {
             }
             error = true;
         }
-        if (error == true) {
+        if (error) {
             new AlertDialog.Builder(this)
                     .setTitle("Missing Data")
                     .setMessage("Are you sure you want to save incomplete data?")
@@ -258,6 +258,9 @@ public class PitScouting extends AppCompatActivity {
                     })
                     .setNegativeButton("No", null)
                     .show();
+        }
+        else {
+            savePitData();
         }
     }
         private void savePitData() {
@@ -648,8 +651,8 @@ public class PitScouting extends AppCompatActivity {
         }
     }
 
-    private String combineDataDimensions(String depth, String width, String height) {
-        return depth + "x" + width + "x" + height;
+    private String combineDataDimensions(String width, String depth, String height) {
+        return width + "x" + depth + "x" + height;
     }
 
     private String[] parseDataDimensions(String data) {

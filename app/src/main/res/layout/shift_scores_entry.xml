@@ -25,13 +25,13 @@
             android:weightSum="24">
 
             <TextView
-                android:id="@+id/matchNumberHeader"
+                android:id="@+id/matchType"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="4"
                 android:gravity="center"
-                android:text="@string/data_entry_match_number_header" />
+                android:text="Match Type" />
 
             <TextView
                 android:id="@+id/matchNumber"
@@ -59,7 +59,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="6" />
+                android:layout_weight="4" />
 
             <ImageView
                 android:id="@+id/schoolLogo"
@@ -721,7 +721,7 @@
                     android:weightSum="6">
 
                     <EditText
-                        android:id="@+id/commentsBlue"
+                        android:id="@+id/blueAllianceNotes"
                         style="@style/AutoResize20"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -758,7 +758,7 @@
                     android:weightSum="6">
 
                     <EditText
-                        android:id="@+id/commentsRed"
+                        android:id="@+id/redAllianceNotes"
                         style="@style/AutoResize20"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

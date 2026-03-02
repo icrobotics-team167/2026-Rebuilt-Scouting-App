@@ -35,23 +35,22 @@ import java.util.Map;
 
 public class ShiftScoresEntry extends AppCompatActivity {
 
-    private TextView matchNumView, scouterView, assignmentView;
-    private EditText teamNumView;
-    private TextView autoCountDisplay, activeCountDisplay, inactiveCountDisplay;
-    private int autoCount = 0, activeCount = 0, inactiveCount = 0;
+    private TextView matchNumView, scouterView, matchTypeView;
+    private EditText endAutoBlue, endTransitionBlue, endShift1Blue, endShift2Blue, endShift3Blue, endShift4Blue, endGameBlue;
+    private EditText endAutoRed, endTransitionRed, endShift1Red, endShift2Red, endShift3Red, endShift4Red, endGameRed;
+
+    private EditText blueAllianceNotes, redAllianceNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         applyThemeFromPreferences();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.data_entry);
+        setContentView(R.layout.shift_scores_entry);
 
         MatchSchedule.loadSchedule(this);
         initializeViews();
-        setupSpinners();
-        setupCounterLogic();
         loadHeaderData();
-        setupAutoFill();
+        refillFields();
 
         findViewById(R.id.saveExitButton).setOnClickListener(v -> saveNewMatch());
     }
@@ -71,74 +70,38 @@ public class ShiftScoresEntry extends AppCompatActivity {
 
     private void initializeViews() {
         matchNumView = findViewById(R.id.matchNumber);
-        teamNumView = findViewById(R.id.teamNumber);
         scouterView = findViewById(R.id.scouter);
-        assignmentView = findViewById(R.id.scoutingAssignment);
-        autoCountDisplay = findViewById(R.id.autoCycles);
-        activeCountDisplay = findViewById(R.id.activeCycles);
-        inactiveCountDisplay = findViewById(R.id.inactiveCycles);
-    }
-
-    private void setupSpinners() {
-        setupSpinner(R.id.towerPosition, new String[]{"Select", "Unknown", "None", "Left", "Center", "Right"});
-        setupSpinner(R.id.towerLevel, new String[]{"Select", "Unknown", "Ground", "Low", "Medium", "High", "Fall"});
-        setupSpinner(R.id.teamRating, new String[]{"Select", "Don't Know", "Good", "Bad"});
-    }
-
-    private void setupSpinner(int id, String[] items) {
-        Spinner spinner = findViewById(id);
-        if (spinner != null) {
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(adapter);
+        matchTypeView = findViewById(R.id.matchType);
+        endAutoBlue = findViewById(R.id.endAutoBlue);
+        endTransitionBlue = findViewById(R.id.endTransitionBlue);
+        endShift1Blue = findViewById(R.id.endShift1Blue);
+        endShift2Blue = findViewById(R.id.endShift2Blue);
+        endShift3Blue = findViewById(R.id.endShift3Blue);
+        endShift4Blue = findViewById(R.id.endShift4Blue);
+        endGameBlue = findViewById(R.id.endGameBlue);
+        endAutoRed = findViewById(R.id.endAutoRed);
+        endTransitionRed = findViewById(R.id.endTransitionRed);
+        endShift1Red = findViewById(R.id.endShift1Red);
+        endShift2Red = findViewById(R.id.endShift2Red);
+        endShift3Red = findViewById(R.id.endShift3Red);
+        endShift4Red = findViewById(R.id.endShift4Red);
+        endGameRed = findViewById(R.id.endGameRed);
+        blueAllianceNotes = findViewById(R.id.blueAllianceNotes);
+        redAllianceNotes = findViewById(R.id.redAllianceNotes);
         }
-    }
-
-    private void setupCounterLogic() {
-        findViewById(R.id.autoIncButton).setOnClickListener(v -> updateCount("auto", 1));
-        findViewById(R.id.autoDecButton).setOnClickListener(v -> updateCount("auto", -1));
-        findViewById(R.id.activeIncButton).setOnClickListener(v -> updateCount("active", 1));
-        findViewById(R.id.activeDecButton).setOnClickListener(v -> updateCount("active", -1));
-        findViewById(R.id.inactiveIncButton).setOnClickListener(v -> updateCount("inactive", 1));
-        findViewById(R.id.inactiveDecButton).setOnClickListener(v -> updateCount("inactive", -1));
-    }
-
-    private void updateCount(String type, int change) {
-        switch (type) {
-            case "auto": autoCount = Math.max(0, autoCount + change); autoCountDisplay.setText(String.valueOf(autoCount)); break;
-            case "active": activeCount = Math.max(0, activeCount + change); activeCountDisplay.setText(String.valueOf(activeCount)); break;
-            case "inactive": inactiveCount = Math.max(0, inactiveCount + change); inactiveCountDisplay.setText(String.valueOf(inactiveCount)); break;
-        }
-    }
 
     private void loadHeaderData() {
         if (getIntent() != null) {
             scouterView.setText(getIntent().getStringExtra("PASS_SCOUTER"));
             matchNumView.setText(getIntent().getStringExtra("PASS_MATCH"));
-            assignmentView.setText(getIntent().getStringExtra("PASS_ASSIGNMENT"));
-            updateTeamNumber();
+            matchTypeView.setText(getIntent().getStringExtra("PASS_MATCH_TYPE"));
         }
-    }
-
-    private void setupAutoFill() {
-        matchNumView.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            public void onTextChanged(CharSequence s, int start, int before, int count) { updateTeamNumber(); }
-            public void afterTextChanged(Editable s) {}
-        });
-    }
-
-    private void updateTeamNumber() {
-        String foundTeam = MatchSchedule.getTeamNumber(matchNumView.getText().toString(),
-                assignmentView.getText().toString(),
-                getIntent().getStringExtra("PASS_MATCH_TYPE"));
-        teamNumView.setText(!foundTeam.isEmpty() ? foundTeam : "");
     }
 
     private void saveNewMatch() {
 
         Map<String, Object> data = new LinkedHashMap<>();
-        data.put(DataKeys.RECORD_TYPE, DataKeys.TYPE_MATCH);
+        data.put(DataKeys.RECORD_TYPE, DataKeys.TYPE_SCORE);
 
         // Grab values from views first
         Map<String, Object> temp = new LinkedHashMap<>();
@@ -173,36 +136,97 @@ public class ShiftScoresEntry extends AppCompatActivity {
             }
         }
 
-        data.put(DataKeys.TEAM_NUM, temp.get(DataKeys.TEAM_NUM));
-        data.put(DataKeys.MATCH_TYPE, getIntent().getStringExtra("PASS_MATCH_TYPE"));
         data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
-        data.put(DataKeys.ASSIGNMENT, getIntent().getStringExtra("PASS_ASSIGNMENT"));
+        data.put(DataKeys.MATCH_TYPE, getIntent().getStringExtra("PASS_MATCH_TYPE"));
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
-        data.put(DataKeys.TEAM_RATING, temp.get(DataKeys.TEAM_RATING));
-        data.put(DataKeys.AUTO_NEUTRAL, temp.get(DataKeys.AUTO_NEUTRAL));
-        data.put(DataKeys.AUTO_SHOT, temp.get(DataKeys.AUTO_SHOT));
-        data.put(DataKeys.INACTIVE_DEFENSE, temp.get(DataKeys.INACTIVE_DEFENSE));
-        data.put(DataKeys.ACTIVE_DEFENSE, temp.get(DataKeys.ACTIVE_DEFENSE));
-        data.put(DataKeys.AUTO_CYCLES, temp.get(DataKeys.AUTO_CYCLES));
-        data.put(DataKeys.ACTIVE_CYCLES, temp.get(DataKeys.ACTIVE_CYCLES));
-        data.put(DataKeys.INACTIVE_CYCLES, temp.get(DataKeys.INACTIVE_CYCLES));
-        data.put(DataKeys.END_AUTO, temp.get(DataKeys.END_AUTO));
-        data.put(DataKeys.END_SHIFT_1, temp.get(DataKeys.END_SHIFT_1));
-        data.put(DataKeys.END_SHIFT_2, temp.get(DataKeys.END_SHIFT_2));
-        data.put(DataKeys.END_SHIFT_3, temp.get(DataKeys.END_SHIFT_3));
-        data.put(DataKeys.END_GAME, temp.get(DataKeys.END_GAME));
-        data.put(DataKeys.PASSED_FUEL, temp.get(DataKeys.PASSED_FUEL));
-        data.put(DataKeys.TOWER_LEVEL, temp.get(DataKeys.TOWER_LEVEL));
-        data.put(DataKeys.TOWER_POS, temp.get(DataKeys.TOWER_POS));
-        data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
+        data.put(DataKeys.ASSIGNMENT, getIntent().getStringExtra("PASS_ASSIGNMENT"));
+        data.put(DataKeys.END_AUTO_BLUE, temp.get(DataKeys.END_AUTO_BLUE));
+        data.put(DataKeys.END_TRANSITION_BLUE, temp.get(DataKeys.END_TRANSITION_BLUE));
+        data.put(DataKeys.END_SHIFT_1_BLUE, temp.get(DataKeys.END_SHIFT_1_BLUE));
+        data.put(DataKeys.END_SHIFT_2_BLUE, temp.get(DataKeys.END_SHIFT_2_BLUE));
+        data.put(DataKeys.END_SHIFT_3_BLUE, temp.get(DataKeys.END_SHIFT_3_BLUE));
+        data.put(DataKeys.END_SHIFT_4_BLUE, temp.get(DataKeys.END_SHIFT_4_BLUE));
+        data.put(DataKeys.END_GAME_BLUE, temp.get(DataKeys.END_GAME_BLUE));
+        data.put(DataKeys.END_AUTO_RED, temp.get(DataKeys.END_AUTO_RED));
+        data.put(DataKeys.END_TRANSITION_RED, temp.get(DataKeys.END_TRANSITION_RED));
+        data.put(DataKeys.END_SHIFT_1_RED, temp.get(DataKeys.END_SHIFT_1_RED));
+        data.put(DataKeys.END_SHIFT_2_RED, temp.get(DataKeys.END_SHIFT_2_RED));
+        data.put(DataKeys.END_SHIFT_3_RED, temp.get(DataKeys.END_SHIFT_3_RED));
+        data.put(DataKeys.END_SHIFT_4_RED, temp.get(DataKeys.END_SHIFT_4_RED));
+        data.put(DataKeys.END_GAME_RED, temp.get(DataKeys.END_GAME_RED));
+        data.put(DataKeys.BLUE_ALLIANCE_NOTES, temp.get(DataKeys.BLUE_ALLIANCE_NOTES));
+        data.put(DataKeys.RED_ALLIANCE_NOTES, temp.get(DataKeys.RED_ALLIANCE_NOTES));
 
         data.put(DataKeys.EXPORTED, false);
         System.out.println(data);
 
-        GlobalVariables.dataList.add(data);
+        if (GlobalVariables.objectIndex != -1) {
+            GlobalVariables.dataList.set(GlobalVariables.objectIndex, data);
+        } else {
+            GlobalVariables.dataList.add(data);
+        }
         StorageManager.saveData(this);
         Toast.makeText(this, "Saved Successfully.", Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    private void refillFields() {
+        GlobalVariables.objectIndex = -1;
+        for (int i = 0; i < GlobalVariables.dataList.size(); i++) {
+            Map<String, Object> match = GlobalVariables.dataList.get(i);
+
+            if (match.containsKey(DataKeys.RECORD_TYPE) &&
+                    DataKeys.TYPE_SCORE.equals(match.get(DataKeys.RECORD_TYPE))) {
+
+                if (getIntent().getStringExtra("PASS_MATCH")
+                        .equals(match.get(DataKeys.MATCH_NUM)) &&
+
+                        getIntent().getStringExtra("PASS_MATCH_TYPE")
+                                .equals(match.get(DataKeys.MATCH_TYPE))) {
+
+                    GlobalVariables.objectIndex = i;
+                    loadExistingData();
+                    break;
+                }
+            }
+        }
+    }
+
+    private void loadExistingData() {
+        if (GlobalVariables.objectIndex != -1 && GlobalVariables.objectIndex < GlobalVariables.dataList.size()) {
+            Map<String, Object> data = GlobalVariables.dataList.get(GlobalVariables.objectIndex);
+
+            setTextSafe(endAutoBlue, data.get(DataKeys.END_AUTO_BLUE));
+            setTextSafe(endTransitionBlue, data.get(DataKeys.END_TRANSITION_BLUE));
+            setTextSafe(endShift1Blue, data.get(DataKeys.END_SHIFT_1_BLUE));
+            setTextSafe(endShift2Blue, data.get(DataKeys.END_SHIFT_2_BLUE));
+            setTextSafe(endShift3Blue, data.get(DataKeys.END_SHIFT_3_BLUE));
+            setTextSafe(endShift4Blue, data.get(DataKeys.END_SHIFT_4_BLUE));
+            setTextSafe(endGameBlue, data.get(DataKeys.END_GAME_BLUE));
+
+            setTextSafe(endAutoRed, data.get(DataKeys.END_AUTO_RED));
+            setTextSafe(endTransitionRed, data.get(DataKeys.END_TRANSITION_RED));
+            setTextSafe(endShift1Red, data.get(DataKeys.END_SHIFT_1_RED));
+            setTextSafe(endShift2Red, data.get(DataKeys.END_SHIFT_2_RED));
+            setTextSafe(endShift3Red, data.get(DataKeys.END_SHIFT_3_RED));
+            setTextSafe(endShift4Red, data.get(DataKeys.END_SHIFT_4_RED));
+            setTextSafe(endGameRed, data.get(DataKeys.END_GAME_RED));
+
+            setTextSafe(blueAllianceNotes, data.get(DataKeys.BLUE_ALLIANCE_NOTES));
+            setTextSafe(redAllianceNotes, data.get(DataKeys.RED_ALLIANCE_NOTES));
+        }
+    }
+
+    private void setTextSafe(EditText view, Object value) {
+        if (view != null) {
+            if (value instanceof Boolean) {
+                view.setText((Boolean) value ? "True" : "False");
+            } else if (value != null) {
+                view.setText(value.toString());
+            } else {
+                view.setText("");
+            }
+        }
     }
 
     private void cancelMatch() {

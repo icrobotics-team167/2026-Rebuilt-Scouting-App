@@ -29,6 +29,7 @@ import androidx.core.os.LocaleListCompat;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEditor;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEntry;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataKeys;
+import org.iowacityrobotics.rebuiltscoutingapp2026.data.ShiftScoresEntry;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -166,7 +167,12 @@ public class SetupScreen extends AppCompatActivity {
                 if (scouterNameInput.getText().toString().equals("MADISON")) {
                     intent = new Intent(SetupScreen.this, Slider.class);
                 } else {
-                    intent = new Intent(SetupScreen.this, DataEntry.class);
+                    if (assignmentSpinner.getSelectedItem().toString().equals("Scorekeeper")) {
+                        intent = new Intent(SetupScreen.this, ShiftScoresEntry.class);
+                    }
+                    else {
+                        intent = new Intent(SetupScreen.this, DataEntry.class);
+                    }
                 }
                 intent.putExtra("PASS_SCOUTER", scouterNameInput.getText().toString());
                 intent.putExtra("PASS_MATCH", matchNumberInput.getText().toString());
