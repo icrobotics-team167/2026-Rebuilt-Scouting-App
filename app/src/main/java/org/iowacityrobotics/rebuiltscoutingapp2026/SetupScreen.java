@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +28,6 @@ import androidx.core.os.LocaleListCompat;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEditor;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEntry;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataKeys;
-import org.iowacityrobotics.rebuiltscoutingapp2026.data.ShiftScoresEntry;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -92,7 +90,7 @@ public class SetupScreen extends AppCompatActivity {
     }
 
     private void setupStaticSpinners() {
-        String[] assignments = {"Select", "Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3", "Scorekeeper"};
+        String[] assignments = {"Select", "Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"};
         ArrayAdapter<String> assignAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assignments);
         assignAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         assignmentSpinner.setAdapter(assignAdapter);
@@ -167,12 +165,7 @@ public class SetupScreen extends AppCompatActivity {
                 if (scouterNameInput.getText().toString().equals("MADISON")) {
                     intent = new Intent(SetupScreen.this, Slider.class);
                 } else {
-                    if (assignmentSpinner.getSelectedItem().toString().equals("Scorekeeper")) {
-                        intent = new Intent(SetupScreen.this, ShiftScoresEntry.class);
-                    }
-                    else {
-                        intent = new Intent(SetupScreen.this, DataEntry.class);
-                    }
+                    intent = new Intent(SetupScreen.this, DataEntry.class);
                 }
                 intent.putExtra("PASS_SCOUTER", scouterNameInput.getText().toString());
                 intent.putExtra("PASS_MATCH", matchNumberInput.getText().toString());

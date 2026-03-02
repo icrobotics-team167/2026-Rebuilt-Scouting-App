@@ -162,7 +162,7 @@
                         android:weightSum="6">
 
                         <TextView
-                            android:id="@+id/autoCyclesHeader"
+                            android:id="@+id/autoVolleysFiredHeader"
                             style="@style/AutoResize25"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
@@ -224,7 +224,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView9"
+                            android:id="@+id/autoFuelBunchesTransportedHeader"
                             style="@style/AutoResize25"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
@@ -604,13 +604,13 @@
                         android:foreground="?attr/dividerColor" />
 
                     <CheckBox
-                        android:id="@+id/activePlayedDefense"
+                        android:id="@+id/playedDefense"
                         style="@style/AutoResize20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="28"
                         android:layout_gravity="center_vertical"
-                        android:text="@string/data_entry_active_defense" />
+                        android:text="@string/data_entry_played_defense" />
 
                 </LinearLayout>
 

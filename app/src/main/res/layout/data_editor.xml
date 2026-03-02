@@ -156,7 +156,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Teleop Volleys Transported:" />
+                android:text="Teleop Volleys Fired:" />
 
             <TextView
                 android:id="@+id/teleopFuelBunchesHeader"
@@ -242,7 +242,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Auto Neutral Zone:" />
+                android:text="Unknown" />
 
             <TextView
                 android:id="@+id/autoShotFuelHeader"
@@ -251,7 +251,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Auto Shot Fuel:" />
+                android:text="Unknown" />
 
             <TextView
                 android:id="@+id/activePlayedDefenseHeader"
@@ -260,7 +260,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Active Played Defense:" />
+                android:text="Unkown" />
 
             <TextView
                 android:id="@+id/inactivePlayedDefenseHeader"
@@ -269,7 +269,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Inactive Played Defense:" />
+                android:text="Unknown" />
 
         </LinearLayout>
 
@@ -347,7 +347,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="End of Auto Score:" />
+                android:text="Unknown" />
 
             <TextView
                 android:id="@+id/endShift1Header"
@@ -356,7 +356,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="End of Shift 1 Score:" />
+                android:text="Unknown" />
 
             <TextView
                 android:id="@+id/endShift2Header"
@@ -365,7 +365,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="End of Shift 2 Score:" />
+                android:text="Unknown" />
 
             <TextView
                 android:id="@+id/endShift3Header"
@@ -374,7 +374,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="End of Shift 3 Score:" />
+                android:text="Unknown" />
 
             <TextView
                 android:id="@+id/endGameHeader"
@@ -383,7 +383,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="End of Game Score:" />
+                android:text="Unknown" />
         </LinearLayout>
 
         <LinearLayout
@@ -464,22 +464,22 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/averageVolleySizeHeader"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Average Volley Size:"/>
+
+            <TextView
                 android:id="@+id/towerPositionHeader"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Tower Position"/>
-
-            <TextView
-                android:id="@+id/passedFuelHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Passed Fuel:" />
+                android:text="Tower Position:" />
 
             <TextView
                 android:id="@+id/driverRatingHeader"
@@ -491,13 +491,13 @@
                 android:text="Tower Level:" />
 
             <TextView
-                android:id="@+id/teamRatingHeader"
+                android:id="@+id/playedDefenseHeader"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Team Rating:" />
+                android:text="Played Defense:" />
 
         </LinearLayout>
 
@@ -509,7 +509,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/towerPosition"
+                android:id="@+id/averageVolleySize"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -520,14 +520,14 @@
                 android:text="" />
 
             <EditText
-                android:id="@+id/passedFuel"
+                android:id="@+id/towerPosition"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="text"
                 android:hint="#"
+                android:inputType="text"
                 android:text="" />
 
             <EditText
@@ -542,7 +542,7 @@
                 android:text="" />
 
             <EditText
-                android:id="@+id/teamRating"
+                android:id="@+id/playedDefense"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

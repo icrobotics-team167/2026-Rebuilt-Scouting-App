@@ -12,8 +12,7 @@
     <string name="data_entry_inactive_hub_header">Inactive Hub</string>
     <string name="data_entry_volleys_header">Volleys Fired:</string>
     <string name="data_entry_fuel_bunches_header">Fuel Bunches Transported:</string>
-    <string name="data_entry_active_defense">Played Defense</string>
-    <string name="data_entry_inactive_defense">Played Defense</string>
+    <string name="data_entry_played_defense">Played Defense</string>
     <string name="data_entry_alliance_score_header">Alliance Score:</string>
     <string name="data_entry_end_auto_header">End of Auto:</string>
     <string name="data_entry_end_shift_1_header">End of Shift 1:</string>

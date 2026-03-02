@@ -207,8 +207,7 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.TELEOP_VOLLEYS_FIRED, temp.get(DataKeys.TELEOP_VOLLEYS_FIRED));
         data.put(DataKeys.TELEOP_FUEL_BUNCHES, temp.get(DataKeys.TELEOP_FUEL_BUNCHES));
         data.put(DataKeys.AVERAGE_VOLLEY_SIZE, temp.get(DataKeys.AVERAGE_VOLLEY_SIZE));
-        data.put(DataKeys.INACTIVE_DEFENSE, temp.get(DataKeys.INACTIVE_DEFENSE));
-        data.put(DataKeys.ACTIVE_DEFENSE, temp.get(DataKeys.ACTIVE_DEFENSE));
+        data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
         data.put(DataKeys.TOWER_LEVEL, temp.get(DataKeys.TOWER_LEVEL));
         data.put(DataKeys.TOWER_POS, temp.get(DataKeys.TOWER_POS));
         data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
