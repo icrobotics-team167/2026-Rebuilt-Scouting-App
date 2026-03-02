@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="120"
+        android:background="?attr/colorSurface"
+        android:id="@+id/dataEntry"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:orientation="horizontal"
+            android:weightSum="24">
+
+            <TextView
+                android:id="@+id/matchNumberHeader"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/data_entry_match_number_header" />
+
+            <TextView
+                android:id="@+id/matchNumber"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:hint="#" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2" />
+
+            <TextView
+                android:id="@+id/scouter"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:text="@string/data_entry_scouter_name" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6" />
+
+            <ImageView
+                android:id="@+id/schoolLogo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:src="?attr/SchoolLogo" />
+
+            <ImageView
+                android:id="@+id/teamLogo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:src="@drawable/team_167_logo" />
+
+            <Button
+                android:id="@+id/saveExitButton"
+                style="@style/AutoResize20"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:backgroundTint="?attr/colorPrimary"
+                android:text="@string/data_entry_save_exit"
+                android:textColor="?attr/buttonTextPrimary" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="110"
+            android:weightSum="128"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+
+                android:foreground="?attr/dividerColor" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="24"
+                android:weightSum="128"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <TextView
+                    android:id="@+id/BlueAllianceScoreHeader"
+                    style="@style/AutoResize25"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="8"
+                    android:gravity="center"
+                    android:text="Blue Alliance Scores:" />
+
+                <View
+                    android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/endAutoBlueHeader"
+                        style="@style/AutoResize20"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/data_entry_end_auto_header" />
+
+                    <EditText
+                        android:id="@+id/endAutoBlue"
+                        style="@style/AutoResize25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/AutoResize20"
+                        android:id="@+id/endTransitionBlueHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="End of Transition:" />
+
+                    <EditText
+                        style="@style/AutoResize25"
+                        android:id="@+id/endTransitionBlue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider5"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/AutoResize20"
+                        android:id="@+id/endShift1BlueHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/data_entry_end_shift_1_header" />
+
+                    <EditText
+                        style="@style/AutoResize25"
+                        android:id="@+id/endShift1Blue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider6"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/AutoResize20"
+                        android:id="@+id/endShift2BlueHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/data_entry_end_shift_2_header" />
+
+                    <EditText
+                        style="@style/AutoResize25"
+                        android:id="@+id/endShift2Blue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider7"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/AutoResize20"
+                        android:id="@+id/endShift3BlueHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/data_entry_end_shift_3_header" />
+
+                    <EditText
+                        style="@style/AutoResize25"
+                        android:id="@+id/endShift3Blue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider9"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/AutoResize20"
+                        android:id="@+id/endShift4BlueHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="End of Shift 4:" />
+
+                    <EditText
+                        style="@style/AutoResize25"
+                        android:id="@+id/endShift4Blue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider10"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/AutoResize20"
+                        android:id="@+id/endGameBlueHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/data_entry_end_game_header" />
+
+                    <EditText
+                        style="@style/AutoResize25"
+                        android:id="@+id/endGameBlue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider11"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+
+                    android:foreground="?attr/dividerColor" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider12"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:foreground="?attr/dividerColor" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="24"
+                android:weightSum="128"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/divider13"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <TextView
+                    android:id="@+id/RedAllianceScoreHeader"
+                    style="@style/AutoResize25"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="8"
+                    android:gravity="center"
+                    android:text="Red Alliance Scores:" />
+
+                <View
+                    android:id="@+id/divider14"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/endAutoRedHeader"
+                        style="@style/AutoResize20"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/data_entry_end_auto_header" />
+
+                    <EditText
+                        android:id="@+id/endAutoRed"
+                        style="@style/AutoResize25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider15"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/AutoResize20"
+                        android:id="@+id/endTransitionRedHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="End of Transition:" />
+
+                    <EditText
+                        style="@style/AutoResize25"
+                        android:id="@+id/endTransitionRed"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider16"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/AutoResize20"
+                        android:id="@+id/endShift1RedHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/data_entry_end_shift_1_header" />
+
+                    <EditText
+                        style="@style/AutoResize25"
+                        android:id="@+id/endShift1Red"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider17"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/AutoResize20"
+                        android:id="@+id/endShift2RedHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/data_entry_end_shift_2_header" />
+
+                    <EditText
+                        style="@style/AutoResize25"
+                        android:id="@+id/endShift2Red"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider18"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/AutoResize20"
+                        android:id="@+id/endShift3RedHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/data_entry_end_shift_3_header" />
+
+                    <EditText
+                        style="@style/AutoResize25"
+                        android:id="@+id/endShift3Red"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider19"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/AutoResize20"
+                        android:id="@+id/endShift4RedHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="End of Shift 4:" />
+
+                    <EditText
+                        style="@style/AutoResize25"
+                        android:id="@+id/endShift4Red"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider20"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/AutoResize20"
+                        android:id="@+id/endGameRedHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/data_entry_end_game_header" />
+
+                    <EditText
+                        style="@style/AutoResize25"
+                        android:id="@+id/endGameRed"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:hint="#" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider21"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:foreground="?attr/dividerColor" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider22"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:foreground="?attr/dividerColor" />
+            
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="73"
+                android:orientation="vertical"
+                android:weightSum="64">
+
+                <View
+                    android:id="@+id/divider23"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <TextView
+                    android:id="@+id/commentsHeaderBlue"
+                    style="@style/AutoResize30"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="Blue Alliance Notes:" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="25"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <EditText
+                        android:id="@+id/commentsBlue"
+                        style="@style/AutoResize20"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="bottom"
+                        android:hint="Your notes go here..."
+                        android:inputType="textMultiLine"
+                        android:text="" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider24"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+
+                    android:foreground="?attr/dividerColor" />
+
+                <TextView
+                    android:id="@+id/commentsHeaderRed"
+                    style="@style/AutoResize30"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="Red Alliance Notes:" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="25"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:weightSum="6">
+
+                    <EditText
+                        android:id="@+id/commentsRed"
+                        style="@style/AutoResize20"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="bottom"
+                        android:hint="Your notes go here..."
+                        android:inputType="textMultiLine"
+                        android:text="" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider25"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:foreground="?attr/dividerColor" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider26"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:foreground="?attr/dividerColor" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
