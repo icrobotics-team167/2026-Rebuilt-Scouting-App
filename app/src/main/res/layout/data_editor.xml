@@ -271,7 +271,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5"
                 android:gravity="center"
-                android:text="Average Volley Size:"/>
+                android:text="Percentage:"/>
 
             <TextView
                 android:id="@+id/towerPositionHeader"

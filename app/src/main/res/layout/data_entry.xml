@@ -126,7 +126,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="60"
                 android:orientation="vertical"
-                android:weightSum="120">
+                android:weightSum="180">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -136,7 +136,7 @@
                     android:layout_weight="8"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
-                    android:text="Active Hub Notes:" />
+                    android:text="Auto Notes:" />
 
                 <View
                     android:id="@+id/divider12"
@@ -158,8 +158,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:ems="10"
-                        android:inputType="text"
-                        android:text="Name" />
+                        android:inputType="textMultiLine"
+                        android:hint="Active Hub Notes" />
 
                 </LinearLayout>
 
@@ -178,7 +178,7 @@
                     android:layout_weight="8"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
-                    android:text="Inactive Hub Notes:" />
+                    android:text="Active Hub Notes:" />
 
                 <View
                     android:id="@+id/divider15"
@@ -200,8 +200,49 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:ems="10"
-                        android:inputType="text"
-                        android:text="Name" />
+                        android:inputType="textMultiLine"
+                        android:hint="Inactive Hub Notes" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider21"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:foreground="?attr/dividerColor" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    style="@style/AutoResize30"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="8"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="Inactive:" />
+
+                <View
+                    android:id="@+id/divider15"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="49"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/inactiveComments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="textMultiLine"
+                        android:hint="Inactive Hub Notes" />
                 </LinearLayout>
 
                 <View
@@ -263,7 +304,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="3"
                                 android:gravity="center"
-                                android:text="0" />
+                                android:text="0%" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"

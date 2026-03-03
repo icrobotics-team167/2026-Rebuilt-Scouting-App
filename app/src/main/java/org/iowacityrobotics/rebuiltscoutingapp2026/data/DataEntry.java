@@ -95,7 +95,7 @@ public class DataEntry extends AppCompatActivity {
         percentageSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                percentageView.setText(String.valueOf(progress));
+                percentageView.setText(String.valueOf(progress) + "%");
             }
 
             @Override
@@ -175,6 +175,7 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
         data.put(DataKeys.ASSIGNMENT, getIntent().getStringExtra("PASS_ASSIGNMENT"));
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
+        data.put(DataKeys.PERCENTAGE, temp.get(DataKeys.PERCENTAGE));
         data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
         data.put(DataKeys.TOWER_LEVEL, temp.get(DataKeys.TOWER_LEVEL));
         data.put(DataKeys.TOWER_POS, temp.get(DataKeys.TOWER_POS));

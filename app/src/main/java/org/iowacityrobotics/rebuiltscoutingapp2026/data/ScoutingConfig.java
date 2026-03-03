@@ -31,6 +31,7 @@ public class ScoutingConfig {
         INPUTS.add(new Field(R.id.scoutingAssignment, DataKeys.ASSIGNMENT, DataType.TEXT));
 
         INPUTS.add(new Field(R.id.playedDefense, DataKeys.PLAYED_DEFENSE, DataType.BOOLEAN));
+        INPUTS.add(new Field(R.id.percentage, DataKeys.PERCENTAGE, DataType.TEXT));
 
         INPUTS.add(new Field(R.id.towerPosition, DataKeys.TOWER_POS, DataType.TEXT));
         INPUTS.add(new Field(R.id.towerLevel, DataKeys.TOWER_LEVEL, DataType.TEXT));
