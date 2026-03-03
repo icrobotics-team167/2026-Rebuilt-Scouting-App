@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum = "10"
+        android:weightSum = "64"
         android:orientation="vertical"
         android:background="@color/background"
         tools:layout_editor_absoluteX="1dp"
@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.9"
+            android:layout_weight="4"
             android:weightSum="16"
             android:orientation="horizontal">
 
@@ -121,42 +121,15 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_weight="0.1"
+            android:layout_weight="0.5"
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:weightSum="4"
+            android:layout_weight="3"
+            android:weightSum="1"
             android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/autoVolleysFiredHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Auto Volleys Fired:" />
-
-            <TextView
-                android:id="@+id/autoFuelBunchesHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Auto Fuel Bunches Delivered:" />
-
-            <TextView
-                android:id="@+id/teleopVolleysFiredHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Teleop Volleys Fired:" />
 
             <TextView
                 android:id="@+id/teleopFuelBunchesHeader"
@@ -165,55 +138,20 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Teleop Fuel Bunches Transported" />
+                android:text="Notes" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.9"
-            android:weightSum="4"
+            android:layout_weight="13"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/autoVolleysFired"
+                android:id="@+id/comments"
                 style="@style/AutoResize25"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:hint="#"
-                android:text="" />
-
-            <EditText
-                android:id="@+id/autoFuelBunches"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="#"
-                android:inputType="number"
-                android:text="" />
-
-            <EditText
-                android:id="@+id/teleopVolleysFired"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:hint="#"
-                android:text="" />
-
-            <EditText
-                android:id="@+id/teleopFuelBunches"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="number"
                 android:hint="#"
@@ -225,13 +163,13 @@
             android:id="@+id/divider6"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.1"
+            android:layout_weight="0.5"
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:orientation="horizontal"
             android:weightSum="4">
 
@@ -242,83 +180,22 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Unknown" />
+                android:text="Active Notes" />
 
-            <TextView
-                android:id="@+id/autoShotFuelHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Unknown" />
-
-            <TextView
-                android:id="@+id/activePlayedDefenseHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Unkown" />
-
-            <TextView
-                android:id="@+id/inactivePlayedDefenseHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Unknown" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.9"
-            android:orientation="horizontal"
-            android:weightSum="4">
+            android:layout_weight="13"
+            android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/autoNeutralZone"
+                android:id="@+id/activeComments"
                 style="@style/AutoResize25"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="text"
-                android:hint="#"
-                android:text="" />
-
-            <EditText
-                android:id="@+id/autoShotFuel"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="#"
-                android:inputType="text"
-                android:text="" />
-
-            <EditText
-                android:id="@+id/activePlayedDefense"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="text"
-                android:hint="#"
-                android:text="" />
-
-            <EditText
-                android:id="@+id/inactivePlayedDefense"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text"
                 android:hint="#"
@@ -330,13 +207,13 @@
             android:id="@+id/divider2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.1"
+            android:layout_weight="0.5"
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:weightSum="5"
             android:orientation="horizontal">
 
@@ -347,129 +224,53 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Unknown" />
-
-            <TextView
-                android:id="@+id/endShift1Header"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Unknown" />
-
-            <TextView
-                android:id="@+id/endShift2Header"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Unknown" />
-
-            <TextView
-                android:id="@+id/endShift3Header"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Unknown" />
-
-            <TextView
-                android:id="@+id/endGameHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Unknown" />
+                android:text="Inactive Notes" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.9"
-            android:weightSum="5"
+            android:layout_weight="13"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/endAuto"
+                android:id="@+id/inactiveComments"
                 style="@style/AutoResize25"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number"
+                android:inputType="textMultiLine"
                 android:hint="#"
                 android:text="" />
 
-            <EditText
-                android:id="@+id/endShift1"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:hint="#"
-                android:text="" />
-
-            <EditText
-                android:id="@+id/endShift2"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:hint="#"
-                android:text="" />
-
-            <EditText
-                android:id="@+id/endShift3"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:hint="#"
-                android:text="" />
-
-            <EditText
-                android:id="@+id/endGame"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="#"
-                android:inputType="number"
-                android:text="" />
         </LinearLayout>
 
         <View
             android:id="@+id/divider5"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.1"
+            android:layout_weight="0.5"
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:weightSum="4"
+            android:layout_weight="3"
+            android:weightSum="24"
             android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/averageVolleySizeHeader"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
+                android:layout_weight="5"
+                android:gravity="center"
                 android:text="Average Volley Size:"/>
 
             <TextView
@@ -477,8 +278,8 @@
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
+                android:layout_weight="5"
+                android:gravity="center"
                 android:text="Tower Position:" />
 
             <TextView
@@ -486,8 +287,8 @@
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
+                android:layout_weight="5"
+                android:gravity="center"
                 android:text="Tower Level:" />
 
             <TextView
@@ -495,8 +296,8 @@
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
+                android:layout_weight="5"
+                android:gravity="center"
                 android:text="Played Defense:" />
 
         </LinearLayout>
@@ -504,16 +305,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.9"
-            android:weightSum="4"
+            android:layout_weight="5"
+            android:weightSum="24"
             android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/deleteButton"
+                style="@style/AutoResize20"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:backgroundTint="@color/red"
+                android:textColor="@color/white"
+                android:text="Delete" />
+
             <EditText
-                android:id="@+id/averageVolleySize"
+                android:id="@+id/percentage"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="5"
                 android:ems="10"
                 android:inputType="text"
                 android:hint="#"
@@ -524,7 +335,7 @@
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="5"
                 android:ems="10"
                 android:hint="#"
                 android:inputType="text"
@@ -535,7 +346,7 @@
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="5"
                 android:ems="10"
                 android:inputType="text"
                 android:hint="#"
@@ -546,55 +357,10 @@
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="5"
                 android:ems="10"
                 android:hint="#"
                 android:inputType="text"
-                android:text="" />
-        </LinearLayout>
-
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
-            android:background="?android:attr/listDivider" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:weightSum="10"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/deleteButton"
-                style="@style/AutoResize20"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/red"
-                android:textColor="@color/white"
-                android:text="Delete" />
-
-            <TextView
-                android:id="@+id/commentsHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Notes:" />
-
-            <EditText
-                android:id="@+id/comments"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="6"
-                android:ems="10"
-                android:inputType="text"
-                android:hint="#"
                 android:text="" />
 
             <Button
@@ -607,5 +373,12 @@
                 android:textColor="@color/white"
                 android:text="Save and Exit" />
         </LinearLayout>
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:background="?android:attr/listDivider" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

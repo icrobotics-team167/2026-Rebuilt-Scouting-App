@@ -36,10 +36,8 @@ import java.util.Map;
 
 public class DataEntry extends AppCompatActivity {
 
-    private TextView matchNumView, scouterView, assignmentView;
+    private TextView matchNumView, scouterView, assignmentView, percentageView;
     private EditText teamNumView;
-    private TextView autoVolleys, autoFuelBunches, teleopVolleys, teleopFuelBunches, averageVolleySize;
-    private int autoVolleysCount = 0, autoFuelBunchesCount = 0, teleopVolleysCount = 0, teleopFuelBunchesCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +48,6 @@ public class DataEntry extends AppCompatActivity {
         MatchSchedule.loadSchedule(this);
         initializeViews();
         setupSpinners();
-        setupCounterLogic();
         setupSlider();
         loadHeaderData();
         setupAutoFill();
@@ -76,11 +73,7 @@ public class DataEntry extends AppCompatActivity {
         teamNumView = findViewById(R.id.teamNumber);
         scouterView = findViewById(R.id.scouter);
         assignmentView = findViewById(R.id.scoutingAssignment);
-        autoVolleys = findViewById(R.id.autoVolleysFired);
-        autoFuelBunches = findViewById(R.id.autoFuelBunches);
-        teleopVolleys = findViewById(R.id.teleopVolleysFired);
-        teleopFuelBunches = findViewById(R.id.teleopFuelBunches);
-        averageVolleySize = findViewById((R.id.averageVolleySize));
+        percentageView = findViewById(R.id.percentage);
     }
 
     private void setupSpinners() {
@@ -98,11 +91,11 @@ public class DataEntry extends AppCompatActivity {
     }
 
     private void setupSlider() {
-        SeekBar averageVolleySizeSlider = findViewById(R.id.averageVolleySizeSlider);
-        averageVolleySizeSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        SeekBar percentageSlider = findViewById(R.id.percentageSlider);
+        percentageSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                averageVolleySize.setText(String.valueOf(progress));
+                percentageView.setText(String.valueOf(progress));
             }
 
             @Override
@@ -113,26 +106,6 @@ public class DataEntry extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-    }
-
-    private void setupCounterLogic() {
-        findViewById(R.id.autoVolleysInc).setOnClickListener(v -> updateCount("autoVolleys", 1));
-        findViewById(R.id.autoVolleysDec).setOnClickListener(v -> updateCount("autoVolleys", -1));
-        findViewById(R.id.autoFuelBunchesInc).setOnClickListener(v -> updateCount("autoBunches", 1));
-        findViewById(R.id.autoFuelBunchesDec).setOnClickListener(v -> updateCount("autoBunches", -1));
-        findViewById(R.id.teleopVolleysFiredInc).setOnClickListener(v -> updateCount("teleopVolleys", 1));
-        findViewById(R.id.teleopVolleysFiredDec).setOnClickListener(v -> updateCount("teleopVolleys", -1));
-        findViewById(R.id.teleopFuelBunchesInc).setOnClickListener(v -> updateCount("teleopBunches", 1));
-        findViewById(R.id.teleopFuelBunchesDec).setOnClickListener(v -> updateCount("teleopBunches", -1));
-    }
-
-    private void updateCount(String type, int change) {
-        switch (type) {
-            case "autoVolleys": autoVolleysCount = Math.max(0, autoVolleysCount + change); autoVolleys.setText(String.valueOf(autoVolleysCount)); break;
-            case "autoBunches": autoFuelBunchesCount = Math.max(0, autoFuelBunchesCount + change); autoFuelBunches.setText(String.valueOf(autoFuelBunchesCount)); break;
-            case "teleopVolleys": teleopVolleysCount = Math.max(0, teleopVolleysCount + change); teleopVolleys.setText(String.valueOf(teleopVolleysCount)); break;
-            case "teleopBunches": teleopFuelBunchesCount = Math.max(0, teleopFuelBunchesCount + change); teleopFuelBunches.setText(String.valueOf(teleopFuelBunchesCount)); break;
-        }
     }
 
     private void loadHeaderData() {
@@ -202,15 +175,12 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
         data.put(DataKeys.ASSIGNMENT, getIntent().getStringExtra("PASS_ASSIGNMENT"));
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
-        data.put(DataKeys.AUTO_VOLLEYS_FIRED, temp.get(DataKeys.AUTO_VOLLEYS_FIRED));
-        data.put(DataKeys.AUTO_FUEL_BUNCHES, temp.get(DataKeys.AUTO_FUEL_BUNCHES));
-        data.put(DataKeys.TELEOP_VOLLEYS_FIRED, temp.get(DataKeys.TELEOP_VOLLEYS_FIRED));
-        data.put(DataKeys.TELEOP_FUEL_BUNCHES, temp.get(DataKeys.TELEOP_FUEL_BUNCHES));
-        data.put(DataKeys.AVERAGE_VOLLEY_SIZE, temp.get(DataKeys.AVERAGE_VOLLEY_SIZE));
         data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
         data.put(DataKeys.TOWER_LEVEL, temp.get(DataKeys.TOWER_LEVEL));
         data.put(DataKeys.TOWER_POS, temp.get(DataKeys.TOWER_POS));
         data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
+        data.put(DataKeys.ACTIVE_COMMENTS, temp.get(DataKeys.ACTIVE_COMMENTS));
+        data.put(DataKeys.INACTIVE_COMMENTS, temp.get(DataKeys.INACTIVE_COMMENTS));
 
         data.put(DataKeys.EXPORTED, false);
         System.out.println(data);

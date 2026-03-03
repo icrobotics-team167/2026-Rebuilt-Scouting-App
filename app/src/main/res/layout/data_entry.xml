@@ -103,16 +103,16 @@
         <View
             android:id="@+id/divider14"
             android:layout_width="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:layout_height="0dp"
             android:foreground="?attr/dividerColor" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="56"
-            android:orientation="horizontal"
-            android:weightSum="64">
+            android:layout_weight="108"
+            android:weightSum="123"
+            android:orientation="horizontal">
 
             <View
                 android:id="@+id/divider10"
@@ -124,508 +124,271 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="20"
+                android:layout_weight="60"
                 android:orientation="vertical"
-                android:weightSum="12">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/autoHeader"
-                            style="@style/AutoResize30"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="@string/data_entry_auto_header" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="5"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:weightSum="6">
-
-                        <TextView
-                            android:id="@+id/autoVolleysFiredHeader"
-                            style="@style/AutoResize25"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="2"
-                            android:gravity="center"
-                            android:paddingBottom="10dp"
-                            android:text="@string/data_entry_volleys_header" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="3.5"
-                            android:weightSum="5"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/autoVolleysDec"
-                                style="@style/AutoResize60"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:backgroundTint="?attr/colorSecondary"
-                                android:textColor="@color/plusMinusColor"
-                                android:text="-" />
-
-                            <TextView
-                                android:id="@+id/autoVolleysFired"
-                                style="@style/AutoResize25"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:layout_weight="1"
-                                android:text="0" />
-
-                            <Button
-                                android:id="@+id/autoVolleysInc"
-                                style="@style/AutoResize45"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:backgroundTint="?attr/colorSecondary"
-                                android:textColor="@color/plusMinusColor"
-                                android:layout_weight="2"
-                                android:text="+" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="5"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:weightSum="6"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/autoFuelBunchesTransportedHeader"
-                            style="@style/AutoResize25"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="2"
-                            android:gravity="center"
-                            android:text="@string/data_entry_fuel_bunches_header" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="3.5"
-                            android:weightSum="5"
-                            android:orientation="horizontal">
-                            <Button
-                                android:id="@+id/autoFuelBunchesDec"
-                                style="@style/AutoResize60"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:backgroundTint="?attr/colorSecondary"
-                                android:textColor="@color/plusMinusColor"
-                                android:text="-" />
-
-                            <TextView
-                                android:id="@+id/autoFuelBunches"
-                                style="@style/AutoResize25"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:layout_weight="1"
-                                android:text="0" />
-
-                            <Button
-                                android:id="@+id/autoFuelBunchesInc"
-                                style="@style/AutoResize45"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:backgroundTint="?attr/colorSecondary"
-                                android:textColor="@color/plusMinusColor"
-                                android:layout_weight="2"
-                                android:text="+" />
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider9"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:foreground="?attr/dividerColor" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="41"
-                android:weightSum="12"
-                android:orientation="vertical">
+                android:weightSum="120">
 
                 <TextView
-                    android:id="@+id/teleopHeader"
+                    android:id="@+id/textView2"
                     style="@style/AutoResize30"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="8"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="Active Hub Notes:" />
+
+                <View
+                    android:id="@+id/divider12"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="49"
                     android:gravity="center"
-                    android:text="Tele-op" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="5"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="20"
-                        android:orientation="vertical"
-                        android:weightSum="5">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="5"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:weightSum="6">
-
-                                <TextView
-                                    android:id="@+id/teleopVolleysFiredHeader"
-                                    style="@style/AutoResize25"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="2"
-                                    android:paddingBottom="10dp"
-                                    android:gravity="center"
-                                    android:text="@string/data_entry_volleys_header" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="3.5"
-                                    android:orientation="horizontal">
-
-                                    <Button
-                                        android:id="@+id/teleopVolleysFiredDec"
-                                        style="@style/AutoResize60"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="2"
-                                        android:backgroundTint="?attr/colorSecondary"
-                                        android:text="-"
-                                        android:textColor="@color/plusMinusColor" />
-
-                                    <TextView
-                                        android:id="@+id/teleopVolleysFired"
-                                        style="@style/AutoResize25"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="0" />
-
-                                    <Button
-                                        android:id="@+id/teleopVolleysFiredInc"
-                                        style="@style/AutoResize45"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="2"
-                                        android:backgroundTint="?attr/colorSecondary"
-                                        android:text="+"
-                                        android:textColor="@color/plusMinusColor" />
-                                </LinearLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="20"
-                        android:orientation="vertical"
-                        android:weightSum="5">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="5"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:weightSum="6">
-
-                                <TextView
-                                    android:id="@+id/teleopFuelBunchesHeader"
-                                    style="@style/AutoResize25"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_weight="2"
-                                    android:paddingBottom="10dp"
-                                    android:gravity="center"
-                                    android:text="@string/data_entry_fuel_bunches_header" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="3.5"
-                                    android:orientation="horizontal"
-                                    android:weightSum="5">
-
-                                    <Button
-                                        android:id="@+id/teleopFuelBunchesDec"
-                                        style="@style/AutoResize60"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="2"
-                                        android:backgroundTint="?attr/colorSecondary"
-                                        android:text="-"
-                                        android:textColor="@color/plusMinusColor" />
-
-                                    <TextView
-                                        android:id="@+id/teleopFuelBunches"
-                                        style="@style/AutoResize25"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="0" />
-
-                                    <Button
-                                        android:id="@+id/teleopFuelBunchesInc"
-                                        style="@style/AutoResize45"
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="2"
-                                        android:backgroundTint="?attr/colorSecondary"
-                                        android:text="+"
-                                        android:textColor="@color/plusMinusColor" />
-                                </LinearLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="5"
-                    android:weightSum="6"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/averageVolleySizeHeader"
-                        style="@style/AutoResize25"
+                    <EditText
+                        android:id="@+id/activeComments"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:text="Average Volley Size" />
-
-                    <TextView
-                        android:id="@+id/averageVolleySize"
-                        style="@style/AutoResize25"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:gravity="center"
-                        android:layout_weight="2"
-                        android:text="0" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="2"
-                        android:weightSum="8"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <SeekBar
-                            android:id="@+id/averageVolleySizeSlider"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="6" />
-                    </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:text="Name" />
 
                 </LinearLayout>
-            </LinearLayout>
 
-            <View
-                android:id="@+id/divider12"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                <View
+                    android:id="@+id/divider16"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:foreground="?attr/dividerColor" />
 
-                android:foreground="?attr/dividerColor" />
+                <TextView
+                    android:id="@+id/textView7"
+                    style="@style/AutoResize30"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="8"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="Inactive Hub Notes:" />
 
-        </LinearLayout>
-
-        <View
-            android:id="@+id/divider13"
-            android:layout_width="match_parent"
-            android:layout_weight="3"
-            android:layout_height="0dp"
-
-                android:foreground="?attr/dividerColor" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="48"
-            android:weightSum="64"
-            android:orientation="horizontal">
-
-            <View
-                android:id="@+id/divider7"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:foreground="?attr/dividerColor" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="20"
-                android:weightSum="128"
-                android:orientation="vertical"/>
-
-            <View
-                android:id="@+id/divider4"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:foreground="?attr/dividerColor" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="41"
-                android:orientation="vertical"
-                android:weightSum="42">
+                <View
+                    android:id="@+id/divider15"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:foreground="?attr/dividerColor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="14"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                    android:layout_weight="49"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/towerLevelHeader"
-                        style="@style/AutoResize20"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="15"
-                        android:gravity="center_vertical"
-                        android:paddingStart="15dp"
-                        android:text="@string/data_entry_tower_level_header" />
-
-                    <Spinner
-                        android:id="@+id/towerLevel"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="20" />
-
-                    <View
-                        android:id="@+id/divider42"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-
-                android:foreground="?attr/dividerColor" />
-
-                    <TextView
-                        android:id="@+id/towerPositionHeader"
-                        style="@style/AutoResize20"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="15"
-                        android:gravity="center_vertical"
-                        android:paddingStart="10dp"
-                        android:text="@string/data_entry_tower_position_header" />
-
-                    <Spinner
-                        android:id="@+id/towerPosition"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="20" />
-
-                    <View
-                        android:id="@+id/divider8"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-
-                        android:foreground="?attr/dividerColor" />
-
-                    <CheckBox
-                        android:id="@+id/playedDefense"
-                        style="@style/AutoResize20"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="28"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/data_entry_played_defense" />
-
+                    <EditText
+                        android:id="@+id/inactiveComments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:text="Name" />
                 </LinearLayout>
 
                 <View
                     android:id="@+id/divider21"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
+                    android:foreground="?attr/dividerColor" />
 
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:foreground="?attr/dividerColor" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="60"
+                android:weightSum="120"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="25"
+                    android:layout_weight="36"
+                    android:orientation="horizontal"
+                    android:weightSum="63">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:weightSum="11">
+
+                        <TextView
+                            android:id="@+id/teleopHeader"
+                            style="@style/AutoResize30"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="4"
+                            android:gravity="center"
+                            android:text="Percentage" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="6"
+                            android:orientation="vertical"
+                            android:weightSum="11">
+
+                            <TextView
+                                android:id="@+id/percentage"
+                                style="@style/AutoResize25"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="3"
+                                android:gravity="center"
+                                android:text="0" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="5"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:weightSum="8">
+
+                                <SeekBar
+                                    android:id="@+id/percentageSlider"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="6" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider13"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="21"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:weightSum="40">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="61">
+
+                            <TextView
+                                android:id="@+id/towerLevelHeader"
+                                style="@style/AutoResize20"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="15"
+                                android:gravity="center_vertical"
+                                android:paddingStart="15dp"
+                                android:text="@string/data_entry_tower_level_header" />
+
+                            <Spinner
+                                android:id="@+id/towerLevel"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="15" />
+
+                            <View
+                                android:id="@+id/divider42"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:foreground="?attr/dividerColor" />
+
+                            <TextView
+                                android:id="@+id/towerPositionHeader"
+                                style="@style/AutoResize20"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="15"
+                                android:gravity="center_vertical"
+                                android:paddingStart="10dp"
+                                android:text="@string/data_entry_tower_position_header" />
+
+                            <Spinner
+                                android:id="@+id/towerPosition"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="15" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider20"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="8"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/playedDefense"
+                        style="@style/AutoResize20"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="28"
+                        android:text="@string/data_entry_played_defense" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider19"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="49"
                     android:orientation="horizontal"
                     android:weightSum="6">
 
@@ -651,19 +414,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
-                            android:inputType="textMultiLine"
                             android:gravity="bottom"
-                            android:text=""
-                            android:hint="Your notes go here..." />
+                            android:hint="Your notes go here..."
+                            android:inputType="textMultiLine"
+                            android:text="" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:weightSum="2"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:weightSum="2">
 
                         <Button
                             android:id="@+id/saveExitButton"
@@ -679,16 +442,16 @@
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/divider20"
+                    android:id="@+id/divider17"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="2"
-                android:foreground="?attr/dividerColor" />
+                    android:foreground="?attr/dividerColor" />
 
             </LinearLayout>
 
             <View
-                android:id="@+id/divider24"
+                android:id="@+id/divider9"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

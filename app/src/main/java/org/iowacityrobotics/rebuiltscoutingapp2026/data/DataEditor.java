@@ -18,9 +18,8 @@ import java.util.Map;
 public class DataEditor extends AppCompatActivity {
 
     private EditText matchNum, teamNum, scouterName, assignment;
-    private EditText autoVolleysFired, autoFuelBunches, teleopVolleysFired, teleopFuelBunches;
     private EditText playedDefense;
-    private EditText averageVolleySize, towerPos, towerLevel, comments;
+    private EditText percentage, towerPos, towerLevel, comments, activeComments, inactiveComments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +39,14 @@ public class DataEditor extends AppCompatActivity {
         scouterName = findViewById(R.id.scouter);
         assignment = findViewById(R.id.scoutingAssignment);
 
-        autoVolleysFired = findViewById(R.id.autoVolleysFired);
-        autoFuelBunches = findViewById(R.id.autoFuelBunches);
-        teleopVolleysFired = findViewById(R.id.teleopVolleysFired);
-        teleopFuelBunches = findViewById(R.id.teleopFuelBunches);
-
         playedDefense = findViewById(R.id.playedDefense);
 
-        averageVolleySize = findViewById(R.id.averageVolleySize);
+        percentage = findViewById(R.id.percentage);
         towerPos = findViewById(R.id.towerPosition);
         towerLevel = findViewById(R.id.towerLevel);
         comments = findViewById(R.id.comments);
+        activeComments = findViewById(R.id.activeComments);
+        inactiveComments = findViewById(R.id.inactiveComments);
     }
 
     private void loadExistingData() {
@@ -62,17 +58,14 @@ public class DataEditor extends AppCompatActivity {
             setTextSafe(scouterName, data.get(DataKeys.SCOUTER));
             setTextSafe(assignment, data.get(DataKeys.ASSIGNMENT));
 
-            setTextSafe(autoVolleysFired, data.get(DataKeys.AUTO_VOLLEYS_FIRED));
-            setTextSafe(autoFuelBunches, data.get(DataKeys.AUTO_FUEL_BUNCHES));
-            setTextSafe(teleopVolleysFired, data.get(DataKeys.TELEOP_VOLLEYS_FIRED));
-            setTextSafe(teleopFuelBunches, data.get(DataKeys.TELEOP_FUEL_BUNCHES));
-
             setTextSafe(playedDefense, data.get(DataKeys.PLAYED_DEFENSE));
 
-            setTextSafe(averageVolleySize, data.get(DataKeys.AVERAGE_VOLLEY_SIZE));
+            setTextSafe(percentage, data.get(DataKeys.PERCENTAGE));
             setTextSafe(towerPos, data.get(DataKeys.TOWER_POS));
             setTextSafe(towerLevel, data.get(DataKeys.TOWER_LEVEL));
             setTextSafe(comments, data.get(DataKeys.COMMENTS));
+            setTextSafe(activeComments, data.get(DataKeys.ACTIVE_COMMENTS));
+            setTextSafe(inactiveComments, data.get(DataKeys.INACTIVE_COMMENTS));
         }
     }
 
@@ -85,17 +78,14 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.SCOUTER, scouterName.getText().toString());
             data.put(DataKeys.ASSIGNMENT, assignment.getText().toString());
 
-            data.put(DataKeys.AUTO_VOLLEYS_FIRED, parseInteger(autoVolleysFired));
-            data.put(DataKeys.AUTO_FUEL_BUNCHES, parseInteger(autoFuelBunches));
-            data.put(DataKeys.TELEOP_VOLLEYS_FIRED, parseInteger(teleopVolleysFired));
-            data.put(DataKeys.TELEOP_FUEL_BUNCHES, parseInteger(teleopFuelBunches));
-
             data.put(DataKeys.PLAYED_DEFENSE, parseBoolean(playedDefense));
 
-            data.put(DataKeys.AVERAGE_VOLLEY_SIZE, averageVolleySize.getText().toString());
+            data.put(DataKeys.PERCENTAGE, percentage.getText().toString());
             data.put(DataKeys.TOWER_POS, towerPos.getText().toString());
             data.put(DataKeys.TOWER_LEVEL, towerLevel.getText().toString());
             data.put(DataKeys.COMMENTS, comments.getText().toString());
+            data.put(DataKeys.ACTIVE_COMMENTS, activeComments.getText().toString());
+            data.put(DataKeys.INACTIVE_COMMENTS, inactiveComments.getText().toString());
 
             data.put(DataKeys.EXPORTED, false);
 

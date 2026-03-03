@@ -6,7 +6,6 @@ package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 public class DataKeys {
     public static final String RECORD_TYPE = "record_type";
     public static final String TYPE_MATCH = "MATCH_SCOUTING";
-    public static final String TYPE_SCORE = "SCORE_SCOUTING";
     public static final String EXPORTED = "exported";
     public static final String MATCH_TYPE = "match_type";
 
@@ -14,15 +13,13 @@ public class DataKeys {
     public static final String TEAM_NUM = "team_number";
     public static final String SCOUTER = "scouter_name";
     public static final String ASSIGNMENT = "assignment";
+    public static final String PERCENTAGE = "percentage";
 
-    public static final String AUTO_VOLLEYS_FIRED = "auto_volleys_fired";
-    public static final String AUTO_FUEL_BUNCHES = "auto_fuel_bunches";
-    public static final String TELEOP_VOLLEYS_FIRED = "teleop_volleys_fired";
-    public static final String TELEOP_FUEL_BUNCHES = "teleop_fuel_bunches";
-    public static final String AVERAGE_VOLLEY_SIZE = "average_volley_size";
     public static final String PLAYED_DEFENSE = "played_defense";
 
     public static final String TOWER_POS = "tower_position";
     public static final String TOWER_LEVEL = "tower_level";
     public static final String COMMENTS = "comments";
+    public static final String ACTIVE_COMMENTS = "active_comments";
+    public static final String INACTIVE_COMMENTS = "inactive_comments";
 }
