@@ -30,13 +30,19 @@ public class ScoutingConfig {
         INPUTS.add(new Field(R.id.teamNumber, DataKeys.TEAM_NUM, DataType.TEXT));
         INPUTS.add(new Field(R.id.scoutingAssignment, DataKeys.ASSIGNMENT, DataType.TEXT));
 
+        INPUTS.add(new Field(R.id.autoMoved, DataKeys.AUTO_MOVED, DataType.BOOLEAN));
+        INPUTS.add(new Field(R.id.startingPosition, DataKeys.STARTING_POSITION, DataType.TEXT));
+
+        INPUTS.add(new Field(R.id.strategyBar, DataKeys.STRATEGY, DataType.NUMBER));
+
         INPUTS.add(new Field(R.id.playedDefense, DataKeys.PLAYED_DEFENSE, DataType.BOOLEAN));
-        INPUTS.add(new Field(R.id.percentage, DataKeys.PERCENTAGE, DataType.TEXT));
+        INPUTS.add(new Field(R.id.shootOnMove, DataKeys.SHOOT_ON_MOVE, DataType.BOOLEAN));
 
         INPUTS.add(new Field(R.id.towerPosition, DataKeys.TOWER_POS, DataType.TEXT));
         INPUTS.add(new Field(R.id.towerLevel, DataKeys.TOWER_LEVEL, DataType.TEXT));
         INPUTS.add(new Field(R.id.comments, DataKeys.COMMENTS, DataType.TEXT));
         INPUTS.add(new Field(R.id.activeComments, DataKeys.ACTIVE_COMMENTS, DataType.TEXT));
         INPUTS.add(new Field(R.id.inactiveComments, DataKeys.INACTIVE_COMMENTS, DataType.TEXT));
+        INPUTS.add(new Field(R.id.autoComments, DataKeys.AUTO_COMMENTS, DataType.TEXT));
     }
 }

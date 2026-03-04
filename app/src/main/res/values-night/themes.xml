@@ -110,9 +110,10 @@
     </style>
 
     <style name="Liam" parent="main_theme">
-        <item name="colorPrimary">#283593</item>
-        <item name="colorSecondary">#26C6DA</item>
-        <item name="colorSurface">#1A1F2C</item>
+        <item name="colorPrimary">#FF0000</item>
+        <item name="colorSecondary">#FFA500</item>
+        <item name="colorSurface">#FFFF00</item>
+        <item name="dividerColor">#FFC500</item>
     </style>
 
     <style name="Nolan" parent="main_theme">

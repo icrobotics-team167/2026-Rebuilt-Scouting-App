@@ -347,6 +347,15 @@ public class SetupScreen extends AppCompatActivity {
                 Object value = entry.getValue();
                 if (value instanceof Boolean) {
                     entry.setValue((Boolean) value ? "Yes" : "No");
+                } else if (entry.getKey().equals(DataKeys.STRATEGY)) {
+                    switch ((int) value) {
+                        case 0: entry.setValue("All Pass");
+                        case 1: entry.setValue("Partly Pass");
+                        case 2: entry.setValue("Equal");
+                        case 3: entry.setValue("Partly Score");
+                        case 4: entry.setValue("All Score");
+
+                    }
                 } else if (!value.toString().isEmpty()) {
                     String strValue = value.toString();
                     strValue = strValue.toLowerCase();

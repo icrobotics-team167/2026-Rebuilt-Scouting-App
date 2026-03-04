@@ -126,20 +126,19 @@
                 android:layout_height="match_parent"
                 android:layout_weight="60"
                 android:orientation="vertical"
-                android:weightSum="180">
+                android:weightSum="120">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/teleopHeader"
                     style="@style/AutoResize30"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="8"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Auto Notes:" />
+                    android:gravity="center"
+                    android:text="Teleop" />
 
                 <View
-                    android:id="@+id/divider12"
+                    android:id="@+id/divider16"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -148,7 +147,171 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="49"
+                    android:layout_weight="42"
+                    android:weightSum="120"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/strategyHeader"
+                        style="@style/AutoResize25"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="24"
+                        android:gravity="center"
+                        android:text="Strategy" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="20"
+                        android:orientation="horizontal"
+                        android:weightSum="120">
+
+                        <TextView
+                            android:id="@+id/allPass"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="15"
+                            android:gravity="center"
+                            android:text="All Pass" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7" />
+
+                        <TextView
+                            android:id="@+id/mostlyPass"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="20"
+                            android:gravity="center"
+                            android:text="Partly Pass" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8" />
+
+                        <TextView
+                            android:id="@+id/equal"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="20"
+                            android:gravity="center"
+                            android:text="Equal" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8" />
+
+                        <TextView
+                            android:id="@+id/partlyScore"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="20"
+                            android:gravity="center"
+                            android:text="Partly Score" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7" />
+
+                        <TextView
+                            android:id="@+id/allScore"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="15"
+                            android:gravity="center"
+                            android:text="All Score" />
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/strategyBar"
+                        style="@style/Widget.AppCompat.SeekBar.Discrete"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="32"
+                        android:max="4"
+                        android:progress="2" />
+
+                    <View
+                        android:id="@+id/divider23"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3"
+                        android:foreground="?attr/dividerColor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="36"
+                        android:orientation="horizontal"
+                        android:weightSum="121">
+
+                        <CheckBox
+                            android:id="@+id/playedDefense"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="60"
+                            android:text="@string/data_entry_played_defense" />
+
+                        <View
+                            android:id="@+id/divider18"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:foreground="?attr/dividerColor" />
+
+                        <CheckBox
+                            android:id="@+id/shootOnMove"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="60"
+                            android:text="Can Shoot on the Move" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider19"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="5"
+                        android:foreground="?attr/dividerColor" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/activeCommentsHeader"
+                    style="@style/AutoResize25"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="9"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="Active Hub Notes:" />
+
+                <View
+                    android:id="@+id/divider68"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="23"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -160,25 +323,24 @@
                         android:ems="10"
                         android:inputType="textMultiLine"
                         android:hint="Active Hub Notes" />
-
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/divider16"
+                    android:id="@+id/divider70"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:foreground="?attr/dividerColor" />
 
                 <TextView
-                    android:id="@+id/textView7"
-                    style="@style/AutoResize30"
+                    android:id="@+id/inactiveCommentsHeader"
+                    style="@style/AutoResize25"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="8"
+                    android:layout_weight="9"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
-                    android:text="Active Hub Notes:" />
+                    android:text="Inactive Hub Notes:" />
 
                 <View
                     android:id="@+id/divider15"
@@ -190,48 +352,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="49"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <EditText
-                        android:id="@+id/inactiveComments"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:ems="10"
-                        android:inputType="textMultiLine"
-                        android:hint="Inactive Hub Notes" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider21"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    android:foreground="?attr/dividerColor" />
-
-                <TextView
-                    android:id="@+id/textView7"
-                    style="@style/AutoResize30"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="8"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Inactive:" />
-
-                <View
-                    android:id="@+id/divider15"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:foreground="?attr/dividerColor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="49"
+                    android:layout_weight="23"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -268,62 +389,58 @@
                 android:weightSum="120"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/textView9"
+                    style="@style/AutoResize30"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:layout_weight="8"
+                    android:text="Auto" />
+
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:foreground="?attr/dividerColor" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="36"
-                    android:orientation="horizontal"
-                    android:weightSum="63">
+                    android:layout_weight="13"
+                    android:weightSum="121"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/textView10"
+                        style="@style/AutoResize20"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:weightSum="11">
+                        android:gravity="center"
+                        android:layout_weight="30"
+                        android:text="Starting Position:" />
 
-                        <TextView
-                            android:id="@+id/teleopHeader"
-                            style="@style/AutoResize30"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="4"
-                            android:gravity="center"
-                            android:text="Percentage" />
+                    <Spinner
+                        android:id="@+id/startingPosition"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="30" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="6"
-                            android:orientation="vertical"
-                            android:weightSum="11">
+                    <View
+                        android:id="@+id/divider7"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:foreground="?attr/dividerColor" />
 
-                            <TextView
-                                android:id="@+id/percentage"
-                                style="@style/AutoResize25"
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="3"
-                                android:gravity="center"
-                                android:text="0%" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="5"
-                                android:gravity="center"
-                                android:orientation="horizontal"
-                                android:weightSum="8">
-
-                                <SeekBar
-                                    android:id="@+id/percentageSlider"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="6" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </LinearLayout>
-
+                    <CheckBox
+                        android:id="@+id/autoMoved"
+                        style="@style/AutoResize20"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="60"
+                        android:text="Moved" />
                 </LinearLayout>
 
                 <View
@@ -336,27 +453,75 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="21"
+                    android:layout_weight="33"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/autoComments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:hint="Auto Notes"
+                        android:inputType="textMultiLine" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider11"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:foreground="?attr/dividerColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="26"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:weightSum="40">
+                        android:weightSum="64">
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            style="@style/AutoResize30"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="22"
+                            android:paddingTop="10dp"
+                            android:gravity="center"
+                            android:text="End of Game" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_weight="5"
+                            android:layout_height="0dp" />
+
+                        <View
+                            android:id="@+id/divider24"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:foreground="?attr/dividerColor" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="30"
                             android:orientation="horizontal"
-                            android:weightSum="61">
+                            android:weightSum="121">
 
                             <TextView
                                 android:id="@+id/towerLevelHeader"
                                 style="@style/AutoResize20"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="15"
+                                android:layout_weight="30"
                                 android:gravity="center_vertical"
                                 android:paddingStart="15dp"
                                 android:text="@string/data_entry_tower_level_header" />
@@ -365,7 +530,7 @@
                                 android:id="@+id/towerLevel"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="15" />
+                                android:layout_weight="30" />
 
                             <View
                                 android:id="@+id/divider42"
@@ -379,7 +544,7 @@
                                 style="@style/AutoResize20"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="15"
+                                android:layout_weight="30"
                                 android:gravity="center_vertical"
                                 android:paddingStart="10dp"
                                 android:text="@string/data_entry_tower_position_header" />
@@ -388,48 +553,25 @@
                                 android:id="@+id/towerPosition"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="15" />
+                                android:layout_weight="30" />
 
                         </LinearLayout>
+
+                        <View
+                            android:id="@+id/divider45"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:foreground="?attr/dividerColor" />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <View
-                    android:id="@+id/divider20"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    android:foreground="?attr/dividerColor" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="8"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/playedDefense"
-                        style="@style/AutoResize20"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="28"
-                        android:text="@string/data_entry_played_defense" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider19"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:foreground="?attr/dividerColor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="49"
+                    android:layout_weight="33"
                     android:orientation="horizontal"
                     android:weightSum="6">
 

@@ -18,8 +18,10 @@ import java.util.Map;
 public class DataEditor extends AppCompatActivity {
 
     private EditText matchNum, teamNum, scouterName, assignment;
-    private EditText playedDefense;
-    private EditText percentage, towerPos, towerLevel, comments, activeComments, inactiveComments;
+    private EditText playedDefense, shootOnMove;
+    private EditText autoMoved, startingPosition;
+    private EditText strategy;
+    private EditText towerPos, towerLevel, comments, activeComments, inactiveComments, autoComments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +41,20 @@ public class DataEditor extends AppCompatActivity {
         scouterName = findViewById(R.id.scouter);
         assignment = findViewById(R.id.scoutingAssignment);
 
-        playedDefense = findViewById(R.id.playedDefense);
+        autoMoved = findViewById(R.id.autoMoved);
+        startingPosition = findViewById(R.id.startingPosition);
 
-        percentage = findViewById(R.id.percentage);
+        playedDefense = findViewById(R.id.playedDefense);
+        shootOnMove = findViewById(R.id.shootOnMove);
+
+        strategy = findViewById(R.id.strategy);
+
         towerPos = findViewById(R.id.towerPosition);
         towerLevel = findViewById(R.id.towerLevel);
         comments = findViewById(R.id.comments);
         activeComments = findViewById(R.id.activeComments);
         inactiveComments = findViewById(R.id.inactiveComments);
+        autoComments = findViewById(R.id.autoComments);
     }
 
     private void loadExistingData() {
@@ -59,18 +67,25 @@ public class DataEditor extends AppCompatActivity {
             setTextSafe(assignment, data.get(DataKeys.ASSIGNMENT));
 
             setTextSafe(playedDefense, data.get(DataKeys.PLAYED_DEFENSE));
+            setTextSafe(shootOnMove, data.get(DataKeys.SHOOT_ON_MOVE));
 
-            setTextSafe(percentage, data.get(DataKeys.PERCENTAGE));
+            setTextSafe(autoMoved, data.get(DataKeys.AUTO_MOVED));
+            setTextSafe(startingPosition, data.get(DataKeys.STARTING_POSITION));
+
+            setTextSafe(strategy, data.get(DataKeys.STRATEGY));
+
             setTextSafe(towerPos, data.get(DataKeys.TOWER_POS));
             setTextSafe(towerLevel, data.get(DataKeys.TOWER_LEVEL));
             setTextSafe(comments, data.get(DataKeys.COMMENTS));
             setTextSafe(activeComments, data.get(DataKeys.ACTIVE_COMMENTS));
             setTextSafe(inactiveComments, data.get(DataKeys.INACTIVE_COMMENTS));
+            setTextSafe(autoComments, data.get(DataKeys.AUTO_COMMENTS));
         }
     }
 
     private void saveEditedData() {
-        if (GlobalVariables.objectIndex != -1) {
+        if (GlobalVariables.objectIndex != -1 &&
+                GlobalVariables.objectIndex < GlobalVariables.dataList.size()) {
             Map<String, Object> data = GlobalVariables.dataList.get(GlobalVariables.objectIndex);
 
             data.put(DataKeys.MATCH_NUM, matchNum.getText().toString());
@@ -79,13 +94,19 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.ASSIGNMENT, assignment.getText().toString());
 
             data.put(DataKeys.PLAYED_DEFENSE, parseBoolean(playedDefense));
+            data.put(DataKeys.SHOOT_ON_MOVE, parseBoolean(shootOnMove));
 
-            data.put(DataKeys.PERCENTAGE, percentage.getText().toString());
+            data.put(DataKeys.AUTO_MOVED, parseBoolean(autoMoved));
+            data.put(DataKeys.STARTING_POSITION, startingPosition.getText().toString());
+
+            data.put(DataKeys.STRATEGY, strategy.getText());
+
             data.put(DataKeys.TOWER_POS, towerPos.getText().toString());
             data.put(DataKeys.TOWER_LEVEL, towerLevel.getText().toString());
             data.put(DataKeys.COMMENTS, comments.getText().toString());
             data.put(DataKeys.ACTIVE_COMMENTS, activeComments.getText().toString());
             data.put(DataKeys.INACTIVE_COMMENTS, inactiveComments.getText().toString());
+            data.put(DataKeys.AUTO_COMMENTS, autoComments.getText().toString());
 
             data.put(DataKeys.EXPORTED, false);
 

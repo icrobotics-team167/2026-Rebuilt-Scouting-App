@@ -13,13 +13,17 @@ public class DataKeys {
     public static final String TEAM_NUM = "team_number";
     public static final String SCOUTER = "scouter_name";
     public static final String ASSIGNMENT = "assignment";
-    public static final String PERCENTAGE = "percentage";
 
     public static final String PLAYED_DEFENSE = "played_defense";
+    public static final String SHOOT_ON_MOVE = "shoot_on_move";
+    public static final String AUTO_MOVED = "auto_moved";
+    public static final String STARTING_POSITION = "starting_position";
+    public static final String STRATEGY = "strategy";
 
     public static final String TOWER_POS = "tower_position";
     public static final String TOWER_LEVEL = "tower_level";
     public static final String COMMENTS = "comments";
     public static final String ACTIVE_COMMENTS = "active_comments";
     public static final String INACTIVE_COMMENTS = "inactive_comments";
+    public static final String AUTO_COMMENTS = "auto_comments";
 }

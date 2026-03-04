@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum = "64"
+        android:weightSum = "81"
         android:orientation="vertical"
         android:background="@color/background"
         tools:layout_editor_absoluteX="1dp"
@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4"
+            android:layout_weight="6"
             android:weightSum="16"
             android:orientation="horizontal">
 
@@ -127,8 +127,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
-            android:weightSum="1"
+            android:layout_weight="4"
+            android:weightSum="8"
             android:orientation="horizontal">
 
             <TextView
@@ -136,26 +136,64 @@
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="5"
                 android:gravity="center_vertical"
-                android:text="Notes" />
+                android:text="Auto Notes:" />
+
+            <TextView
+                android:id="@+id/textView8"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:text="Moved:" />
+
+            <TextView
+                android:id="@+id/textView11"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:text="Starting Position:" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="13"
+            android:layout_weight="11"
+            android:weightSum="8"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/comments"
-                style="@style/AutoResize25"
-                android:layout_width="match_parent"
+                android:id="@+id/autoComments"
+                style="@style/AutoResize20"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:ems="10"
                 android:inputType="number"
+                android:layout_weight="5"
                 android:hint="#"
                 android:text="" />
+
+            <EditText
+                android:id="@+id/autoMoved"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:ems="10"
+                android:inputType="text"
+                android:hint="#" />
+
+            <EditText
+                android:id="@+id/startingPosition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:ems="10"
+                android:inputType="text"
+                android:hint="#" />
 
         </LinearLayout>
 
@@ -169,18 +207,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:orientation="horizontal"
-            android:weightSum="4">
+            android:weightSum="8">
 
             <TextView
                 android:id="@+id/autoNeutralZoneHeader"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="6"
                 android:gravity="center_vertical"
-                android:text="Active Notes" />
+                android:text="Active Notes:" />
+
+            <TextView
+                android:id="@+id/textView19"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:text="Strategy" />
 
 
         </LinearLayout>
@@ -188,18 +235,29 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="13"
+            android:layout_weight="12"
+            android:weightSum="8"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/activeComments"
-                style="@style/AutoResize25"
-                android:layout_width="match_parent"
+                style="@style/AutoResize20"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="6"
                 android:ems="10"
                 android:inputType="text"
                 android:hint="#"
                 android:text="" />
+
+            <EditText
+                android:id="@+id/strategy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:ems="10"
+                android:inputType="text"
+                android:hint="#" />
 
         </LinearLayout>
 
@@ -213,7 +271,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:weightSum="5"
             android:orientation="horizontal">
 
@@ -224,18 +282,18 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Inactive Notes" />
+                android:text="Inactive Notes:" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="13"
+            android:layout_weight="12"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/inactiveComments"
-                style="@style/AutoResize25"
+                style="@style/AutoResize20"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
@@ -255,7 +313,49 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="4"
+            android:weightSum="5"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/commentsHeader"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Notes:" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="11"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/comments"
+                style="@style/AutoResize20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:hint="#"
+                android:text="" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider22"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
             android:weightSum="24"
             android:orientation="horizontal">
 
@@ -271,7 +371,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5"
                 android:gravity="center"
-                android:text="Percentage:"/>
+                android:text="Shoot On The Move:"/>
 
             <TextView
                 android:id="@+id/towerPositionHeader"
@@ -320,7 +420,7 @@
                 android:text="Delete" />
 
             <EditText
-                android:id="@+id/percentage"
+                android:id="@+id/shootOnMove"
                 style="@style/AutoResize25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

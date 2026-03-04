@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class DataEntry extends AppCompatActivity {
 
-    private TextView matchNumView, scouterView, assignmentView, percentageView;
+    private TextView matchNumView, scouterView, assignmentView;
     private EditText teamNumView;
 
     @Override
@@ -48,7 +48,6 @@ public class DataEntry extends AppCompatActivity {
         MatchSchedule.loadSchedule(this);
         initializeViews();
         setupSpinners();
-        setupSlider();
         loadHeaderData();
         setupAutoFill();
 
@@ -73,12 +72,12 @@ public class DataEntry extends AppCompatActivity {
         teamNumView = findViewById(R.id.teamNumber);
         scouterView = findViewById(R.id.scouter);
         assignmentView = findViewById(R.id.scoutingAssignment);
-        percentageView = findViewById(R.id.percentage);
     }
 
     private void setupSpinners() {
         setupSpinner(R.id.towerPosition, new String[]{"Select", "Unknown", "None", "Left", "Center", "Right"});
         setupSpinner(R.id.towerLevel, new String[]{"Select", "Unknown", "Ground", "Low", "Medium", "High", "Fall"});
+        setupSpinner(R.id.startingPosition, new String[]{"Select", "Outpost", "Center", "Depot"});
     }
 
     private void setupSpinner(int id, String[] items) {
@@ -88,24 +87,6 @@ public class DataEntry extends AppCompatActivity {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(adapter);
         }
-    }
-
-    private void setupSlider() {
-        SeekBar percentageSlider = findViewById(R.id.percentageSlider);
-        percentageSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                percentageView.setText(String.valueOf(progress) + "%");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
     }
 
     private void loadHeaderData() {
@@ -153,8 +134,8 @@ public class DataEntry extends AppCompatActivity {
             else if (v instanceof Spinner)
                 temp.put(field.jsonKey, ((Spinner) v).getSelectedItem().toString());
 
-            else if (v instanceof RatingBar)
-                temp.put(field.jsonKey, ((RatingBar) v).getRating());
+            else if (v instanceof SeekBar)
+                temp.put(field.jsonKey, ((SeekBar) v).getProgress());
 
             else if (v instanceof TextView) {
                 String val = ((TextView) v).getText().toString();
@@ -175,8 +156,12 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
         data.put(DataKeys.ASSIGNMENT, getIntent().getStringExtra("PASS_ASSIGNMENT"));
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
-        data.put(DataKeys.PERCENTAGE, temp.get(DataKeys.PERCENTAGE));
+        data.put(DataKeys.AUTO_MOVED, temp.get(DataKeys.AUTO_MOVED));
+        data.put(DataKeys.STARTING_POSITION, temp.get(DataKeys.STARTING_POSITION));
+        data.put(DataKeys.AUTO_COMMENTS, temp.get(DataKeys.AUTO_COMMENTS));
+        data.put(DataKeys.STRATEGY, temp.get(DataKeys.STRATEGY));
         data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
+        data.put(DataKeys.SHOOT_ON_MOVE, temp.get(DataKeys.SHOOT_ON_MOVE));
         data.put(DataKeys.TOWER_LEVEL, temp.get(DataKeys.TOWER_LEVEL));
         data.put(DataKeys.TOWER_POS, temp.get(DataKeys.TOWER_POS));
         data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
