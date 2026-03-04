@@ -242,13 +242,6 @@
                         android:max="4"
                         android:progress="2" />
 
-                    <View
-                        android:id="@+id/divider23"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="3"
-                        android:foreground="?attr/dividerColor" />
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -264,13 +257,6 @@
                             android:layout_gravity="center_vertical"
                             android:layout_weight="60"
                             android:text="@string/data_entry_played_defense" />
-
-                        <View
-                            android:id="@+id/divider18"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:foreground="?attr/dividerColor" />
 
                         <CheckBox
                             android:id="@+id/shootOnMove"
@@ -571,7 +557,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="33"
+                    android:layout_weight="34"
                     android:orientation="horizontal"
                     android:weightSum="6">
 
