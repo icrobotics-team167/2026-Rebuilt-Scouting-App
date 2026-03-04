@@ -133,14 +133,14 @@ public class DataEditor extends AppCompatActivity {
     }
 
     private void setTextSafe(EditText view, Object value) {
-        if (view != null) {
-            if (value instanceof Boolean) {
-                view.setText((Boolean) value ? "True" : "False");
-            } else if (value != null) {
-                view.setText(value.toString());
-            } else {
-                view.setText("");
-            }
+        if (view == null) return;
+
+        if (value instanceof Boolean) {
+            view.setText((Boolean) value ? "True" : "False");
+        } else if (value != null) {
+            view.setText(String.valueOf(value));
+        } else {
+            view.setText("");
         }
     }
 

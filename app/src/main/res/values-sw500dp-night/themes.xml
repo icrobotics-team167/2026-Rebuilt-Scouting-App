@@ -68,7 +68,7 @@
         <item name="colorSecondary">#11DDBB</item>
         <item name="colorSurface">#000000</item>
         <item name="dividerColor">#005555</item>
-        <item name="buttonTextPrimary">#000000</item>
+        <item name="buttonTextPrimary">@color/black</item>
     </style>
 
     <style name="Cody" parent="main_theme">
