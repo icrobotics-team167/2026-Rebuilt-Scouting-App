@@ -1,29 +1,39 @@
 <resources>
-    <string name="app_name">Rebuilt 侦察应用 2026</string>
+    <string name="app_name">重建侦察应用 2026</string>
     <string name="scout_button">侦察</string>
     <string name="delete_button">删除</string>
     <string name="export_button">导出</string>
+
     <string name="data_entry_team_number_header">队伍：</string>
     <string name="data_entry_match_number_header">比赛：</string>
     <string name="data_entry_scouter_name">姓名：</string>
-    <string name="data_entry_scouting_assignment">分配任务：</string>
+    <string name="data_entry_scouting_assignment">任务：</string>
+
     <string name="data_entry_auto_header">自动阶段</string>
-    <string name="data_entry_active_hub_header">激活中心</string>
-    <string name="data_entry_inactive_hub_header">未激活中心</string>
-    <string name="data_entry_volleys_header">发射次数：</string>
-    <string name="data_entry_fuel_bunches_header">运输燃料批次：</string>
-    <string name="data_entry_played_defense">参与防守</string>
-    <string name="data_entry_alliance_score_header">联盟得分：</string>
-    <string name="data_entry_end_auto_header">自动阶段结束：</string>
-    <string name="data_entry_end_shift_1_header">第一阶段结束：</string>
-    <string name="data_entry_end_shift_2_header">第二阶段结束：</string>
-    <string name="data_entry_end_shift_3_header">第三阶段结束：</string>
-    <string name="data_entry_end_game_header">比赛结束：</string>
-    <string name="data_entry_passed_fuel">传递燃料</string>
-    <string name="data_entry_team_rating_header">队伍评分：</string>
-    <string name="data_entry_tower_level_header">塔级别：</string>
+    <string name="data_entry_played_defense">进行防守</string>
+
+    <string name="data_entry_tower_level_header">塔等级：</string>
     <string name="data_entry_tower_position_header">塔位置：</string>
+
     <string name="data_entry_notes_header">备注：</string>
     <string name="data_entry_save_exit">保存并退出</string>
-    <string name="shot_fuel">发射燃料</string>
+
+    <string name="data_entry_teleop_header">手动阶段</string>
+
+    <string name="data_entry_strategy_header">策略：</string>
+    <string name="data_entry_all_pass">全部传球</string>
+    <string name="data_entry_partly_pass">部分传球</string>
+    <string name="data_entry_equal">均衡</string>
+    <string name="data_entry_partly_score">部分得分</string>
+    <string name="data_entry_all_score">全部得分</string>
+
+    <string name="data_entry_shoot_on_move">可移动射击</string>
+
+    <string name="data_entry_active_notes_header">激活枢纽备注：</string>
+    <string name="data_entry_inactive_notes_header">未激活枢纽备注：</string>
+
+    <string name="data_entry_starting_position_header">起始位置：</string>
+    <string name="data_entry_moved">已移动</string>
+
+    <string name="data_entry_end_of_game_header">比赛结束</string>
 </resources>

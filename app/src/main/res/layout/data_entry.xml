@@ -135,7 +135,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="8"
                     android:gravity="center"
-                    android:text="Teleop" />
+                    android:text="@string/data_entry_teleop_header" />
 
                 <View
                     android:id="@+id/divider16"
@@ -158,7 +158,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="24"
                         android:gravity="center"
-                        android:text="Strategy:" />
+                        android:text="@string/data_entry_strategy_header" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -174,7 +174,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="15"
                             android:gravity="center"
-                            android:text="All Pass" />
+                            android:text="@string/data_entry_all_pass" />
 
                         <Space
                             android:layout_width="0dp"
@@ -188,7 +188,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="20"
                             android:gravity="center"
-                            android:text="Partly Pass" />
+                            android:text="@string/data_entry_partly_pass" />
 
                         <Space
                             android:layout_width="0dp"
@@ -202,7 +202,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="20"
                             android:gravity="center"
-                            android:text="Equal" />
+                            android:text="@string/data_entry_equal" />
 
                         <Space
                             android:layout_width="0dp"
@@ -216,7 +216,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="20"
                             android:gravity="center"
-                            android:text="Partly Score" />
+                            android:text="@string/data_entry_partly_score" />
 
                         <Space
                             android:layout_width="0dp"
@@ -230,7 +230,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="15"
                             android:gravity="center"
-                            android:text="All Score" />
+                            android:text="@string/data_entry_all_score" />
                     </LinearLayout>
 
                     <SeekBar
@@ -265,7 +265,7 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="60"
-                            android:text="Can Shoot on the Move" />
+                            android:text="@string/data_entry_shoot_on_move" />
                     </LinearLayout>
 
                     <View
@@ -285,7 +285,7 @@
                     android:layout_weight="9"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
-                    android:text="Active Hub Notes:" />
+                    android:text="@string/data_entry_active_notes_header" />
 
                 <View
                     android:id="@+id/divider68"
@@ -326,7 +326,7 @@
                     android:layout_weight="9"
                     android:gravity="center_vertical"
                     android:paddingStart="10dp"
-                    android:text="Inactive Hub Notes:" />
+                    android:text="@string/data_entry_inactive_notes_header" />
 
                 <View
                     android:id="@+id/divider15"
@@ -382,7 +382,7 @@
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:layout_weight="8"
-                    android:text="Auto" />
+                    android:text="@string/data_entry_auto_header" />
 
                 <View
                     android:id="@+id/divider4"
@@ -405,7 +405,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:layout_weight="30"
-                        android:text="Starting Position:" />
+                        android:text="@string/data_entry_starting_position_header" />
 
                     <Spinner
                         android:id="@+id/startingPosition"
@@ -426,7 +426,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="60"
-                        android:text="Moved" />
+                        android:text="@string/data_entry_moved" />
                 </LinearLayout>
 
                 <View
@@ -443,14 +443,31 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/autoComments"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:ems="10"
-                        android:hint="Auto Notes"
-                        android:inputType="textMultiLine" />
+                        android:layout_height="match_parent"
+                        android:weightSum="6"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/commentsHeader2"
+                            style="@style/AutoResize30"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/data_entry_notes_header" />
+
+                        <EditText
+                            android:id="@+id/autoComments"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:ems="10"
+                            android:layout_weight="7"
+                            android:hint="Auto Notes"
+                            android:inputType="textMultiLine" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -481,7 +498,7 @@
                             android:layout_weight="22"
                             android:paddingTop="10dp"
                             android:gravity="center"
-                            android:text="End of Game" />
+                            android:text="@string/data_entry_end_of_game_header" />
 
                         <Space
                             android:layout_width="match_parent"
@@ -573,7 +590,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="4"
+                        android:layout_weight="3.5"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -584,7 +601,7 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:gravity="bottom"
-                            android:hint="Your notes go here..."
+                            android:hint="General Notes"
                             android:inputType="textMultiLine"
                             android:text="" />
                     </LinearLayout>
@@ -592,7 +609,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:weightSum="2">
