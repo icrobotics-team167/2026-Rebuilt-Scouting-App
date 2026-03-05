@@ -6,6 +6,7 @@ package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -38,6 +39,7 @@ public class DataEntry extends AppCompatActivity {
 
     private TextView matchNumView, scouterView, assignmentView;
     private EditText teamNumView;
+    private Spinner startingPosition, towerPosition, towerLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,7 @@ public class DataEntry extends AppCompatActivity {
         loadHeaderData();
         setupAutoFill();
 
-        findViewById(R.id.saveExitButton).setOnClickListener(v -> saveNewMatch());
+        findViewById(R.id.saveExitButton).setOnClickListener(v -> checkFieldsAndSave());
     }
 
     @Override
@@ -72,12 +74,15 @@ public class DataEntry extends AppCompatActivity {
         teamNumView = findViewById(R.id.teamNumber);
         scouterView = findViewById(R.id.scouter);
         assignmentView = findViewById(R.id.scoutingAssignment);
+        startingPosition = findViewById(R.id.startingPosition);
+        towerLevel = findViewById(R.id.towerLevel);
+        towerPosition = findViewById(R.id.towerPosition);
     }
 
     private void setupSpinners() {
         setupSpinner(R.id.towerPosition, new String[]{"Select", "Unknown", "None", "Left", "Center", "Right"});
         setupSpinner(R.id.towerLevel, new String[]{"Select", "Unknown", "Ground", "Low", "Medium", "High", "Fall"});
-        setupSpinner(R.id.startingPosition, new String[]{"Select", "Outpost", "Center", "Depot"});
+        setupSpinner(R.id.startingPosition, new String[]{"Select", "Unknown", "Outpost", "Center", "Depot"});
     }
 
     private void setupSpinner(int id, String[] items) {
@@ -111,6 +116,59 @@ public class DataEntry extends AppCompatActivity {
                 assignmentView.getText().toString(),
                 getIntent().getStringExtra("PASS_MATCH_TYPE"));
         teamNumView.setText(!foundTeam.isEmpty() ? foundTeam : "");
+    }
+
+    private void checkFieldsAndSave() {
+        boolean error = false;
+        if (teamNumView.getText().toString().isEmpty()) {
+                teamNumView.setError("Required");
+                error = true;
+        }
+
+        String selectedStartingPosition = startingPosition.getSelectedItem().toString();
+        if (selectedStartingPosition.equals("Select")) {
+            View selectedView = startingPosition.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("Select Starting Position");
+            }
+            error = true;
+        }
+
+        String selectedTowerLevel = towerLevel.getSelectedItem().toString();
+        if (selectedTowerLevel.equals("Select")) {
+            View selectedView = towerLevel.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("Select Tower Level");
+            }
+            error = true;
+        }
+
+        String selectedTowerPosition = towerPosition.getSelectedItem().toString();
+        if (selectedTowerPosition.equals("Select")) {
+            View selectedView = towerPosition.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("Select Tower Position");
+            }
+            error = true;
+        }
+        if (error) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Missing Data")
+                    .setMessage("Are you sure you want to save incomplete data?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        saveNewMatch();
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        } else {
+            saveNewMatch();
+        }
     }
 
     private void saveNewMatch() {
