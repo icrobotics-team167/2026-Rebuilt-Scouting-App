@@ -58,7 +58,7 @@ public class DataEntry extends AppCompatActivity {
     public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setTitle("Cancel Entry")
-                .setMessage("Are you sure you want cancel match entry?")
+                .setMessage("Are you sure you want to cancel match entry?")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     super.onBackPressed();
                     Toast.makeText(this, "Entry Canceled.", Toast.LENGTH_SHORT).show();

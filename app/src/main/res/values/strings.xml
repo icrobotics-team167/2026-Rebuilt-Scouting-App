@@ -26,4 +26,8 @@
     <string name="data_entry_starting_position_header">Starting Position:</string>
     <string name="data_entry_moved">Moved</string>
     <string name="data_entry_end_of_game_header">End of Game</string>
+    <string name="data_entry_active_hub_notes">Active Hub Notes</string>
+    <string name="data_entry_inactive_hub_notes">Inactive Hub Notes</string>
+    <string name="data_entry_auto_notes">Auto Notes</string>
+    <string name="data_entry_general_notes">General Notes</string>
 </resources>

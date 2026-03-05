@@ -274,14 +274,20 @@ public class SetupScreen extends AppCompatActivity {
             String matchNum = match.get(DataKeys.MATCH_NUM).toString();
             String teamNum = match.get(DataKeys.TEAM_NUM).toString();
 
-            if (matchNum.equals(parts[1]) && teamNum.equals(parts[2])) {
-                fileName = match.get(DataKeys.MATCH_TYPE).toString() + " " + matchNum + " Match Data";
-                launchFilePicker(fileName);
+            if (!(teamNum.toString() == "")) {
+                if (matchNum.equals(parts[1]) && teamNum.equals(parts[2])) {
+                    fileName = match.get(DataKeys.MATCH_TYPE).toString() + " " + matchNum + " Match Data";
+                    launchFilePicker(fileName);
+                    break;
+                }
+            } else if (!matchNum.isEmpty()) {
+                Toast.makeText(this, "No Team Number", Toast.LENGTH_SHORT).show();
+                break;
+            } else {
+                Toast.makeText(this, "No Team or Match Number", Toast.LENGTH_SHORT).show();
                 break;
             }
         }
-
-
     }
 
     private void launchFilePicker(String fileName) {
@@ -318,11 +324,20 @@ public class SetupScreen extends AppCompatActivity {
             String selectedItem = matchListSpinner.getSelectedItem().toString();
 
             String[] parts = selectedItem.split("\\D+");
+
+            if (parts.length < 3) {
+                Toast.makeText(this, "Invalid match format", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String selectedMatchNum = parts[1];
+            String selectedTeamNum = parts[2];
+
             for (Map<String, Object> match : GlobalVariables.dataList) {
                 String matchNum = match.get(DataKeys.MATCH_NUM).toString();
                 String teamNum = match.get(DataKeys.TEAM_NUM).toString();
 
-                if (matchNum.equals(parts[1]) && teamNum.equals(parts[2])) {
+                if (matchNum.equals(selectedMatchNum) && teamNum.equals(selectedTeamNum)) {
                     exportBatch.add(match);
                     break;
                 }
@@ -348,12 +363,12 @@ public class SetupScreen extends AppCompatActivity {
                 if (value instanceof Boolean) {
                     entry.setValue((Boolean) value ? "Yes" : "No");
                 } else if (entry.getKey().equals(DataKeys.STRATEGY)) {
-                    switch ((int) value) {
-                        case 0: entry.setValue("All Pass");
-                        case 1: entry.setValue("Partly Pass");
-                        case 2: entry.setValue("Equal");
-                        case 3: entry.setValue("Partly Score");
-                        case 4: entry.setValue("All Score");
+                    switch (value.toString()) {
+                        case "0": entry.setValue("All Pass");
+                        case "1": entry.setValue("Partly Pass");
+                        case "2": entry.setValue("Equal");
+                        case "3": entry.setValue("Partly Score");
+                        case "4": entry.setValue("All Score");
 
                     }
                 } else if (!value.toString().isEmpty()) {

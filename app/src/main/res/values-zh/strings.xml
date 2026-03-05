@@ -27,7 +27,7 @@
     <string name="data_entry_partly_score">部分得分</string>
     <string name="data_entry_all_score">全部得分</string>
 
-    <string name="data_entry_shoot_on_move">可移动射击</string>
+    <string name="data_entry_shoot_on_move">可以移动射击</string>
 
     <string name="data_entry_active_notes_header">激活枢纽备注：</string>
     <string name="data_entry_inactive_notes_header">未激活枢纽备注：</string>
@@ -36,4 +36,9 @@
     <string name="data_entry_moved">已移动</string>
 
     <string name="data_entry_end_of_game_header">比赛结束</string>
+
+    <string name="data_entry_active_hub_notes">激活枢纽备注</string>
+    <string name="data_entry_inactive_hub_notes">未激活枢纽备注</string>
+    <string name="data_entry_auto_notes">自动阶段备注</string>
+    <string name="data_entry_general_notes">通用备注</string>
 </resources>

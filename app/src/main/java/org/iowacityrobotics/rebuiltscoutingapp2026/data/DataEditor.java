@@ -99,7 +99,7 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.AUTO_MOVED, parseBoolean(autoMoved));
             data.put(DataKeys.STARTING_POSITION, startingPosition.getText().toString());
 
-            data.put(DataKeys.STRATEGY, strategy.getText());
+            data.put(DataKeys.STRATEGY, strategy.getText().toString());
 
             data.put(DataKeys.TOWER_POS, towerPos.getText().toString());
             data.put(DataKeys.TOWER_LEVEL, towerLevel.getText().toString());
@@ -121,7 +121,8 @@ public class DataEditor extends AppCompatActivity {
                 .setTitle("Delete Match")
                 .setMessage("This will permanently remove this record. Continue?")
                 .setPositiveButton("Delete", (dialog, which) -> {
-                    if (GlobalVariables.objectIndex != -1) {
+                    if (GlobalVariables.objectIndex != -1 &&
+                            GlobalVariables.objectIndex < GlobalVariables.dataList.size()) {
                         GlobalVariables.dataList.remove(GlobalVariables.objectIndex);
                         StorageManager.saveData(this);
                         Toast.makeText(this, "Match Deleted", Toast.LENGTH_SHORT).show();

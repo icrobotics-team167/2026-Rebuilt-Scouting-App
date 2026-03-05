@@ -308,7 +308,7 @@
                         android:layout_gravity="center"
                         android:ems="10"
                         android:inputType="textMultiLine"
-                        android:hint="Active Hub Notes" />
+                        android:hint="@string/data_entry_active_hub_notes" />
                 </LinearLayout>
 
                 <View
@@ -349,7 +349,7 @@
                         android:layout_gravity="center"
                         android:ems="10"
                         android:inputType="textMultiLine"
-                        android:hint="Inactive Hub Notes" />
+                        android:hint="@string/data_entry_inactive_hub_notes" />
                 </LinearLayout>
 
                 <View
@@ -465,7 +465,7 @@
                             android:layout_gravity="center"
                             android:ems="10"
                             android:layout_weight="7"
-                            android:hint="Auto Notes"
+                            android:hint="@string/data_entry_auto_notes"
                             android:inputType="textMultiLine" />
                     </LinearLayout>
 
@@ -601,7 +601,7 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:gravity="bottom"
-                            android:hint="General Notes"
+                            android:hint="@string/data_entry_general_notes"
                             android:inputType="textMultiLine"
                             android:text="" />
                     </LinearLayout>
