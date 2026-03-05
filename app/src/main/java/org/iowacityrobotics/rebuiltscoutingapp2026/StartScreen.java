@@ -12,6 +12,7 @@ import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.LocaleListCompat;
 
 import java.io.File;
 
@@ -24,6 +25,7 @@ public class StartScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_screen);
+        setAppLocale("en");
 
         File file = new File(getFilesDir(), "match_data.json");
         if (!file.exists()) {
@@ -67,5 +69,9 @@ public class StartScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    public void setAppLocale(String languageCode) {
+        LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(languageCode);
+        AppCompatDelegate.setApplicationLocales(appLocale);
     }
 }

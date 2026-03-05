@@ -33,9 +33,10 @@
     </style>
 
     <style name="Tommy" parent="main_theme">
-        <item name="colorPrimary">#26C6DA</item>
-        <item name="colorSecondary">#FF4081</item>
-        <item name="colorSurface">#162022</item>
+        <item name="colorPrimary">#FA4444</item>
+        <item name="colorSecondary">#FF0000</item>
+        <item name="colorSurface">#662022</item>
+        <item name="dividerColor">#771111</item>
     </style>
 
     <style name="BenM" parent="main_theme">
