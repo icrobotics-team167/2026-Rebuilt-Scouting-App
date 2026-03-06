@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -52,6 +53,7 @@ public class DataEntry extends AppCompatActivity {
         setupSpinners();
         loadHeaderData();
         setupAutoFill();
+        setupTowerPositionAutofill();
 
         findViewById(R.id.saveExitButton).setOnClickListener(v -> checkFieldsAndSave());
     }
@@ -80,7 +82,7 @@ public class DataEntry extends AppCompatActivity {
     }
 
     private void setupSpinners() {
-        setupSpinner(R.id.towerPosition, new String[]{"Select", "Unknown", "None", "Left", "Center", "Right"});
+        setupSpinner(R.id.towerPosition, new String[]{"Select", "Unknown", "None", "Outpost", "Center", "Depot"});
         setupSpinner(R.id.towerLevel, new String[]{"Select", "Unknown", "Ground", "Low", "Medium", "High", "Fall"});
         setupSpinner(R.id.startingPosition, new String[]{"Select", "Unknown", "Outpost", "Center", "Depot"});
     }
@@ -116,6 +118,38 @@ public class DataEntry extends AppCompatActivity {
                 assignmentView.getText().toString(),
                 getIntent().getStringExtra("PASS_MATCH_TYPE"));
         teamNumView.setText(!foundTeam.isEmpty() ? foundTeam : "");
+    }
+
+    private void setupTowerPositionAutofill() {
+        towerLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+
+                if (selectedItem.equals("Ground")) {
+                    towerPosition.setSelection(2);
+                    towerPosition.setEnabled(false);
+                    View selectedView = towerPosition.getSelectedView();
+                    if (selectedView instanceof TextView) {
+                        TextView selectedTextView = (TextView) selectedView;
+                        selectedTextView.setTextColor(Color.GRAY);
+                    }
+                }
+                else {
+                    towerPosition.setSelection(0);
+                    towerPosition.setEnabled(true);
+                    View selectedView = towerPosition.getSelectedView();
+                    if (selectedView instanceof TextView) {
+                        TextView selectedTextView = (TextView) selectedView;
+                        selectedTextView.setTextColor(Color.BLACK);
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     private void checkFieldsAndSave() {
@@ -158,14 +192,7 @@ public class DataEntry extends AppCompatActivity {
             error = true;
         }
         if (error) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Missing Data")
-                    .setMessage("Are you sure you want to save incomplete data?")
-                    .setPositiveButton("Yes", (dialog, which) -> {
-                        saveNewMatch();
-                    })
-                    .setNegativeButton("No", null)
-                    .show();
+            Toast.makeText(this, "Incomplete Entry", Toast.LENGTH_SHORT).show();
         } else {
             saveNewMatch();
         }
@@ -270,6 +297,10 @@ public class DataEntry extends AppCompatActivity {
             case "TOMMY":
                 style = R.style.Tommy;
                 setAppLocale("zh");
+                break;
+            case "CHUZZ":
+                style = R.style.main_theme;
+                setAppLocale("ch");
                 break;
             case "BENM":
                 style = R.style.BenM;
