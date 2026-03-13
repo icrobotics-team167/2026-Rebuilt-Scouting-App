@@ -40,7 +40,8 @@ public class DataEntry extends AppCompatActivity {
 
     private TextView matchNumView, scouterView, assignmentView;
     private EditText teamNumView;
-    private Spinner startingPosition, towerPosition, towerLevel;
+    private Spinner startingPosition;
+    private TextView fuelScored;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +51,10 @@ public class DataEntry extends AppCompatActivity {
 
         MatchSchedule.loadSchedule(this);
         initializeViews();
+        setupSeekbar();
         setupSpinners();
         loadHeaderData();
         setupAutoFill();
-        setupTowerPositionAutofill();
 
         findViewById(R.id.saveExitButton).setOnClickListener(v -> checkFieldsAndSave());
     }
@@ -77,13 +78,28 @@ public class DataEntry extends AppCompatActivity {
         scouterView = findViewById(R.id.scouter);
         assignmentView = findViewById(R.id.scoutingAssignment);
         startingPosition = findViewById(R.id.startingPosition);
-        towerLevel = findViewById(R.id.towerLevel);
-        towerPosition = findViewById(R.id.towerPosition);
+        fuelScored = findViewById(R.id.fuelScored);
+    }
+
+    private void setupSeekbar() {
+        SeekBar fuelScoredBar = findViewById(R.id.fuelScoredBar);
+        fuelScoredBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                fuelScored.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
     }
 
     private void setupSpinners() {
-        setupSpinner(R.id.towerPosition, new String[]{"Select", "Unknown", "None", "Outpost", "Center", "Depot"});
-        setupSpinner(R.id.towerLevel, new String[]{"Select", "Unknown", "Ground", "Low", "Medium", "High", "Fall"});
         setupSpinner(R.id.startingPosition, new String[]{"Select", "Unknown", "Outpost", "Center", "Depot"});
     }
 
@@ -120,38 +136,6 @@ public class DataEntry extends AppCompatActivity {
         teamNumView.setText(!foundTeam.isEmpty() ? foundTeam : "");
     }
 
-    private void setupTowerPositionAutofill() {
-        towerLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem = parent.getItemAtPosition(position).toString();
-
-                if (selectedItem.equals("Ground")) {
-                    towerPosition.setSelection(2);
-                    towerPosition.setEnabled(false);
-                    View selectedView = towerPosition.getSelectedView();
-                    if (selectedView instanceof TextView) {
-                        TextView selectedTextView = (TextView) selectedView;
-                        selectedTextView.setTextColor(Color.GRAY);
-                    }
-                }
-                else {
-                    towerPosition.setSelection(0);
-                    towerPosition.setEnabled(true);
-                    View selectedView = towerPosition.getSelectedView();
-                    if (selectedView instanceof TextView) {
-                        TextView selectedTextView = (TextView) selectedView;
-                        selectedTextView.setTextColor(Color.BLACK);
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }
-
     private void checkFieldsAndSave() {
         boolean error = false;
         if (teamNumView.getText().toString().isEmpty()) {
@@ -166,28 +150,6 @@ public class DataEntry extends AppCompatActivity {
                 TextView selectedTextView = (TextView) selectedView;
                 selectedTextView.setTextColor(Color.RED);
                 selectedTextView.setError("Select Starting Position");
-            }
-            error = true;
-        }
-
-        String selectedTowerLevel = towerLevel.getSelectedItem().toString();
-        if (selectedTowerLevel.equals("Select")) {
-            View selectedView = towerLevel.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("Select Tower Level");
-            }
-            error = true;
-        }
-
-        String selectedTowerPosition = towerPosition.getSelectedItem().toString();
-        if (selectedTowerPosition.equals("Select")) {
-            View selectedView = towerPosition.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("Select Tower Position");
             }
             error = true;
         }
@@ -241,17 +203,20 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
         data.put(DataKeys.ASSIGNMENT, getIntent().getStringExtra("PASS_ASSIGNMENT"));
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
+
         data.put(DataKeys.AUTO_MOVED, temp.get(DataKeys.AUTO_MOVED));
         data.put(DataKeys.STARTING_POSITION, temp.get(DataKeys.STARTING_POSITION));
+        data.put(DataKeys.AUTO_PASSED_FUEL, temp.get(DataKeys.AUTO_PASSED_FUEL));
         data.put(DataKeys.AUTO_COMMENTS, temp.get(DataKeys.AUTO_COMMENTS));
+
+        data.put(DataKeys.FUEL_SCORED, temp.get(DataKeys.FUEL_SCORED));
+        data.put(DataKeys.SHOOTING_ACCURACY, temp.get(DataKeys.SHOOTING_ACCURACY));
         data.put(DataKeys.STRATEGY, temp.get(DataKeys.STRATEGY));
+
         data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
         data.put(DataKeys.SHOOT_ON_MOVE, temp.get(DataKeys.SHOOT_ON_MOVE));
-        data.put(DataKeys.TOWER_LEVEL, temp.get(DataKeys.TOWER_LEVEL));
-        data.put(DataKeys.TOWER_POS, temp.get(DataKeys.TOWER_POS));
+
         data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
-        data.put(DataKeys.ACTIVE_COMMENTS, temp.get(DataKeys.ACTIVE_COMMENTS));
-        data.put(DataKeys.INACTIVE_COMMENTS, temp.get(DataKeys.INACTIVE_COMMENTS));
 
         data.put(DataKeys.EXPORTED, false);
         System.out.println(data);

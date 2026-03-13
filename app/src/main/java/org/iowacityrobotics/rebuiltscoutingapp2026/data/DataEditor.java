@@ -19,9 +19,9 @@ public class DataEditor extends AppCompatActivity {
 
     private EditText matchNum, teamNum, scouterName, assignment;
     private EditText playedDefense, shootOnMove;
-    private EditText autoMoved, startingPosition;
-    private EditText strategy;
-    private EditText towerPos, towerLevel, comments, activeComments, inactiveComments, autoComments;
+    private EditText autoMoved, startingPosition, autoPassedFuel;
+    private EditText fuelScored, shootingAccuracy, strategy;
+    private EditText comments, autoComments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +43,16 @@ public class DataEditor extends AppCompatActivity {
 
         autoMoved = findViewById(R.id.autoMoved);
         startingPosition = findViewById(R.id.startingPosition);
+        autoPassedFuel = findViewById(R.id.autoPassedFuel);
 
         playedDefense = findViewById(R.id.playedDefense);
         shootOnMove = findViewById(R.id.shootOnMove);
 
+        fuelScored = findViewById(R.id.fuelScored);
+        shootingAccuracy = findViewById(R.id.shootingAccuracy);
         strategy = findViewById(R.id.strategy);
 
-        towerPos = findViewById(R.id.towerPosition);
-        towerLevel = findViewById(R.id.towerLevel);
         comments = findViewById(R.id.comments);
-        activeComments = findViewById(R.id.activeComments);
-        inactiveComments = findViewById(R.id.inactiveComments);
         autoComments = findViewById(R.id.autoComments);
     }
 
@@ -71,14 +70,13 @@ public class DataEditor extends AppCompatActivity {
 
             setTextSafe(autoMoved, data.get(DataKeys.AUTO_MOVED));
             setTextSafe(startingPosition, data.get(DataKeys.STARTING_POSITION));
+            setTextSafe(autoPassedFuel, data.get(DataKeys.AUTO_PASSED_FUEL));
 
+            setTextSafe(fuelScored, data.get(DataKeys.FUEL_SCORED));
+            setTextSafe(shootingAccuracy, data.get(DataKeys.SHOOTING_ACCURACY));
             setTextSafe(strategy, data.get(DataKeys.STRATEGY));
 
-            setTextSafe(towerPos, data.get(DataKeys.TOWER_POS));
-            setTextSafe(towerLevel, data.get(DataKeys.TOWER_LEVEL));
             setTextSafe(comments, data.get(DataKeys.COMMENTS));
-            setTextSafe(activeComments, data.get(DataKeys.ACTIVE_COMMENTS));
-            setTextSafe(inactiveComments, data.get(DataKeys.INACTIVE_COMMENTS));
             setTextSafe(autoComments, data.get(DataKeys.AUTO_COMMENTS));
         }
     }
@@ -98,14 +96,13 @@ public class DataEditor extends AppCompatActivity {
 
             data.put(DataKeys.AUTO_MOVED, parseBoolean(autoMoved));
             data.put(DataKeys.STARTING_POSITION, startingPosition.getText().toString());
+            data.put(DataKeys.AUTO_PASSED_FUEL, parseBoolean(autoPassedFuel));
 
+            data.put(DataKeys.FUEL_SCORED, fuelScored.getText().toString());
+            data.put(DataKeys.SHOOTING_ACCURACY, shootingAccuracy.getText().toString());
             data.put(DataKeys.STRATEGY, strategy.getText().toString());
 
-            data.put(DataKeys.TOWER_POS, towerPos.getText().toString());
-            data.put(DataKeys.TOWER_LEVEL, towerLevel.getText().toString());
             data.put(DataKeys.COMMENTS, comments.getText().toString());
-            data.put(DataKeys.ACTIVE_COMMENTS, activeComments.getText().toString());
-            data.put(DataKeys.INACTIVE_COMMENTS, inactiveComments.getText().toString());
             data.put(DataKeys.AUTO_COMMENTS, autoComments.getText().toString());
 
             data.put(DataKeys.EXPORTED, false);
