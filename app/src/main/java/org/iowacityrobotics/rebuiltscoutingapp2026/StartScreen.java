@@ -29,13 +29,17 @@ public class StartScreen extends AppCompatActivity {
         setContentView(R.layout.start_screen);
         setAppLocale("en");
 
-        File file = new File(getFilesDir(), "match_data.json");
-        if (!file.exists()) {
+        File matchFile = new File(getFilesDir(), "match_data.json");
+        if (!matchFile.exists()) {
             MatchDataGenerator.generate(this, EVENT_KEY);
         }
 
+        File teamFile = new File(getFilesDir(), "team_data.json");
+        if (!teamFile.exists()) {
+            MatchSchedule.generateTeamFile(this);
+        }
+
         MatchSchedule.loadSchedule(this);
-        MatchSchedule.generateTeamFile(this);
         MatchSchedule.loadTeamData(this);
 
         Button matchScoutBtn = findViewById(R.id.button);

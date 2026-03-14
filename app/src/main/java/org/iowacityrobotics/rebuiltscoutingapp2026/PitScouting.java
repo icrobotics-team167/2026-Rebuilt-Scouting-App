@@ -29,8 +29,12 @@ import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataKeys;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -381,6 +385,11 @@ public class PitScouting extends AppCompatActivity {
         }
 
         StorageManager.saveData(this);
+        try {
+            MatchSchedule.teamsObject.put(team, true);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         clearFields();
         finish();
     }

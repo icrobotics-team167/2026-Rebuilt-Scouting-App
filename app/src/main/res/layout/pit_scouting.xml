@@ -77,22 +77,6 @@
                     android:hint="Your name"
                     android:text="" />
 
-                <TextView
-                    android:id="@+id/unitSpinnerHeader"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Units:" />
-
-                <Spinner
-                    android:id="@+id/unitSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6" />
-
                 <Button
                     android:id="@+id/editButton"
                     style="@style/AutoResize20"
@@ -104,21 +88,11 @@
                     android:textColor="@color/black"
                     android:text="Edit Old Data" />
 
-                <Space
+                <Spinner
+                    android:id="@+id/spinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:id="@+id/exportButton"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/secondaryForeground"
-                    android:textColor="@color/black"
-                    android:text="Export All Data" />
+                    android:layout_weight="10" />
 
                 <Space
                     android:layout_width="0dp"
@@ -135,6 +109,22 @@
                     android:backgroundTint="@color/red"
                     android:text="Delete Data"
                     android:textColor="@color/white" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/exportButton"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:backgroundTint="@color/secondaryForeground"
+                    android:text="Export All Data"
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -160,22 +150,14 @@
                     android:layout_weight="6"
                     android:gravity="center|start"
                     android:paddingStart="10dp"
-                    android:text="Drivebase:" />
-
-                <CheckBox
-                    android:id="@+id/swerve"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:text="Swerve" />
+                    android:text="Robot:" />
 
                 <CheckBox
                     android:id="@+id/bump"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="8"
+                    android:layout_weight="7"
                     android:text="Bump" />
 
                 <CheckBox
@@ -183,7 +165,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="7"
+                    android:layout_weight="8"
                     android:text="Trench" />
 
                 <TextView
@@ -254,6 +236,40 @@
                     android:inputType="numberDecimal|numberSigned"
                     android:paddingTop="10dp"
                     android:text="" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider12"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="7"
+                android:orientation="horizontal"
+                android:weightSum="48">
+
+                <TextView
+                    android:id="@+id/drivebaseHeader"
+                    style="@style/AutoResize25"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="center|start"
+                    android:paddingStart="10dp"
+                    android:text="Drivebase:" />
+
+                <CheckBox
+                    android:id="@+id/swerve"
+                    style="@style/AutoResize20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:text="Swerve" />
 
             </LinearLayout>
 
@@ -559,7 +575,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="6"
+                    android:layout_weight="7"
                     android:text="Can Climb" />
 
                 <TextView
@@ -568,7 +584,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="7"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:paddingStart="10dp"
                     android:text="Working Autos:" />
 
@@ -599,7 +615,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="21"
+                    android:layout_weight="20"
                     android:ems="10"
                     android:inputType="textMultiLine"
                     android:hint="Auto Notes" />
@@ -616,33 +632,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="5"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="48">
 
                 <TextView
                     android:id="@+id/cornOnCobHeader"
                     style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:layout_weight="6"
+                    android:gravity="center|start"
                     android:paddingStart="10dp"
-                    android:text="What Do You Like On Your Corn?" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:orientation="horizontal"
-                android:paddingStart="10dp"
-                android:weightSum="6">
+                    android:text="Corn Toppings:" />
 
                 <CheckBox
                     android:id="@+id/yesCornOnCob"
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="7"
                     android:text="Salt" />
 
                 <CheckBox
@@ -650,7 +658,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="8"
                     android:text="Pepper" />
 
                 <CheckBox
@@ -658,14 +666,14 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="7"
                     android:text="Butter" />
 
                 <CheckBox
                     android:id="@+id/checkBox6"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.2"
+                    android:layout_weight="1.5"
                     android:text="" />
 
                 <EditText
@@ -673,7 +681,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="18.5"
                     android:ems="10"
                     android:hint="Other"
                     android:inputType="text"
