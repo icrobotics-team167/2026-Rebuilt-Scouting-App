@@ -152,7 +152,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/strategyHeader2"
+                        android:id="@+id/estimatedFuelScoredHeader"
                         style="@style/AutoResize25"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -213,7 +213,7 @@
                         android:layout_height="0dp" />
 
                     <TextView
-                        android:id="@+id/strategyHeader3"
+                        android:id="@+id/shootingAccuracyHeader"
                         style="@style/AutoResize25"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"

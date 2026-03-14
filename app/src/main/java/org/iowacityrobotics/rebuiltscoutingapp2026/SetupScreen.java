@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import androidx.core.os.LocaleListCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEditor;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEntry;
+import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEntryDay3;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataKeys;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.json.JSONArray;
@@ -42,10 +44,12 @@ import java.util.Set;
 
 public class SetupScreen extends AppCompatActivity {
 
-    private EditText scouterNameInput, matchNumberInput;
+    private EditText scouterNameInput, matchNumberInput, teamNumber;
     private Spinner assignmentSpinner, matchTypeSpinner, matchListSpinner;
 
     private boolean isExportingAll = false;
+
+    private Switch dataEntrySwitch;
 
     private List<Integer> filteredIndices = new ArrayList<>();
 
@@ -89,6 +93,8 @@ public class SetupScreen extends AppCompatActivity {
         assignmentSpinner = findViewById(R.id.scoutingAssignmentAndTeamNumber);
         matchTypeSpinner = findViewById(R.id.matchHeader);
         matchListSpinner = findViewById(R.id.matchListSpinner);
+        dataEntrySwitch = findViewById((R.id.dataEntrySwitch));
+        teamNumber = findViewById(R.id.teamNumber);
     }
 
     private void setupStaticSpinners() {
@@ -159,6 +165,16 @@ public class SetupScreen extends AppCompatActivity {
         Button exportButtonSingle = findViewById(R.id.exportButtonSingle);
         Button exportButtonAll = findViewById(R.id.exportButtonAll);
 
+        dataEntrySwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                assignmentSpinner.setVisibility(View.GONE);
+                teamNumber.setVisibility(View.VISIBLE);
+            } else {
+                assignmentSpinner.setVisibility(View.VISIBLE);
+                teamNumber.setVisibility(View.GONE);
+            }
+        });
+
         goButton.setOnClickListener(v -> {
             if (validateInputs()) {
                 savePreferences();
@@ -166,6 +182,8 @@ public class SetupScreen extends AppCompatActivity {
                 Intent intent;
                 if (scouterNameInput.getText().toString().equals("MADISON")) {
                     intent = new Intent(SetupScreen.this, Slider.class);
+                } else if (dataEntrySwitch.isChecked()) {
+                    intent = new Intent(SetupScreen.this, DataEntryDay3.class);
                 } else {
                     intent = new Intent(SetupScreen.this, DataEntry.class);
                 }
@@ -173,6 +191,7 @@ public class SetupScreen extends AppCompatActivity {
                 intent.putExtra("PASS_MATCH", matchNumberInput.getText().toString());
                 intent.putExtra("PASS_ASSIGNMENT", assignmentSpinner.getSelectedItem().toString());
                 intent.putExtra("PASS_MATCH_TYPE", matchTypeSpinner.getSelectedItem().toString());
+                intent.putExtra("PASS_TEAM_NUMBER", teamNumber.getText().toString());
                 startActivity(intent);
             }
         });
@@ -414,17 +433,6 @@ public class SetupScreen extends AppCompatActivity {
             error = true;
         }
 
-        String selectedAssignment = assignmentSpinner.getSelectedItem().toString();
-        if (selectedAssignment.equals("Select")) {
-            View selectedView = assignmentSpinner.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("Please select an assignment");
-            }
-            error = true;
-        }
-
         String selectedMatchType = matchTypeSpinner.getSelectedItem().toString();
         if (selectedMatchType.equals("Select")) {
             View selectedView = matchTypeSpinner.getSelectedView();
@@ -435,6 +443,26 @@ public class SetupScreen extends AppCompatActivity {
             }
             error = true;
         }
+
+        if (!dataEntrySwitch.isChecked()) {
+            String selectedAssignment = assignmentSpinner.getSelectedItem().toString();
+            if (selectedAssignment.equals("Select")) {
+                View selectedView = assignmentSpinner.getSelectedView();
+                if (selectedView instanceof TextView) {
+                    TextView selectedTextView = (TextView) selectedView;
+                    selectedTextView.setTextColor(Color.RED);
+                    selectedTextView.setError("Please select an assignment");
+                }
+                error = true;
+            }
+        }
+        else {
+            if (teamNumber.getText().toString().isEmpty()) {
+                teamNumber.setError("Match # is required");
+                error = true;
+            }
+        }
+
         return !error;
     }
 

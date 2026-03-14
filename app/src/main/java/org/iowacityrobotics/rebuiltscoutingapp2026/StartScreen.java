@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.os.LocaleListCompat;
 
+import org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule;
+
 import java.io.File;
 
 public class StartScreen extends AppCompatActivity {
@@ -31,6 +33,10 @@ public class StartScreen extends AppCompatActivity {
         if (!file.exists()) {
             MatchDataGenerator.generate(this, EVENT_KEY);
         }
+
+        MatchSchedule.loadSchedule(this);
+        MatchSchedule.generateTeamFile(this);
+        MatchSchedule.loadTeamData(this);
 
         Button matchScoutBtn = findViewById(R.id.button);
         matchScoutBtn.setOnClickListener(new View.OnClickListener() {

@@ -3,6 +3,8 @@
 //This manages the Pit Scouting user interface.
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
+import static org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule.teamsObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -24,13 +26,16 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataKeys;
+import org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,14 +43,14 @@ import java.util.Set;
 
 public class PitScouting extends AppCompatActivity {
 
-    private EditText teamNumber, scouterName;
+    private EditText scouterName;
     private EditText botDimensionsDepth, botDimensionsWidth, botDimensionsHeight;
     private EditText hopperDimensionsDepth, hopperDimensionsWidth, hopperDimensionsHeight;
     private EditText numberOfShooters, intakeWidth;
     private EditText numberOfAutos, autoNotes;
     private EditText cornOther, comments;
 
-    private Spinner unitSpinner;
+    private Spinner unitSpinner, teamNumberSpinner;
 
     private CheckBox openHopper, extendableHopper;
     private CheckBox tiltTurret, turnTurret;
@@ -76,6 +81,7 @@ public class PitScouting extends AppCompatActivity {
 
         initializeViews();
         setupUnitsSpinner();
+        setupTeamNumberSpinner();
         setupButtons();
         setupFullWidthIntake();
     }
@@ -94,9 +100,9 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void initializeViews() {
-        teamNumber = findViewById(R.id.teamNumber);
         scouterName = findViewById(R.id.scouter);
         unitSpinner = findViewById(R.id.unitSpinner);
+        teamNumberSpinner = findViewById(R.id.teamNumberSpinner);
 
         botDimensionsDepth = findViewById(R.id.botDimensionsDepth);
         botDimensionsWidth = findViewById(R.id.botDimensionsWidth);
@@ -132,6 +138,44 @@ public class PitScouting extends AppCompatActivity {
         salt = findViewById(R.id.yesCornOnCob);
         pepper = findViewById(R.id.definitelyCornOnCob);
         butter = findViewById(R.id.absolutelyCornOnCob);
+    }
+
+    private void setupTeamNumberSpinner() {
+
+        List<Integer> teamNumbers = new ArrayList<>();
+
+        if (MatchSchedule.teamsObject != null) {
+
+            Iterator<String> keys =
+                    MatchSchedule.teamsObject.keys();
+
+            while (keys.hasNext()) {
+
+                String key = keys.next();
+
+                if (!MatchSchedule.teamsObject.optBoolean(key, false)) {
+                    teamNumbers.add(Integer.parseInt(key));
+                }
+            }
+        }
+
+        Collections.sort(teamNumbers);
+
+        List<String> spinnerList = new ArrayList<>();
+
+        for (int team : teamNumbers) {
+            spinnerList.add(String.valueOf(team));
+        }
+
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(this,
+                        android.R.layout.simple_spinner_item,
+                        spinnerList);
+
+        adapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item);
+
+        teamNumberSpinner.setAdapter(adapter);
     }
 
     private void setupUnitsSpinner() {
@@ -189,7 +233,6 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void clearFields() {
-        teamNumber.setText("");
         scouterName.setText("");
         botDimensionsDepth.setText("");
         botDimensionsWidth.setText("");
@@ -225,13 +268,14 @@ public class PitScouting extends AppCompatActivity {
         autoCanClimb.setChecked(false);
 
         unitSpinner.setSelection(0);
+        teamNumberSpinner.setSelection(0);
 
         editingIndex = -1;
     }
 
     private void checkFieldsAndSave() {
         boolean error = false;
-        TextView[] textViews = {teamNumber, scouterName, botDimensionsDepth, botDimensionsWidth, botDimensionsHeight, intakeWidth, hopperDimensionsDepth, hopperDimensionsWidth, hopperDimensionsHeight, numberOfShooters, numberOfAutos};
+        TextView[] textViews = {scouterName, botDimensionsDepth, botDimensionsWidth, botDimensionsHeight, intakeWidth, hopperDimensionsDepth, hopperDimensionsWidth, hopperDimensionsHeight, numberOfShooters, numberOfAutos};
         for (TextView textView : textViews) {
             if (textView.getText().toString().isEmpty()) {
                 textView.setError("Required");
@@ -246,6 +290,16 @@ public class PitScouting extends AppCompatActivity {
                 TextView selectedTextView = (TextView) selectedView;
                 selectedTextView.setTextColor(Color.RED);
                 selectedTextView.setError("Select Units");
+            }
+            error = true;
+        }
+        String selectedTeamNumber = teamNumberSpinner.getSelectedItem().toString();
+        if (selectedTeamNumber.equals("Select")) {
+            View selectedView = teamNumberSpinner.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("Select Team");
             }
             error = true;
         }
@@ -265,7 +319,7 @@ public class PitScouting extends AppCompatActivity {
     }
         private void savePitData() {
 
-        String team = teamNumber.getText().toString().trim();
+        String team = teamNumberSpinner.getSelectedItem().toString().trim();
         Map<String, Object> pitData = new LinkedHashMap<>();
 
         pitData.put(PitKeys.RECORD_TYPE, PitKeys.TYPE_PIT);
@@ -367,7 +421,7 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void loadTeamData() {
-        String targetTeam = teamNumber.getText().toString().trim();
+        String targetTeam = teamNumberSpinner.getSelectedItem().toString().trim();
         if (targetTeam.isEmpty()) {
             Toast.makeText(this, "Enter Team #.", Toast.LENGTH_SHORT).show();
             return;

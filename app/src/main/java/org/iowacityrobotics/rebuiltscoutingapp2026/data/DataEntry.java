@@ -49,7 +49,6 @@ public class DataEntry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.data_entry);
 
-        MatchSchedule.loadSchedule(this);
         initializeViews();
         setupSeekbar();
         setupSpinners();
@@ -210,8 +209,34 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.AUTO_COMMENTS, temp.get(DataKeys.AUTO_COMMENTS));
 
         data.put(DataKeys.FUEL_SCORED, temp.get(DataKeys.FUEL_SCORED));
-        data.put(DataKeys.SHOOTING_ACCURACY, temp.get(DataKeys.SHOOTING_ACCURACY));
-        data.put(DataKeys.STRATEGY, temp.get(DataKeys.STRATEGY));
+
+        int accuracyVal = (int) temp.get(DataKeys.SHOOTING_ACCURACY);
+        String accuracyText;
+
+        switch (accuracyVal) {
+            case 0: accuracyText = "0%"; break;
+            case 1: accuracyText = "25%"; break;
+            case 2: accuracyText = "50%"; break;
+            case 3: accuracyText = "75%"; break;
+            case 4: accuracyText = "100%"; break;
+            default: accuracyText = "0%";
+        }
+
+        data.put(DataKeys.SHOOTING_ACCURACY, accuracyText);
+
+        int strategyVal = (int) temp.get(DataKeys.STRATEGY);
+        String strategyText;
+
+        switch (strategyVal) {
+            case 0: strategyText = "All Pass"; break;
+            case 1: strategyText = "Mostly Pass"; break;
+            case 2: strategyText = "Equal"; break;
+            case 3: strategyText = "Mostly Score"; break;
+            case 4: strategyText = "All Score"; break;
+            default: strategyText = "Equal";
+        }
+
+        data.put(DataKeys.STRATEGY, strategyText);
 
         data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
         data.put(DataKeys.SHOOT_ON_MOVE, temp.get(DataKeys.SHOOT_ON_MOVE));
@@ -268,8 +293,6 @@ public class DataEntry extends AppCompatActivity {
                 setAppLocale("ch");
                 break;
             case "BENM":
-                style = R.style.BenM;
-                break;
             case "BEN M":
                 style = R.style.BenM;
                 break;
@@ -280,8 +303,6 @@ public class DataEntry extends AppCompatActivity {
                 style = R.style.Avaneesh;
                 break;
             case "BENL":
-                style = R.style.BenL;
-                break;
             case "BEN L":
                 style = R.style.BenL;
                 break;
