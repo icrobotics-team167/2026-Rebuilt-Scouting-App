@@ -48,17 +48,20 @@ import java.util.Set;
 public class PitScouting extends AppCompatActivity {
 
     private EditText scouterName;
-    private EditText botDimensionsDepth, botDimensionsWidth, botDimensionsHeight;
-    private EditText hopperDimensionsDepth, hopperDimensionsWidth, hopperDimensionsHeight;
+    private EditText botHeight, botWeight;
+    private Spinner heightUnitsSpinner, weightUnitsSpinner, intakeWidthUnits;
+    private Spinner motorTypeSpinner;
+    private EditText swerveModule, gearRatio;
+    private EditText hopperCapacity;
     private EditText numberOfShooters, intakeWidth;
     private EditText numberOfAutos, autoNotes;
     private EditText cornOther, comments;
 
-    private Spinner unitSpinner, teamNumberSpinner;
+    private Spinner teamNumberSpinner;
 
     private CheckBox openHopper, extendableHopper;
     private CheckBox tiltTurret, turnTurret;
-    private CheckBox throughBumperIntake, overBumperIntake, fullWidthIntake;
+    private CheckBox throughBumperIntake, overBumperIntake;
     private CheckBox bump, trench, swerve;
     private CheckBox autoCanClimb;
     private CheckBox salt, pepper, butter;
@@ -84,10 +87,10 @@ public class PitScouting extends AppCompatActivity {
         setContentView(R.layout.pit_scouting);
 
         initializeViews();
-        setupUnitsSpinner();
+        setupUnitsSpinners();
+        setupMotorTypeSpinner();
         setupTeamNumberSpinner();
         setupButtons();
-        setupFullWidthIntake();
     }
 
     @Override
@@ -105,16 +108,12 @@ public class PitScouting extends AppCompatActivity {
 
     private void initializeViews() {
         scouterName = findViewById(R.id.scouter);
-        unitSpinner = findViewById(R.id.unitSpinner);
         teamNumberSpinner = findViewById(R.id.teamNumberSpinner);
 
-        botDimensionsDepth = findViewById(R.id.botDimensionsDepth);
-        botDimensionsWidth = findViewById(R.id.botDimensionsWidth);
-        botDimensionsHeight = findViewById(R.id.botDimensionsHeight);
+        botHeight = findViewById(R.id.botHeight);
+        botWeight = findViewById(R.id.botWeight);
 
-        hopperDimensionsDepth = findViewById(R.id.hopperDimensionsDepth);
-        hopperDimensionsWidth = findViewById(R.id.hopperDimensionsWidth);
-        hopperDimensionsHeight = findViewById(R.id.hopperDimensionsHeight);
+        hopperCapacity = findViewById(R.id.hopperCapacity);
 
         numberOfShooters = findViewById(R.id.numberOfShooters);
         intakeWidth = findViewById(R.id.intakeWidth);
@@ -123,7 +122,6 @@ public class PitScouting extends AppCompatActivity {
 
         throughBumperIntake = findViewById(R.id.throughBumperIntake);
         overBumperIntake = findViewById(R.id.overBumperIntake);
-        fullWidthIntake = findViewById(R.id.fullWidthIntake);
 
         cornOther = findViewById(R.id.editTextText);
         comments = findViewById(R.id.comments);
@@ -133,7 +131,11 @@ public class PitScouting extends AppCompatActivity {
 
         bump = findViewById(R.id.bump);
         trench = findViewById(R.id.trench);
+
         swerve = findViewById(R.id.swerve);
+        motorTypeSpinner = findViewById(R.id.motorTypeSpinner);
+        swerveModule = findViewById(R.id.swerveModule);
+        gearRatio = findViewById(R.id.gearRatio);
 
         autoCanClimb = findViewById(R.id.autoCanClimb);
         numberOfAutos = findViewById(R.id.numberOfAutos);
@@ -142,21 +144,20 @@ public class PitScouting extends AppCompatActivity {
         salt = findViewById(R.id.yesCornOnCob);
         pepper = findViewById(R.id.definitelyCornOnCob);
         butter = findViewById(R.id.absolutelyCornOnCob);
+
+        heightUnitsSpinner = findViewById(R.id.heightUnitsSpinner);
+        weightUnitsSpinner = findViewById(R.id.weightUnitsSpinner);
+        intakeWidthUnits = findViewById(R.id.intakeWidthSpinner);
     }
 
     private void setupTeamNumberSpinner() {
 
         List<Integer> teamNumbers = new ArrayList<>();
-
         if (MatchSchedule.teamsObject != null) {
-
             Iterator<String> keys =
                     MatchSchedule.teamsObject.keys();
-
             while (keys.hasNext()) {
-
                 String key = keys.next();
-
                 if (!MatchSchedule.teamsObject.optBoolean(key, false)) {
                     teamNumbers.add(Integer.parseInt(key));
                 }
@@ -166,7 +167,6 @@ public class PitScouting extends AppCompatActivity {
         Collections.sort(teamNumbers);
 
         List<String> spinnerList = new ArrayList<>();
-
         for (int team : teamNumbers) {
             spinnerList.add(String.valueOf(team));
         }
@@ -175,50 +175,64 @@ public class PitScouting extends AppCompatActivity {
                 new ArrayAdapter<>(this,
                         android.R.layout.simple_spinner_item,
                         spinnerList);
-
         adapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item);
-
         teamNumberSpinner.setAdapter(adapter);
     }
 
-    private void setupUnitsSpinner() {
-        String[] unitOptions = {"Select", "in", "ft", "cm", "m"};
-        ArrayAdapter<String> unitAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, unitOptions);
-        unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    private void setupUnitsSpinners() {
+        String[] heightUnits = {"Select", "in", "ft", "cm", "m"};
+        ArrayAdapter<String> heightAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, heightUnits);
+        heightAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        heightUnitsSpinner.setAdapter(heightAdapter);
 
-        unitSpinner.setAdapter(unitAdapter);
+        String[] weightUnits = {"Select", "lbs", "kg", "g", "oz"};
+        ArrayAdapter<String> weightAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, weightUnits);
+        weightAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        weightUnitsSpinner.setAdapter(weightAdapter);
+
+        String[] widthUnits = {"Select", "in", "ft", "cm", "m"};
+        ArrayAdapter<String> widthAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, widthUnits);
+        widthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        intakeWidthUnits.setAdapter(widthAdapter);
     }
 
-    private void setupFullWidthIntake() {
-        botDimensionsWidth.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (!hasFocus) {
-                        if (fullWidthIntake.isChecked()) {
-                            intakeWidth.setText(botDimensionsWidth.getText().toString());
-                        }
-                    }
-                }
-            });
-        fullWidthIntake.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (botDimensionsWidth.getText().toString().isEmpty()) {
-                    botDimensionsWidth.setError("Required");
-                    fullWidthIntake.setChecked(false);
-                }
-                else {
-                    if (isChecked) {
-                        intakeWidth.setEnabled(false);
-                        intakeWidth.setText(botDimensionsWidth.getText().toString());
-                    } else {
-                        intakeWidth.setEnabled(true);
-                    }
-                }
-            }
-        });
+    private void setupMotorTypeSpinner() {
+        String[] motorTypes = {"Select", "Large Kraken/x60", "Small Kraken/x44", "Neo", "Vortex", "Falcon"};
+        ArrayAdapter<String> motorAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, motorTypes);
+        motorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        motorTypeSpinner.setAdapter(motorAdapter);
     }
+
+//    private void setupFullWidthIntake() {
+//        botDimensionsWidth.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//                @Override
+//                public void onFocusChange(View v, boolean hasFocus) {
+//                    if (!hasFocus) {
+//                        if (fullWidthIntake.isChecked()) {
+//                            intakeWidth.setText(botDimensionsWidth.getText().toString());
+//                        }
+//                    }
+//                }
+//            });
+//        fullWidthIntake.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (botDimensionsWidth.getText().toString().isEmpty()) {
+//                    botDimensionsWidth.setError("Required");
+//                    fullWidthIntake.setChecked(false);
+//                }
+//                else {
+//                    if (isChecked) {
+//                        intakeWidth.setEnabled(false);
+//                        intakeWidth.setText(botDimensionsWidth.getText().toString());
+//                    } else {
+//                        intakeWidth.setEnabled(true);
+//                    }
+//                }
+//            }
+//        });
+//    }
 
     private void setupButtons() {
         Button saveBtn = findViewById(R.id.saveExitButton);
@@ -238,12 +252,8 @@ public class PitScouting extends AppCompatActivity {
 
     private void clearFields() {
         scouterName.setText("");
-        botDimensionsDepth.setText("");
-        botDimensionsWidth.setText("");
-        botDimensionsHeight.setText("");
-        hopperDimensionsDepth.setText("");
-        hopperDimensionsWidth.setText("");
-        hopperDimensionsHeight.setText("");
+        botHeight.setText("");
+        botWeight.setText("");
         numberOfShooters.setText("");
         intakeWidth.setText("");
         cornOther.setText("");
@@ -263,23 +273,30 @@ public class PitScouting extends AppCompatActivity {
 
         throughBumperIntake.setChecked(false);
         overBumperIntake.setChecked(false);
-        fullWidthIntake.setChecked(false);
 
         bump.setChecked(false);
         trench.setChecked(false);
+
         swerve.setChecked(false);
+        swerveModule.setText("");
+        gearRatio.setText("");
 
         autoCanClimb.setChecked(false);
 
-        unitSpinner.setSelection(0);
+        heightUnitsSpinner.setSelection(0);
+        weightUnitsSpinner.setSelection(0);
+        intakeWidthUnits.setSelection(0);
+
         teamNumberSpinner.setSelection(0);
+
+        motorTypeSpinner.setSelection(0);
 
         editingIndex = -1;
     }
 
     private void checkFieldsAndSave() {
         boolean error = false;
-        TextView[] textViews = {scouterName, botDimensionsDepth, botDimensionsWidth, botDimensionsHeight, intakeWidth, hopperDimensionsDepth, hopperDimensionsWidth, hopperDimensionsHeight, numberOfShooters, numberOfAutos};
+        TextView[] textViews = {scouterName, botHeight, botWeight, intakeWidth, hopperCapacity, numberOfShooters, numberOfAutos, swerveModule, gearRatio};
         for (TextView textView : textViews) {
             if (textView.getText().toString().isEmpty()) {
                 textView.setError("Required");
@@ -287,9 +304,29 @@ public class PitScouting extends AppCompatActivity {
             }
         }
 
-        String selectedUnits = unitSpinner.getSelectedItem().toString();
-        if (selectedUnits.equals("Select")) {
-            View selectedView = unitSpinner.getSelectedView();
+        String heightUnits = heightUnitsSpinner.getSelectedItem().toString();
+        if (heightUnits.equals("Select")) {
+            View selectedView = heightUnitsSpinner.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("Select Units");
+            }
+            error = true;
+        }
+        String weightUnits = weightUnitsSpinner.getSelectedItem().toString();
+        if (weightUnits.equals("Select")) {
+            View selectedView = weightUnitsSpinner.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("Select Units");
+            }
+            error = true;
+        }
+        String widthUnits = intakeWidthUnits.getSelectedItem().toString();
+        if (widthUnits.equals("Select")) {
+            View selectedView = intakeWidthUnits.getSelectedView();
             if (selectedView instanceof TextView) {
                 TextView selectedTextView = (TextView) selectedView;
                 selectedTextView.setTextColor(Color.RED);
@@ -321,7 +358,7 @@ public class PitScouting extends AppCompatActivity {
             savePitData();
         }
     }
-        private void savePitData() {
+    private void savePitData() {
 
         String team = teamNumberSpinner.getSelectedItem().toString().trim();
         Map<String, Object> pitData = new LinkedHashMap<>();
@@ -331,22 +368,27 @@ public class PitScouting extends AppCompatActivity {
         pitData.put("match_number", "PIT");
         pitData.put("ScouterName", scouterName.getText().toString());
 
-        String units = unitSpinner.getSelectedItem().toString();
+        String heightUnits = heightUnitsSpinner.getSelectedItem().toString();
+        String weightUnits = weightUnitsSpinner.getSelectedItem().toString();
+        String widthUnits = intakeWidthUnits.getSelectedItem().toString();
 
-        pitData.put(PitKeys.PIT_HOPPER_DIMENSIONS, combineDataDimensions(convertToInches(hopperDimensionsWidth.getText().toString(), units), convertToInches(hopperDimensionsDepth.getText().toString(), units), convertToInches(hopperDimensionsHeight.getText().toString(), units)));
-        pitData.put(PitKeys.PIT_BOT_DIMENSIONS, combineDataDimensions(convertToInches(botDimensionsWidth.getText().toString(), units), convertToInches(botDimensionsDepth.getText().toString(), units), convertToInches(botDimensionsHeight.getText().toString(), units)));
-        pitData.put(PitKeys.PIT_INTAKE, convertToInches(intakeWidth.getText().toString(), units));
+        pitData.put(PitKeys.PIT_BOT_HEIGHT, convertToInches(botHeight.getText().toString(), heightUnits));
+        pitData.put(PitKeys.PIT_BOT_WEIGHT, convertToPounds(botWeight.getText().toString(), weightUnits));
+        pitData.put(PitKeys.PIT_INTAKE_WIDTH, convertToInches(intakeWidth.getText().toString(), widthUnits));
 
-        pitData.put("rawHopperDimensions", combineDataDimensions(hopperDimensionsWidth.getText().toString(), hopperDimensionsDepth.getText().toString(), hopperDimensionsHeight.getText().toString()));
-        pitData.put("rawBotDimensions", combineDataDimensions(botDimensionsWidth.getText().toString(), botDimensionsDepth.getText().toString(), botDimensionsHeight.getText().toString()));
+        pitData.put(PitKeys.PIT_MOTOR_TYPE, motorTypeSpinner.getSelectedItem().toString());
+        pitData.put(PitKeys.PIT_SWERVE_MODULE, swerveModule.getText().toString());
+        pitData.put(PitKeys.PIT_GEAR_RATIO, gearRatio.getText().toString());
+
+        pitData.put(PitKeys.PIT_HOPPER_CAPACITY, hopperCapacity.getText().toString());
+
+        pitData.put("rawBotHeight", botHeight.getText().toString());
+        pitData.put("rawBotWeight", botWeight.getText().toString());
         pitData.put("rawIntakeWidth", intakeWidth.getText().toString());
 
-        pitData.put("units", units);
-
-        pitData.put(PitKeys.PIT_TURRET, numberOfShooters.getText().toString());
-        pitData.put("TurretType", getCheckBoxSelections(tiltTurret, turnTurret));
-        pitData.put("IntakeType", getCheckBoxSelections(throughBumperIntake, overBumperIntake));
-        pitData.put("fullWidthIntake", getCheckBoxSelections(fullWidthIntake));
+        pitData.put(PitKeys.PIT_SHOOTERS, numberOfShooters.getText().toString());
+        pitData.put(PitKeys.PIT_TURRET, getCheckBoxSelections(tiltTurret, turnTurret));
+        pitData.put(PitKeys.PIT_INTAKE, getCheckBoxSelections(throughBumperIntake, overBumperIntake));
 
         pitData.put(PitKeys.PIT_HOPPER_TYPE, getCheckBoxSelections(openHopper, extendableHopper));
         pitData.put(PitKeys.PIT_CROSSING, getCheckBoxSelections(bump, trench));
@@ -372,6 +414,10 @@ public class PitScouting extends AppCompatActivity {
         pitData.put(PitKeys.COMMENTS, comments.getText().toString());
 
         pitData.put(PitKeys.PIT_CORN, cornString.toString());
+
+        pitData.put(PitKeys.PIT_HEIGHT_UNITS, heightUnits);
+        pitData.put(PitKeys.PIT_WEIGHT_UNITS, weightUnits);
+        pitData.put(PitKeys.PIT_INTAKE_UNITS, widthUnits);
 
         pitData.put(PitKeys.EXPORTED, false);
 
@@ -429,6 +475,41 @@ public class PitScouting extends AppCompatActivity {
         return result.toString();
     }
 
+    private String convertToPounds(String input, String unit) {
+        if (input == null || input.isEmpty()) return "";
+
+        double multiplier = 1.0;
+        switch (unit) {
+            case "lbs":
+                multiplier = 1.0;
+                break;
+            case "kg":
+                multiplier = 2.20462;
+                break;
+            case "g":
+                multiplier = 0.00220462;
+                break;
+            case "oz":
+                multiplier = 0.0625;
+                break;
+        }
+
+        String[] parts = input.split("[xX]");
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < parts.length; i++) {
+            if (i > 0) result.append(" x ");
+            try {
+                double val = Double.parseDouble(parts[i].trim());
+                val = val * multiplier;
+                result.append(String.format("%.3f", val));
+            } catch (NumberFormatException e) {
+                result.append(parts[i].trim());
+            }
+        }
+        return result.toString();
+    }
+
     private void loadTeamData() {
         String targetTeam = teamNumberSpinner.getSelectedItem().toString().trim();
         if (targetTeam.isEmpty()) {
@@ -449,25 +530,10 @@ public class PitScouting extends AppCompatActivity {
 
                 safeSetText(scouterName, match.get("ScouterName"));
 
-                Object rawBot = match.get("rawBotDimensions");
-                if (rawBot != null) {
-                    String[] botDims = parseDataDimensions(rawBot.toString());
-                    if (botDims.length >= 3) {
-                        safeSetText(botDimensionsDepth, botDims[0]);
-                        safeSetText(botDimensionsWidth, botDims[1]);
-                        safeSetText(botDimensionsHeight, botDims[2]);
-                    }
-                }
+                safeSetText(botHeight, match.get("rawBotHeight"));
+                safeSetText(botWeight, match.get("rawBotWeight"));
 
-                Object rawHopper = match.get("rawHopperDimensions");
-                if (rawHopper != null) {
-                    String[] hopperDims = parseDataDimensions(rawHopper.toString());
-                    if (hopperDims.length >= 3) {
-                        safeSetText(hopperDimensionsDepth, hopperDims[0]);
-                        safeSetText(hopperDimensionsWidth, hopperDims[1]);
-                        safeSetText(hopperDimensionsHeight, hopperDims[2]);
-                    }
-                }
+                safeSetText(hopperCapacity, match.get(PitKeys.PIT_HOPPER_CAPACITY));
 
                 safeSetText(intakeWidth, match.get("rawIntakeWidth"));
 
@@ -476,18 +542,21 @@ public class PitScouting extends AppCompatActivity {
                 safeSetText(numberOfAutos, match.get(PitKeys.NUMBER_AUTOS));
                 safeSetText(autoNotes, match.get(PitKeys.AUTO_NOTES));
 
+                setSpinnerSelection(motorTypeSpinner, (String) match.get(PitKeys.PIT_MOTOR_TYPE));
+                safeSetText(swerveModule, match.get(PitKeys.PIT_SWERVE_MODULE));
+                safeSetText(gearRatio, match.get(PitKeys.PIT_GEAR_RATIO));
+
                 safeSetText(comments, match.get(PitKeys.COMMENTS));
 
-                if (match.containsKey("units")) {
-                    setSpinnerSelection(unitSpinner, (String) match.get("units"));
-                }
+                setSpinnerSelection(heightUnitsSpinner, (String) match.get(PitKeys.PIT_HEIGHT_UNITS));
+                setSpinnerSelection(weightUnitsSpinner, (String) match.get(PitKeys.PIT_WEIGHT_UNITS));
+                setSpinnerSelection(intakeWidthUnits, (String) match.get(PitKeys.PIT_INTAKE_UNITS));
 
                 setCheckBoxSelections((String) match.get(PitKeys.PIT_HOPPER_TYPE), openHopper, extendableHopper);
                 setCheckBoxSelections((String) match.get(PitKeys.PIT_CROSSING), bump, trench);
                 setCheckBoxSelections((String) match.get(PitKeys.PIT_SWERVE), swerve);
-                setCheckBoxSelections((String) match.get("TurretType"), tiltTurret, turnTurret);
-                setCheckBoxSelections((String) match.get("IntakeType"), throughBumperIntake, overBumperIntake);
-                setCheckBoxSelections((String) match.get("fullWidthIntake"), fullWidthIntake);
+                setCheckBoxSelections((String) match.get(PitKeys.PIT_TURRET), tiltTurret, turnTurret);
+                setCheckBoxSelections((String) match.get(PitKeys.PIT_INTAKE), throughBumperIntake, overBumperIntake);
                 setCheckBoxSelections((String) match.get(PitKeys.AUTO_CLIMB), autoCanClimb);
 
                 loadCornPreferences((String) match.get(PitKeys.PIT_CORN));
@@ -631,21 +700,18 @@ public class PitScouting extends AppCompatActivity {
         Set<String> keysToRemove = Set.of(
                 PitKeys.RECORD_TYPE,
                 "match_number", // For some reason named match_number actually just "PIT"
-                "rawHopperDimensions",
-                "rawBotDimensions",
+                "rawBotHeight",
+                "rawBotWeight",
                 "rawIntakeWidth",
-                "units",
-                "fullWidthIntake",
+                "height_units",
+                "weight_units",
+                "intake_units",
                 PitKeys.EXPORTED
         );
 
         for (Map<String, Object> match : finalExportList) {
 
             Map<String, Object> exportMap = new LinkedHashMap<>(match);
-            String fullWidth = (String) match.get("fullWidthIntake");
-            if (fullWidth != null && !fullWidth.equals("None")) {
-                exportMap.put(PitKeys.PIT_INTAKE, "Full Width");
-            }
             keysToRemove.forEach(exportMap::remove);
             if ("Swerve?".equals(match.get(PitKeys.PIT_SWERVE))) {
                 exportMap.replace(PitKeys.PIT_SWERVE, "Yes");
