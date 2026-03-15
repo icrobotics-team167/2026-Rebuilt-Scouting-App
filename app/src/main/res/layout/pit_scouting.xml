@@ -94,7 +94,7 @@
                     android:text="Edit Old Data" />
 
                 <Spinner
-                    android:id="@+id/editTeamSpinner"
+                    android:id="@+id/teamListSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="10" />

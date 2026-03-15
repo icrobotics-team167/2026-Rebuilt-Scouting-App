@@ -48,6 +48,7 @@ import java.util.Set;
 public class PitScouting extends AppCompatActivity {
 
     private EditText scouterName;
+    private Spinner teamListSpinner;
     private EditText botHeight, botWeight;
     private Spinner heightUnitsSpinner, weightUnitsSpinner, intakeWidthUnits;
     private Spinner motorTypeSpinner;
@@ -94,6 +95,12 @@ public class PitScouting extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        updateTeamListSpinner();
+    }
+
+    @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setTitle("Cancel Entry")
@@ -109,6 +116,7 @@ public class PitScouting extends AppCompatActivity {
     private void initializeViews() {
         scouterName = findViewById(R.id.scouter);
         teamNumberSpinner = findViewById(R.id.teamNumberSpinner);
+        teamListSpinner = findViewById(R.id.teamListSpinner);
 
         botHeight = findViewById(R.id.botHeight);
         botWeight = findViewById(R.id.botWeight);
@@ -150,6 +158,47 @@ public class PitScouting extends AppCompatActivity {
         intakeWidthUnits = findViewById(R.id.intakeWidthSpinner);
     }
 
+    private void updateTeamListSpinner() {
+
+        List<String> teamOptions = new ArrayList<>();
+
+        if (MatchSchedule.teamsObject == null || MatchSchedule.teamsObject.length() == 0) {
+            teamOptions.add("No Team Data");
+        } else {
+
+            teamOptions.add("Select");
+
+            try {
+
+                Iterator<String> keys = MatchSchedule.teamsObject.keys();
+
+                while (keys.hasNext()) {
+
+                    String teamNumber = keys.next();
+                    boolean isTrue = MatchSchedule.teamsObject.getBoolean(teamNumber);
+
+                    if (isTrue) {
+                        teamOptions.add("Team " + teamNumber);
+                    }
+
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (teamOptions.isEmpty()) {
+            teamOptions.add("No Teams Found");
+        }
+
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, teamOptions);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        teamListSpinner.setAdapter(adapter);
+    }
+
     private void setupTeamNumberSpinner() {
 
         List<Integer> teamNumbers = new ArrayList<>();
@@ -167,8 +216,14 @@ public class PitScouting extends AppCompatActivity {
         Collections.sort(teamNumbers);
 
         List<String> spinnerList = new ArrayList<>();
-        for (int team : teamNumbers) {
-            spinnerList.add(String.valueOf(team));
+        if (teamNumbers.isEmpty()) {
+            spinnerList.add("None");
+        }
+        else {
+            spinnerList.add("Select");
+            for (int team : teamNumbers) {
+                spinnerList.add(String.valueOf(team));
+            }
         }
 
         ArrayAdapter<String> adapter =
@@ -296,6 +351,28 @@ public class PitScouting extends AppCompatActivity {
 
     private void checkFieldsAndSave() {
         boolean error = false;
+
+        String selectedTeamNumber = teamNumberSpinner.getSelectedItem().toString();
+        if (selectedTeamNumber.equals("Select")) {
+            View selectedView = teamNumberSpinner.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("Select Team");
+            }
+            error = true;
+        }
+        else if (selectedTeamNumber.equals("None")) {
+            View selectedView = teamNumberSpinner.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("");
+            }
+            Toast.makeText(this, "No Teams Left to Scout", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         TextView[] textViews = {scouterName, botHeight, botWeight, intakeWidth, hopperCapacity, numberOfShooters, numberOfAutos, swerveModule, gearRatio};
         for (TextView textView : textViews) {
             if (textView.getText().toString().isEmpty()) {
@@ -331,16 +408,6 @@ public class PitScouting extends AppCompatActivity {
                 TextView selectedTextView = (TextView) selectedView;
                 selectedTextView.setTextColor(Color.RED);
                 selectedTextView.setError("Select Units");
-            }
-            error = true;
-        }
-        String selectedTeamNumber = teamNumberSpinner.getSelectedItem().toString();
-        if (selectedTeamNumber.equals("Select")) {
-            View selectedView = teamNumberSpinner.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("Select Team");
             }
             error = true;
         }
@@ -511,9 +578,15 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void loadTeamData() {
-        String targetTeam = teamNumberSpinner.getSelectedItem().toString().trim();
-        if (targetTeam.isEmpty()) {
-            Toast.makeText(this, "Enter Team #.", Toast.LENGTH_SHORT).show();
+        String targetTeam = teamListSpinner.getSelectedItem().toString().trim();
+        if (targetTeam.isEmpty() || targetTeam.equals("Select")) {
+            View selectedView = teamListSpinner.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.RED);
+                selectedTextView.setError("Select Team");
+            }
+            Toast.makeText(this, "Select Team.", Toast.LENGTH_SHORT).show();
             return;
         }
 
