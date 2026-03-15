@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Yeniden Yapılmış Scouting Uygulaması 2026</string>
+    <string name="scout_button">Scout Butonu</string>
+    <string name="delete_button">Sil</string>
+    <string name="export_button">Dışa Aktar</string>
+    <string name="data_entry_team_number_header">Takım:</string>
+    <string name="data_entry_match_number_header">Maç:</string>
+    <string name="data_entry_scouter_name">İsim:</string>
+    <string name="data_entry_scouting_assignment">Görev:</string>
+    <string name="data_entry_auto_header">Otonom</string>
+    <string name="data_entry_played_defense">Savunma Yaptı</string>
+    <string name="data_entry_notes_header">Notlar:</string>
+    <string name="data_entry_save_exit">Kaydet ve Çık</string>
+    <string name="data_entry_teleop_header">Teleoperasyonlu</string>
+    <string name="data_entry_strategy_header">Strateji:</string>
+    <string name="data_entry_fuel_scored_header">Skorlanan Yakıt:</string>
+    <string name="data_entry_shooting_accuracy">Atış Yüzdesi:</string>
+    <string name="data_entry_all_pass">Tamamen Pas</string>
+    <string name="data_entry_mostly_pass">Çoğunlukla Pas</string>
+    <string name="data_entry_equal">Eşit</string>
+    <string name="data_entry_mostly_score">Çoğunlukla Skor</string>
+    <string name="data_entry_all_score">Tamamen Skor</string>
+    <string name="data_entry_shoot_on_move">Hareket Halindeyken Ateş Edebilir</string>
+    <string name="data_entry_starting_position_header">Başlangıç Pozisyonu:</string>
+    <string name="data_entry_moved">Hareket Etti</string>
+    <string name="data_entry_passed_fuel">Yakıt Aktardı</string>
+    <string name="data_entry_end_of_game_header">Oyun Sonu</string>
+    <string name="data_entry_auto_notes">Otonom Notları</string>
+    <string name="data_entry_general_notes">Genel Notlar</string>
+</resources>

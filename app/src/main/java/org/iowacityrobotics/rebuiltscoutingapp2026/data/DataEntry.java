@@ -299,6 +299,10 @@ public class DataEntry extends AppCompatActivity {
             case "MERT":
                 style = R.style.Mert;
                 break;
+            case "GURT":
+                style = R.style.Mert;
+                setAppLocale("tr");
+                break;
             case "AVANEESH":
                 style = R.style.Avaneesh;
                 break;

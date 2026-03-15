@@ -3,9 +3,10 @@
 //This manages the Pit Scouting user interface.
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
-import static org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule.teamsObject;
+import static org.iowacityrobotics.rebuiltscoutingapp2026.data.TeamData.teamsObject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -28,12 +29,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataKeys;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
+import org.iowacityrobotics.rebuiltscoutingapp2026.data.TeamData;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,6 +70,8 @@ public class PitScouting extends AppCompatActivity {
     private CheckBox autoCanClimb;
     private CheckBox salt, pepper, butter;
 
+    private TextView motorTypeHeader, swerveModuleHeader, gearRatioHeader;
+
     private int editingIndex = -1;
     private boolean isExportingAll = false;
 
@@ -86,12 +91,15 @@ public class PitScouting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pit_scouting);
+        StorageManager.loadData(this);
 
         initializeViews();
+        setupSwerveCheckbox();
         setupUnitsSpinners();
         setupMotorTypeSpinner();
         setupTeamNumberSpinner();
         setupButtons();
+        enableSwerveFields(false);
     }
 
     @Override
@@ -156,13 +164,65 @@ public class PitScouting extends AppCompatActivity {
         heightUnitsSpinner = findViewById(R.id.heightUnitsSpinner);
         weightUnitsSpinner = findViewById(R.id.weightUnitsSpinner);
         intakeWidthUnits = findViewById(R.id.intakeWidthSpinner);
+
+        motorTypeHeader = findViewById(R.id.motorTypeHeader);
+        swerveModuleHeader = findViewById(R.id.swerveModuleHeader);
+        gearRatioHeader = findViewById(R.id.gearRatioHeader);
     }
 
+    private void setupSwerveCheckbox() {
+        swerve.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    enableSwerveFields(true);
+                } else {
+                    enableSwerveFields(false);
+                }
+            }
+        });
+    }
+
+    private void enableSwerveFields(boolean on) {
+        if (on) {
+            motorTypeSpinner.setEnabled(true);
+            swerveModule.setEnabled(true);
+            gearRatio.setEnabled(true);
+            View selectedView = motorTypeSpinner.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                selectedTextView.setTextColor(Color.BLACK);
+            }
+            TextView[] views = {motorTypeHeader, swerveModuleHeader, gearRatioHeader};
+            for (TextView v : views) {
+                v.setTextColor(Color.BLACK);
+            }
+        }
+        else {
+            motorTypeSpinner.setEnabled(false);
+            swerveModule.setEnabled(false);
+            gearRatio.setEnabled(false);
+            motorTypeSpinner.post(() -> {
+                TextView tv = (TextView) motorTypeSpinner.getSelectedView();
+                if (tv != null) tv.setTextColor(Color.GRAY);
+            });
+            motorTypeSpinner.setSelection(0);
+            TextView[] views = {motorTypeHeader, swerveModuleHeader, gearRatioHeader};
+            for (TextView v : views) {
+                v.setTextColor(Color.GRAY);
+            }
+
+            EditText[] editTexts = {swerveModule, gearRatio};
+            for (EditText v : editTexts) {
+                v.setText("");
+            }
+        }
+    }
     private void updateTeamListSpinner() {
 
         List<String> teamOptions = new ArrayList<>();
 
-        if (MatchSchedule.teamsObject == null || MatchSchedule.teamsObject.length() == 0) {
+        if (teamsObject == null || teamsObject.length() == 0) {
             teamOptions.add("No Team Data");
         } else {
 
@@ -170,15 +230,15 @@ public class PitScouting extends AppCompatActivity {
 
             try {
 
-                Iterator<String> keys = MatchSchedule.teamsObject.keys();
+                Iterator<String> keys = teamsObject.keys();
 
                 while (keys.hasNext()) {
 
                     String teamNumber = keys.next();
-                    boolean isTrue = MatchSchedule.teamsObject.getBoolean(teamNumber);
+                    boolean isTrue = teamsObject.getBoolean(teamNumber);
 
                     if (isTrue) {
-                        teamOptions.add("Team " + teamNumber);
+                        teamOptions.add(teamNumber);
                     }
 
                 }
@@ -202,12 +262,12 @@ public class PitScouting extends AppCompatActivity {
     private void setupTeamNumberSpinner() {
 
         List<Integer> teamNumbers = new ArrayList<>();
-        if (MatchSchedule.teamsObject != null) {
+        if (teamsObject != null) {
             Iterator<String> keys =
-                    MatchSchedule.teamsObject.keys();
+                    teamsObject.keys();
             while (keys.hasNext()) {
                 String key = keys.next();
-                if (!MatchSchedule.teamsObject.optBoolean(key, false)) {
+                if (!teamsObject.optBoolean(key, false)) {
                     teamNumbers.add(Integer.parseInt(key));
                 }
             }
@@ -293,7 +353,6 @@ public class PitScouting extends AppCompatActivity {
         Button saveBtn = findViewById(R.id.saveExitButton);
         Button exportBtn = findViewById(R.id.exportButton);
         Button editBtn = findViewById(R.id.editButton);
-        Button deleteBtn = findViewById(R.id.exportButton2);
 
         saveBtn.setOnClickListener(v -> checkFieldsAndSave());
 
@@ -302,13 +361,13 @@ public class PitScouting extends AppCompatActivity {
         });
 
         editBtn.setOnClickListener(v -> loadTeamData());
-        deleteBtn.setOnClickListener(v -> deleteCurrentTeam());
     }
 
     private void clearFields() {
         scouterName.setText("");
         botHeight.setText("");
         botWeight.setText("");
+        hopperCapacity.setText("");
         numberOfShooters.setText("");
         intakeWidth.setText("");
         cornOther.setText("");
@@ -373,7 +432,7 @@ public class PitScouting extends AppCompatActivity {
             return;
         }
 
-        TextView[] textViews = {scouterName, botHeight, botWeight, intakeWidth, hopperCapacity, numberOfShooters, numberOfAutos, swerveModule, gearRatio};
+        TextView[] textViews = {scouterName, botHeight, botWeight, intakeWidth, hopperCapacity, numberOfShooters, numberOfAutos};
         for (TextView textView : textViews) {
             if (textView.getText().toString().isEmpty()) {
                 textView.setError("Required");
@@ -411,6 +470,27 @@ public class PitScouting extends AppCompatActivity {
             }
             error = true;
         }
+
+        if (swerve.isChecked()) {
+            TextView[] swerveViews = {swerveModule, gearRatio};
+            for (TextView textView : swerveViews) {
+                if (textView.getText().toString().isEmpty()) {
+                    textView.setError("Required");
+                    error = true;
+                }
+            }
+
+            String motorType = motorTypeSpinner.getSelectedItem().toString();
+            if (motorType.equals("Select")) {
+                View selectedView = motorTypeSpinner.getSelectedView();
+                if (selectedView instanceof TextView) {
+                    TextView selectedTextView = (TextView) selectedView;
+                    selectedTextView.setTextColor(Color.RED);
+                    selectedTextView.setError("Select Motor Type");
+                }
+                error = true;
+            }
+        }
         if (error) {
             new AlertDialog.Builder(this)
                     .setTitle("Missing Data")
@@ -443,6 +523,7 @@ public class PitScouting extends AppCompatActivity {
         pitData.put(PitKeys.PIT_BOT_WEIGHT, convertToPounds(botWeight.getText().toString(), weightUnits));
         pitData.put(PitKeys.PIT_INTAKE_WIDTH, convertToInches(intakeWidth.getText().toString(), widthUnits));
 
+        pitData.put(PitKeys.PIT_SWERVE, getCheckBoxSelections(swerve));
         pitData.put(PitKeys.PIT_MOTOR_TYPE, motorTypeSpinner.getSelectedItem().toString());
         pitData.put(PitKeys.PIT_SWERVE_MODULE, swerveModule.getText().toString());
         pitData.put(PitKeys.PIT_GEAR_RATIO, gearRatio.getText().toString());
@@ -455,11 +536,11 @@ public class PitScouting extends AppCompatActivity {
 
         pitData.put(PitKeys.PIT_SHOOTERS, numberOfShooters.getText().toString());
         pitData.put(PitKeys.PIT_TURRET, getCheckBoxSelections(tiltTurret, turnTurret));
+        pitData.put(PitKeys.PIT_HOPPER_TYPE, getCheckBoxSelections(openHopper, extendableHopper));
+
         pitData.put(PitKeys.PIT_INTAKE, getCheckBoxSelections(throughBumperIntake, overBumperIntake));
 
-        pitData.put(PitKeys.PIT_HOPPER_TYPE, getCheckBoxSelections(openHopper, extendableHopper));
         pitData.put(PitKeys.PIT_CROSSING, getCheckBoxSelections(bump, trench));
-        pitData.put(PitKeys.PIT_SWERVE, getCheckBoxSelections(swerve));
 
         pitData.put(PitKeys.AUTO_CLIMB, getCheckBoxSelections(autoCanClimb));
         pitData.put(PitKeys.NUMBER_AUTOS, numberOfAutos.getText().toString());
@@ -499,7 +580,8 @@ public class PitScouting extends AppCompatActivity {
 
         StorageManager.saveData(this);
         try {
-            MatchSchedule.teamsObject.put(team, true);
+            teamsObject.put(team, true);
+            TeamData.saveTeamFile(this);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -800,6 +882,7 @@ public class PitScouting extends AppCompatActivity {
         }
         System.out.println(jsonArray);
         StorageManager.saveData(this);
+        finish();
     }
 
     private void safeSetText(EditText editText, Object value) {

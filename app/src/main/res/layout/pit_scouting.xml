@@ -54,7 +54,7 @@
                     android:id="@+id/teamNumberSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="4.6" />
+                    android:layout_weight="5.6" />
 
                 <TextView
                     android:id="@+id/scouterHeader"
@@ -77,6 +77,38 @@
                     android:hint="Your name"
                     android:text="" />
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:weightSum="5"
+                    android:orientation="vertical">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/AutoResize25"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Day 1 / Day 2" />
+
+                    <Switch
+                        android:id="@+id/switch1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:layout_gravity="center"
+                        android:scaleX="1.25"
+                        android:scaleY="1.25"
+                        android:text="" />
+                </LinearLayout>
+
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -97,18 +129,7 @@
                     android:id="@+id/teamListSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="10" />
-
-                <Button
-                    android:id="@+id/exportButton2"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="5"
-                    android:backgroundTint="@color/red"
-                    android:text="Delete Data"
-                    android:textColor="@color/white" />
+                    android:layout_weight="7" />
 
                 <Space
                     android:layout_width="0dp"
@@ -165,7 +186,7 @@
                     style="@style/AutoResize20"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="7"
+                    android:layout_weight="6"
                     android:text="Trench" />
 
                 <TextView
@@ -195,12 +216,12 @@
                     android:id="@+id/heightUnitsSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="5" />
+                    android:layout_weight="6" />
 
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" />
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/botWeightHeader"
@@ -229,7 +250,7 @@
                     android:id="@+id/weightUnitsSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="5" />
+                    android:layout_weight="6" />
 
             </LinearLayout>
 
@@ -279,12 +300,12 @@
                     android:id="@+id/motorTypeSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="4" />
+                    android:layout_weight="9" />
 
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" />
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/swerveModuleHeader"
@@ -304,8 +325,8 @@
                     android:layout_weight="4"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint=""
-                    android:inputType="numberDecimal|numberSigned"
+                    android:hint="e.g. Mk5n"
+                    android:inputType="text"
                     android:paddingTop="10dp"
                     android:text="" />
 
@@ -332,8 +353,8 @@
                     android:layout_weight="3"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="Ratio"
-                    android:inputType="numberDecimal|numberSigned"
+                    android:hint="e.g. L2"
+                    android:inputType="text"
                     android:paddingTop="10dp"
                     android:text="" />
 
@@ -411,7 +432,7 @@
                     android:id="@+id/intakeWidthSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="5" />
+                    android:layout_weight="7" />
 
             </LinearLayout>
 
@@ -554,7 +575,7 @@
                     android:ems="10"
                     android:gravity="center"
                     android:inputType="numberSigned"
-                    android:hint="#"
+                    android:hint="0"
                     android:text="" />
 
             </LinearLayout>
@@ -609,7 +630,7 @@
                     android:layout_weight="2"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="#"
+                    android:hint="0"
                     android:inputType="numberSigned"
                     android:text="" />
 

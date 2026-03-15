@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.os.LocaleListCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule;
+import org.iowacityrobotics.rebuiltscoutingapp2026.data.TeamData;
 
 import java.io.File;
 
@@ -30,17 +31,20 @@ public class StartScreen extends AppCompatActivity {
         setAppLocale("en");
 
         File matchFile = new File(getFilesDir(), "match_data.json");
+
         if (!matchFile.exists()) {
-            MatchDataGenerator.generate(this, EVENT_KEY);
+            MatchDataGenerator.generate(this, EVENT_KEY, () -> {
+                MatchSchedule.loadSchedule(this);
+                File teamFile = new File(getFilesDir(), "team_data.json");
+                if (!teamFile.exists()) {
+                    TeamData.generateTeamFile(this);
+                }
+                TeamData.loadTeamFile(this);
+            });
+        } else {
+            MatchSchedule.loadSchedule(this);
+            TeamData.loadTeamFile(this);
         }
-
-        File teamFile = new File(getFilesDir(), "team_data.json");
-        if (!teamFile.exists()) {
-            MatchSchedule.generateTeamFile(this);
-        }
-
-        MatchSchedule.loadSchedule(this);
-        MatchSchedule.loadTeamData(this);
 
         Button matchScoutBtn = findViewById(R.id.button);
         matchScoutBtn.setOnClickListener(new View.OnClickListener() {

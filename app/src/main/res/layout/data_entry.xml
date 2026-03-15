@@ -158,7 +158,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="22"
                         android:gravity="center"
-                        android:text="Estimated Fuel Scored:" />
+                        android:text="@string/data_entry_fuel_scored_header" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -219,7 +219,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="22"
                         android:gravity="center"
-                        android:text="Shooting Accuracy:" />
+                        android:text="@string/data_entry_shooting_accuracy" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -340,7 +340,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="20"
                             android:gravity="center"
-                            android:text="Mostly Pass" />
+                            android:text="@string/data_entry_mostly_pass" />
 
                         <Space
                             android:layout_width="0dp"
@@ -368,7 +368,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="20"
                             android:gravity="center"
-                            android:text="Mostly Score" />
+                            android:text="@string/data_entry_mostly_score" />
 
                         <Space
                             android:layout_width="0dp"
@@ -504,7 +504,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="30"
-                        android:text="Passed Fuel" />
+                        android:text="@string/data_entry_passed_fuel" />
                 </LinearLayout>
 
                 <View

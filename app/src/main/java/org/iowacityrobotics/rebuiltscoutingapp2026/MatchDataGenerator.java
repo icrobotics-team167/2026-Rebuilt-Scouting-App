@@ -69,7 +69,7 @@ public class MatchDataGenerator {
     // ===============================
     // 4️⃣ Public Method You Call
     // ===============================
-    public static void generate(Context context, String eventKey) {
+    public static void generate(Context context, String eventKey, Runnable onComplete) {
 
         TBAService service =
                 RetrofitClient.getClient().create(TBAService.class);
@@ -91,6 +91,10 @@ public class MatchDataGenerator {
                         file.matches = converted;
 
                         saveToJson(context, file);
+
+                        if (onComplete != null) {
+                            onComplete.run();
+                        }
                     }
 
                     @Override

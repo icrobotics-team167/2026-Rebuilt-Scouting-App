@@ -130,7 +130,7 @@ public class DataEntryDay3 extends AppCompatActivity {
     }
 
     private void updateAssignment() {
-        String foundAssignment = MatchSchedule.getAssignment(matchNumView.getText().toString(),
+        String foundAssignment = TeamData.getAssignment(matchNumView.getText().toString(),
                 teamNumView.getText().toString(),
                 getIntent().getStringExtra("PASS_MATCH_TYPE"));
         assignmentView.setText(!foundAssignment.isEmpty() ? foundAssignment : "");
