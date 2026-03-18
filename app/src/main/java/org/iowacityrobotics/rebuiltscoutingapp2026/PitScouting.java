@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -98,6 +99,7 @@ public class PitScouting extends AppCompatActivity {
         setupUnitsSpinners();
         setupMotorTypeSpinner();
         setupTeamNumberSpinner();
+        setupSpinnerListeners();
         setupButtons();
         enableSwerveFields(false);
     }
@@ -170,6 +172,36 @@ public class PitScouting extends AppCompatActivity {
         gearRatioHeader = findViewById(R.id.gearRatioHeader);
     }
 
+    private void setupSpinnerListeners() {
+        teamNumberSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!(position == 0)) {
+                    teamListSpinner.setSelection(0);
+                    clearFields();
+                    teamNumberSpinner.setSelection(position);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        teamListSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!(position == 0)) {
+                    teamNumberSpinner.setSelection(0);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
     private void setupSwerveCheckbox() {
         swerve.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -218,81 +250,102 @@ public class PitScouting extends AppCompatActivity {
             }
         }
     }
+    private ArrayAdapter<String> teamListAdapter;
+    private final List<String> teamOptions = new ArrayList<>();
     private void updateTeamListSpinner() {
 
-        List<String> teamOptions = new ArrayList<>();
-
-        if (teamsObject == null || teamsObject.length() == 0) {
-            teamOptions.add("No Team Data");
-        } else {
-
-            teamOptions.add("Select");
-
-            try {
-
-                Iterator<String> keys = teamsObject.keys();
-
-                while (keys.hasNext()) {
-
-                    String teamNumber = keys.next();
-                    boolean isTrue = teamsObject.getBoolean(teamNumber);
-
-                    if (isTrue) {
-                        teamOptions.add(teamNumber);
+        new Thread(() -> {
+            List<String> tempList = new ArrayList<>();
+            if (teamsObject == null || teamsObject.length() == 0) {
+                tempList.add("No Team Data");
+            } else {
+                tempList.add("Select");
+                try {
+                    Iterator<String> keys = teamsObject.keys();
+                    while (keys.hasNext()) {
+                        String teamNumber = keys.next();
+                        if (teamsObject.optBoolean(teamNumber, false)) {
+                            tempList.add(teamNumber);
+                        }
                     }
-
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-        }
+            if (tempList.isEmpty()) {
+                tempList.add("No Teams Found");
+            }
 
-        if (teamOptions.isEmpty()) {
-            teamOptions.add("No Teams Found");
-        }
+            runOnUiThread(() -> {
+                teamOptions.clear();
+                teamOptions.addAll(tempList);
 
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, teamOptions);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        teamListSpinner.setAdapter(adapter);
+                if (teamListAdapter == null) {
+                    teamListAdapter = new ArrayAdapter<>(
+                            PitScouting.this,
+                            android.R.layout.simple_spinner_item,
+                            teamOptions
+                    );
+                    teamListAdapter.setDropDownViewResource(
+                            android.R.layout.simple_spinner_dropdown_item
+                    );
+                    teamListSpinner.setAdapter(teamListAdapter);
+                } else {
+                    teamListAdapter.notifyDataSetChanged();
+                }
+            });
+        }).start();
     }
 
-    private void setupTeamNumberSpinner() {
+    private ArrayAdapter<String> teamNumberAdapter;
+    private final List<String> teamNumberList = new ArrayList<>();
 
-        List<Integer> teamNumbers = new ArrayList<>();
-        if (teamsObject != null) {
-            Iterator<String> keys =
-                    teamsObject.keys();
-            while (keys.hasNext()) {
-                String key = keys.next();
-                if (!teamsObject.optBoolean(key, false)) {
-                    teamNumbers.add(Integer.parseInt(key));
+    private void setupTeamNumberSpinner() {
+        new Thread(() -> {
+            List<Integer> teamNumbers = new ArrayList<>();
+            if (teamsObject != null) {
+                Iterator<String> keys = teamsObject.keys();
+                while (keys.hasNext()) {
+                    String key = keys.next();
+                    if (!teamsObject.optBoolean(key, false)) {
+                        try {
+                            teamNumbers.add(Integer.parseInt(key));
+                        } catch (NumberFormatException ignored) {}
+                    }
                 }
             }
-        }
 
-        Collections.sort(teamNumbers);
+            Collections.sort(teamNumbers);
 
-        List<String> spinnerList = new ArrayList<>();
-        if (teamNumbers.isEmpty()) {
-            spinnerList.add("None");
-        }
-        else {
-            spinnerList.add("Select");
-            for (int team : teamNumbers) {
-                spinnerList.add(String.valueOf(team));
+            List<String> tempList = new ArrayList<>();
+
+            if (teamNumbers.isEmpty()) {
+                tempList.add("None");
+            } else {
+                tempList.add("Select");
+                for (int team : teamNumbers) {
+                    tempList.add(String.valueOf(team));
+                }
             }
-        }
+            runOnUiThread(() -> {
+                teamNumberList.clear();
+                teamNumberList.addAll(tempList);
 
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(this,
-                        android.R.layout.simple_spinner_item,
-                        spinnerList);
-        adapter.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item);
-        teamNumberSpinner.setAdapter(adapter);
+                if (teamNumberAdapter == null) {
+                    teamNumberAdapter = new ArrayAdapter<>(
+                            PitScouting.this,
+                            android.R.layout.simple_spinner_item,
+                            teamNumberList
+                    );
+                    teamNumberAdapter.setDropDownViewResource(
+                            android.R.layout.simple_spinner_dropdown_item
+                    );
+                    teamNumberSpinner.setAdapter(teamNumberAdapter);
+                } else {
+                    teamNumberAdapter.notifyDataSetChanged();
+                }
+            });
+        }).start();
     }
 
     private void setupUnitsSpinners() {
@@ -318,36 +371,6 @@ public class PitScouting extends AppCompatActivity {
         motorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         motorTypeSpinner.setAdapter(motorAdapter);
     }
-
-//    private void setupFullWidthIntake() {
-//        botDimensionsWidth.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//                @Override
-//                public void onFocusChange(View v, boolean hasFocus) {
-//                    if (!hasFocus) {
-//                        if (fullWidthIntake.isChecked()) {
-//                            intakeWidth.setText(botDimensionsWidth.getText().toString());
-//                        }
-//                    }
-//                }
-//            });
-//        fullWidthIntake.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (botDimensionsWidth.getText().toString().isEmpty()) {
-//                    botDimensionsWidth.setError("Required");
-//                    fullWidthIntake.setChecked(false);
-//                }
-//                else {
-//                    if (isChecked) {
-//                        intakeWidth.setEnabled(false);
-//                        intakeWidth.setText(botDimensionsWidth.getText().toString());
-//                    } else {
-//                        intakeWidth.setEnabled(true);
-//                    }
-//                }
-//            }
-//        });
-//    }
 
     private void setupButtons() {
         Button saveBtn = findViewById(R.id.saveExitButton);
@@ -412,7 +435,8 @@ public class PitScouting extends AppCompatActivity {
         boolean error = false;
 
         String selectedTeamNumber = teamNumberSpinner.getSelectedItem().toString();
-        if (selectedTeamNumber.equals("Select")) {
+        String selectedEditTeamNumber = teamListSpinner.getSelectedItem().toString();
+        if (selectedTeamNumber.equals("Select") && selectedEditTeamNumber.equals("Select")) {
             View selectedView = teamNumberSpinner.getSelectedView();
             if (selectedView instanceof TextView) {
                 TextView selectedTextView = (TextView) selectedView;
@@ -506,8 +530,11 @@ public class PitScouting extends AppCompatActivity {
         }
     }
     private void savePitData() {
-
-        String team = teamNumberSpinner.getSelectedItem().toString().trim();
+        String selectedTeamNumber = teamNumberSpinner.getSelectedItem().toString().trim();
+        String selectedEditTeamNumber = teamListSpinner.getSelectedItem().toString().trim();
+        String team = (!selectedTeamNumber.equals("Select") && selectedEditTeamNumber.equals("Select"))
+                ? selectedTeamNumber
+                : selectedEditTeamNumber;
         Map<String, Object> pitData = new LinkedHashMap<>();
 
         pitData.put(PitKeys.RECORD_TYPE, PitKeys.TYPE_PIT);
