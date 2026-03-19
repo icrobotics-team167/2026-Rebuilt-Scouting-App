@@ -4,8 +4,15 @@
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 public class PitKeys {
+    public static final String PREFS_NAME = "teamData";
+    public static final String TEAMS_KEY = "teams";
+    public static final String INIT_FLAG_KEY = "initialized";
+
     public static final String RECORD_TYPE = "record_type";
     public static final String TYPE_PIT = "PIT_SCOUTING";
+    public static final String PIT_DAY = "day";
+    public static final String DAY_ONE = "day_one";
+    public static final String DAY_TWO = "day_two";
 
     public static final String TEAM_NUMBER = "team_number";
     public static final String EXPORTED = "exported";

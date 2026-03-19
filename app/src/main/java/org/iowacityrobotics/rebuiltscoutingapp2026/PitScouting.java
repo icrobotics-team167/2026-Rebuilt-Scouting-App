@@ -8,6 +8,7 @@ import static org.iowacityrobotics.rebuiltscoutingapp2026.data.TeamData.teamsObj
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,7 +19,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.AlertDialog;
@@ -35,9 +38,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,24 +51,24 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class PitScouting extends AppCompatActivity {
-
+    private Switch daySwitch;
+    private LinearLayout day1, day2;
     private EditText scouterName;
-    private Spinner teamListSpinner;
+    private Spinner teamNumberSpinner, editTeamSpinner;
     private EditText botHeight, botWeight;
     private Spinner heightUnitsSpinner, weightUnitsSpinner, intakeWidthUnits;
     private Spinner motorTypeSpinner;
     private EditText swerveModule, gearRatio;
     private EditText hopperCapacity;
     private EditText numberOfShooters, intakeWidth;
-    private EditText numberOfAutos, autoNotes;
-    private EditText cornOther, comments;
-
-    private Spinner teamNumberSpinner;
+    private EditText numberOfAutos, autoNotes, day2AutoNotes;
+    private EditText cornOther, comments, day2Comments;
 
     private CheckBox openHopper, extendableHopper;
     private CheckBox tiltTurret, turnTurret;
@@ -93,12 +99,20 @@ public class PitScouting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pit_scouting);
         StorageManager.loadData(this);
+        day1 = findViewById(R.id.day1);
+        day2 = findViewById(R.id.day2);
+        day1.setVisibility(View.VISIBLE);
+        day2.setVisibility(View.GONE);
 
         initializeViews();
+        setupDayListener();
+        setupDay2Teams();
+
         setupSwerveCheckbox();
         setupUnitsSpinners();
         setupMotorTypeSpinner();
-        setupTeamNumberSpinner();
+
+        setupTeamNumberSpinner(this);
         setupSpinnerListeners();
         setupButtons();
         enableSwerveFields(false);
@@ -107,7 +121,7 @@ public class PitScouting extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        updateTeamListSpinner();
+        updateEditTeamSpinner();
     }
 
     @Override
@@ -124,9 +138,11 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void initializeViews() {
+        daySwitch = findViewById(R.id.daySwitch);
+
         scouterName = findViewById(R.id.scouter);
         teamNumberSpinner = findViewById(R.id.teamNumberSpinner);
-        teamListSpinner = findViewById(R.id.teamListSpinner);
+        editTeamSpinner = findViewById(R.id.editTeamSpinner);
 
         botHeight = findViewById(R.id.botHeight);
         botWeight = findViewById(R.id.botWeight);
@@ -143,6 +159,7 @@ public class PitScouting extends AppCompatActivity {
 
         cornOther = findViewById(R.id.editTextText);
         comments = findViewById(R.id.comments);
+        day2Comments = findViewById(R.id.day2Comments);
 
         openHopper = findViewById(R.id.openHopper);
         extendableHopper = findViewById(R.id.extendableHopper);
@@ -158,6 +175,7 @@ public class PitScouting extends AppCompatActivity {
         autoCanClimb = findViewById(R.id.autoCanClimb);
         numberOfAutos = findViewById(R.id.numberOfAutos);
         autoNotes = findViewById(R.id.autoNotes);
+        day2AutoNotes = findViewById(R.id.day2AutoNotes);
 
         salt = findViewById(R.id.yesCornOnCob);
         pepper = findViewById(R.id.definitelyCornOnCob);
@@ -172,14 +190,47 @@ public class PitScouting extends AppCompatActivity {
         gearRatioHeader = findViewById(R.id.gearRatioHeader);
     }
 
+    private void setupDayListener() {
+        daySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    day1.setVisibility(View.GONE);
+                    day2.setVisibility(View.VISIBLE);
+                } else {
+                    day1.setVisibility(View.VISIBLE);
+                    day2.setVisibility(View.GONE);
+                }
+                setupTeamNumberSpinner(PitScouting.this);
+                updateEditTeamSpinner();
+                System.out.println(GlobalVariables.dataList);
+            }
+        });
+
+    }
+
+    private void setupDay2Teams() {
+        SharedPreferences prefs = getSharedPreferences(PitKeys.PREFS_NAME, MODE_PRIVATE);
+        boolean initialized = prefs.getBoolean(PitKeys.INIT_FLAG_KEY, false);
+
+        if (!initialized) {
+            JSONArray defaultTeams = new JSONArray();
+            defaultTeams.put(167);
+            // Add more teams here to Day 2 list
+            prefs.edit()
+                    .putString(PitKeys.TEAMS_KEY, defaultTeams.toString())
+                    .putBoolean(PitKeys.INIT_FLAG_KEY, true)
+                    .apply();
+        }
+    }
+
     private void setupSpinnerListeners() {
         teamNumberSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!(position == 0)) {
-                    teamListSpinner.setSelection(0);
+                    editTeamSpinner.setSelection(0);
                     clearFields();
-                    teamNumberSpinner.setSelection(position);
                 }
             }
 
@@ -188,7 +239,7 @@ public class PitScouting extends AppCompatActivity {
             }
         });
 
-        teamListSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        editTeamSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!(position == 0)) {
@@ -252,28 +303,43 @@ public class PitScouting extends AppCompatActivity {
     }
     private ArrayAdapter<String> teamListAdapter;
     private final List<String> teamOptions = new ArrayList<>();
-    private void updateTeamListSpinner() {
-
+    private void updateEditTeamSpinner() {
+        boolean isDay2 = daySwitch.isChecked();
         new Thread(() -> {
-            List<String> tempList = new ArrayList<>();
-            if (teamsObject == null || teamsObject.length() == 0) {
-                tempList.add("No Team Data");
-            } else {
-                tempList.add("Select");
-                try {
-                    Iterator<String> keys = teamsObject.keys();
-                    while (keys.hasNext()) {
-                        String teamNumber = keys.next();
-                        if (teamsObject.optBoolean(teamNumber, false)) {
-                            tempList.add(teamNumber);
+            Set<String> teamSet = new LinkedHashSet<>();
+            teamSet.add(daySwitch.isChecked() ? "Select Day 2" : "Select Day 1");
+
+            for (Map<String, Object> entry : GlobalVariables.dataList) {
+                if (entry.containsKey(PitKeys.RECORD_TYPE) &&
+                        PitKeys.TYPE_PIT.equals(entry.get(PitKeys.RECORD_TYPE)) &&
+                        entry.containsKey(PitKeys.TEAM_NUMBER)) {
+
+                    if (!entry.containsKey(PitKeys.PIT_DAY)) continue;
+                    if (!entry.containsKey(PitKeys.RECORD_TYPE)) continue;
+                    if (!entry.containsKey(PitKeys.TEAM_NUMBER)) continue;
+
+                    String dayInData = String.valueOf(entry.get(PitKeys.PIT_DAY));
+
+                    boolean isDay1 = !isDay2;
+                    boolean matchesDay =
+                            (isDay1 && dayInData.equals(PitKeys.DAY_ONE)) ||
+                                    (!isDay1 && dayInData.equals(PitKeys.DAY_TWO));
+
+                    if (matchesDay) {
+                        String teamNumber = entry.get(PitKeys.TEAM_NUMBER).toString();
+                        if (!teamNumber.isEmpty()) {
+                            teamSet.add(teamNumber);
                         }
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
-            if (tempList.isEmpty()) {
-                tempList.add("No Teams Found");
+
+            List<String> tempList = new ArrayList<>(teamSet);
+
+            if (tempList.size() == 1) {
+                tempList.add("No Team Data");
+                tempList.remove("Select Day 1");
+                tempList.remove("Select Day 2");
             }
 
             runOnUiThread(() -> {
@@ -286,66 +352,63 @@ public class PitScouting extends AppCompatActivity {
                             android.R.layout.simple_spinner_item,
                             teamOptions
                     );
-                    teamListAdapter.setDropDownViewResource(
-                            android.R.layout.simple_spinner_dropdown_item
-                    );
-                    teamListSpinner.setAdapter(teamListAdapter);
+                    teamListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    editTeamSpinner.setAdapter(teamListAdapter);
                 } else {
                     teamListAdapter.notifyDataSetChanged();
                 }
             });
         }).start();
     }
+    private void setupTeamNumberSpinner(Context context) {
+        ArrayAdapter<String> adapter = (ArrayAdapter<String>) teamNumberSpinner.getAdapter();
+        if (adapter != null) adapter.clear();
 
-    private ArrayAdapter<String> teamNumberAdapter;
-    private final List<String> teamNumberList = new ArrayList<>();
+        ArrayList<Integer> teamNumbers = new ArrayList<>();
 
-    private void setupTeamNumberSpinner() {
-        new Thread(() -> {
-            List<Integer> teamNumbers = new ArrayList<>();
-            if (teamsObject != null) {
+        if (!daySwitch.isChecked()) {
+            try {
                 Iterator<String> keys = teamsObject.keys();
                 while (keys.hasNext()) {
                     String key = keys.next();
                     if (!teamsObject.optBoolean(key, false)) {
                         try {
                             teamNumbers.add(Integer.parseInt(key));
-                        } catch (NumberFormatException ignored) {}
+                        } catch (NumberFormatException ignored) { }
                     }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            Collections.sort(teamNumbers);
-
-            List<String> tempList = new ArrayList<>();
-
-            if (teamNumbers.isEmpty()) {
-                tempList.add("None");
-            } else {
-                tempList.add("Select");
-                for (int team : teamNumbers) {
-                    tempList.add(String.valueOf(team));
+        } else {
+            SharedPreferences prefs = context.getSharedPreferences(PitKeys.PREFS_NAME, Context.MODE_PRIVATE);
+            String teamsJson = prefs.getString(PitKeys.TEAMS_KEY, "[]");
+            try {
+                JSONArray jsonArray = new JSONArray(teamsJson);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    teamNumbers.add(jsonArray.getInt(i));
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            runOnUiThread(() -> {
-                teamNumberList.clear();
-                teamNumberList.addAll(tempList);
+        }
 
-                if (teamNumberAdapter == null) {
-                    teamNumberAdapter = new ArrayAdapter<>(
-                            PitScouting.this,
-                            android.R.layout.simple_spinner_item,
-                            teamNumberList
-                    );
-                    teamNumberAdapter.setDropDownViewResource(
-                            android.R.layout.simple_spinner_dropdown_item
-                    );
-                    teamNumberSpinner.setAdapter(teamNumberAdapter);
-                } else {
-                    teamNumberAdapter.notifyDataSetChanged();
-                }
-            });
-        }).start();
+        Collections.sort(teamNumbers);
+
+        ArrayList<String> teamNumberStrings = new ArrayList<>();
+
+        if (teamNumbers.size() == 0) {
+            teamNumberStrings.add("None");
+        }
+        else {
+            teamNumberStrings.add("Select");
+            for (int num : teamNumbers) teamNumberStrings.add(String.valueOf(num));
+        }
+        ArrayAdapter<String> newAdapter = new ArrayAdapter<>(context,
+                android.R.layout.simple_spinner_item, teamNumberStrings);
+        newAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        teamNumberSpinner.setAdapter(newAdapter);
+
     }
 
     private void setupUnitsSpinners() {
@@ -373,11 +436,13 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void setupButtons() {
-        Button saveBtn = findViewById(R.id.saveExitButton);
+        Button day1SaveBtn = findViewById(R.id.saveExitButton);
+        Button day2SaveBtn = findViewById(R.id.day2SaveExitButton);
         Button exportBtn = findViewById(R.id.exportButton);
         Button editBtn = findViewById(R.id.editButton);
 
-        saveBtn.setOnClickListener(v -> checkFieldsAndSave());
+        day1SaveBtn.setOnClickListener(v -> checkFieldsAndSave());
+        day2SaveBtn.setOnClickListener(v -> checkFieldsAndSave());
 
         exportBtn.setOnClickListener(v -> {
             launchFilePicker();
@@ -395,8 +460,10 @@ public class PitScouting extends AppCompatActivity {
         intakeWidth.setText("");
         cornOther.setText("");
         comments.setText("");
+        day2Comments.setText("");
         numberOfAutos.setText("");
         autoNotes.setText("");
+        day2AutoNotes.setText("");
 
         salt.setChecked(false);
         pepper.setChecked(false);
@@ -424,28 +491,27 @@ public class PitScouting extends AppCompatActivity {
         weightUnitsSpinner.setSelection(0);
         intakeWidthUnits.setSelection(0);
 
-        teamNumberSpinner.setSelection(0);
-
         motorTypeSpinner.setSelection(0);
 
         editingIndex = -1;
+
     }
 
     private void checkFieldsAndSave() {
         boolean error = false;
-
         String selectedTeamNumber = teamNumberSpinner.getSelectedItem().toString();
-        String selectedEditTeamNumber = teamListSpinner.getSelectedItem().toString();
-        if (selectedTeamNumber.equals("Select") && selectedEditTeamNumber.equals("Select")) {
+        String selectedEditTeamNumber = editTeamSpinner.getSelectedItem().toString();
+
+        if (selectedTeamNumber.equals("Select") && selectedEditTeamNumber.contains("Select")) {
             View selectedView = teamNumberSpinner.getSelectedView();
             if (selectedView instanceof TextView) {
                 TextView selectedTextView = (TextView) selectedView;
                 selectedTextView.setTextColor(Color.RED);
                 selectedTextView.setError("Select Team");
             }
-            error = true;
-        }
-        else if (selectedTeamNumber.equals("None")) {
+            Toast.makeText(this, "Select Team Number", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (selectedTeamNumber.equals("None")) {
             View selectedView = teamNumberSpinner.getSelectedView();
             if (selectedView instanceof TextView) {
                 TextView selectedTextView = (TextView) selectedView;
@@ -456,62 +522,70 @@ public class PitScouting extends AppCompatActivity {
             return;
         }
 
-        TextView[] textViews = {scouterName, botHeight, botWeight, intakeWidth, hopperCapacity, numberOfShooters, numberOfAutos};
-        for (TextView textView : textViews) {
-            if (textView.getText().toString().isEmpty()) {
-                textView.setError("Required");
-                error = true;
-            }
-        }
-
-        String heightUnits = heightUnitsSpinner.getSelectedItem().toString();
-        if (heightUnits.equals("Select")) {
-            View selectedView = heightUnitsSpinner.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("Select Units");
-            }
-            error = true;
-        }
-        String weightUnits = weightUnitsSpinner.getSelectedItem().toString();
-        if (weightUnits.equals("Select")) {
-            View selectedView = weightUnitsSpinner.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("Select Units");
-            }
-            error = true;
-        }
-        String widthUnits = intakeWidthUnits.getSelectedItem().toString();
-        if (widthUnits.equals("Select")) {
-            View selectedView = intakeWidthUnits.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("Select Units");
-            }
-            error = true;
-        }
-
-        if (swerve.isChecked()) {
-            TextView[] swerveViews = {swerveModule, gearRatio};
-            for (TextView textView : swerveViews) {
+        if (!daySwitch.isChecked()) {
+            TextView[] textViews = {scouterName, botHeight, botWeight, intakeWidth, hopperCapacity, numberOfShooters, numberOfAutos};
+            for (TextView textView : textViews) {
                 if (textView.getText().toString().isEmpty()) {
                     textView.setError("Required");
                     error = true;
                 }
             }
 
-            String motorType = motorTypeSpinner.getSelectedItem().toString();
-            if (motorType.equals("Select")) {
-                View selectedView = motorTypeSpinner.getSelectedView();
+            String heightUnits = heightUnitsSpinner.getSelectedItem().toString();
+            if (heightUnits.equals("Select")) {
+                View selectedView = heightUnitsSpinner.getSelectedView();
                 if (selectedView instanceof TextView) {
                     TextView selectedTextView = (TextView) selectedView;
                     selectedTextView.setTextColor(Color.RED);
-                    selectedTextView.setError("Select Motor Type");
+                    selectedTextView.setError("Select Units");
                 }
+                error = true;
+            }
+            String weightUnits = weightUnitsSpinner.getSelectedItem().toString();
+            if (weightUnits.equals("Select")) {
+                View selectedView = weightUnitsSpinner.getSelectedView();
+                if (selectedView instanceof TextView) {
+                    TextView selectedTextView = (TextView) selectedView;
+                    selectedTextView.setTextColor(Color.RED);
+                    selectedTextView.setError("Select Units");
+                }
+                error = true;
+            }
+            String widthUnits = intakeWidthUnits.getSelectedItem().toString();
+            if (widthUnits.equals("Select")) {
+                View selectedView = intakeWidthUnits.getSelectedView();
+                if (selectedView instanceof TextView) {
+                    TextView selectedTextView = (TextView) selectedView;
+                    selectedTextView.setTextColor(Color.RED);
+                    selectedTextView.setError("Select Units");
+                }
+                error = true;
+            }
+
+            if (swerve.isChecked()) {
+                TextView[] swerveViews = {swerveModule, gearRatio};
+                for (TextView textView : swerveViews) {
+                    if (textView.getText().toString().isEmpty()) {
+                        textView.setError("Required");
+                        error = true;
+                    }
+                }
+
+                String motorType = motorTypeSpinner.getSelectedItem().toString();
+                if (motorType.equals("Select")) {
+                    View selectedView = motorTypeSpinner.getSelectedView();
+                    if (selectedView instanceof TextView) {
+                        TextView selectedTextView = (TextView) selectedView;
+                        selectedTextView.setTextColor(Color.RED);
+                        selectedTextView.setError("Select Motor Type");
+                    }
+                    error = true;
+                }
+            }
+        }
+        else {
+            if (scouterName.getText().toString().isEmpty()) {
+                scouterName.setError("Required");
                 error = true;
             }
         }
@@ -531,71 +605,96 @@ public class PitScouting extends AppCompatActivity {
     }
     private void savePitData() {
         String selectedTeamNumber = teamNumberSpinner.getSelectedItem().toString().trim();
-        String selectedEditTeamNumber = teamListSpinner.getSelectedItem().toString().trim();
-        String team = (!selectedTeamNumber.equals("Select") && selectedEditTeamNumber.equals("Select"))
-                ? selectedTeamNumber
-                : selectedEditTeamNumber;
+        String selectedEditTeamNumber = editTeamSpinner.getSelectedItem().toString().trim();
+        String team = "";
+        if (!selectedTeamNumber.equals("Select") && !selectedTeamNumber.equals("None")) {
+            team = selectedTeamNumber;
+        }
+        else if (!selectedEditTeamNumber.contains("Select") && !selectedEditTeamNumber.equals("No Team Data")) {
+            team = selectedEditTeamNumber;
+        }
+        if (team.isEmpty()) {
+            Toast.makeText(this, "Please select a valid team number", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Map<String, Object> pitData = new LinkedHashMap<>();
+        if (editingIndex != -1) {
+            pitData = GlobalVariables.dataList.get(editingIndex);
+        } else {
+            pitData = new LinkedHashMap<>();
+        }
 
         pitData.put(PitKeys.RECORD_TYPE, PitKeys.TYPE_PIT);
         pitData.put(PitKeys.TEAM_NUMBER, team);
         pitData.put("match_number", "PIT");
         pitData.put("ScouterName", scouterName.getText().toString());
 
-        String heightUnits = heightUnitsSpinner.getSelectedItem().toString();
-        String weightUnits = weightUnitsSpinner.getSelectedItem().toString();
-        String widthUnits = intakeWidthUnits.getSelectedItem().toString();
+        if (!daySwitch.isChecked()) {
+            pitData.put(PitKeys.PIT_DAY, PitKeys.DAY_ONE);
 
-        pitData.put(PitKeys.PIT_BOT_HEIGHT, convertToInches(botHeight.getText().toString(), heightUnits));
-        pitData.put(PitKeys.PIT_BOT_WEIGHT, convertToPounds(botWeight.getText().toString(), weightUnits));
-        pitData.put(PitKeys.PIT_INTAKE_WIDTH, convertToInches(intakeWidth.getText().toString(), widthUnits));
+            String heightUnits = heightUnitsSpinner.getSelectedItem().toString();
+            String weightUnits = weightUnitsSpinner.getSelectedItem().toString();
+            String widthUnits = intakeWidthUnits.getSelectedItem().toString();
 
-        pitData.put(PitKeys.PIT_SWERVE, getCheckBoxSelections(swerve));
-        pitData.put(PitKeys.PIT_MOTOR_TYPE, motorTypeSpinner.getSelectedItem().toString());
-        pitData.put(PitKeys.PIT_SWERVE_MODULE, swerveModule.getText().toString());
-        pitData.put(PitKeys.PIT_GEAR_RATIO, gearRatio.getText().toString());
+            pitData.put(PitKeys.PIT_BOT_HEIGHT, convertToInches(botHeight.getText().toString(), heightUnits));
+            pitData.put(PitKeys.PIT_BOT_WEIGHT, convertToPounds(botWeight.getText().toString(), weightUnits));
+            pitData.put(PitKeys.PIT_INTAKE_WIDTH, convertToInches(intakeWidth.getText().toString(), widthUnits));
 
-        pitData.put(PitKeys.PIT_HOPPER_CAPACITY, hopperCapacity.getText().toString());
+            pitData.put(PitKeys.PIT_SWERVE, getCheckBoxSelections(swerve));
+            pitData.put(PitKeys.PIT_MOTOR_TYPE, motorTypeSpinner.getSelectedItem().toString());
+            pitData.put(PitKeys.PIT_SWERVE_MODULE, swerveModule.getText().toString());
+            pitData.put(PitKeys.PIT_GEAR_RATIO, gearRatio.getText().toString());
 
-        pitData.put("rawBotHeight", botHeight.getText().toString());
-        pitData.put("rawBotWeight", botWeight.getText().toString());
-        pitData.put("rawIntakeWidth", intakeWidth.getText().toString());
+            pitData.put(PitKeys.PIT_HOPPER_CAPACITY, hopperCapacity.getText().toString());
 
-        pitData.put(PitKeys.PIT_SHOOTERS, numberOfShooters.getText().toString());
-        pitData.put(PitKeys.PIT_TURRET, getCheckBoxSelections(tiltTurret, turnTurret));
-        pitData.put(PitKeys.PIT_HOPPER_TYPE, getCheckBoxSelections(openHopper, extendableHopper));
+            pitData.put("rawBotHeight", botHeight.getText().toString());
+            pitData.put("rawBotWeight", botWeight.getText().toString());
+            pitData.put("rawIntakeWidth", intakeWidth.getText().toString());
 
-        pitData.put(PitKeys.PIT_INTAKE, getCheckBoxSelections(throughBumperIntake, overBumperIntake));
+            pitData.put(PitKeys.PIT_SHOOTERS, numberOfShooters.getText().toString());
+            pitData.put(PitKeys.PIT_TURRET, getCheckBoxSelections(tiltTurret, turnTurret));
+            pitData.put(PitKeys.PIT_HOPPER_TYPE, getCheckBoxSelections(openHopper, extendableHopper));
 
-        pitData.put(PitKeys.PIT_CROSSING, getCheckBoxSelections(bump, trench));
+            pitData.put(PitKeys.PIT_INTAKE, getCheckBoxSelections(throughBumperIntake, overBumperIntake));
 
-        pitData.put(PitKeys.AUTO_CLIMB, getCheckBoxSelections(autoCanClimb));
-        pitData.put(PitKeys.NUMBER_AUTOS, numberOfAutos.getText().toString());
-        pitData.put(PitKeys.AUTO_NOTES, autoNotes.getText().toString());
+            pitData.put(PitKeys.PIT_CROSSING, getCheckBoxSelections(bump, trench));
 
-        List<String> cornPrefs = new ArrayList<>();
-        if (salt.isChecked()) cornPrefs.add("Salt");
-        if (pepper.isChecked()) cornPrefs.add("Pepper");
-        if (butter.isChecked()) cornPrefs.add("Butter");
-        String otherCorn = cornOther.getText().toString().trim();
-        if (!otherCorn.isEmpty()) cornPrefs.add("Other: " + otherCorn);
+            pitData.put(PitKeys.AUTO_CLIMB, getCheckBoxSelections(autoCanClimb));
+            pitData.put(PitKeys.NUMBER_AUTOS, numberOfAutos.getText().toString());
+            pitData.put(PitKeys.AUTO_NOTES, autoNotes.getText().toString());
 
-        StringBuilder cornString = new StringBuilder();
-        for (int i = 0; i < cornPrefs.size(); i++) {
-            cornString.append(cornPrefs.get(i));
-            if (i < cornPrefs.size() - 1) cornString.append(", ");
+            List<String> cornPrefs = new ArrayList<>();
+            if (salt.isChecked()) cornPrefs.add("Salt");
+            if (pepper.isChecked()) cornPrefs.add("Pepper");
+            if (butter.isChecked()) cornPrefs.add("Butter");
+            String otherCorn = cornOther.getText().toString().trim();
+            if (!otherCorn.isEmpty()) cornPrefs.add("Other: " + otherCorn);
+
+            StringBuilder cornString = new StringBuilder();
+            for (int i = 0; i < cornPrefs.size(); i++) {
+                cornString.append(cornPrefs.get(i));
+                if (i < cornPrefs.size() - 1) cornString.append(", ");
+            }
+
+            pitData.put(PitKeys.COMMENTS, comments.getText().toString());
+
+            pitData.put(PitKeys.PIT_CORN, cornString.toString());
+
+            pitData.put(PitKeys.PIT_HEIGHT_UNITS, heightUnits);
+            pitData.put(PitKeys.PIT_WEIGHT_UNITS, weightUnits);
+            pitData.put(PitKeys.PIT_INTAKE_UNITS, widthUnits);
+
+            pitData.put(PitKeys.EXPORTED, false);
         }
+        else {
+            pitData.put(PitKeys.PIT_DAY, PitKeys.DAY_TWO);
 
-        pitData.put(PitKeys.COMMENTS, comments.getText().toString());
+            pitData.put(PitKeys.AUTO_NOTES, day2AutoNotes.getText().toString());
+            pitData.put(PitKeys.COMMENTS, day2Comments.getText().toString());
 
-        pitData.put(PitKeys.PIT_CORN, cornString.toString());
-
-        pitData.put(PitKeys.PIT_HEIGHT_UNITS, heightUnits);
-        pitData.put(PitKeys.PIT_WEIGHT_UNITS, weightUnits);
-        pitData.put(PitKeys.PIT_INTAKE_UNITS, widthUnits);
-
-        pitData.put(PitKeys.EXPORTED, false);
-
+            pitData.put(PitKeys.EXPORTED, false);
+        }
+        System.out.println(pitData);
         if (editingIndex != -1) {
             GlobalVariables.dataList.set(editingIndex, pitData);
             Toast.makeText(this, "Team " + team + " Updated!", Toast.LENGTH_SHORT).show();
@@ -604,14 +703,40 @@ public class PitScouting extends AppCompatActivity {
             GlobalVariables.dataList.add(pitData);
             Toast.makeText(this, "Saved Successfully", Toast.LENGTH_SHORT).show();
         }
+        System.out.println(pitData);
 
         StorageManager.saveData(this);
-        try {
-            teamsObject.put(team, true);
-            TeamData.saveTeamFile(this);
-        } catch (JSONException e) {
-            e.printStackTrace();
+
+        if (!daySwitch.isChecked()) {
+            try {
+                teamsObject.put(team, true);
+                TeamData.saveTeamFile(this);
+                setupTeamNumberSpinner(this);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            SharedPreferences prefs = getSharedPreferences(PitKeys.PREFS_NAME, MODE_PRIVATE);
+            String json = prefs.getString(PitKeys.TEAMS_KEY, "[]");
+
+            try {
+                JSONArray teams = new JSONArray(json);
+                JSONArray newTeams = new JSONArray();
+                for (int i = 0; i < teams.length(); i++) {
+                    int newTeam = teams.getInt(i);
+                    if (!String.valueOf(newTeam).equals(team.trim())) {
+                        newTeams.put(newTeam);
+                    }
+                }
+                prefs.edit().putString(PitKeys.TEAMS_KEY, newTeams.toString()).apply();
+                setupTeamNumberSpinner(this);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
+        updateEditTeamSpinner();
+
         clearFields();
         finish();
     }
@@ -687,9 +812,9 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void loadTeamData() {
-        String targetTeam = teamListSpinner.getSelectedItem().toString().trim();
-        if (targetTeam.isEmpty() || targetTeam.equals("Select")) {
-            View selectedView = teamListSpinner.getSelectedView();
+        String targetTeam = editTeamSpinner.getSelectedItem().toString().trim();
+        if (targetTeam.isEmpty() || targetTeam.equals("Select Day 1") || targetTeam.equals("Select Day 2")) {
+            View selectedView = editTeamSpinner.getSelectedView();
             if (selectedView instanceof TextView) {
                 TextView selectedTextView = (TextView) selectedView;
                 selectedTextView.setTextColor(Color.RED);
@@ -700,57 +825,80 @@ public class PitScouting extends AppCompatActivity {
         }
 
         boolean found = false;
+        String currentDay = daySwitch.isChecked() ? PitKeys.DAY_TWO : PitKeys.DAY_ONE;
+
         for (int i = GlobalVariables.dataList.size() - 1; i >= 0; i--) {
             Map<String, Object> match = GlobalVariables.dataList.get(i);
 
-            if (match.containsKey(PitKeys.RECORD_TYPE) &&
-                    PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE)) &&
-                    targetTeam.equals(match.get(PitKeys.TEAM_NUMBER))) {
+            if (!match.containsKey(PitKeys.PIT_DAY)) continue;
+            if (!match.containsKey(PitKeys.RECORD_TYPE)) continue;
+            if (!match.containsKey(PitKeys.TEAM_NUMBER)) continue;
 
-                editingIndex = i;
-                found = true;
+            String teamNumberInData = String.valueOf(match.get(PitKeys.TEAM_NUMBER)).trim();
+            String dayInData = String.valueOf(match.get(PitKeys.PIT_DAY));
 
-                safeSetText(scouterName, match.get("ScouterName"));
+            if (PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE)) &&
+                    targetTeam.equals(teamNumberInData) &&
+                    currentDay.equals(dayInData)) {
+                if (match.containsKey(PitKeys.RECORD_TYPE) &&
+                        PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
 
-                safeSetText(botHeight, match.get("rawBotHeight"));
-                safeSetText(botWeight, match.get("rawBotWeight"));
+                    editingIndex = i;
+                    found = true;
 
-                safeSetText(hopperCapacity, match.get(PitKeys.PIT_HOPPER_CAPACITY));
+                    safeSetText(scouterName, match.get("ScouterName"));
 
-                safeSetText(intakeWidth, match.get("rawIntakeWidth"));
+                    if (PitKeys.DAY_ONE.equals(match.get(PitKeys.PIT_DAY))) {
+                        day1.setVisibility(View.VISIBLE);
+                        day2.setVisibility(View.GONE);
 
-                safeSetText(numberOfShooters, match.get(PitKeys.PIT_TURRET));
+                        safeSetText(botHeight, match.get("rawBotHeight"));
+                        safeSetText(botWeight, match.get("rawBotWeight"));
 
-                safeSetText(numberOfAutos, match.get(PitKeys.NUMBER_AUTOS));
-                safeSetText(autoNotes, match.get(PitKeys.AUTO_NOTES));
+                        safeSetText(hopperCapacity, match.get(PitKeys.PIT_HOPPER_CAPACITY));
 
-                setSpinnerSelection(motorTypeSpinner, (String) match.get(PitKeys.PIT_MOTOR_TYPE));
-                safeSetText(swerveModule, match.get(PitKeys.PIT_SWERVE_MODULE));
-                safeSetText(gearRatio, match.get(PitKeys.PIT_GEAR_RATIO));
+                        safeSetText(intakeWidth, match.get("rawIntakeWidth"));
 
-                safeSetText(comments, match.get(PitKeys.COMMENTS));
+                        safeSetText(numberOfShooters, match.get(PitKeys.PIT_TURRET));
 
-                setSpinnerSelection(heightUnitsSpinner, (String) match.get(PitKeys.PIT_HEIGHT_UNITS));
-                setSpinnerSelection(weightUnitsSpinner, (String) match.get(PitKeys.PIT_WEIGHT_UNITS));
-                setSpinnerSelection(intakeWidthUnits, (String) match.get(PitKeys.PIT_INTAKE_UNITS));
+                        safeSetText(numberOfAutos, match.get(PitKeys.NUMBER_AUTOS));
+                        safeSetText(autoNotes, match.get(PitKeys.AUTO_NOTES));
 
-                setCheckBoxSelections((String) match.get(PitKeys.PIT_HOPPER_TYPE), openHopper, extendableHopper);
-                setCheckBoxSelections((String) match.get(PitKeys.PIT_CROSSING), bump, trench);
-                setCheckBoxSelections((String) match.get(PitKeys.PIT_SWERVE), swerve);
-                setCheckBoxSelections((String) match.get(PitKeys.PIT_TURRET), tiltTurret, turnTurret);
-                setCheckBoxSelections((String) match.get(PitKeys.PIT_INTAKE), throughBumperIntake, overBumperIntake);
-                setCheckBoxSelections((String) match.get(PitKeys.AUTO_CLIMB), autoCanClimb);
+                        setSpinnerSelection(motorTypeSpinner, (String) match.get(PitKeys.PIT_MOTOR_TYPE));
+                        safeSetText(swerveModule, match.get(PitKeys.PIT_SWERVE_MODULE));
+                        safeSetText(gearRatio, match.get(PitKeys.PIT_GEAR_RATIO));
 
-                loadCornPreferences((String) match.get(PitKeys.PIT_CORN));
+                        safeSetText(comments, match.get(PitKeys.COMMENTS));
 
-                Toast.makeText(this, "Loaded Team " + targetTeam, Toast.LENGTH_SHORT).show();
-                break;
+                        setSpinnerSelection(heightUnitsSpinner, (String) match.get(PitKeys.PIT_HEIGHT_UNITS));
+                        setSpinnerSelection(weightUnitsSpinner, (String) match.get(PitKeys.PIT_WEIGHT_UNITS));
+                        setSpinnerSelection(intakeWidthUnits, (String) match.get(PitKeys.PIT_INTAKE_UNITS));
+
+                        setCheckBoxSelections((String) match.get(PitKeys.PIT_HOPPER_TYPE), openHopper, extendableHopper);
+                        setCheckBoxSelections((String) match.get(PitKeys.PIT_CROSSING), bump, trench);
+                        setCheckBoxSelections((String) match.get(PitKeys.PIT_SWERVE), swerve);
+                        setCheckBoxSelections((String) match.get(PitKeys.PIT_TURRET), tiltTurret, turnTurret);
+                        setCheckBoxSelections((String) match.get(PitKeys.PIT_INTAKE), throughBumperIntake, overBumperIntake);
+                        setCheckBoxSelections((String) match.get(PitKeys.AUTO_CLIMB), autoCanClimb);
+
+                        loadCornPreferences((String) match.get(PitKeys.PIT_CORN));
+                    } else {
+                        day1.setVisibility(View.GONE);
+                        day2.setVisibility(View.VISIBLE);
+                        safeSetText(day2AutoNotes, match.get(PitKeys.AUTO_NOTES));
+                        safeSetText(day2Comments, match.get(PitKeys.COMMENTS));
+                    }
+
+                    Toast.makeText(this, "Loaded Team " + targetTeam, Toast.LENGTH_SHORT).show();
+                    break;
+                }
             }
         }
 
         if (!found) {
             Toast.makeText(this, "Team " + targetTeam + " not found.", Toast.LENGTH_SHORT).show();
         }
+
     }
 
 

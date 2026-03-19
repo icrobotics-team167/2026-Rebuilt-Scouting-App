@@ -99,7 +99,7 @@
                         android:text="Day 1 / Day 2" />
 
                     <Switch
-                        android:id="@+id/switch1"
+                        android:id="@+id/daySwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="2"
@@ -126,7 +126,7 @@
                     android:text="Edit Old Data" />
 
                 <Spinner
-                    android:id="@+id/teamListSpinner"
+                    android:id="@+id/editTeamSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="7" />
@@ -156,622 +156,689 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="6"
-                android:orientation="horizontal"
-                android:weightSum="48">
+                android:layout_weight="58">
 
-                <TextView
-                    android:id="@+id/robotHeader"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="6"
-                    android:gravity="center|start"
-                    android:paddingStart="10dp"
-                    android:text="Robot:" />
+                    android:id="@+id/day2"
+                    android:weightSum="68"
+                    android:orientation="vertical">
 
-                <CheckBox
-                    android:id="@+id/bump"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/autoNotesHeader"
+                        style="@style/AutoResize25"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="4"
+                        android:text="Auto Notes:" />
+
+                    <EditText
+                        android:id="@+id/day2AutoNotes"
+                        style="@style/AutoResize20"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:layout_weight="24"
+                        android:hint="Auto Notes" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        style="@style/AutoResize25"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="4"
+                        android:text="General Notes:" />
+
+                    <EditText
+                        android:id="@+id/day2Comments"
+                        style="@style/AutoResize20"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:ems="10"
+                        android:layout_weight="24"
+                        android:inputType="text"
+                        android:hint="Name" />
+
+                    <Button
+                        android:id="@+id/day2SaveExitButton"
+                        style="@style/AutoResize25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="7"
+                        android:layout_gravity="center"
+                        android:text="Save and Exit" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:text="Bump" />
-
-                <CheckBox
-                    android:id="@+id/trench"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"
-                    android:text="Trench" />
-
-                <TextView
-                    android:id="@+id/botHeightHeader"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Bot Height:" />
-
-                <EditText
-                    android:id="@+id/botHeight"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="H"
-                    android:inputType="numberDecimal|numberSigned"
-                    android:paddingTop="10dp"
-                    android:text="" />
-
-                <Spinner
-                    android:id="@+id/heightUnitsSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/botWeightHeader"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Bot Weight:" />
-
-                <EditText
-                    android:id="@+id/botWeight"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="W"
-                    android:inputType="numberDecimal|numberSigned"
-                    android:paddingTop="10dp"
-                    android:text="" />
-
-                <Spinner
-                    android:id="@+id/weightUnitsSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider12"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:orientation="horizontal"
-                android:weightSum="48">
-
-                <TextView
-                    android:id="@+id/drivebaseHeader"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"
-                    android:gravity="center|start"
-                    android:paddingStart="10dp"
-                    android:text="Drivebase:" />
-
-                <CheckBox
-                    android:id="@+id/swerve"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:text="Swerve" />
-
-                <TextView
-                    android:id="@+id/motorTypeHeader"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Motor Type:" />
-
-                <Spinner
-                    android:id="@+id/motorTypeSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/swerveModuleHeader"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Swerve Module:" />
-
-                <EditText
-                    android:id="@+id/swerveModule"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="e.g. Mk5n"
-                    android:inputType="text"
-                    android:paddingTop="10dp"
-                    android:text="" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/gearRatioHeader"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Gear Ratio:" />
-
-                <EditText
-                    android:id="@+id/gearRatio"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="e.g. L2"
-                    android:inputType="text"
-                    android:paddingTop="10dp"
-                    android:text="" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider26"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:orientation="horizontal"
-                android:weightSum="48">
-
-                <TextView
-                    android:id="@+id/intakeHeader"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"
-                    android:gravity="center|start"
-                    android:paddingStart="10dp"
-                    android:text="Intake:" />
-
-                <CheckBox
-                    android:id="@+id/overBumperIntake"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:text="Over Bumper" />
-
-                <CheckBox
-                    android:id="@+id/throughBumperIntake"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="8"
-                    android:text="Through Bumper" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="8"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Intake Width:" />
-
-                <EditText
-                    android:id="@+id/intakeWidth"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="W"
-                    android:inputType="numberDecimal|numberSigned"
-                    android:paddingTop="10dp"
-                    android:text="" />
-
-                <Spinner
-                    android:id="@+id/intakeWidthSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider44"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:orientation="horizontal"
-                android:weightSum="48">
-
-                <TextView
-                    android:id="@+id/hopperHeader"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Hopper:" />
-
-                <CheckBox
-                    android:id="@+id/openHopper"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:text="Open" />
-
-                <CheckBox
-                    android:id="@+id/extendableHopper"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="8"
-                    android:text="Extendable" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="8"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Hopper Capacity:" />
-
-                <EditText
-                    android:id="@+id/hopperCapacity"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="0"
-                    android:inputType="numberDecimal|numberSigned"
-                    android:paddingTop="10dp"
-                    android:text="" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider27"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:orientation="horizontal"
-                android:weightSum="48">
-
-                <TextView
-                    android:id="@+id/turretHeader"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center|start"
-                    android:layout_weight="6"
-                    android:paddingStart="10dp"
-                    android:text="Shooter:" />
-
-                <CheckBox
-                    android:id="@+id/tiltTurret"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:text="Tilt" />
-
-                <CheckBox
-                    android:id="@+id/turnTurret"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="8"
-                    android:text="Turn" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7" />
-
-                <TextView
-                    android:id="@+id/numberOfShootersHeader"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="8"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Number of Shooters:" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5" />
-
-                <EditText
-                    android:id="@+id/numberOfShooters"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="numberSigned"
-                    android:hint="0"
-                    android:text="" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider35"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="7"
-                android:weightSum="48"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/autoHeader"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"
-                    android:gravity="center|start"
-                    android:paddingStart="10dp"
-                    android:text="Auto:" />
-
-                <CheckBox
-                    android:id="@+id/autoCanClimb"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:text="Can Climb" />
-
-                <TextView
-                    android:id="@+id/numberWorkingAutosHeader"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:gravity="center_vertical"
-                    android:paddingStart="10dp"
-                    android:text="Working Autos:" />
-
-                <EditText
-                    android:id="@+id/numberOfAutos"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="0"
-                    android:inputType="numberSigned"
-                    android:text="" />
-
-                <TextView
-                    android:id="@+id/autoNotesHeadaer"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"
-                    android:gravity="center"
-                    android:paddingStart="10dp"
-                    android:text="Auto Notes:" />
-
-                <EditText
-                    android:id="@+id/autoNotes"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="20"
-                    android:ems="10"
-                    android:inputType="textMultiLine"
-                    android:hint="Auto Notes" />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider28"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:orientation="horizontal"
-                android:weightSum="48">
-
-                <TextView
-                    android:id="@+id/cornOnCobHeader"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"
-                    android:gravity="center|start"
-                    android:paddingStart="10dp"
-                    android:text="Corn Toppings:" />
-
-                <CheckBox
-                    android:id="@+id/yesCornOnCob"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:text="Salt" />
-
-                <CheckBox
-                    android:id="@+id/definitelyCornOnCob"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="8"
-                    android:text="Pepper" />
-
-                <CheckBox
-                    android:id="@+id/absolutelyCornOnCob"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:text="Butter" />
-
-                <CheckBox
-                    android:id="@+id/checkBox6"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.5"
-                    android:text="" />
-
-                <EditText
-                    android:id="@+id/editTextText"
-                    style="@style/AutoResize20"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="18.5"
-                    android:ems="10"
-                    android:hint="Other"
-                    android:inputType="text"
-                    android:paddingTop="5dp" />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider29"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="7"
-                android:weightSum="12"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/commentsHeader"
-                    style="@style/AutoResize30"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:layout_weight="1.5"
-                    android:text="Notes:" />
-
-                <EditText
-                    android:id="@+id/comments"
-                    style="@style/AutoResize20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="8.5"
-                    android:ems="10"
-                    android:inputType="textMultiLine"
-                    android:hint="Notes go here..." />
-
-                <Button
-                    android:id="@+id/saveExitButton"
-                    style="@style/AutoResize25"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:backgroundTint="@color/primaryForeground"
-                    android:textColor="@color/white"
-                    android:text="Save and Exit" />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider34"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
+                    android:id="@+id/day1"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:orientation="horizontal"
+                        android:weightSum="48">
+
+                        <TextView
+                            android:id="@+id/robotHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:gravity="center|start"
+                            android:paddingStart="10dp"
+                            android:text="Robot:" />
+
+                        <CheckBox
+                            android:id="@+id/bump"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7"
+                            android:text="Bump" />
+
+                        <CheckBox
+                            android:id="@+id/trench"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:text="Trench" />
+
+                        <TextView
+                            android:id="@+id/botHeightHeader"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Bot Height:" />
+
+                        <EditText
+                            android:id="@+id/botHeight"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="H"
+                            android:inputType="numberDecimal|numberSigned"
+                            android:paddingTop="10dp"
+                            android:text="" />
+
+                        <Spinner
+                            android:id="@+id/heightUnitsSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/botWeightHeader"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Bot Weight:" />
+
+                        <EditText
+                            android:id="@+id/botWeight"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="W"
+                            android:inputType="numberDecimal|numberSigned"
+                            android:paddingTop="10dp"
+                            android:text="" />
+
+                        <Spinner
+                            android:id="@+id/weightUnitsSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider12"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:orientation="horizontal"
+                        android:weightSum="48">
+
+                        <TextView
+                            android:id="@+id/drivebaseHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:gravity="center|start"
+                            android:paddingStart="10dp"
+                            android:text="Drivebase:" />
+
+                        <CheckBox
+                            android:id="@+id/swerve"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7"
+                            android:text="Swerve" />
+
+                        <TextView
+                            android:id="@+id/motorTypeHeader"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Motor Type:" />
+
+                        <Spinner
+                            android:id="@+id/motorTypeSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="9" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/swerveModuleHeader"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Swerve Module:" />
+
+                        <EditText
+                            android:id="@+id/swerveModule"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="e.g. Mk5n"
+                            android:inputType="text"
+                            android:paddingTop="10dp"
+                            android:text="" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/gearRatioHeader"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Gear Ratio:" />
+
+                        <EditText
+                            android:id="@+id/gearRatio"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="e.g. L2"
+                            android:inputType="text"
+                            android:paddingTop="10dp"
+                            android:text="" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider26"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:orientation="horizontal"
+                        android:weightSum="48">
+
+                        <TextView
+                            android:id="@+id/intakeHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:gravity="center|start"
+                            android:paddingStart="10dp"
+                            android:text="Intake:" />
+
+                        <CheckBox
+                            android:id="@+id/overBumperIntake"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7"
+                            android:text="Over Bumper" />
+
+                        <CheckBox
+                            android:id="@+id/throughBumperIntake"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:text="Through Bumper" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7" />
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Intake Width:" />
+
+                        <EditText
+                            android:id="@+id/intakeWidth"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="W"
+                            android:inputType="numberDecimal|numberSigned"
+                            android:paddingTop="10dp"
+                            android:text="" />
+
+                        <Spinner
+                            android:id="@+id/intakeWidthSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider44"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:orientation="horizontal"
+                        android:weightSum="48">
+
+                        <TextView
+                            android:id="@+id/hopperHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Hopper:" />
+
+                        <CheckBox
+                            android:id="@+id/openHopper"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7"
+                            android:text="Open" />
+
+                        <CheckBox
+                            android:id="@+id/extendableHopper"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:text="Extendable" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7" />
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Hopper Capacity:" />
+
+                        <EditText
+                            android:id="@+id/hopperCapacity"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="0"
+                            android:inputType="numberDecimal|numberSigned"
+                            android:paddingTop="10dp"
+                            android:text="" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider27"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:orientation="horizontal"
+                        android:weightSum="48">
+
+                        <TextView
+                            android:id="@+id/turretHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:gravity="center|start"
+                            android:paddingStart="10dp"
+                            android:text="Shooter:" />
+
+                        <CheckBox
+                            android:id="@+id/tiltTurret"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7"
+                            android:text="Tilt" />
+
+                        <CheckBox
+                            android:id="@+id/turnTurret"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:text="Turn" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7" />
+
+                        <TextView
+                            android:id="@+id/numberOfShootersHeader"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Number of Shooters:" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5" />
+
+                        <EditText
+                            android:id="@+id/numberOfShooters"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="0"
+                            android:inputType="numberSigned"
+                            android:text="" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider35"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="7"
+                        android:orientation="horizontal"
+                        android:weightSum="48">
+
+                        <TextView
+                            android:id="@+id/autoHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:gravity="center|start"
+                            android:paddingStart="10dp"
+                            android:text="Auto:" />
+
+                        <CheckBox
+                            android:id="@+id/autoCanClimb"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7"
+                            android:text="Can Climb" />
+
+                        <TextView
+                            android:id="@+id/numberWorkingAutosHeader"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Working Autos:" />
+
+                        <EditText
+                            android:id="@+id/numberOfAutos"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="0"
+                            android:inputType="numberSigned"
+                            android:text="" />
+
+                        <TextView
+                            android:id="@+id/autoNotesHeadaer"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:gravity="center"
+                            android:paddingStart="10dp"
+                            android:text="Auto Notes:" />
+
+                        <EditText
+                            android:id="@+id/autoNotes"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="20"
+                            android:ems="10"
+                            android:hint="Auto Notes"
+                            android:inputType="textMultiLine" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider28"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:orientation="horizontal"
+                        android:weightSum="48">
+
+                        <TextView
+                            android:id="@+id/cornOnCobHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:gravity="center|start"
+                            android:paddingStart="10dp"
+                            android:text="Corn Toppings:" />
+
+                        <CheckBox
+                            android:id="@+id/yesCornOnCob"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7"
+                            android:text="Salt" />
+
+                        <CheckBox
+                            android:id="@+id/definitelyCornOnCob"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:text="Pepper" />
+
+                        <CheckBox
+                            android:id="@+id/absolutelyCornOnCob"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7"
+                            android:text="Butter" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox6"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:text="" />
+
+                        <EditText
+                            android:id="@+id/editTextText"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="18.5"
+                            android:ems="10"
+                            android:hint="Other"
+                            android:inputType="text"
+                            android:paddingTop="5dp" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider29"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="7"
+                        android:orientation="horizontal"
+                        android:weightSum="12">
+
+                        <TextView
+                            android:id="@+id/commentsHeader"
+                            style="@style/AutoResize30"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:gravity="center"
+                            android:text="Notes:" />
+
+                        <EditText
+                            android:id="@+id/comments"
+                            style="@style/AutoResize20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="8.5"
+                            android:ems="10"
+                            android:hint="Notes go here..."
+                            android:inputType="textMultiLine" />
+
+                        <Button
+                            android:id="@+id/saveExitButton"
+                            style="@style/AutoResize25"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:backgroundTint="@color/primaryForeground"
+                            android:text="Save and Exit"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider34"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider" />
+                </LinearLayout>
+            </FrameLayout>
 
         </LinearLayout>
 
