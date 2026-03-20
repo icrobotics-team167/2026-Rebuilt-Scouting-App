@@ -30,25 +30,14 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataKeys;
-import org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.TeamData;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -57,6 +46,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class PitScouting extends AppCompatActivity {
+    private boolean suppressSpinnerEvents;
+
     private Switch daySwitch;
     private LinearLayout day1, day2;
     private EditText scouterName;
@@ -80,7 +71,6 @@ public class PitScouting extends AppCompatActivity {
     private TextView motorTypeHeader, swerveModuleHeader, gearRatioHeader;
 
     private int editingIndex = -1;
-    private boolean isExportingAll = false;
 
     private final ActivityResultLauncher<Intent> exportLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -108,11 +98,11 @@ public class PitScouting extends AppCompatActivity {
         setupDayListener();
         setupDay2Teams();
 
-        setupSwerveCheckbox();
+        swerve.setOnCheckedChangeListener((btn, isChecked) -> enableSwerveFields(isChecked));
         setupUnitsSpinners();
         setupMotorTypeSpinner();
 
-        setupTeamNumberSpinner(this);
+        loadTeamNumberSpinner(this);
         setupSpinnerListeners();
         setupButtons();
         enableSwerveFields(false);
@@ -121,7 +111,7 @@ public class PitScouting extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        updateEditTeamSpinner();
+        loadEditTeamSpinner();
     }
 
     @Override
@@ -201,8 +191,9 @@ public class PitScouting extends AppCompatActivity {
                     day1.setVisibility(View.VISIBLE);
                     day2.setVisibility(View.GONE);
                 }
-                setupTeamNumberSpinner(PitScouting.this);
-                updateEditTeamSpinner();
+                clearFields();
+                loadTeamNumberSpinner(PitScouting.this);
+                loadEditTeamSpinner();
                 System.out.println(GlobalVariables.dataList);
             }
         });
@@ -215,7 +206,7 @@ public class PitScouting extends AppCompatActivity {
 
         if (!initialized) {
             JSONArray defaultTeams = new JSONArray();
-            defaultTeams.put(167);
+            defaultTeams.put(167); // Example day 2 team because we are so good
             // Add more teams here to Day 2 list
             prefs.edit()
                     .putString(PitKeys.TEAMS_KEY, defaultTeams.toString())
@@ -228,10 +219,11 @@ public class PitScouting extends AppCompatActivity {
         teamNumberSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (!(position == 0)) {
-                    editTeamSpinner.setSelection(0);
-                    clearFields();
-                }
+                if (suppressSpinnerEvents || position == 0) return;
+                suppressSpinnerEvents = true;
+                editTeamSpinner.setSelection(0);
+                suppressSpinnerEvents = false;
+                clearFields();
             }
 
             @Override
@@ -242,26 +234,14 @@ public class PitScouting extends AppCompatActivity {
         editTeamSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (!(position == 0)) {
-                    teamNumberSpinner.setSelection(0);
-                }
+                if (suppressSpinnerEvents || position == 0) return;
+                suppressSpinnerEvents = true;
+                teamNumberSpinner.setSelection(0);
+                suppressSpinnerEvents = false;
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }
-
-    private void setupSwerveCheckbox() {
-        swerve.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    enableSwerveFields(true);
-                } else {
-                    enableSwerveFields(false);
-                }
             }
         });
     }
@@ -301,22 +281,19 @@ public class PitScouting extends AppCompatActivity {
             }
         }
     }
-    private ArrayAdapter<String> teamListAdapter;
-    private final List<String> teamOptions = new ArrayList<>();
-    private void updateEditTeamSpinner() {
+    private void loadEditTeamSpinner() {
         boolean isDay2 = daySwitch.isChecked();
+        List<Map<String, Object>> snapshot = new ArrayList<>(GlobalVariables.dataList);
         new Thread(() -> {
             Set<String> teamSet = new LinkedHashSet<>();
-            teamSet.add(daySwitch.isChecked() ? "Select Day 2" : "Select Day 1");
+            teamSet.add(isDay2 ? "Select Day 2" : "Select Day 1");
 
-            for (Map<String, Object> entry : GlobalVariables.dataList) {
+            for (Map<String, Object> entry : snapshot) {
                 if (entry.containsKey(PitKeys.RECORD_TYPE) &&
                         PitKeys.TYPE_PIT.equals(entry.get(PitKeys.RECORD_TYPE)) &&
                         entry.containsKey(PitKeys.TEAM_NUMBER)) {
 
                     if (!entry.containsKey(PitKeys.PIT_DAY)) continue;
-                    if (!entry.containsKey(PitKeys.RECORD_TYPE)) continue;
-                    if (!entry.containsKey(PitKeys.TEAM_NUMBER)) continue;
 
                     String dayInData = String.valueOf(entry.get(PitKeys.PIT_DAY));
 
@@ -343,72 +320,66 @@ public class PitScouting extends AppCompatActivity {
             }
 
             runOnUiThread(() -> {
-                teamOptions.clear();
-                teamOptions.addAll(tempList);
-
-                if (teamListAdapter == null) {
-                    teamListAdapter = new ArrayAdapter<>(
-                            PitScouting.this,
-                            android.R.layout.simple_spinner_item,
-                            teamOptions
-                    );
-                    teamListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    editTeamSpinner.setAdapter(teamListAdapter);
-                } else {
-                    teamListAdapter.notifyDataSetChanged();
-                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                        PitScouting.this,
+                        android.R.layout.simple_spinner_item,
+                        tempList
+                );
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                editTeamSpinner.setAdapter(adapter);
+                editTeamSpinner.setSelection(0);
             });
         }).start();
     }
-    private void setupTeamNumberSpinner(Context context) {
-        ArrayAdapter<String> adapter = (ArrayAdapter<String>) teamNumberSpinner.getAdapter();
-        if (adapter != null) adapter.clear();
-
-        ArrayList<Integer> teamNumbers = new ArrayList<>();
-
-        if (!daySwitch.isChecked()) {
-            try {
-                Iterator<String> keys = teamsObject.keys();
-                while (keys.hasNext()) {
-                    String key = keys.next();
-                    if (!teamsObject.optBoolean(key, false)) {
-                        try {
-                            teamNumbers.add(Integer.parseInt(key));
-                        } catch (NumberFormatException ignored) { }
+    private void loadTeamNumberSpinner(Context context) {
+            ArrayList<Integer> teamNumbers = new ArrayList<>();
+            boolean isDay1 = !daySwitch.isChecked();
+            new Thread(() -> {
+                if (isDay1) {
+                    try {
+                        Iterator<String> keys = teamsObject.keys();
+                        while (keys.hasNext()) {
+                            String key = keys.next();
+                            if (!teamsObject.optBoolean(key, false)) {
+                                try {
+                                    teamNumbers.add(Integer.parseInt(key));
+                                } catch (NumberFormatException ignored) {
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    SharedPreferences prefs = context.getSharedPreferences(PitKeys.PREFS_NAME, Context.MODE_PRIVATE);
+                    String teamsJson = prefs.getString(PitKeys.TEAMS_KEY, "[]");
+                    try {
+                        JSONArray jsonArray = new JSONArray(teamsJson);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            teamNumbers.add(jsonArray.getInt(i));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            SharedPreferences prefs = context.getSharedPreferences(PitKeys.PREFS_NAME, Context.MODE_PRIVATE);
-            String teamsJson = prefs.getString(PitKeys.TEAMS_KEY, "[]");
-            try {
-                JSONArray jsonArray = new JSONArray(teamsJson);
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    teamNumbers.add(jsonArray.getInt(i));
+
+                Collections.sort(teamNumbers);
+
+                ArrayList<String> teamNumberStrings = new ArrayList<>();
+
+                if (teamNumbers.size() == 0) {
+                    teamNumberStrings.add("None");
+                } else {
+                    teamNumberStrings.add("Select");
+                    for (int num : teamNumbers) teamNumberStrings.add(String.valueOf(num));
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        Collections.sort(teamNumbers);
-
-        ArrayList<String> teamNumberStrings = new ArrayList<>();
-
-        if (teamNumbers.size() == 0) {
-            teamNumberStrings.add("None");
-        }
-        else {
-            teamNumberStrings.add("Select");
-            for (int num : teamNumbers) teamNumberStrings.add(String.valueOf(num));
-        }
-        ArrayAdapter<String> newAdapter = new ArrayAdapter<>(context,
-                android.R.layout.simple_spinner_item, teamNumberStrings);
-        newAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        teamNumberSpinner.setAdapter(newAdapter);
-
+                runOnUiThread(() -> {
+                    ArrayAdapter<String> newAdapter = new ArrayAdapter<>(context,
+                            android.R.layout.simple_spinner_item, teamNumberStrings);
+                    newAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    teamNumberSpinner.setAdapter(newAdapter);
+                });
+            }).start();
     }
 
     private void setupUnitsSpinners() {
@@ -452,6 +423,8 @@ public class PitScouting extends AppCompatActivity {
     }
 
     private void clearFields() {
+        clearErrors();
+
         scouterName.setText("");
         botHeight.setText("");
         botWeight.setText("");
@@ -497,90 +470,69 @@ public class PitScouting extends AppCompatActivity {
 
     }
 
-    private void checkFieldsAndSave() {
-        boolean error = false;
-        String selectedTeamNumber = teamNumberSpinner.getSelectedItem().toString();
-        String selectedEditTeamNumber = editTeamSpinner.getSelectedItem().toString();
-
-        if (selectedTeamNumber.equals("Select") && selectedEditTeamNumber.contains("Select")) {
-            View selectedView = teamNumberSpinner.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("Select Team");
-            }
-            Toast.makeText(this, "Select Team Number", Toast.LENGTH_SHORT).show();
-            return;
-        } else if (selectedTeamNumber.equals("None")) {
-            View selectedView = teamNumberSpinner.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("");
-            }
-            Toast.makeText(this, "No Teams Left to Scout", Toast.LENGTH_SHORT).show();
-            return;
+    private void clearErrors() {
+        EditText[] editTexts = {
+                scouterName, botHeight, botWeight, hopperCapacity,
+                numberOfShooters, intakeWidth, numberOfAutos,
+                autoNotes, day2AutoNotes, swerveModule, gearRatio
+        };
+        for (EditText field : editTexts) {
+            field.setError(null);
         }
 
-        if (!daySwitch.isChecked()) {
-            TextView[] textViews = {scouterName, botHeight, botWeight, intakeWidth, hopperCapacity, numberOfShooters, numberOfAutos};
-            for (TextView textView : textViews) {
-                if (textView.getText().toString().isEmpty()) {
-                    textView.setError("Required");
-                    error = true;
-                }
+        Spinner[] spinners = {
+                teamNumberSpinner, editTeamSpinner, heightUnitsSpinner,
+                weightUnitsSpinner, intakeWidthUnits, motorTypeSpinner
+        };
+        for (Spinner spinner : spinners) {
+            View v = spinner.getSelectedView();
+            if (v instanceof TextView) {
+                ((TextView) v).setError(null);
+                ((TextView) v).setTextColor(Color.BLACK);
             }
+        }
+    }
 
-            String heightUnits = heightUnitsSpinner.getSelectedItem().toString();
-            if (heightUnits.equals("Select")) {
-                View selectedView = heightUnitsSpinner.getSelectedView();
-                if (selectedView instanceof TextView) {
-                    TextView selectedTextView = (TextView) selectedView;
-                    selectedTextView.setTextColor(Color.RED);
-                    selectedTextView.setError("Select Units");
-                }
-                error = true;
+    private void checkFieldsAndSave() {
+        boolean error = false;
+        String teamNum = teamNumberSpinner.getSelectedItem().toString();
+        String editTeamNum = editTeamSpinner.getSelectedItem().toString();
+
+        // Saving New Data
+        if (editingIndex == -1) {
+            boolean noTeamSelected = teamNum.equals("Select") || teamNum.equals("None");
+            boolean editHasData = !editTeamNum.contains("Select") && !editTeamNum.equals("None");
+
+            if (teamNum.equals("None") && !editHasData) {
+                setSpinnerError(teamNumberSpinner, "", "No Teams Left to Scout");
+                return;
+            } else if (noTeamSelected && editHasData) {
+                setSpinnerError(editTeamSpinner, "Load Data", "Click Edit to Load Data");
+                return;
+            } else if (noTeamSelected) {
+                setSpinnerError(teamNumberSpinner, "Select Team", "Select Team Number");
+                return;
             }
-            String weightUnits = weightUnitsSpinner.getSelectedItem().toString();
-            if (weightUnits.equals("Select")) {
-                View selectedView = weightUnitsSpinner.getSelectedView();
-                if (selectedView instanceof TextView) {
-                    TextView selectedTextView = (TextView) selectedView;
-                    selectedTextView.setTextColor(Color.RED);
-                    selectedTextView.setError("Select Units");
-                }
-                error = true;
+        // Editing Old Data
+        } else {
+            if (editTeamNum.contains("Select")) {
+                setSpinnerError(editTeamSpinner, "", "Select Team Number to Edit");
+                return;
+            } else if (editTeamNum.equals("No Team Data")) {
+                setSpinnerError(editTeamSpinner, "", "No Teams Left to Scout");
+                return;
             }
-            String widthUnits = intakeWidthUnits.getSelectedItem().toString();
-            if (widthUnits.equals("Select")) {
-                View selectedView = intakeWidthUnits.getSelectedView();
-                if (selectedView instanceof TextView) {
-                    TextView selectedTextView = (TextView) selectedView;
-                    selectedTextView.setTextColor(Color.RED);
-                    selectedTextView.setError("Select Units");
-                }
-                error = true;
-            }
+        }
+        if (!daySwitch.isChecked()) {
+            error |= checkRequiredFields(scouterName, botHeight, botWeight, intakeWidth, hopperCapacity, numberOfShooters, numberOfAutos);
+
+            error |= checkSpinnerUnset(heightUnitsSpinner, "Select Units");
+            error |= checkSpinnerUnset(weightUnitsSpinner, "Select Units");
+            error |= checkSpinnerUnset(intakeWidthUnits, "Select Units");
 
             if (swerve.isChecked()) {
-                TextView[] swerveViews = {swerveModule, gearRatio};
-                for (TextView textView : swerveViews) {
-                    if (textView.getText().toString().isEmpty()) {
-                        textView.setError("Required");
-                        error = true;
-                    }
-                }
-
-                String motorType = motorTypeSpinner.getSelectedItem().toString();
-                if (motorType.equals("Select")) {
-                    View selectedView = motorTypeSpinner.getSelectedView();
-                    if (selectedView instanceof TextView) {
-                        TextView selectedTextView = (TextView) selectedView;
-                        selectedTextView.setTextColor(Color.RED);
-                        selectedTextView.setError("Select Motor Type");
-                    }
-                    error = true;
-                }
+                error |= checkRequiredFields(swerveModule, gearRatio);
+                error |= checkSpinnerUnset(motorTypeSpinner, "Select Motor Type");
             }
         }
         else {
@@ -610,7 +562,7 @@ public class PitScouting extends AppCompatActivity {
         if (!selectedTeamNumber.equals("Select") && !selectedTeamNumber.equals("None")) {
             team = selectedTeamNumber;
         }
-        else if (!selectedEditTeamNumber.contains("Select") && !selectedEditTeamNumber.equals("No Team Data")) {
+        else if (editingIndex != -1 && !selectedEditTeamNumber.contains("Select") && !selectedEditTeamNumber.equals("No Team Data")) {
             team = selectedEditTeamNumber;
         }
         if (team.isEmpty()) {
@@ -711,7 +663,7 @@ public class PitScouting extends AppCompatActivity {
             try {
                 teamsObject.put(team, true);
                 TeamData.saveTeamFile(this);
-                setupTeamNumberSpinner(this);
+                loadTeamNumberSpinner(this);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -729,98 +681,23 @@ public class PitScouting extends AppCompatActivity {
                     }
                 }
                 prefs.edit().putString(PitKeys.TEAMS_KEY, newTeams.toString()).apply();
-                setupTeamNumberSpinner(this);
+                loadTeamNumberSpinner(this);
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-        updateEditTeamSpinner();
-
         clearFields();
         finish();
     }
 
-    private String convertToInches(String input, String unit) {
-        if (input == null || input.isEmpty()) return "";
-
-        double multiplier = 1.0;
-        switch (unit) {
-            case "cm":
-                multiplier = 0.393701;
-                break;
-            case "ft":
-                multiplier = 12.0;
-                break;
-            case "m":
-                multiplier = 39.3701;
-                break;
-            case "in":
-                multiplier = 1.0;
-                break;
-        }
-
-        String[] parts = input.split("[xX]");
-        StringBuilder result = new StringBuilder();
-
-        for (int i = 0; i < parts.length; i++) {
-            if (i > 0) result.append(" x ");
-            try {
-                double val = Double.parseDouble(parts[i].trim());
-                val = val * multiplier;
-                result.append(String.format("%.3f", val));
-            } catch (NumberFormatException e) {
-                result.append(parts[i].trim());
-            }
-        }
-        return result.toString();
-    }
-
-    private String convertToPounds(String input, String unit) {
-        if (input == null || input.isEmpty()) return "";
-
-        double multiplier = 1.0;
-        switch (unit) {
-            case "lbs":
-                multiplier = 1.0;
-                break;
-            case "kg":
-                multiplier = 2.20462;
-                break;
-            case "g":
-                multiplier = 0.00220462;
-                break;
-            case "oz":
-                multiplier = 0.0625;
-                break;
-        }
-
-        String[] parts = input.split("[xX]");
-        StringBuilder result = new StringBuilder();
-
-        for (int i = 0; i < parts.length; i++) {
-            if (i > 0) result.append(" x ");
-            try {
-                double val = Double.parseDouble(parts[i].trim());
-                val = val * multiplier;
-                result.append(String.format("%.3f", val));
-            } catch (NumberFormatException e) {
-                result.append(parts[i].trim());
-            }
-        }
-        return result.toString();
-    }
-
     private void loadTeamData() {
         String targetTeam = editTeamSpinner.getSelectedItem().toString().trim();
-        if (targetTeam.isEmpty() || targetTeam.equals("Select Day 1") || targetTeam.equals("Select Day 2")) {
-            View selectedView = editTeamSpinner.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("Select Team");
-            }
-            Toast.makeText(this, "Select Team.", Toast.LENGTH_SHORT).show();
+        if (targetTeam.isEmpty() || targetTeam.contains("Select")) {
+            setSpinnerError(editTeamSpinner, "Select Team", "Select Team.");
+            return;
+        } else if (targetTeam.equals("No Team Data")) {
+            setSpinnerError(editTeamSpinner, "", "No Teams Scouted to Edit");
             return;
         }
 
@@ -840,9 +717,8 @@ public class PitScouting extends AppCompatActivity {
             if (PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE)) &&
                     targetTeam.equals(teamNumberInData) &&
                     currentDay.equals(dayInData)) {
-                if (match.containsKey(PitKeys.RECORD_TYPE) &&
-                        PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
 
+                    clearFields();
                     editingIndex = i;
                     found = true;
 
@@ -859,7 +735,7 @@ public class PitScouting extends AppCompatActivity {
 
                         safeSetText(intakeWidth, match.get("rawIntakeWidth"));
 
-                        safeSetText(numberOfShooters, match.get(PitKeys.PIT_TURRET));
+                        safeSetText(numberOfShooters, match.get(PitKeys.PIT_SHOOTERS));
 
                         safeSetText(numberOfAutos, match.get(PitKeys.NUMBER_AUTOS));
                         safeSetText(autoNotes, match.get(PitKeys.AUTO_NOTES));
@@ -891,7 +767,6 @@ public class PitScouting extends AppCompatActivity {
 
                     Toast.makeText(this, "Loaded Team " + targetTeam, Toast.LENGTH_SHORT).show();
                     break;
-                }
             }
         }
 
@@ -899,29 +774,6 @@ public class PitScouting extends AppCompatActivity {
             Toast.makeText(this, "Team " + targetTeam + " not found.", Toast.LENGTH_SHORT).show();
         }
 
-    }
-
-
-    private void deleteCurrentTeam() {
-        if (editingIndex == -1) {
-            loadTeamData();
-            if (editingIndex == -1) {
-                return;
-            }
-        }
-
-        new AlertDialog.Builder(this)
-                .setTitle("Delete Entry")
-                .setMessage("Are you sure you want to delete the data for this team?")
-                .setPositiveButton("Yes", (dialog, which) -> {
-                    GlobalVariables.dataList.remove(editingIndex);
-                    StorageManager.saveData(this);
-                    clearFields();
-                    Toast.makeText(this, "Entry Deleted.", Toast.LENGTH_SHORT).show();
-                    finish();
-                })
-                .setNegativeButton("No", null)
-                .show();
     }
 
     private void launchFilePicker() {
@@ -932,9 +784,6 @@ public class PitScouting extends AppCompatActivity {
             if (match.containsKey(PitKeys.RECORD_TYPE) && PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
                 hasPitData = true;
                 break;
-            }
-            else {
-                continue;
             }
         }
         if (!hasPitData) {
@@ -1111,26 +960,100 @@ public class PitScouting extends AppCompatActivity {
         }
     }
 
-    private String combineDataDimensions(String width, String depth, String height) {
-        return width + "x" + depth + "x" + height;
+    private String convertToInches(String input, String unit) {
+        if (input == null || input.isEmpty()) return "";
+
+        double multiplier = 1.0;
+        switch (unit) {
+            case "cm":
+                multiplier = 0.393701;
+                break;
+            case "ft":
+                multiplier = 12.0;
+                break;
+            case "m":
+                multiplier = 39.3701;
+                break;
+            case "in":
+                multiplier = 1.0;
+                break;
+        }
+
+        String[] parts = input.split("[xX]");
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < parts.length; i++) {
+            if (i > 0) result.append(" x ");
+            try {
+                double val = Double.parseDouble(parts[i].trim());
+                val = val * multiplier;
+                result.append(String.format("%.3f", val));
+            } catch (NumberFormatException e) {
+                result.append(parts[i].trim());
+            }
+        }
+        return result.toString();
     }
 
-    private String[] parseDataDimensions(String data) {
-        System.out.println(data);
-        String[] parsedValues = data.split("x", -1);
-        System.out.println(Arrays.toString(parsedValues));
-        return parsedValues;
+    private String convertToPounds(String input, String unit) {
+        if (input == null || input.isEmpty()) return "";
+
+        double multiplier = 1.0;
+        switch (unit) {
+            case "lbs":
+                multiplier = 1.0;
+                break;
+            case "kg":
+                multiplier = 2.20462;
+                break;
+            case "g":
+                multiplier = 0.00220462;
+                break;
+            case "oz":
+                multiplier = 0.0625;
+                break;
+        }
+
+        String[] parts = input.split("[xX]");
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < parts.length; i++) {
+            if (i > 0) result.append(" x ");
+            try {
+                double val = Double.parseDouble(parts[i].trim());
+                val = val * multiplier;
+                result.append(String.format("%.3f", val));
+            } catch (NumberFormatException e) {
+                result.append(parts[i].trim());
+            }
+        }
+        return result.toString();
     }
 
-    private void cancelPit() {
-        new AlertDialog.Builder(this)
-                .setTitle("Cancel Entry")
-                .setMessage("Are you sure you want to cancel?")
-                .setPositiveButton("Yes", (dialog, which) -> {
-                    Toast.makeText(this, "Entry Canceled.", Toast.LENGTH_SHORT).show();
-                    finish();
-                })
-                .setNegativeButton("No", null)
-                .show();
+    private void setSpinnerError(Spinner spinner, String error, String toast) {
+        View v = spinner.getSelectedView();
+        if (v instanceof TextView) {
+            ((TextView) v).setTextColor(Color.RED);
+            ((TextView) v).setError(error);
+        }
+        if (toast != null && !toast.isEmpty())
+            Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
+    }
+    private boolean checkRequiredFields(TextView... fields) {
+        boolean hasError = false;
+        for (TextView field : fields) {
+            if (field.getText().toString().isEmpty()) {
+                field.setError("Required");
+                hasError = true;
+            }
+        }
+        return hasError;
+    }
+    private boolean checkSpinnerUnset(Spinner spinner, String error) {
+        if (spinner.getSelectedItem().toString().equals("Select")) {
+            setSpinnerError(spinner, error, "");
+            return true;
+        }
+        return false;
     }
 }
