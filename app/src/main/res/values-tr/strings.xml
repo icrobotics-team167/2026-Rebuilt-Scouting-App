@@ -27,4 +27,6 @@
     <string name="data_entry_end_of_game_header">Oyun Sonu</string>
     <string name="data_entry_auto_notes">Otonom Notları</string>
     <string name="data_entry_general_notes">Genel Notlar</string>
+    <string name="data_entry_active_hub_notes">Aktif Merkez Notları</string>
+    <string name="data_entry_inactive_hub_notes">Pasif Merkez Notları</string>
 </resources>

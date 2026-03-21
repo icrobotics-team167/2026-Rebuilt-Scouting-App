@@ -19,6 +19,9 @@ public class Day3Config {
         INPUTS.add(new BaseConfig.Field(R.id.startingPositionDay3, DataKeys.STARTING_POSITION, BaseConfig.DataType.TEXT));
         INPUTS.add(new BaseConfig.Field(R.id.autoPassedFuelDay3, DataKeys.AUTO_PASSED_FUEL, BaseConfig.DataType.BOOLEAN));
 
+        INPUTS.add(new BaseConfig.Field(R.id.playedDefenseDay3, DataKeys.PLAYED_DEFENSE, BaseConfig.DataType.BOOLEAN));
+        INPUTS.add(new BaseConfig.Field(R.id.shootOnMoveDay3, DataKeys.SHOOT_ON_MOVE, BaseConfig.DataType.BOOLEAN));
+
         INPUTS.add(new BaseConfig.Field(R.id.commentsDay3, DataKeys.COMMENTS, BaseConfig.DataType.TEXT));
         INPUTS.add(new BaseConfig.Field(R.id.autoCommentsDay3, DataKeys.AUTO_COMMENTS, BaseConfig.DataType.TEXT));
         INPUTS.add(new BaseConfig.Field(R.id.activeComments, DataKeys.ACTIVE_COMMENTS, BaseConfig.DataType.TEXT));

@@ -89,6 +89,9 @@ public class PitScouting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pit_scouting);
         StorageManager.loadData(this);
+
+        editingIndex = -1;
+
         day1 = findViewById(R.id.day1);
         day2 = findViewById(R.id.day2);
         day1.setVisibility(View.VISIBLE);
@@ -97,6 +100,7 @@ public class PitScouting extends AppCompatActivity {
         initializeViews();
         setupDayListener();
         setupDay2Teams();
+        setSwitchState();
 
         swerve.setOnCheckedChangeListener((btn, isChecked) -> enableSwerveFields(isChecked));
         setupUnitsSpinners();
@@ -180,6 +184,13 @@ public class PitScouting extends AppCompatActivity {
         gearRatioHeader = findViewById(R.id.gearRatioHeader);
     }
 
+    private void setSwitchState() {
+        GlobalVariables.pitScoutingIsDay2 = getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE)
+                .getBoolean("pit_scouting_day2", false);
+
+        daySwitch.setChecked(GlobalVariables.pitScoutingIsDay2);
+    }
+
     private void setupDayListener() {
         daySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -187,9 +198,19 @@ public class PitScouting extends AppCompatActivity {
                 if (isChecked) {
                     day1.setVisibility(View.GONE);
                     day2.setVisibility(View.VISIBLE);
+                    GlobalVariables.pitScoutingIsDay2 = true;
+                    getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE)
+                            .edit()
+                            .putBoolean("pit_scouting_day2", true)
+                            .apply();
                 } else {
                     day1.setVisibility(View.VISIBLE);
                     day2.setVisibility(View.GONE);
+                    GlobalVariables.pitScoutingIsDay2 = false;
+                    getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE)
+                            .edit()
+                            .putBoolean("pit_scouting_day2", false)
+                            .apply();
                 }
                 clearFields();
                 loadTeamNumberSpinner(PitScouting.this);
@@ -238,6 +259,7 @@ public class PitScouting extends AppCompatActivity {
                 suppressSpinnerEvents = true;
                 teamNumberSpinner.setSelection(0);
                 suppressSpinnerEvents = false;
+                clearFields();
             }
 
             @Override

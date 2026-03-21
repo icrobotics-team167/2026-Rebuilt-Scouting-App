@@ -117,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:weightSum="123">
 
                 <View
@@ -155,10 +155,10 @@
                         style="@style/AutoResize25"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="16"
+                        android:layout_weight="13"
                         android:paddingStart="10dp"
                         android:gravity="center_vertical"
-                        android:text="Active Hub Notes:" />
+                        android:text="@string/data_entry_active_hub_notes" />
 
                     <EditText
                         android:id="@+id/activeComments"
@@ -166,8 +166,8 @@
                         android:layout_height="0dp"
                         android:ems="10"
                         android:inputType="text"
-                        android:layout_weight="36"
-                        android:text="Name" />
+                        android:layout_weight="34"
+                        android:hint="@string/data_entry_active_hub_notes" />
 
                     <View
                         android:id="@+id/divider83"
@@ -181,19 +181,52 @@
                         style="@style/AutoResize25"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="16"
+                        android:layout_weight="13"
                         android:gravity="center_vertical"
                         android:paddingStart="10dp"
-                        android:text="Inactive Hub Notes:" />
+                        android:text="@string/data_entry_inactive_hub_notes" />
 
                     <EditText
                         android:id="@+id/inactiveComments"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="37"
+                        android:layout_weight="31"
                         android:ems="10"
                         android:inputType="text"
-                        android:text="Name" />
+                        android:hint="@string/data_entry_inactive_hub_notes" />
+
+                    <View
+                        android:id="@+id/divider18"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:foreground="?attr/dividerColor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="12"
+                        android:orientation="horizontal"
+                        android:weightSum="121">
+
+                        <CheckBox
+                            android:id="@+id/playedDefenseDay3"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="60"
+                            android:text="@string/data_entry_played_defense" />
+
+                        <CheckBox
+                            android:id="@+id/shootOnMoveDay3"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="60"
+                            android:text="@string/data_entry_shoot_on_move" />
+                    </LinearLayout>
 
                     <View
                         android:id="@+id/divider84"
@@ -440,7 +473,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:weightSum="123">
 
                 <View
@@ -798,7 +831,7 @@
                         android:weightSum="121">
 
                         <TextView
-                            android:id="@+id/textView10"
+                            android:id="@+id/startingPositionHeader"
                             style="@style/AutoResize20"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"

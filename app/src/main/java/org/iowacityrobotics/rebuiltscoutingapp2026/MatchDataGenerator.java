@@ -5,6 +5,8 @@
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,6 +16,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -71,37 +75,38 @@ public class MatchDataGenerator {
     // ===============================
     public static void generate(Context context, String eventKey, Runnable onComplete) {
 
-        TBAService service =
-                RetrofitClient.getClient().create(TBAService.class);
+        // Create these once, reuse them
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler mainHandler = new Handler(Looper.getMainLooper());
 
-        service.getEventMatches(eventKey)
-                .enqueue(new Callback<List<TBAMatch>>() {
+        TBAService service = RetrofitClient.getClient().create(TBAService.class);
 
-                    @Override
-                    public void onResponse(Call<List<TBAMatch>> call,
-                                           Response<List<TBAMatch>> response) {
+        service.getEventMatches(eventKey).enqueue(new Callback<List<TBAMatch>>() {
 
-                        if (!response.isSuccessful() || response.body() == null)
-                            return;
+            @Override
+            public void onResponse(Call<List<TBAMatch>> call, Response<List<TBAMatch>> response) {
+                if (!response.isSuccessful() || response.body() == null) return;
 
-                        List<MatchEntry> converted =
-                                convert(response.body());
+                List<MatchEntry> converted = convert(response.body());
+                MatchDataFile file = new MatchDataFile();
+                file.matches = converted;
 
-                        MatchDataFile file = new MatchDataFile();
-                        file.matches = converted;
+                // Push file I/O off the main thread
+                executor.execute(() -> {
+                    saveToJson(context, file);   // now on background thread
 
-                        saveToJson(context, file);
-
-                        if (onComplete != null) {
-                            onComplete.run();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<TBAMatch>> call, Throwable t) {
-                        t.printStackTrace();
+                    // When done, post the callback back to main
+                    if (onComplete != null) {
+                        mainHandler.post(onComplete);
                     }
                 });
+            }
+
+            @Override
+            public void onFailure(Call<List<TBAMatch>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
     // ===============================

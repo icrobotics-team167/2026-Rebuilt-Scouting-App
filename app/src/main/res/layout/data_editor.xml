@@ -129,16 +129,8 @@
             android:layout_height="0dp"
             android:layout_weight="4"
             android:weightSum="9"
+            android:gravity="center"
             android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView8"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:text="Moved in Auto:" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -149,14 +141,6 @@
                 android:gravity="center_vertical"
                 android:text="Starting Position:" />
 
-            <TextView
-                android:id="@+id/textView13"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:text="Passed Fuel in Auto:" />
         </LinearLayout>
 
         <LinearLayout
@@ -166,15 +150,13 @@
             android:weightSum="9"
             android:orientation="horizontal">
 
-            <EditText
+            <CheckBox
                 android:id="@+id/autoMoved"
+                style="@style/AutoResize20"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:ems="10"
-                android:layout_gravity="center_vertical"
-                android:inputType="text"
-                android:hint="#" />
+                android:text="Moved in Auto" />
 
             <EditText
                 android:id="@+id/startingPosition"
@@ -186,15 +168,13 @@
                 android:inputType="text"
                 android:hint="#" />
 
-            <EditText
+            <CheckBox
                 android:id="@+id/autoPassedFuel"
+                style="@style/AutoResize20"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:ems="10"
-                android:hint="#"
-                android:inputType="text" />
+                android:text="Passed Fuel in Auto" />
 
         </LinearLayout>
 
@@ -208,7 +188,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="15">
+            android:layout_weight="17">
 
             <LinearLayout
                 android:id="@+id/day3"
@@ -389,7 +369,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="11"
+            android:layout_weight="12"
             android:orientation="horizontal">
 
             <EditText
@@ -431,7 +411,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10"
+            android:layout_weight="11"
             android:orientation="horizontal">
 
             <EditText
@@ -456,38 +436,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4"
-            android:weightSum="24"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2" />
-
-            <TextView
-                android:id="@+id/averageVolleySizeHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Shoot On The Move:"/>
-
-            <TextView
-                android:id="@+id/playedDefenseHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Played Defense:" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:layout_weight="8"
             android:weightSum="24"
             android:orientation="horizontal">
@@ -502,27 +450,31 @@
                 android:textColor="@color/white"
                 android:text="Delete" />
 
-            <EditText
-                android:id="@+id/shootOnMove"
-                style="@style/AutoResize25"
+            <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="9"
-                android:ems="10"
-                android:inputType="text"
-                android:hint="#"
-                android:text="" />
+                android:layout_weight="2" />
 
-            <EditText
+            <CheckBox
                 android:id="@+id/playedDefense"
-                style="@style/AutoResize25"
+                style="@style/AutoResize20"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="9"
-                android:ems="10"
-                android:hint="#"
-                android:inputType="text"
-                android:text="" />
+                android:layout_weight="7"
+                android:text="Played Defense" />
+
+            <CheckBox
+                android:id="@+id/shootOnMove"
+                style="@style/AutoResize20"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:text="Shoot on the Move" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2" />
 
             <Button
                 android:id="@+id/saveExitButton"

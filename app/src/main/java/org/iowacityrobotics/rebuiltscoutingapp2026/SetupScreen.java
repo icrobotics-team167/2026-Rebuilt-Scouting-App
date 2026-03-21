@@ -153,13 +153,30 @@ public class SetupScreen extends AppCompatActivity {
                 }
             }
 
-            new AlertDialog.Builder(this)
-                    .setTitle("Team Not on Day 3 List")
-                    .setMessage("Team " + teamNum + " is not in the Day 3 scouting list "
-                            + "for " + matchType + " Match " + matchNum
-                            + " (" + assignment + ")")
-                    .setNeutralButton("Ok", null)
+            AlertDialog reScoutDialog = new AlertDialog.Builder(this)
+                    .setTitle("Team Not on Re-Scouting List")
+                    .setMessage("Team " + teamNum + " is not being re-scouted. You get a break! Hooray.")
+                    .setPositiveButton("Ok", null)
+                    .setNeutralButton("Continue", (dialog, which) -> {
+                        if (validateInputs()) {
+                            savePreferences();
+                            GlobalVariables.objectIndex = -1;
+                            Intent intent;
+                            if (scouterNameInput.getText().toString().equals("MADISON")) {
+                                intent = new Intent(SetupScreen.this, Slider.class);
+                            } else {
+                                intent = new Intent(SetupScreen.this, DataEntry.class);
+                            }
+                            intent.putExtra("PASS_SCOUTER",      scouterNameInput.getText().toString());
+                            intent.putExtra("PASS_MATCH",        matchNumberInput.getText().toString());
+                            intent.putExtra("PASS_ASSIGNMENT",   assignmentSpinner.getSelectedItem().toString());
+                            intent.putExtra("PASS_MATCH_TYPE",   matchTypeSpinner.getSelectedItem().toString());
+                            intent.putExtra("PASS_DAY",          dataEntrySwitch.isChecked());
+                            startActivity(intent);
+                        }
+                    })
                     .show();
+            reScoutDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.RED);
 
             return false;
         } catch (Exception e) {
@@ -267,7 +284,12 @@ public class SetupScreen extends AppCompatActivity {
                 startActivity(intent);
             }
             else if (selectedPosition == 0) {
-                Toast.makeText(this, "Select match to edit.", Toast.LENGTH_SHORT).show();
+                if (matchListSpinner.getSelectedItem().toString().equals("No Saved Data")) {
+                    Toast.makeText(this, "No saved data to edit.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(this, "Select match to edit.", Toast.LENGTH_SHORT).show();
+                }
             }
             else {
                 Toast.makeText(this, "No matches available to edit!", Toast.LENGTH_SHORT).show();
@@ -279,6 +301,9 @@ public class SetupScreen extends AppCompatActivity {
             int selectedPosition = matchListSpinner.getSelectedItemPosition();
             if (selectedPosition != 0) {
                 exportSelected();
+            }
+            else if (matchListSpinner.getSelectedItem().toString().equals("No Saved Data")){
+                Toast.makeText(this, "No matches to export.", Toast.LENGTH_SHORT).show();
             }
             else {
                 Toast.makeText(this, "Select match to export.", Toast.LENGTH_SHORT).show();
@@ -351,6 +376,7 @@ public class SetupScreen extends AppCompatActivity {
 
         String[] parts = selectedItem.split("\\D+");
         for (Map<String, Object> match : GlobalVariables.dataList) {
+            if (!isMatchRecord(match) || !isCurrentDay(match)) continue;
             String matchNum = match.get(DataKeys.MATCH_NUM).toString();
             String teamNum = match.get(DataKeys.TEAM_NUM).toString();
 
@@ -439,24 +465,6 @@ public class SetupScreen extends AppCompatActivity {
                 Object value = entry.getValue();
                 if (value instanceof Boolean) {
                     entry.setValue((Boolean) value ? "Yes" : "No");
-                } else if (entry.getKey().equals(DataKeys.STRATEGY)) {
-                    switch (value.toString()) {
-                        case "0":
-                            entry.setValue("All Pass");
-                            break;
-                        case "1":
-                            entry.setValue("Partly Pass");
-                            break;
-                        case "2":
-                            entry.setValue("Equal");
-                            break;
-                        case "3":
-                            entry.setValue("Partly Score");
-                            break;
-                        case "4":
-                            entry.setValue("All Score");
-                            break;
-                    }
                 } else if (!value.toString().isEmpty()) {
                     String strValue = value.toString();
                     strValue = strValue.toLowerCase();

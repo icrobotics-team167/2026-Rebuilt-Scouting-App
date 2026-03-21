@@ -3,9 +3,12 @@
 //Home screen of app
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
@@ -18,11 +21,11 @@ import org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.TeamData;
 
 import java.io.File;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class StartScreen extends AppCompatActivity {
     private static final String EVENT_KEY = "2026mnwi";
-    private static final String PREFS_NAME = "my_prefs";
-    private static final String SWITCH_KEY = "switch_state";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,18 +35,29 @@ public class StartScreen extends AppCompatActivity {
 
         File matchFile = new File(getFilesDir(), "match_data.json");
 
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+
         if (!matchFile.exists()) {
             MatchDataGenerator.generate(this, EVENT_KEY, () -> {
-                MatchSchedule.loadSchedule(this);
-                File teamFile = new File(getFilesDir(), "team_data.json");
-                if (!teamFile.exists()) {
-                    TeamData.generateTeamFile(this);
-                }
-                TeamData.loadTeamFile(this);
+                // onComplete now runs on main thread — push the I/O off it
+                executor.execute(() -> {
+                    MatchSchedule.loadSchedule(StartScreen.this);
+                    File teamFile = new File(getFilesDir(), "team_data.json");
+                    if (!teamFile.exists()) {
+                        TeamData.generateTeamFile(StartScreen.this);
+                    }
+                    TeamData.loadTeamFile(StartScreen.this);
+                    // If you ever need to update UI after this, do it here:
+                    // mainHandler.post(() -> { /* UI update */ });
+                });
             });
         } else {
-            MatchSchedule.loadSchedule(this);
-            TeamData.loadTeamFile(this);
+            // This branch had the same bug — also move it off main
+            executor.execute(() -> {
+                MatchSchedule.loadSchedule(StartScreen.this);
+                TeamData.loadTeamFile(StartScreen.this);
+            });
         }
 
         Button matchScoutBtn = findViewById(R.id.button);
@@ -86,5 +100,16 @@ public class StartScreen extends AppCompatActivity {
     public void setAppLocale(String languageCode) {
         LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(languageCode);
         AppCompatDelegate.setApplicationLocales(appLocale);
+    }
+    private void savePitScoutingDay(boolean isDay2) {
+        getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE)
+                .edit()
+                .putBoolean("pit_scouting_day2", isDay2)
+                .apply();
+    }
+
+    private boolean loadPitScoutingDay() {
+        return getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE)
+                .getBoolean("pit_scouting_day2", false); // false = Day 1 by default
     }
 }

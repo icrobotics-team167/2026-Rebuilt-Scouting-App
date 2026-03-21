@@ -13,7 +13,7 @@ import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
 
 public class TeamData {
-    public static JSONObject teamsObject;
+    public static volatile JSONObject teamsObject;
     public static void generateTeamFile(Context context) {
 
         if (matchesArray == null) return;

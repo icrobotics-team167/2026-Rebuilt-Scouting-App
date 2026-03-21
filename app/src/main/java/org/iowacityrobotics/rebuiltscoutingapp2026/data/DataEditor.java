@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -22,8 +23,8 @@ public class DataEditor extends AppCompatActivity {
     private LinearLayout day1, day3;
 
     private EditText matchNum, teamNum, scouterName, assignment;
-    private EditText playedDefense, shootOnMove;
-    private EditText autoMoved, startingPosition, autoPassedFuel;
+    private CheckBox playedDefense, shootOnMove, autoMoved, autoPassedFuel;
+    private EditText startingPosition;
     private EditText fuelScored, shootingAccuracy, strategy;
     private EditText comments, autoComments;
 
@@ -77,15 +78,16 @@ public class DataEditor extends AppCompatActivity {
             setTextSafe(scouterName, data.get(DataKeys.SCOUTER));
             setTextSafe(assignment, data.get(DataKeys.ASSIGNMENT));
 
-            setTextSafe(autoMoved, data.get(DataKeys.AUTO_MOVED));
+            autoMoved.setChecked(getBooleanSafe(data, DataKeys.AUTO_MOVED));
             setTextSafe(startingPosition, data.get(DataKeys.STARTING_POSITION));
-            setTextSafe(autoPassedFuel, data.get(DataKeys.AUTO_PASSED_FUEL));
+            autoPassedFuel.setChecked(getBooleanSafe(data, DataKeys.AUTO_PASSED_FUEL));
+
+            playedDefense.setChecked(getBooleanSafe(data, DataKeys.PLAYED_DEFENSE));
+            shootOnMove.setChecked(getBooleanSafe(data, DataKeys.SHOOT_ON_MOVE));
 
             if (DataKeys.DAY_ONE.equals(data.get(DataKeys.MATCH_DAY))) {
                 day1.setVisibility(View.VISIBLE);
                 day3.setVisibility(View.GONE);
-                setTextSafe(playedDefense, data.get(DataKeys.PLAYED_DEFENSE));
-                setTextSafe(shootOnMove, data.get(DataKeys.SHOOT_ON_MOVE));
 
                 setTextSafe(fuelScored, data.get(DataKeys.FUEL_SCORED));
                 setTextSafe(shootingAccuracy, data.get(DataKeys.SHOOTING_ACCURACY));
@@ -112,14 +114,14 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.SCOUTER, scouterName.getText().toString());
             data.put(DataKeys.ASSIGNMENT, assignment.getText().toString());
 
-            data.put(DataKeys.AUTO_MOVED, parseBoolean(autoMoved));
+            data.put(DataKeys.AUTO_MOVED, autoMoved.isChecked());
             data.put(DataKeys.STARTING_POSITION, startingPosition.getText().toString());
-            data.put(DataKeys.AUTO_PASSED_FUEL, parseBoolean(autoPassedFuel));
+            data.put(DataKeys.AUTO_PASSED_FUEL, autoPassedFuel.isChecked());
+
+            data.put(DataKeys.PLAYED_DEFENSE, playedDefense.isChecked());
+            data.put(DataKeys.SHOOT_ON_MOVE, shootOnMove.isChecked());
 
             if (DataKeys.DAY_ONE.equals(data.get(DataKeys.MATCH_DAY))) {
-                data.put(DataKeys.PLAYED_DEFENSE, parseBoolean(playedDefense));
-                data.put(DataKeys.SHOOT_ON_MOVE, parseBoolean(shootOnMove));
-
                 data.put(DataKeys.FUEL_SCORED, fuelScored.getText().toString());
                 data.put(DataKeys.SHOOTING_ACCURACY, shootingAccuracy.getText().toString());
                 data.put(DataKeys.STRATEGY, strategy.getText().toString());
@@ -180,5 +182,17 @@ public class DataEditor extends AppCompatActivity {
     private boolean parseBoolean(EditText view) {
         String input = view.getText().toString().trim().toLowerCase();
         return input.equals("true") || input.equals("1") || input.equals("yes");
+    }
+
+    private boolean getBooleanSafe(Map<String, Object> data, String key) {
+        Object value = data.get(key);
+        if (value instanceof Boolean) {
+            return (Boolean) value;
+        }
+        // Handles cases where it was accidentally saved as a String
+        if (value instanceof String) {
+            return Boolean.parseBoolean((String) value);
+        }
+        return false; // Safe default
     }
 }

@@ -35,7 +35,7 @@ public class DataEntry extends AppCompatActivity {
     private LinearLayout day1, day3;
     private TextView matchNumView, scouterView, assignmentView;
     private EditText teamNumView;
-    private Spinner startingPosition;
+    private Spinner startingPosition, startingPositionDay3;
     private TextView fuelScored;
 
     @Override
@@ -75,6 +75,7 @@ public class DataEntry extends AppCompatActivity {
         scouterView = findViewById(R.id.scouter);
         assignmentView = findViewById(R.id.scoutingAssignment);
         startingPosition = findViewById(R.id.startingPosition);
+        startingPositionDay3 = findViewById(R.id.startingPositionDay3);
         fuelScored = findViewById(R.id.fuelScored);
 
         day1 = findViewById(R.id.day1);
@@ -101,6 +102,7 @@ public class DataEntry extends AppCompatActivity {
 
     private void setupSpinners() {
         setupSpinner(R.id.startingPosition, new String[]{"Select", "Unknown", "Outpost", "Center", "Depot"});
+        setupSpinner(R.id.startingPositionDay3, new String[]{"Select", "Unknown", "Outpost", "Center", "Depot"});
     }
 
     private void setupSpinner(int id, String[] items) {
@@ -156,9 +158,10 @@ public class DataEntry extends AppCompatActivity {
             error = true;
         }
 
-        String selectedStartingPosition = startingPosition.getSelectedItem().toString();
+        Spinner autoSpinner = (isDay3) ? startingPositionDay3 : startingPosition;
+        String selectedStartingPosition = autoSpinner.getSelectedItem().toString();
         if (selectedStartingPosition.equals("Select")) {
-            View selectedView = startingPosition.getSelectedView();
+            View selectedView = autoSpinner.getSelectedView();
             if (selectedView instanceof TextView) {
                 TextView selectedTextView = (TextView) selectedView;
                 selectedTextView.setTextColor(Color.RED);
@@ -204,18 +207,17 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.STARTING_POSITION, temp.get(DataKeys.STARTING_POSITION));
         data.put(DataKeys.AUTO_PASSED_FUEL, temp.get(DataKeys.AUTO_PASSED_FUEL));
         data.put(DataKeys.AUTO_COMMENTS, temp.get(DataKeys.AUTO_COMMENTS));
+        data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
+        data.put(DataKeys.SHOOT_ON_MOVE, temp.get(DataKeys.SHOOT_ON_MOVE));
 
         if (!isDay3) {
             data.put(DataKeys.FUEL_SCORED, temp.get(DataKeys.FUEL_SCORED));
             data.put(DataKeys.SHOOTING_ACCURACY, ACCURACY_LABELS[(int) temp.get(DataKeys.SHOOTING_ACCURACY)]);
             data.put(DataKeys.STRATEGY, STRATEGY_LABELS[(int) temp.get(DataKeys.STRATEGY)]);
-            data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
-            data.put(DataKeys.SHOOT_ON_MOVE, temp.get(DataKeys.SHOOT_ON_MOVE));
         } else {
             data.put(DataKeys.ACTIVE_COMMENTS, temp.get(DataKeys.ACTIVE_COMMENTS));
             data.put(DataKeys.INACTIVE_COMMENTS, temp.get(DataKeys.INACTIVE_COMMENTS));
         }
-
         data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
         data.put(DataKeys.EXPORTED, false);
 

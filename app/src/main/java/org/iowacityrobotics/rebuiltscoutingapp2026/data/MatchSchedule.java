@@ -17,7 +17,7 @@ import java.nio.charset.StandardCharsets;
 
 public class MatchSchedule {
 
-    public static JSONArray matchesArray;
+    public static volatile JSONArray matchesArray;
 
     public static void loadSchedule(Context context) {
 

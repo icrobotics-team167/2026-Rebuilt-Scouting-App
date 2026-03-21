@@ -12,4 +12,5 @@ public class GlobalVariables {
     // -1 is new match
     // greater is edit match
     public static int objectIndex = -1;
+    public static boolean pitScoutingIsDay2 = false;
 }
