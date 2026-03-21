@@ -23,7 +23,7 @@
     <string name="data_entry_shoot_on_move">可移动射击</string>
     <string name="data_entry_starting_position_header">起始位置：</string>
     <string name="data_entry_moved">已移动</string>
-    <string name="data_entry_passed_fuel">已移动</string>
+    <string name="data_entry_passed_fuel">通过燃料</string>
     <string name="data_entry_end_of_game_header">比赛结束</string>
     <string name="data_entry_auto_notes">自动阶段备注</string>
     <string name="data_entry_general_notes">通用备注</string>

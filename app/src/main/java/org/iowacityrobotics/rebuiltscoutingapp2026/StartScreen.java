@@ -65,7 +65,6 @@ public class StartScreen extends AppCompatActivity {
         });
 
         Switch themeSwitch = findViewById(R.id.themeSwitch);
-
         themeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);

@@ -5,8 +5,11 @@ package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,12 +19,15 @@ import org.iowacityrobotics.rebuiltscoutingapp2026.R;
 import java.util.Map;
 
 public class DataEditor extends AppCompatActivity {
+    private LinearLayout day1, day3;
 
     private EditText matchNum, teamNum, scouterName, assignment;
     private EditText playedDefense, shootOnMove;
     private EditText autoMoved, startingPosition, autoPassedFuel;
     private EditText fuelScored, shootingAccuracy, strategy;
     private EditText comments, autoComments;
+
+    private EditText activeComments, inactiveComments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,9 @@ public class DataEditor extends AppCompatActivity {
     }
 
     private void initializeViews() {
+        day1 = findViewById(R.id.day1);
+        day3 = findViewById(R.id.day3);
+
         matchNum = findViewById(R.id.matchNumber);
         teamNum = findViewById(R.id.teamNumber);
         scouterName = findViewById(R.id.scouter);
@@ -54,6 +63,9 @@ public class DataEditor extends AppCompatActivity {
 
         comments = findViewById(R.id.comments);
         autoComments = findViewById(R.id.autoComments);
+
+        activeComments = findViewById(R.id.activeComments);
+        inactiveComments = findViewById(R.id.inactiveComments);
     }
 
     private void loadExistingData() {
@@ -65,16 +77,25 @@ public class DataEditor extends AppCompatActivity {
             setTextSafe(scouterName, data.get(DataKeys.SCOUTER));
             setTextSafe(assignment, data.get(DataKeys.ASSIGNMENT));
 
-            setTextSafe(playedDefense, data.get(DataKeys.PLAYED_DEFENSE));
-            setTextSafe(shootOnMove, data.get(DataKeys.SHOOT_ON_MOVE));
-
             setTextSafe(autoMoved, data.get(DataKeys.AUTO_MOVED));
             setTextSafe(startingPosition, data.get(DataKeys.STARTING_POSITION));
             setTextSafe(autoPassedFuel, data.get(DataKeys.AUTO_PASSED_FUEL));
 
-            setTextSafe(fuelScored, data.get(DataKeys.FUEL_SCORED));
-            setTextSafe(shootingAccuracy, data.get(DataKeys.SHOOTING_ACCURACY));
-            setTextSafe(strategy, data.get(DataKeys.STRATEGY));
+            if (DataKeys.DAY_ONE.equals(data.get(DataKeys.MATCH_DAY))) {
+                day1.setVisibility(View.VISIBLE);
+                day3.setVisibility(View.GONE);
+                setTextSafe(playedDefense, data.get(DataKeys.PLAYED_DEFENSE));
+                setTextSafe(shootOnMove, data.get(DataKeys.SHOOT_ON_MOVE));
+
+                setTextSafe(fuelScored, data.get(DataKeys.FUEL_SCORED));
+                setTextSafe(shootingAccuracy, data.get(DataKeys.SHOOTING_ACCURACY));
+                setTextSafe(strategy, data.get(DataKeys.STRATEGY));
+            } else {
+                day1.setVisibility(View.GONE);
+                day3.setVisibility(View.VISIBLE);
+                setTextSafe(activeComments, data.get(DataKeys.ACTIVE_COMMENTS));
+                setTextSafe(inactiveComments, data.get(DataKeys.INACTIVE_COMMENTS));
+            }
 
             setTextSafe(comments, data.get(DataKeys.COMMENTS));
             setTextSafe(autoComments, data.get(DataKeys.AUTO_COMMENTS));
@@ -91,16 +112,22 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.SCOUTER, scouterName.getText().toString());
             data.put(DataKeys.ASSIGNMENT, assignment.getText().toString());
 
-            data.put(DataKeys.PLAYED_DEFENSE, parseBoolean(playedDefense));
-            data.put(DataKeys.SHOOT_ON_MOVE, parseBoolean(shootOnMove));
-
             data.put(DataKeys.AUTO_MOVED, parseBoolean(autoMoved));
             data.put(DataKeys.STARTING_POSITION, startingPosition.getText().toString());
             data.put(DataKeys.AUTO_PASSED_FUEL, parseBoolean(autoPassedFuel));
 
-            data.put(DataKeys.FUEL_SCORED, fuelScored.getText().toString());
-            data.put(DataKeys.SHOOTING_ACCURACY, shootingAccuracy.getText().toString());
-            data.put(DataKeys.STRATEGY, strategy.getText().toString());
+            if (DataKeys.DAY_ONE.equals(data.get(DataKeys.MATCH_DAY))) {
+                data.put(DataKeys.PLAYED_DEFENSE, parseBoolean(playedDefense));
+                data.put(DataKeys.SHOOT_ON_MOVE, parseBoolean(shootOnMove));
+
+                data.put(DataKeys.FUEL_SCORED, fuelScored.getText().toString());
+                data.put(DataKeys.SHOOTING_ACCURACY, shootingAccuracy.getText().toString());
+                data.put(DataKeys.STRATEGY, strategy.getText().toString());
+            }
+            else {
+                data.put(DataKeys.ACTIVE_COMMENTS, activeComments.getText().toString());
+                data.put(DataKeys.INACTIVE_COMMENTS, inactiveComments.getText().toString());
+            }
 
             data.put(DataKeys.COMMENTS, comments.getText().toString());
             data.put(DataKeys.AUTO_COMMENTS, autoComments.getText().toString());

@@ -10,34 +10,29 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.os.LocaleListCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
 import org.iowacityrobotics.rebuiltscoutingapp2026.R;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DataEntry extends AppCompatActivity {
-
+    private boolean isDay3;
+    private LinearLayout day1, day3;
     private TextView matchNumView, scouterView, assignmentView;
     private EditText teamNumView;
     private Spinner startingPosition;
@@ -49,13 +44,16 @@ public class DataEntry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.data_entry);
 
+        isDay3 = getIntent().getBooleanExtra("PASS_DAY", false);
         initializeViews();
+        setDayView();
         setupSeekbar();
         setupSpinners();
         loadHeaderData();
         setupAutoFill();
 
         findViewById(R.id.saveExitButton).setOnClickListener(v -> checkFieldsAndSave());
+        findViewById(R.id.saveExitButtonDay3).setOnClickListener(v -> checkFieldsAndSave());
     }
 
     @Override
@@ -78,6 +76,9 @@ public class DataEntry extends AppCompatActivity {
         assignmentView = findViewById(R.id.scoutingAssignment);
         startingPosition = findViewById(R.id.startingPosition);
         fuelScored = findViewById(R.id.fuelScored);
+
+        day1 = findViewById(R.id.day1);
+        day3 = findViewById(R.id.day3);
     }
 
     private void setupSeekbar() {
@@ -120,11 +121,24 @@ public class DataEntry extends AppCompatActivity {
         }
     }
 
+    private void setDayView() {
+        if (getIntent() != null) {
+            day1.setVisibility(isDay3 ? View.GONE : View.VISIBLE);
+            day3.setVisibility(isDay3 ? View.VISIBLE : View.GONE);
+        }
+    }
+
     private void setupAutoFill() {
         matchNumView.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            public void onTextChanged(CharSequence s, int start, int before, int count) { updateTeamNumber(); }
-            public void afterTextChanged(Editable s) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateTeamNumber();
+            }
+
+            public void afterTextChanged(Editable s) {
+            }
         });
     }
 
@@ -138,8 +152,8 @@ public class DataEntry extends AppCompatActivity {
     private void checkFieldsAndSave() {
         boolean error = false;
         if (teamNumView.getText().toString().isEmpty()) {
-                teamNumView.setError("Required");
-                error = true;
+            teamNumView.setError("Required");
+            error = true;
         }
 
         String selectedStartingPosition = startingPosition.getSelectedItem().toString();
@@ -160,101 +174,67 @@ public class DataEntry extends AppCompatActivity {
     }
 
     private void saveNewMatch() {
-
-        Map<String, Object> data = new LinkedHashMap<>();
-        data.put(DataKeys.RECORD_TYPE, DataKeys.TYPE_MATCH);
-
-        // Grab values from views first
         Map<String, Object> temp = new LinkedHashMap<>();
+        List<? extends BaseConfig.Field> fields = isDay3 ? Day3Config.INPUTS : Day1Config.INPUTS;
 
-        for (ScoutingConfig.Field field : ScoutingConfig.INPUTS) {
+        for (BaseConfig.Field field : fields) {
             View v = findViewById(field.viewId);
             if (v == null) continue;
 
-            if (v instanceof EditText)
-                temp.put(field.jsonKey, ((EditText) v).getText().toString());
-
-            else if (v instanceof CheckBox)
-                temp.put(field.jsonKey, ((CheckBox) v).isChecked());
-
+            if (v instanceof EditText) temp.put(field.jsonKey, ((EditText) v).getText().toString());
+            else if (v instanceof CheckBox) temp.put(field.jsonKey, ((CheckBox) v).isChecked());
             else if (v instanceof Spinner)
                 temp.put(field.jsonKey, ((Spinner) v).getSelectedItem().toString());
-
-            else if (v instanceof SeekBar)
-                temp.put(field.jsonKey, ((SeekBar) v).getProgress());
-
+            else if (v instanceof SeekBar) temp.put(field.jsonKey, ((SeekBar) v).getProgress());
             else if (v instanceof TextView) {
                 String val = ((TextView) v).getText().toString();
-                if (field.type == ScoutingConfig.DataType.NUMBER) {
-                    try {
-                        temp.put(field.jsonKey, Integer.parseInt(val));
-                    } catch (Exception e) {
-                        temp.put(field.jsonKey, 0);
-                    }
-                } else {
-                    temp.put(field.jsonKey, val);
-                }
+                temp.put(field.jsonKey, field.type == BaseConfig.DataType.NUMBER ? parseIntSafe(val) : val);
             }
         }
 
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put(DataKeys.RECORD_TYPE, DataKeys.TYPE_MATCH);
+        data.put(DataKeys.MATCH_DAY, isDay3 ? DataKeys.DAY_THREE : DataKeys.DAY_ONE);
         data.put(DataKeys.TEAM_NUM, temp.get(DataKeys.TEAM_NUM));
         data.put(DataKeys.MATCH_TYPE, getIntent().getStringExtra("PASS_MATCH_TYPE"));
         data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
         data.put(DataKeys.ASSIGNMENT, getIntent().getStringExtra("PASS_ASSIGNMENT"));
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
-
         data.put(DataKeys.AUTO_MOVED, temp.get(DataKeys.AUTO_MOVED));
         data.put(DataKeys.STARTING_POSITION, temp.get(DataKeys.STARTING_POSITION));
         data.put(DataKeys.AUTO_PASSED_FUEL, temp.get(DataKeys.AUTO_PASSED_FUEL));
         data.put(DataKeys.AUTO_COMMENTS, temp.get(DataKeys.AUTO_COMMENTS));
 
-        data.put(DataKeys.FUEL_SCORED, temp.get(DataKeys.FUEL_SCORED));
-
-        int accuracyVal = (int) temp.get(DataKeys.SHOOTING_ACCURACY);
-        String accuracyText;
-
-        switch (accuracyVal) {
-            case 0: accuracyText = "0%"; break;
-            case 1: accuracyText = "25%"; break;
-            case 2: accuracyText = "50%"; break;
-            case 3: accuracyText = "75%"; break;
-            case 4: accuracyText = "100%"; break;
-            default: accuracyText = "0%";
+        if (!isDay3) {
+            data.put(DataKeys.FUEL_SCORED, temp.get(DataKeys.FUEL_SCORED));
+            data.put(DataKeys.SHOOTING_ACCURACY, ACCURACY_LABELS[(int) temp.get(DataKeys.SHOOTING_ACCURACY)]);
+            data.put(DataKeys.STRATEGY, STRATEGY_LABELS[(int) temp.get(DataKeys.STRATEGY)]);
+            data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
+            data.put(DataKeys.SHOOT_ON_MOVE, temp.get(DataKeys.SHOOT_ON_MOVE));
+        } else {
+            data.put(DataKeys.ACTIVE_COMMENTS, temp.get(DataKeys.ACTIVE_COMMENTS));
+            data.put(DataKeys.INACTIVE_COMMENTS, temp.get(DataKeys.INACTIVE_COMMENTS));
         }
-
-        data.put(DataKeys.SHOOTING_ACCURACY, accuracyText);
-
-        int strategyVal = (int) temp.get(DataKeys.STRATEGY);
-        String strategyText;
-
-        switch (strategyVal) {
-            case 0: strategyText = "All Pass"; break;
-            case 1: strategyText = "Mostly Pass"; break;
-            case 2: strategyText = "Equal"; break;
-            case 3: strategyText = "Mostly Score"; break;
-            case 4: strategyText = "All Score"; break;
-            default: strategyText = "Equal";
-        }
-
-        data.put(DataKeys.STRATEGY, strategyText);
-
-        data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
-        data.put(DataKeys.SHOOT_ON_MOVE, temp.get(DataKeys.SHOOT_ON_MOVE));
 
         data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
-
         data.put(DataKeys.EXPORTED, false);
-        System.out.println(data);
 
-        if (GlobalVariables.objectIndex != -1) {
+        if (GlobalVariables.objectIndex != -1)
             GlobalVariables.dataList.set(GlobalVariables.objectIndex, data);
-        } else {
+        else
             GlobalVariables.dataList.add(data);
-        }
+
         StorageManager.saveData(this);
         Toast.makeText(this, "Saved Successfully.", Toast.LENGTH_SHORT).show();
         finish();
     }
+
+    private int parseIntSafe(String val) {
+        try { return Integer.parseInt(val); } catch (Exception e) { return 0; }
+    }
+
+    private static final String[] ACCURACY_LABELS = {"0%", "25%", "50%", "75%", "100%"};
+    private static final String[] STRATEGY_LABELS = {"All Pass", "Mostly Pass", "Equal", "Mostly Score", "All Score"};
 
     private void cancelMatch() {
         new AlertDialog.Builder(this)

@@ -1,4 +1,4 @@
-//Ben M
+// Ben M, James A
 //1-19-2026 - 1-21-2026
 //This file contains a list of constant static strings used to label and retrieve data values across the app.
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
@@ -8,6 +8,10 @@ public class DataKeys {
     public static final String TYPE_MATCH = "MATCH_SCOUTING";
     public static final String EXPORTED = "exported";
     public static final String MATCH_TYPE = "match_type";
+
+    public static final String MATCH_DAY = "day";
+    public static final String DAY_ONE = "day_one";
+    public static final String DAY_THREE = "day_three";
 
     public static final String MATCH_NUM = "match_number";
     public static final String TEAM_NUM = "team_number";
@@ -27,4 +31,7 @@ public class DataKeys {
 
     public static final String COMMENTS = "comments";
     public static final String AUTO_COMMENTS = "auto_comments";
+    public static final String ACTIVE_COMMENTS = "active_comments";
+    public static final String INACTIVE_COMMENTS = "inactive_comments";
+
 }

@@ -177,25 +177,12 @@
                 android:paddingBottom="5dp"
                 android:text="You're scouting:" />
 
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_weight="5"
-                android:layout_height="match_parent">
 
                 <Spinner
                     android:id="@+id/scoutingAssignmentAndTeamNumber"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
                     android:layout_height="match_parent" />
-
-                <EditText
-                    android:id="@+id/teamNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:ems="10"
-                    android:inputType="numberSigned"
-                    android:visibility="gone"
-                    android:hint="Team Number" />
-            </FrameLayout>
 
         </LinearLayout>
 

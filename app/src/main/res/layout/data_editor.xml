@@ -205,81 +205,162 @@
             android:layout_weight="0.5"
             android:background="?android:attr/listDivider" />
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4"
-            android:orientation="horizontal"
-            android:weightSum="9">
+            android:layout_weight="15">
 
-            <TextView
-                android:id="@+id/autoNeutralZoneHeader"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/day3"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:text="Estimated Fuel Scored:" />
+                android:visibility="gone"
+                android:weightSum="8"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/autoNeutralZoneHeader2"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/activeCommentsHeader"
+                        style="@style/AutoResize25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Active Hub Notes:" />
+
+                    <TextView
+                        android:id="@+id/inactiveCommentsHeader"
+                        style="@style/AutoResize25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Inactive Hub Notes:" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/activeComments"
+                        style="@style/AutoResize20"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="#"
+                        android:inputType="textMultiLine"
+                        android:text="" />
+
+                    <EditText
+                        android:id="@+id/inactiveComments"
+                        style="@style/AutoResize20"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="#"
+                        android:layout_weight="1"
+                        android:inputType="textMultiLine"
+                        android:text="" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/day1"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:text="Shooting Accuracy:" />
+                android:visibility="visible"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView19"
-                style="@style/AutoResize25"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:layout_weight="3"
-                android:text="Strategy:" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:orientation="horizontal"
+                    android:weightSum="9">
+
+                    <TextView
+                        android:id="@+id/autoNeutralZoneHeader"
+                        style="@style/AutoResize25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:text="Estimated Fuel Scored:" />
+
+                    <TextView
+                        android:id="@+id/autoNeutralZoneHeader2"
+                        style="@style/AutoResize25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:text="Shooting Accuracy:" />
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        style="@style/AutoResize25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:text="Strategy:" />
 
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="11"
-            android:weightSum="9"
-            android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="11"
+                    android:orientation="horizontal"
+                    android:weightSum="9">
 
-            <EditText
-                android:id="@+id/fuelScored"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:ems="10"
-                android:layout_gravity="center_vertical"
-                android:inputType="text"
-                android:hint="#" />
+                    <EditText
+                        android:id="@+id/fuelScored"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="3"
+                        android:ems="10"
+                        android:hint="#"
+                        android:inputType="text" />
 
-            <EditText
-                android:id="@+id/shootingAccuracy"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="3"
-                android:ems="10"
-                android:hint="#"
-                android:inputType="text" />
+                    <EditText
+                        android:id="@+id/shootingAccuracy"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="3"
+                        android:ems="10"
+                        android:hint="#"
+                        android:inputType="text" />
 
-            <EditText
-                android:id="@+id/strategy"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="3"
-                android:ems="10"
-                android:hint="#"
-                android:inputType="text" />
+                    <EditText
+                        android:id="@+id/strategy"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="3"
+                        android:ems="10"
+                        android:hint="#"
+                        android:inputType="text" />
 
-        </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </FrameLayout>
 
         <View
             android:id="@+id/divider2"
