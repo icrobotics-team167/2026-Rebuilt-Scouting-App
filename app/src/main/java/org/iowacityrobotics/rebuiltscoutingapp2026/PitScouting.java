@@ -59,6 +59,7 @@ public class PitScouting extends AppCompatActivity {
     private EditText hopperCapacity;
     private EditText numberOfShooters, intakeWidth;
     private EditText numberOfAutos, autoNotes, day2AutoNotes;
+    private EditText teleopNotes;
     private EditText cornOther, comments, day2Comments;
 
     private CheckBox openHopper, extendableHopper;
@@ -154,6 +155,8 @@ public class PitScouting extends AppCompatActivity {
         cornOther = findViewById(R.id.editTextText);
         comments = findViewById(R.id.comments);
         day2Comments = findViewById(R.id.day2Comments);
+
+        teleopNotes = findViewById(R.id.teleopNotes);
 
         openHopper = findViewById(R.id.openHopper);
         extendableHopper = findViewById(R.id.extendableHopper);
@@ -311,24 +314,13 @@ public class PitScouting extends AppCompatActivity {
             teamSet.add(isDay2 ? "Select Day 2" : "Select Day 1");
 
             for (Map<String, Object> entry : snapshot) {
-                if (entry.containsKey(PitKeys.RECORD_TYPE) &&
-                        PitKeys.TYPE_PIT.equals(entry.get(PitKeys.RECORD_TYPE)) &&
+                if (isPitRecord(entry) && isCurrentDay(entry) &&
                         entry.containsKey(PitKeys.TEAM_NUMBER)) {
 
                     if (!entry.containsKey(PitKeys.PIT_DAY)) continue;
-
-                    String dayInData = String.valueOf(entry.get(PitKeys.PIT_DAY));
-
-                    boolean isDay1 = !isDay2;
-                    boolean matchesDay =
-                            (isDay1 && dayInData.equals(PitKeys.DAY_ONE)) ||
-                                    (!isDay1 && dayInData.equals(PitKeys.DAY_TWO));
-
-                    if (matchesDay) {
-                        String teamNumber = entry.get(PitKeys.TEAM_NUMBER).toString();
-                        if (!teamNumber.isEmpty()) {
-                            teamSet.add(teamNumber);
-                        }
+                    String teamNumber = entry.get(PitKeys.TEAM_NUMBER).toString();
+                    if (!teamNumber.isEmpty()) {
+                        teamSet.add(teamNumber);
                     }
                 }
             }
@@ -389,7 +381,7 @@ public class PitScouting extends AppCompatActivity {
 
                 ArrayList<String> teamNumberStrings = new ArrayList<>();
 
-                if (teamNumbers.size() == 0) {
+                if (teamNumbers.isEmpty()) {
                     teamNumberStrings.add("None");
                 } else {
                     teamNumberStrings.add("Select");
@@ -459,6 +451,7 @@ public class PitScouting extends AppCompatActivity {
         numberOfAutos.setText("");
         autoNotes.setText("");
         day2AutoNotes.setText("");
+        teleopNotes.setText("");
 
         salt.setChecked(false);
         pepper.setChecked(false);
@@ -664,6 +657,7 @@ public class PitScouting extends AppCompatActivity {
             pitData.put(PitKeys.PIT_DAY, PitKeys.DAY_TWO);
 
             pitData.put(PitKeys.AUTO_NOTES, day2AutoNotes.getText().toString());
+            pitData.put(PitKeys.TELEOP_NOTES, teleopNotes.getText().toString());
             pitData.put(PitKeys.COMMENTS, day2Comments.getText().toString());
 
             pitData.put(PitKeys.EXPORTED, false);
@@ -736,7 +730,7 @@ public class PitScouting extends AppCompatActivity {
             String teamNumberInData = String.valueOf(match.get(PitKeys.TEAM_NUMBER)).trim();
             String dayInData = String.valueOf(match.get(PitKeys.PIT_DAY));
 
-            if (PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE)) &&
+            if (isPitRecord(match) &&
                     targetTeam.equals(teamNumberInData) &&
                     currentDay.equals(dayInData)) {
 
@@ -784,6 +778,7 @@ public class PitScouting extends AppCompatActivity {
                         day1.setVisibility(View.GONE);
                         day2.setVisibility(View.VISIBLE);
                         safeSetText(day2AutoNotes, match.get(PitKeys.AUTO_NOTES));
+                        safeSetText(teleopNotes, match.get(PitKeys.TELEOP_NOTES));
                         safeSetText(day2Comments, match.get(PitKeys.COMMENTS));
                     }
 
@@ -802,8 +797,8 @@ public class PitScouting extends AppCompatActivity {
         boolean hasPitData = false;
         boolean allExported = true;
         int teamsFound = 0;
-        for (Map<String, Object> match : GlobalVariables.dataList) {
-            if (match.containsKey(PitKeys.RECORD_TYPE) && PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
+        for (Map<String, Object> entry : GlobalVariables.dataList) {
+            if (isPitRecord(entry) && isCurrentDay(entry)) {
                 hasPitData = true;
                 break;
             }
@@ -813,11 +808,9 @@ public class PitScouting extends AppCompatActivity {
             return;
         }
 
-        for (Map<String, Object> match : GlobalVariables.dataList) {
-            if (match.containsKey(PitKeys.RECORD_TYPE) &&
-                    PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
-                boolean exported = Boolean.TRUE.equals(match.get(PitKeys.EXPORTED));
-
+        for (Map<String, Object> entry : GlobalVariables.dataList) {
+            if (isPitRecord(entry) && isCurrentDay(entry)) {
+                boolean exported = Boolean.TRUE.equals(entry.get(PitKeys.EXPORTED));
                 if (!exported) {
                     allExported = false;
                     break;
@@ -836,10 +829,13 @@ public class PitScouting extends AppCompatActivity {
                     .setMessage("Are you sure you want to re-export all data?")
                     .setPositiveButton("Yes", (dialog, which) -> {
                         String fileName = "";
-                        for (Map<String, Object> match : GlobalVariables.dataList) {
-                            if (match.containsKey(PitKeys.RECORD_TYPE) &&
-                                    PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
-                                fileName = "Team " + match.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data";
+                        for (Map<String, Object> entry : GlobalVariables.dataList) {
+                            if (isPitRecord(entry) && isCurrentDay(entry)) {
+                                String rawDay = entry.get(PitKeys.PIT_DAY).toString();
+                                String[] parts = rawDay.split("_");
+                                String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
+                                        + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
+                                fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data";
                             }
                         }
                         intent.putExtra(Intent.EXTRA_TITLE, fileName);
@@ -852,16 +848,19 @@ public class PitScouting extends AppCompatActivity {
         }
 
         String fileName = "";
-        for (Map<String, Object> match : GlobalVariables.dataList) {
-            if (match.containsKey(PitKeys.RECORD_TYPE) &&
-                    PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
-                boolean exported = Boolean.TRUE.equals(match.get(PitKeys.EXPORTED));
+        for (Map<String, Object> entry : GlobalVariables.dataList) {
+            if (isPitRecord(entry) && isCurrentDay(entry)) {
+                boolean exported = Boolean.TRUE.equals(entry.get(PitKeys.EXPORTED));
                 if (!exported) {
                     teamsFound++;
+                    String rawDay = entry.get(PitKeys.PIT_DAY).toString();
+                    String[] parts = rawDay.split("_");
+                    String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
+                            + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
                     if (teamsFound > 1) {
-                        fileName = "Team " + match.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data";
+                        fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data";
                     } else {
-                        fileName = "Team " + match.get(PitKeys.TEAM_NUMBER).toString() + " Pit Data";
+                        fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " Pit Data";
                     }
                 }
             }
@@ -874,13 +873,12 @@ public class PitScouting extends AppCompatActivity {
         List<Map<String, Object>> newPitData = new ArrayList<>();
         List<Map<String, Object>> allPitData = new ArrayList<>();
 
-        for (Map<String, Object> match : GlobalVariables.dataList) {
-            if (match.containsKey(PitKeys.RECORD_TYPE) &&
-                    PitKeys.TYPE_PIT.equals(match.get(PitKeys.RECORD_TYPE))) {
-                allPitData.add(match);
-                boolean isExported = match.containsKey(PitKeys.EXPORTED) && Boolean.TRUE.equals(match.get(PitKeys.EXPORTED));
+        for (Map<String, Object> entry : GlobalVariables.dataList) {
+            if (isPitRecord(entry) && isCurrentDay(entry)) {
+                allPitData.add(entry);
+                boolean isExported = entry.containsKey(PitKeys.EXPORTED) && Boolean.TRUE.equals(entry.get(PitKeys.EXPORTED));
                 if (!isExported) {
-                    newPitData.add(match);
+                    newPitData.add(entry);
                 }
             }
         }
@@ -907,6 +905,7 @@ public class PitScouting extends AppCompatActivity {
                 "height_units",
                 "weight_units",
                 "intake_units",
+                PitKeys.PIT_DAY,
                 PitKeys.EXPORTED
         );
 
@@ -914,8 +913,11 @@ public class PitScouting extends AppCompatActivity {
 
             Map<String, Object> exportMap = new LinkedHashMap<>(match);
             keysToRemove.forEach(exportMap::remove);
-            if ("Swerve?".equals(match.get(PitKeys.PIT_SWERVE))) {
+            if ("Swerve".equals(match.get(PitKeys.PIT_SWERVE))) {
                 exportMap.replace(PitKeys.PIT_SWERVE, "Yes");
+            }
+            else {
+                exportMap.replace(PitKeys.PIT_SWERVE, "No");
             }
             jsonArray.put(new JSONObject(exportMap));
 
@@ -923,9 +925,6 @@ public class PitScouting extends AppCompatActivity {
         }
 
         StorageManager.writeJsonToUsb(this, findViewById(android.R.id.content), uri, jsonArray.toString());
-        for (Map<String, Object> entry : GlobalVariables.dataList) {
-            System.out.println("Entry type: " + entry.get(PitKeys.RECORD_TYPE));
-        }
         System.out.println(jsonArray);
         StorageManager.saveData(this);
         finish();
@@ -1077,5 +1076,15 @@ public class PitScouting extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    private boolean isPitRecord(Map<String, Object> team) {
+        return team.containsKey(PitKeys.RECORD_TYPE) &&
+                PitKeys.TYPE_PIT.equals(team.get(PitKeys.RECORD_TYPE));
+    }
+
+    private boolean isCurrentDay(Map<String, Object> team) {
+        String expectedDay = daySwitch.isChecked() ? PitKeys.DAY_TWO : PitKeys.DAY_ONE;
+        return expectedDay.equals(team.get(PitKeys.PIT_DAY));
     }
 }

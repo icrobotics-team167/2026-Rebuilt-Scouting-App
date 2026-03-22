@@ -38,6 +38,7 @@ public class PitKeys {
     public static final String AUTO_CLIMB = "climb_auto";
     public static final String NUMBER_AUTOS = "number_of_autos";
     public static final String AUTO_NOTES = "auto_notes";
+    public static final String TELEOP_NOTES = "teleop_notes";
     public static final String PIT_CORN = "corn_preferences";
 
     public static final String PIT_HEIGHT_UNITS = "height_units";
