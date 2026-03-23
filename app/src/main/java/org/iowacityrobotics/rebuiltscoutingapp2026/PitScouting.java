@@ -3,6 +3,7 @@
 //This manages the Pit Scouting user interface.
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
+import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.tabletNumber;
 import static org.iowacityrobotics.rebuiltscoutingapp2026.data.TeamData.teamsObject;
 
 import android.app.Activity;
@@ -835,7 +836,7 @@ public class PitScouting extends AppCompatActivity {
                                 String[] parts = rawDay.split("_");
                                 String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
                                         + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
-                                fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data";
+                                fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data - Tablet " + tabletNumber;
                             }
                         }
                         intent.putExtra(Intent.EXTRA_TITLE, fileName);
@@ -858,9 +859,9 @@ public class PitScouting extends AppCompatActivity {
                     String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
                             + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
                     if (teamsFound > 1) {
-                        fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data";
+                        fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data - Tablet " + tabletNumber;
                     } else {
-                        fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " Pit Data";
+                        fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " Pit Data - Tablet " + tabletNumber;
                     }
                 }
             }

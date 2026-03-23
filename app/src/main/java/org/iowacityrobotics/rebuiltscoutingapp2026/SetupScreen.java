@@ -3,6 +3,8 @@
 // Activity for Setup Screen
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
+import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.tabletNumber;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -341,9 +343,9 @@ public class SetupScreen extends AppCompatActivity {
                         String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
                                 + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
                         if (matchesFound == 1) {
-                            fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " Match Data";
+                            fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " Match Data - Tablet " + tabletNumber;
                         } else if (matchesFound > 1) {
-                            fileName = match.get(day + " " + DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data";
+                            fileName = match.get(day + " " + DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data - Tablet " + tabletNumber;
                         } else {
                             Toast.makeText(this, "Error finding matches.", Toast.LENGTH_SHORT).show();
                         }
@@ -363,7 +365,7 @@ public class SetupScreen extends AppCompatActivity {
                                 String[] parts = rawDay.split("_");
                                 String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
                                         + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
-                                fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data";
+                                fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data - Tablet " + tabletNumber;
                             }
                         }
                         launchFilePicker(fileName);
@@ -394,7 +396,7 @@ public class SetupScreen extends AppCompatActivity {
                     String[] dayParts = rawDay.split("_");
                     String day = Character.toUpperCase(dayParts[0].charAt(0)) + dayParts[0].substring(1) + " "
                             + Character.toUpperCase(dayParts[1].charAt(0)) + dayParts[1].substring(1);
-                    fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + matchNum + " Match Data";
+                    fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + matchNum + " Match Data - Tablet " + tabletNumber;
                     launchFilePicker(fileName);
                     break;
                 }

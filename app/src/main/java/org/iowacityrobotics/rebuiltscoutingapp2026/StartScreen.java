@@ -23,6 +23,7 @@ import androidx.core.os.LocaleListCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.TeamData;
+import org.json.JSONArray;
 
 import java.io.File;
 import java.util.concurrent.ExecutorService;
@@ -30,6 +31,11 @@ import java.util.concurrent.Executors;
 
 public class StartScreen extends AppCompatActivity {
     private static final String EVENT_KEY = "2026mnwi";
+
+    public static final String PREFS_NAME = "tabletData";
+    public static final String NUMBER_KEY = "tabletNumber";
+    public static final String INIT_FLAG_KEY = "initialized";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,19 +123,29 @@ public class StartScreen extends AppCompatActivity {
     }
 
     private void saveTabletNumber() {
-        if (tabletNumber == 0) {
-            String[] tabletNumbers = {"1", "2", "3", "4", "5", "6", "7"};
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean initialized = prefs.getBoolean(INIT_FLAG_KEY, false);
+
+        if (!initialized) {
+            String[] options = {"1", "2", "3", "4", "5", "6", "7"};
             final int[] selectedItem = {0};
 
             new AlertDialog.Builder(this)
                     .setTitle("What tablet number is this tablet?")
-                    .setSingleChoiceItems(tabletNumbers, 0, (dialog, which) -> {
+                    .setSingleChoiceItems(options, 0, (dialog, which) -> {
                         selectedItem[0] = which;
                     })
                     .setPositiveButton("OK", (dialog, which) -> {
-                        tabletNumber = Integer.parseInt(tabletNumbers[selectedItem[0]]);
+                        tabletNumber = Integer.parseInt(options[selectedItem[0]]);
+                        prefs.edit()
+                                .putInt(NUMBER_KEY, tabletNumber)
+                                .putBoolean(INIT_FLAG_KEY, true)
+                                .apply();
+                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
                     })
                     .show();
+        } else {
+            tabletNumber = prefs.getInt(NUMBER_KEY, 1);
         }
     }
 }
