@@ -3,6 +3,9 @@
 //Home screen of app
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
+import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.tabletNumber;
+
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +15,7 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -40,7 +44,7 @@ public class StartScreen extends AppCompatActivity {
 
         if (!matchFile.exists()) {
             MatchDataGenerator.generate(this, EVENT_KEY, () -> {
-                // onComplete now runs on main thread — push the I/O off it
+                // onComplete runs on main thread
                 executor.execute(() -> {
                     MatchSchedule.loadSchedule(StartScreen.this);
                     File teamFile = new File(getFilesDir(), "team_data.json");
@@ -48,8 +52,6 @@ public class StartScreen extends AppCompatActivity {
                         TeamData.generateTeamFile(StartScreen.this);
                     }
                     TeamData.loadTeamFile(StartScreen.this);
-                    // If you ever need to update UI after this, do it here:
-                    // mainHandler.post(() -> { /* UI update */ });
                 });
             });
         } else {
@@ -59,6 +61,7 @@ public class StartScreen extends AppCompatActivity {
                 TeamData.loadTeamFile(StartScreen.this);
             });
         }
+        saveTabletNumber();
 
         Button matchScoutBtn = findViewById(R.id.button);
         matchScoutBtn.setOnClickListener(new View.OnClickListener() {
@@ -111,5 +114,22 @@ public class StartScreen extends AppCompatActivity {
     private boolean loadPitScoutingDay() {
         return getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE)
                 .getBoolean("pit_scouting_day2", false); // false = Day 1 by default
+    }
+
+    private void saveTabletNumber() {
+        if (tabletNumber == 0) {
+            String[] tabletNumbers = {"1", "2", "3", "4", "5", "6", "7"};
+            final int[] selectedItem = {0};
+
+            new AlertDialog.Builder(this)
+                    .setTitle("What tablet number is this tablet?")
+                    .setSingleChoiceItems(tabletNumbers, 0, (dialog, which) -> {
+                        selectedItem[0] = which;
+                    })
+                    .setPositiveButton("OK", (dialog, which) -> {
+                        tabletNumber = Integer.parseInt(tabletNumbers[selectedItem[0]]);
+                    })
+                    .show();
+        }
     }
 }

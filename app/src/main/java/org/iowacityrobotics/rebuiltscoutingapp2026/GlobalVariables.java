@@ -13,4 +13,5 @@ public class GlobalVariables {
     // greater is edit match
     public static int objectIndex = -1;
     public static boolean pitScoutingIsDay2 = false;
+    public static int tabletNumber = 0;
 }
