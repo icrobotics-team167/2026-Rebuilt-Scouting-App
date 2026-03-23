@@ -162,12 +162,13 @@
 
                     <EditText
                         android:id="@+id/activeComments"
+                        style="@style/AutoResize20"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:ems="10"
                         android:inputType="text"
                         android:layout_weight="34"
-                        android:hint="@string/data_entry_active_hub_notes" />
+                        android:hint="@string/data_entry_active_hub_notes_hint" />
 
                     <View
                         android:id="@+id/divider83"
@@ -188,12 +189,13 @@
 
                     <EditText
                         android:id="@+id/inactiveComments"
+                        style="@style/AutoResize20"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="31"
                         android:ems="10"
                         android:inputType="text"
-                        android:hint="@string/data_entry_inactive_hub_notes" />
+                        android:hint="@string/data_entry_inactive_hub_notes_hint" />
 
                     <View
                         android:id="@+id/divider18"
@@ -344,12 +346,13 @@
 
                             <EditText
                                 android:id="@+id/autoCommentsDay3"
+                                style="@style/AutoResize20"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="50"
                                 android:ems="10"
-                                android:hint="@string/data_entry_auto_notes"
+                                android:hint="@string/data_entry_auto_notes_hint"
                                 android:inputType="textMultiLine" />
                         </LinearLayout>
 
@@ -424,7 +427,7 @@
                                 android:layout_height="wrap_content"
                                 android:ems="10"
                                 android:gravity="bottom"
-                                android:hint="@string/data_entry_general_notes"
+                                android:hint="@string/data_entry_general_notes_hint"
                                 android:inputType="textMultiLine"
                                 android:text="" />
                         </LinearLayout>

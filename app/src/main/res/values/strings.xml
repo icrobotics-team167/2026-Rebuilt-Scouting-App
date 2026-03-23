@@ -29,4 +29,8 @@
     <string name="data_entry_general_notes">General Notes</string>
     <string name="data_entry_active_hub_notes">Active Hub Notes</string>
     <string name="data_entry_inactive_hub_notes">Inactive Hub Notes</string>
+    <string name="data_entry_auto_notes_hint">Ex: Went to neutral zone twice, scored many fuel</string>
+    <string name="data_entry_general_notes_hint">Ex: Robot broke down</string>
+    <string name="data_entry_active_hub_notes_hint">Ex: Fast shooting rate from triple-barrel puker</string>
+    <string name="data_entry_inactive_hub_notes_hint">Ex: Fast intake, made lots of good passes</string>
 </resources>

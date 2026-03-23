@@ -147,17 +147,6 @@
                             android:text="Remember that fuel scored is just an estimate — get the best you can" />
 
                         <TextView
-                            android:id="@+id/messedUpText"
-                            style="@style/AutoResize20"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:gravity="center_vertical"
-                            android:paddingStart="30dp"
-                            android:inputType="textMultiLine"
-                            android:text="If you don't pay attention in a match, skip the match with the back button" />
-
-                        <TextView
                             android:id="@+id/focusAttentionHeader"
                             style="@style/AutoResize25"
                             android:layout_width="match_parent"
@@ -176,6 +165,17 @@
                             android:gravity="center_vertical"
                             android:paddingStart="30dp"
                             android:text="Remember to pay attention during matches. If you need a break, talk to A.P.P." />
+
+                        <TextView
+                            android:id="@+id/messedUpText"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:inputType="textMultiLine"
+                            android:paddingStart="30dp"
+                            android:text="If you don't pay attention in a match, skip the match with the back button" />
 
                         <TextView
                             android:id="@+id/nameSettingsHeader"
@@ -293,7 +293,7 @@
                             android:layout_margin="10dp"
                             android:gravity="center_vertical"
                             android:paddingStart="30dp"
-                            android:text="Don't go to heavy into notes - this is Day 1" />
+                            android:text="Don't go to heavy into notes for Day 1" />
 
                         <TextView
                             android:id="@+id/unknownMeasurementText"

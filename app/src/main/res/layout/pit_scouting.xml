@@ -30,7 +30,7 @@
                 android:id="@+id/divider33"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.75"
                 android:background="?android:attr/listDivider" />
 
             <LinearLayout
@@ -129,7 +129,7 @@
                     android:id="@+id/editTeamSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="7" />
+                    android:layout_weight="8" />
 
                 <Space
                     android:layout_width="0dp"
@@ -159,7 +159,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="58">
+                android:layout_weight="57">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -184,7 +184,7 @@
                         android:layout_height="0dp"
                         android:ems="10"
                         android:inputType="text"
-                        android:layout_weight="16"
+                        android:layout_weight="15.5"
                         android:hint="Auto Notes" />
 
                     <TextView
@@ -233,6 +233,13 @@
                         android:layout_weight="7"
                         android:layout_gravity="center"
                         android:text="Save and Exit" />
+
+                    <View
+                        android:id="@+id/divider20"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.75"
+                        android:background="?android:attr/listDivider" />
                 </LinearLayout>
 
                 <LinearLayout

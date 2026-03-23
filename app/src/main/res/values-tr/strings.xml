@@ -28,5 +28,9 @@
     <string name="data_entry_auto_notes">Otonom Notları</string>
     <string name="data_entry_general_notes">Genel Notlar</string>
     <string name="data_entry_active_hub_notes">Aktif Merkez Notları</string>
-    <string name="data_entry_inactive_hub_notes">Pasif Merkez Notları</string>
+    <string name="data_entry_inactive_hub_notes">Aktif Olmayan Merkez Notları</string>
+    <string name="data_entry_auto_notes_hint">Ör: Nötr bölgeye iki kez gitti, çok yakıt puanladı</string>
+    <string name="data_entry_general_notes_hint">Ör: Robot arızalandı</string>
+    <string name="data_entry_active_hub_notes_hint">Ör: Üçlü namludan hızlı atış hızı</string>
+    <string name="data_entry_inactive_hub_notes_hint">Ör: Hızlı toplama, çok iyi pas attı</string>
 </resources>

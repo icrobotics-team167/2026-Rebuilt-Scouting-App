@@ -29,4 +29,8 @@
     <string name="data_entry_general_notes">通用备注</string>
     <string name="data_entry_active_hub_notes">活跃枢纽备注</string>
     <string name="data_entry_inactive_hub_notes">非活跃枢纽备注</string>
+    <string name="data_entry_auto_notes_hint">例：两次进入中立区，得了很多燃料分</string>
+    <string name="data_entry_general_notes_hint">例：机器人发生故障</string>
+    <string name="data_entry_active_hub_notes_hint">例：三管发射器射速很快</string>
+    <string name="data_entry_inactive_hub_notes_hint">例：取球速度快，传球表现出色</string>
 </resources>
