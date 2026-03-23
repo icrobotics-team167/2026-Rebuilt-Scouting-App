@@ -5,8 +5,12 @@ package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,12 +20,15 @@ import org.iowacityrobotics.rebuiltscoutingapp2026.R;
 import java.util.Map;
 
 public class DataEditor extends AppCompatActivity {
+    private LinearLayout day1, day3;
 
     private EditText matchNum, teamNum, scouterName, assignment;
-    private EditText playedDefense, shootOnMove;
-    private EditText autoMoved, startingPosition;
-    private EditText strategy;
-    private EditText towerPos, towerLevel, comments, activeComments, inactiveComments, autoComments;
+    private CheckBox playedDefense, shootOnMove, autoMoved, autoPassedFuel;
+    private EditText startingPosition;
+    private EditText fuelScored, shootingAccuracy, strategy;
+    private EditText comments, autoComments;
+
+    private EditText activeComments, inactiveComments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,9 @@ public class DataEditor extends AppCompatActivity {
     }
 
     private void initializeViews() {
+        day1 = findViewById(R.id.day1);
+        day3 = findViewById(R.id.day3);
+
         matchNum = findViewById(R.id.matchNumber);
         teamNum = findViewById(R.id.teamNumber);
         scouterName = findViewById(R.id.scouter);
@@ -43,18 +53,20 @@ public class DataEditor extends AppCompatActivity {
 
         autoMoved = findViewById(R.id.autoMoved);
         startingPosition = findViewById(R.id.startingPosition);
+        autoPassedFuel = findViewById(R.id.autoPassedFuel);
 
         playedDefense = findViewById(R.id.playedDefense);
         shootOnMove = findViewById(R.id.shootOnMove);
 
+        fuelScored = findViewById(R.id.fuelScored);
+        shootingAccuracy = findViewById(R.id.shootingAccuracy);
         strategy = findViewById(R.id.strategy);
 
-        towerPos = findViewById(R.id.towerPosition);
-        towerLevel = findViewById(R.id.towerLevel);
         comments = findViewById(R.id.comments);
+        autoComments = findViewById(R.id.autoComments);
+
         activeComments = findViewById(R.id.activeComments);
         inactiveComments = findViewById(R.id.inactiveComments);
-        autoComments = findViewById(R.id.autoComments);
     }
 
     private void loadExistingData() {
@@ -66,19 +78,28 @@ public class DataEditor extends AppCompatActivity {
             setTextSafe(scouterName, data.get(DataKeys.SCOUTER));
             setTextSafe(assignment, data.get(DataKeys.ASSIGNMENT));
 
-            setTextSafe(playedDefense, data.get(DataKeys.PLAYED_DEFENSE));
-            setTextSafe(shootOnMove, data.get(DataKeys.SHOOT_ON_MOVE));
-
-            setTextSafe(autoMoved, data.get(DataKeys.AUTO_MOVED));
+            autoMoved.setChecked(getBooleanSafe(data, DataKeys.AUTO_MOVED));
             setTextSafe(startingPosition, data.get(DataKeys.STARTING_POSITION));
+            autoPassedFuel.setChecked(getBooleanSafe(data, DataKeys.AUTO_PASSED_FUEL));
 
-            setTextSafe(strategy, data.get(DataKeys.STRATEGY));
+            playedDefense.setChecked(getBooleanSafe(data, DataKeys.PLAYED_DEFENSE));
+            shootOnMove.setChecked(getBooleanSafe(data, DataKeys.SHOOT_ON_MOVE));
 
-            setTextSafe(towerPos, data.get(DataKeys.TOWER_POS));
-            setTextSafe(towerLevel, data.get(DataKeys.TOWER_LEVEL));
+            if (DataKeys.DAY_ONE.equals(data.get(DataKeys.MATCH_DAY))) {
+                day1.setVisibility(View.VISIBLE);
+                day3.setVisibility(View.GONE);
+
+                setTextSafe(fuelScored, data.get(DataKeys.FUEL_SCORED));
+                setTextSafe(shootingAccuracy, data.get(DataKeys.SHOOTING_ACCURACY));
+                setTextSafe(strategy, data.get(DataKeys.STRATEGY));
+            } else {
+                day1.setVisibility(View.GONE);
+                day3.setVisibility(View.VISIBLE);
+                setTextSafe(activeComments, data.get(DataKeys.ACTIVE_COMMENTS));
+                setTextSafe(inactiveComments, data.get(DataKeys.INACTIVE_COMMENTS));
+            }
+
             setTextSafe(comments, data.get(DataKeys.COMMENTS));
-            setTextSafe(activeComments, data.get(DataKeys.ACTIVE_COMMENTS));
-            setTextSafe(inactiveComments, data.get(DataKeys.INACTIVE_COMMENTS));
             setTextSafe(autoComments, data.get(DataKeys.AUTO_COMMENTS));
         }
     }
@@ -93,19 +114,24 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.SCOUTER, scouterName.getText().toString());
             data.put(DataKeys.ASSIGNMENT, assignment.getText().toString());
 
-            data.put(DataKeys.PLAYED_DEFENSE, parseBoolean(playedDefense));
-            data.put(DataKeys.SHOOT_ON_MOVE, parseBoolean(shootOnMove));
-
-            data.put(DataKeys.AUTO_MOVED, parseBoolean(autoMoved));
+            data.put(DataKeys.AUTO_MOVED, autoMoved.isChecked());
             data.put(DataKeys.STARTING_POSITION, startingPosition.getText().toString());
+            data.put(DataKeys.AUTO_PASSED_FUEL, autoPassedFuel.isChecked());
 
-            data.put(DataKeys.STRATEGY, strategy.getText().toString());
+            data.put(DataKeys.PLAYED_DEFENSE, playedDefense.isChecked());
+            data.put(DataKeys.SHOOT_ON_MOVE, shootOnMove.isChecked());
 
-            data.put(DataKeys.TOWER_POS, towerPos.getText().toString());
-            data.put(DataKeys.TOWER_LEVEL, towerLevel.getText().toString());
+            if (DataKeys.DAY_ONE.equals(data.get(DataKeys.MATCH_DAY))) {
+                data.put(DataKeys.FUEL_SCORED, fuelScored.getText().toString());
+                data.put(DataKeys.SHOOTING_ACCURACY, shootingAccuracy.getText().toString());
+                data.put(DataKeys.STRATEGY, strategy.getText().toString());
+            }
+            else {
+                data.put(DataKeys.ACTIVE_COMMENTS, activeComments.getText().toString());
+                data.put(DataKeys.INACTIVE_COMMENTS, inactiveComments.getText().toString());
+            }
+
             data.put(DataKeys.COMMENTS, comments.getText().toString());
-            data.put(DataKeys.ACTIVE_COMMENTS, activeComments.getText().toString());
-            data.put(DataKeys.INACTIVE_COMMENTS, inactiveComments.getText().toString());
             data.put(DataKeys.AUTO_COMMENTS, autoComments.getText().toString());
 
             data.put(DataKeys.EXPORTED, false);
@@ -156,5 +182,17 @@ public class DataEditor extends AppCompatActivity {
     private boolean parseBoolean(EditText view) {
         String input = view.getText().toString().trim().toLowerCase();
         return input.equals("true") || input.equals("1") || input.equals("yes");
+    }
+
+    private boolean getBooleanSafe(Map<String, Object> data, String key) {
+        Object value = data.get(key);
+        if (value instanceof Boolean) {
+            return (Boolean) value;
+        }
+        // Handles cases where it was accidentally saved as a String
+        if (value instanceof String) {
+            return Boolean.parseBoolean((String) value);
+        }
+        return false; // Safe default
     }
 }

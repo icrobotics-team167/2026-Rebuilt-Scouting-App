@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import androidx.core.os.LocaleListCompat;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEditor;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEntry;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataKeys;
+import org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,11 +43,16 @@ import java.util.Map;
 import java.util.Set;
 
 public class SetupScreen extends AppCompatActivity {
+    private static final String PREFS_NAME = "DataEntryPrefs";
+    private static final String TEAMS_KEY = "day3_teams";
+
 
     private EditText scouterNameInput, matchNumberInput;
     private Spinner assignmentSpinner, matchTypeSpinner, matchListSpinner;
 
     private boolean isExportingAll = false;
+
+    private Switch dataEntrySwitch;
 
     private List<Integer> filteredIndices = new ArrayList<>();
 
@@ -70,6 +77,8 @@ public class SetupScreen extends AppCompatActivity {
         StorageManager.loadData(this);
 
         initializeViews();
+        setupDay3Teams();
+        setupDayListener();
         setupStaticSpinners();
         setupButtons();
         restorePreferences();
@@ -89,6 +98,92 @@ public class SetupScreen extends AppCompatActivity {
         assignmentSpinner = findViewById(R.id.scoutingAssignmentAndTeamNumber);
         matchTypeSpinner = findViewById(R.id.matchHeader);
         matchListSpinner = findViewById(R.id.matchListSpinner);
+        dataEntrySwitch = findViewById((R.id.dataEntrySwitch));
+    }
+
+    private void setupDayListener() {
+        dataEntrySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateMatchListSpinner();
+            }
+        });
+
+    }
+
+    private void setupDay3Teams() {
+        JSONArray teams = new JSONArray();
+        // Add day 3 team numbers here
+        teams.put(167);
+        teams.put(3284);
+        teams.put(112);
+
+        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                .edit()
+                .putString(TEAMS_KEY, teams.toString())
+                .apply();
+    }
+    private boolean validateDay3Team() {
+        if (!dataEntrySwitch.isChecked()) return true;
+
+        String matchNum   = matchNumberInput.getText().toString().trim();
+        String assignment = assignmentSpinner.getSelectedItem().toString();
+        String matchType  = matchTypeSpinner.getSelectedItem().toString();
+
+        String teamNumStr = MatchSchedule.getTeamNumber(matchNum, assignment, matchType);
+
+        if (teamNumStr.isEmpty()) {
+            Toast.makeText(this,
+                    "Could not find team for this match/assignment in schedule.",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        int teamNum = Integer.parseInt(teamNumStr);
+
+        String savedTeamsJson = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                .getString(TEAMS_KEY, "[]");
+
+        try {
+            JSONArray day3Teams = new JSONArray(savedTeamsJson);
+
+            for (int i = 0; i < day3Teams.length(); i++) {
+                if (day3Teams.getInt(i) == teamNum) {
+                    return true;
+                }
+            }
+
+            AlertDialog reScoutDialog = new AlertDialog.Builder(this)
+                    .setTitle("Team Not on Re-Scouting List")
+                    .setMessage("Team " + teamNum + " is not being re-scouted. You get a break! Hooray.")
+                    .setPositiveButton("Ok", null)
+                    .setNeutralButton("Continue", (dialog, which) -> {
+                        if (validateInputs()) {
+                            savePreferences();
+                            GlobalVariables.objectIndex = -1;
+                            Intent intent;
+                            if (scouterNameInput.getText().toString().equals("MADISON")) {
+                                intent = new Intent(SetupScreen.this, Slider.class);
+                            } else {
+                                intent = new Intent(SetupScreen.this, DataEntry.class);
+                            }
+                            intent.putExtra("PASS_SCOUTER",      scouterNameInput.getText().toString());
+                            intent.putExtra("PASS_MATCH",        matchNumberInput.getText().toString());
+                            intent.putExtra("PASS_ASSIGNMENT",   assignmentSpinner.getSelectedItem().toString());
+                            intent.putExtra("PASS_MATCH_TYPE",   matchTypeSpinner.getSelectedItem().toString());
+                            intent.putExtra("PASS_DAY",          dataEntrySwitch.isChecked());
+                            startActivity(intent);
+                        }
+                    })
+                    .show();
+            reScoutDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.RED);
+
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error reading Day 3 team list.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
     private void setupStaticSpinners() {
@@ -97,7 +192,7 @@ public class SetupScreen extends AppCompatActivity {
         assignAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         assignmentSpinner.setAdapter(assignAdapter);
 
-        String[] matchTypes = {"Select", "Practice", "Qualification", "Playoff", "Final"};
+        String[] matchTypes = {"Select", "Practice", "Qualification"};
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, matchTypes);
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         matchTypeSpinner.setAdapter(typeAdapter);
@@ -115,8 +210,10 @@ public class SetupScreen extends AppCompatActivity {
                 Map<String, Object> entry = GlobalVariables.dataList.get(i);
 
                 Object type = entry.get(DataKeys.RECORD_TYPE);
-                if (DataKeys.TYPE_MATCH.equals(type)) {
+                if (type == null || !entry.containsKey(DataKeys.MATCH_DAY)) continue;
 
+                String day = dataEntrySwitch.isChecked() ? DataKeys.DAY_THREE : DataKeys.DAY_ONE;
+                if (DataKeys.TYPE_MATCH.equals(type) && day.equals(entry.get(DataKeys.MATCH_DAY))) {
                     String matchType = String.valueOf(entry.get(DataKeys.MATCH_TYPE));
                     String matchNum = String.valueOf(entry.get(DataKeys.MATCH_NUM));
                     String teamNum = String.valueOf(entry.get(DataKeys.TEAM_NUM));
@@ -125,14 +222,14 @@ public class SetupScreen extends AppCompatActivity {
                     String marker = isExported ? "" : " *";
 
                     matchOptions.add(matchType + " " + matchNum + " - Team " + teamNum + marker);
-
                     filteredIndices.add(i);
                 }
             }
-        }
 
-        if (matchOptions.isEmpty()) {
-            matchOptions.add("No Matches Found");
+            if (matchOptions.size() == 1) {
+                matchOptions.clear();
+                matchOptions.add("No Matches Found");
+            }
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, matchOptions);
@@ -160,7 +257,7 @@ public class SetupScreen extends AppCompatActivity {
         Button exportButtonAll = findViewById(R.id.exportButtonAll);
 
         goButton.setOnClickListener(v -> {
-            if (validateInputs()) {
+            if (validateInputs() && validateDay3Team()) {
                 savePreferences();
                 GlobalVariables.objectIndex = -1;
                 Intent intent;
@@ -169,10 +266,11 @@ public class SetupScreen extends AppCompatActivity {
                 } else {
                     intent = new Intent(SetupScreen.this, DataEntry.class);
                 }
-                intent.putExtra("PASS_SCOUTER", scouterNameInput.getText().toString());
-                intent.putExtra("PASS_MATCH", matchNumberInput.getText().toString());
-                intent.putExtra("PASS_ASSIGNMENT", assignmentSpinner.getSelectedItem().toString());
-                intent.putExtra("PASS_MATCH_TYPE", matchTypeSpinner.getSelectedItem().toString());
+                intent.putExtra("PASS_SCOUTER",      scouterNameInput.getText().toString());
+                intent.putExtra("PASS_MATCH",        matchNumberInput.getText().toString());
+                intent.putExtra("PASS_ASSIGNMENT",   assignmentSpinner.getSelectedItem().toString());
+                intent.putExtra("PASS_MATCH_TYPE",   matchTypeSpinner.getSelectedItem().toString());
+                intent.putExtra("PASS_DAY",          dataEntrySwitch.isChecked());
                 startActivity(intent);
             }
         });
@@ -186,7 +284,12 @@ public class SetupScreen extends AppCompatActivity {
                 startActivity(intent);
             }
             else if (selectedPosition == 0) {
-                Toast.makeText(this, "Select match to edit.", Toast.LENGTH_SHORT).show();
+                if (matchListSpinner.getSelectedItem().toString().equals("No Saved Data")) {
+                    Toast.makeText(this, "No saved data to edit.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(this, "Select match to edit.", Toast.LENGTH_SHORT).show();
+                }
             }
             else {
                 Toast.makeText(this, "No matches available to edit!", Toast.LENGTH_SHORT).show();
@@ -198,6 +301,9 @@ public class SetupScreen extends AppCompatActivity {
             int selectedPosition = matchListSpinner.getSelectedItemPosition();
             if (selectedPosition != 0) {
                 exportSelected();
+            }
+            else if (matchListSpinner.getSelectedItem().toString().equals("No Saved Data")){
+                Toast.makeText(this, "No matches to export.", Toast.LENGTH_SHORT).show();
             }
             else {
                 Toast.makeText(this, "Select match to export.", Toast.LENGTH_SHORT).show();
@@ -213,8 +319,7 @@ public class SetupScreen extends AppCompatActivity {
         isExportingAll = true;
 
         for (Map<String, Object> match : GlobalVariables.dataList) {
-            if (match.containsKey(DataKeys.RECORD_TYPE) &&
-                        DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
+            if (isMatchRecord(match) && isCurrentDay(match)) {
                 hasData = true;
                 boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
                 if (!isExported) {
@@ -227,15 +332,18 @@ public class SetupScreen extends AppCompatActivity {
         if (hasNewData) {
             String fileName = "";
             for (Map<String, Object> match : GlobalVariables.dataList) {
-                if (match.containsKey(DataKeys.RECORD_TYPE) &&
-                        DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
+                if (isMatchRecord(match) && isCurrentDay(match)) {
                     boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
                     if (!isExported) {
                         matchesFound++;
+                        String rawDay = match.get(DataKeys.MATCH_DAY).toString();
+                        String[] parts = rawDay.split("_");
+                        String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
+                                + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
                         if (matchesFound == 1) {
-                            fileName = match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " Match Data";
+                            fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " Match Data";
                         } else if (matchesFound > 1) {
-                            fileName = match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data";
+                            fileName = match.get(day + " " + DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data";
                         } else {
                             Toast.makeText(this, "Error finding matches.", Toast.LENGTH_SHORT).show();
                         }
@@ -250,9 +358,12 @@ public class SetupScreen extends AppCompatActivity {
                     .setPositiveButton("Re-Export All", (dialog, which) -> {
                         String fileName = "";
                         for (Map<String, Object> match : GlobalVariables.dataList) {
-                            if (match.containsKey(DataKeys.RECORD_TYPE) &&
-                                    DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
-                                fileName = match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data";
+                            if (isMatchRecord(match) && isCurrentDay(match)) {
+                                String rawDay = match.get(DataKeys.MATCH_DAY).toString();
+                                String[] parts = rawDay.split("_");
+                                String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
+                                        + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
+                                fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data";
                             }
                         }
                         launchFilePicker(fileName);
@@ -273,12 +384,17 @@ public class SetupScreen extends AppCompatActivity {
 
         String[] parts = selectedItem.split("\\D+");
         for (Map<String, Object> match : GlobalVariables.dataList) {
+            if (!isMatchRecord(match) || !isCurrentDay(match)) continue;
             String matchNum = match.get(DataKeys.MATCH_NUM).toString();
             String teamNum = match.get(DataKeys.TEAM_NUM).toString();
 
-            if (!(teamNum.toString() == "")) {
-                if (matchNum.equals(parts[1]) && teamNum.equals(parts[2])) {
-                    fileName = match.get(DataKeys.MATCH_TYPE).toString() + " " + matchNum + " Match Data";
+            if (!teamNum.isEmpty()) {
+                if (matchNum.equals(parts[1]) && teamNum.equals(parts[2]) && isCurrentDay(match)) {
+                    String rawDay = match.get(DataKeys.MATCH_DAY).toString();
+                    String[] dayParts = rawDay.split("_");
+                    String day = Character.toUpperCase(dayParts[0].charAt(0)) + dayParts[0].substring(1) + " "
+                            + Character.toUpperCase(dayParts[1].charAt(0)) + dayParts[1].substring(1);
+                    fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + matchNum + " Match Data";
                     launchFilePicker(fileName);
                     break;
                 }
@@ -306,17 +422,13 @@ public class SetupScreen extends AppCompatActivity {
         if (isExportingAll) {
             for (Map<String, Object> match : GlobalVariables.dataList) {
                 boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
-                if (!isExported) {
-                    if (match.containsKey(DataKeys.RECORD_TYPE) &&
-                            DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
-                        exportBatch.add(match);
-                    }
+                if (!isExported && isCurrentDay(match) && isMatchRecord(match)) {
+                    exportBatch.add(match);
                 }
             }
             if (exportBatch.isEmpty()) {
                 for (Map<String, Object> match : GlobalVariables.dataList) {
-                    if (match.containsKey(DataKeys.RECORD_TYPE) &&
-                            DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE))) {
+                    if (isCurrentDay(match) && isMatchRecord(match)) {
                         exportBatch.add(match);
                     }
                 }
@@ -339,7 +451,7 @@ public class SetupScreen extends AppCompatActivity {
                 String matchNum = match.get(DataKeys.MATCH_NUM).toString();
                 String teamNum = match.get(DataKeys.TEAM_NUM).toString();
 
-                if (matchNum.equals(selectedMatchNum) && teamNum.equals(selectedTeamNum)) {
+                if (matchNum.equals(selectedMatchNum) && teamNum.equals(selectedTeamNum) && isCurrentDay(match)) {
                     exportBatch.add(match);
                     break;
                 }
@@ -355,7 +467,8 @@ public class SetupScreen extends AppCompatActivity {
         Set<String> keysToRemove = Set.of(
                 DataKeys.RECORD_TYPE,
                 DataKeys.ASSIGNMENT,
-                DataKeys.EXPORTED
+                DataKeys.EXPORTED,
+                DataKeys.MATCH_DAY
         );
         for (Map<String, Object> match : exportBatch) {
             Map<String, Object> exportMap = new LinkedHashMap<>(match);
@@ -364,24 +477,6 @@ public class SetupScreen extends AppCompatActivity {
                 Object value = entry.getValue();
                 if (value instanceof Boolean) {
                     entry.setValue((Boolean) value ? "Yes" : "No");
-                } else if (entry.getKey().equals(DataKeys.STRATEGY)) {
-                    switch (value.toString()) {
-                        case "0":
-                            entry.setValue("All Pass");
-                            break;
-                        case "1":
-                            entry.setValue("Partly Pass");
-                            break;
-                        case "2":
-                            entry.setValue("Equal");
-                            break;
-                        case "3":
-                            entry.setValue("Partly Score");
-                            break;
-                        case "4":
-                            entry.setValue("All Score");
-                            break;
-                    }
                 } else if (!value.toString().isEmpty()) {
                     String strValue = value.toString();
                     strValue = strValue.toLowerCase();
@@ -414,17 +509,6 @@ public class SetupScreen extends AppCompatActivity {
             error = true;
         }
 
-        String selectedAssignment = assignmentSpinner.getSelectedItem().toString();
-        if (selectedAssignment.equals("Select")) {
-            View selectedView = assignmentSpinner.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("Please select an assignment");
-            }
-            error = true;
-        }
-
         String selectedMatchType = matchTypeSpinner.getSelectedItem().toString();
         if (selectedMatchType.equals("Select")) {
             View selectedView = matchTypeSpinner.getSelectedView();
@@ -435,7 +519,29 @@ public class SetupScreen extends AppCompatActivity {
             }
             error = true;
         }
+
+        String selectedAssignment = assignmentSpinner.getSelectedItem().toString();
+        if (selectedAssignment.equals("Select")) {
+                View selectedView = assignmentSpinner.getSelectedView();
+                if (selectedView instanceof TextView) {
+                    TextView selectedTextView = (TextView) selectedView;
+                    selectedTextView.setTextColor(Color.RED);
+                    selectedTextView.setError("Please select an assignment");
+                }
+                error = true;
+            }
+
         return !error;
+    }
+
+    private boolean isMatchRecord(Map<String, Object> match) {
+        return match.containsKey(DataKeys.RECORD_TYPE) &&
+                DataKeys.TYPE_MATCH.equals(match.get(DataKeys.RECORD_TYPE));
+    }
+
+    private boolean isCurrentDay(Map<String, Object> match) {
+        String expectedDay = dataEntrySwitch.isChecked() ? DataKeys.DAY_THREE : DataKeys.DAY_ONE;
+        return expectedDay.equals(match.get(DataKeys.MATCH_DAY));
     }
 
     private void savePreferences() {

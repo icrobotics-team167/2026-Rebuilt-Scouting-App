@@ -10,37 +10,33 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.os.LocaleListCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
 import org.iowacityrobotics.rebuiltscoutingapp2026.R;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DataEntry extends AppCompatActivity {
-
+    private boolean isDay3;
+    private LinearLayout day1, day3;
     private TextView matchNumView, scouterView, assignmentView;
     private EditText teamNumView;
-    private Spinner startingPosition, towerPosition, towerLevel;
+    private Spinner startingPosition, startingPositionDay3;
+    private TextView fuelScored;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +44,16 @@ public class DataEntry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.data_entry);
 
-        MatchSchedule.loadSchedule(this);
+        isDay3 = getIntent().getBooleanExtra("PASS_DAY", false);
         initializeViews();
+        setDayView();
+        setupSeekbar();
         setupSpinners();
         loadHeaderData();
         setupAutoFill();
-        setupTowerPositionAutofill();
 
         findViewById(R.id.saveExitButton).setOnClickListener(v -> checkFieldsAndSave());
+        findViewById(R.id.saveExitButtonDay3).setOnClickListener(v -> checkFieldsAndSave());
     }
 
     @Override
@@ -77,14 +75,34 @@ public class DataEntry extends AppCompatActivity {
         scouterView = findViewById(R.id.scouter);
         assignmentView = findViewById(R.id.scoutingAssignment);
         startingPosition = findViewById(R.id.startingPosition);
-        towerLevel = findViewById(R.id.towerLevel);
-        towerPosition = findViewById(R.id.towerPosition);
+        startingPositionDay3 = findViewById(R.id.startingPositionDay3);
+        fuelScored = findViewById(R.id.fuelScored);
+
+        day1 = findViewById(R.id.day1);
+        day3 = findViewById(R.id.day3);
+    }
+
+    private void setupSeekbar() {
+        SeekBar fuelScoredBar = findViewById(R.id.fuelScoredBar);
+        fuelScoredBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                fuelScored.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
     }
 
     private void setupSpinners() {
-        setupSpinner(R.id.towerPosition, new String[]{"Select", "Unknown", "None", "Outpost", "Center", "Depot"});
-        setupSpinner(R.id.towerLevel, new String[]{"Select", "Unknown", "Ground", "Low", "Medium", "High", "Fall"});
         setupSpinner(R.id.startingPosition, new String[]{"Select", "Unknown", "Outpost", "Center", "Depot"});
+        setupSpinner(R.id.startingPositionDay3, new String[]{"Select", "Unknown", "Outpost", "Center", "Depot"});
     }
 
     private void setupSpinner(int id, String[] items) {
@@ -105,11 +123,24 @@ public class DataEntry extends AppCompatActivity {
         }
     }
 
+    private void setDayView() {
+        if (getIntent() != null) {
+            day1.setVisibility(isDay3 ? View.GONE : View.VISIBLE);
+            day3.setVisibility(isDay3 ? View.VISIBLE : View.GONE);
+        }
+    }
+
     private void setupAutoFill() {
         matchNumView.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            public void onTextChanged(CharSequence s, int start, int before, int count) { updateTeamNumber(); }
-            public void afterTextChanged(Editable s) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateTeamNumber();
+            }
+
+            public void afterTextChanged(Editable s) {
+            }
         });
     }
 
@@ -120,74 +151,21 @@ public class DataEntry extends AppCompatActivity {
         teamNumView.setText(!foundTeam.isEmpty() ? foundTeam : "");
     }
 
-    private void setupTowerPositionAutofill() {
-        towerLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem = parent.getItemAtPosition(position).toString();
-
-                if (selectedItem.equals("Ground")) {
-                    towerPosition.setSelection(2);
-                    towerPosition.setEnabled(false);
-                    View selectedView = towerPosition.getSelectedView();
-                    if (selectedView instanceof TextView) {
-                        TextView selectedTextView = (TextView) selectedView;
-                        selectedTextView.setTextColor(Color.GRAY);
-                    }
-                }
-                else {
-                    towerPosition.setSelection(0);
-                    towerPosition.setEnabled(true);
-                    View selectedView = towerPosition.getSelectedView();
-                    if (selectedView instanceof TextView) {
-                        TextView selectedTextView = (TextView) selectedView;
-                        selectedTextView.setTextColor(Color.BLACK);
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }
-
     private void checkFieldsAndSave() {
         boolean error = false;
         if (teamNumView.getText().toString().isEmpty()) {
-                teamNumView.setError("Required");
-                error = true;
+            teamNumView.setError("Required");
+            error = true;
         }
 
-        String selectedStartingPosition = startingPosition.getSelectedItem().toString();
+        Spinner autoSpinner = (isDay3) ? startingPositionDay3 : startingPosition;
+        String selectedStartingPosition = autoSpinner.getSelectedItem().toString();
         if (selectedStartingPosition.equals("Select")) {
-            View selectedView = startingPosition.getSelectedView();
+            View selectedView = autoSpinner.getSelectedView();
             if (selectedView instanceof TextView) {
                 TextView selectedTextView = (TextView) selectedView;
                 selectedTextView.setTextColor(Color.RED);
                 selectedTextView.setError("Select Starting Position");
-            }
-            error = true;
-        }
-
-        String selectedTowerLevel = towerLevel.getSelectedItem().toString();
-        if (selectedTowerLevel.equals("Select")) {
-            View selectedView = towerLevel.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("Select Tower Level");
-            }
-            error = true;
-        }
-
-        String selectedTowerPosition = towerPosition.getSelectedItem().toString();
-        if (selectedTowerPosition.equals("Select")) {
-            View selectedView = towerPosition.getSelectedView();
-            if (selectedView instanceof TextView) {
-                TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.RED);
-                selectedTextView.setError("Select Tower Position");
             }
             error = true;
         }
@@ -199,43 +177,27 @@ public class DataEntry extends AppCompatActivity {
     }
 
     private void saveNewMatch() {
-
-        Map<String, Object> data = new LinkedHashMap<>();
-        data.put(DataKeys.RECORD_TYPE, DataKeys.TYPE_MATCH);
-
-        // Grab values from views first
         Map<String, Object> temp = new LinkedHashMap<>();
+        List<? extends BaseConfig.Field> fields = isDay3 ? Day3Config.INPUTS : Day1Config.INPUTS;
 
-        for (ScoutingConfig.Field field : ScoutingConfig.INPUTS) {
+        for (BaseConfig.Field field : fields) {
             View v = findViewById(field.viewId);
             if (v == null) continue;
 
-            if (v instanceof EditText)
-                temp.put(field.jsonKey, ((EditText) v).getText().toString());
-
-            else if (v instanceof CheckBox)
-                temp.put(field.jsonKey, ((CheckBox) v).isChecked());
-
+            if (v instanceof EditText) temp.put(field.jsonKey, ((EditText) v).getText().toString());
+            else if (v instanceof CheckBox) temp.put(field.jsonKey, ((CheckBox) v).isChecked());
             else if (v instanceof Spinner)
                 temp.put(field.jsonKey, ((Spinner) v).getSelectedItem().toString());
-
-            else if (v instanceof SeekBar)
-                temp.put(field.jsonKey, ((SeekBar) v).getProgress());
-
+            else if (v instanceof SeekBar) temp.put(field.jsonKey, ((SeekBar) v).getProgress());
             else if (v instanceof TextView) {
                 String val = ((TextView) v).getText().toString();
-                if (field.type == ScoutingConfig.DataType.NUMBER) {
-                    try {
-                        temp.put(field.jsonKey, Integer.parseInt(val));
-                    } catch (Exception e) {
-                        temp.put(field.jsonKey, 0);
-                    }
-                } else {
-                    temp.put(field.jsonKey, val);
-                }
+                temp.put(field.jsonKey, field.type == BaseConfig.DataType.NUMBER ? parseIntSafe(val) : val);
             }
         }
 
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put(DataKeys.RECORD_TYPE, DataKeys.TYPE_MATCH);
+        data.put(DataKeys.MATCH_DAY, isDay3 ? DataKeys.DAY_THREE : DataKeys.DAY_ONE);
         data.put(DataKeys.TEAM_NUM, temp.get(DataKeys.TEAM_NUM));
         data.put(DataKeys.MATCH_TYPE, getIntent().getStringExtra("PASS_MATCH_TYPE"));
         data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
@@ -243,28 +205,38 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
         data.put(DataKeys.AUTO_MOVED, temp.get(DataKeys.AUTO_MOVED));
         data.put(DataKeys.STARTING_POSITION, temp.get(DataKeys.STARTING_POSITION));
+        data.put(DataKeys.AUTO_PASSED_FUEL, temp.get(DataKeys.AUTO_PASSED_FUEL));
         data.put(DataKeys.AUTO_COMMENTS, temp.get(DataKeys.AUTO_COMMENTS));
-        data.put(DataKeys.STRATEGY, temp.get(DataKeys.STRATEGY));
         data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
         data.put(DataKeys.SHOOT_ON_MOVE, temp.get(DataKeys.SHOOT_ON_MOVE));
-        data.put(DataKeys.TOWER_LEVEL, temp.get(DataKeys.TOWER_LEVEL));
-        data.put(DataKeys.TOWER_POS, temp.get(DataKeys.TOWER_POS));
-        data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
-        data.put(DataKeys.ACTIVE_COMMENTS, temp.get(DataKeys.ACTIVE_COMMENTS));
-        data.put(DataKeys.INACTIVE_COMMENTS, temp.get(DataKeys.INACTIVE_COMMENTS));
 
-        data.put(DataKeys.EXPORTED, false);
-        System.out.println(data);
-
-        if (GlobalVariables.objectIndex != -1) {
-            GlobalVariables.dataList.set(GlobalVariables.objectIndex, data);
+        if (!isDay3) {
+            data.put(DataKeys.FUEL_SCORED, temp.get(DataKeys.FUEL_SCORED));
+            data.put(DataKeys.SHOOTING_ACCURACY, ACCURACY_LABELS[(int) temp.get(DataKeys.SHOOTING_ACCURACY)]);
+            data.put(DataKeys.STRATEGY, STRATEGY_LABELS[(int) temp.get(DataKeys.STRATEGY)]);
         } else {
-            GlobalVariables.dataList.add(data);
+            data.put(DataKeys.ACTIVE_COMMENTS, temp.get(DataKeys.ACTIVE_COMMENTS));
+            data.put(DataKeys.INACTIVE_COMMENTS, temp.get(DataKeys.INACTIVE_COMMENTS));
         }
+        data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
+        data.put(DataKeys.EXPORTED, false);
+
+        if (GlobalVariables.objectIndex != -1)
+            GlobalVariables.dataList.set(GlobalVariables.objectIndex, data);
+        else
+            GlobalVariables.dataList.add(data);
+
         StorageManager.saveData(this);
         Toast.makeText(this, "Saved Successfully.", Toast.LENGTH_SHORT).show();
         finish();
     }
+
+    private int parseIntSafe(String val) {
+        try { return Integer.parseInt(val); } catch (Exception e) { return 0; }
+    }
+
+    private static final String[] ACCURACY_LABELS = {"0%", "25%", "50%", "75%", "100%"};
+    private static final String[] STRATEGY_LABELS = {"All Pass", "Mostly Pass", "Equal", "Mostly Score", "All Score"};
 
     private void cancelMatch() {
         new AlertDialog.Builder(this)
@@ -303,20 +275,20 @@ public class DataEntry extends AppCompatActivity {
                 setAppLocale("ch");
                 break;
             case "BENM":
-                style = R.style.BenM;
-                break;
             case "BEN M":
                 style = R.style.BenM;
                 break;
             case "MERT":
                 style = R.style.Mert;
                 break;
+            case "GURT":
+                style = R.style.Mert;
+                setAppLocale("tr");
+                break;
             case "AVANEESH":
                 style = R.style.Avaneesh;
                 break;
             case "BENL":
-                style = R.style.BenL;
-                break;
             case "BEN L":
                 style = R.style.BenL;
                 break;

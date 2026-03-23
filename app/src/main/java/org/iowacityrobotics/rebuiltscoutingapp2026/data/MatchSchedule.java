@@ -12,11 +12,12 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
 
 public class MatchSchedule {
 
-    private static JSONArray matchesArray;
+    public static volatile JSONArray matchesArray;
 
     public static void loadSchedule(Context context) {
 

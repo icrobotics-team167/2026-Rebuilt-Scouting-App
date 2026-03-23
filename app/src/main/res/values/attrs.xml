@@ -7,4 +7,5 @@
     <attr name="AutoSize60" format="dimension" />
     <attr name="SchoolLogo" format="reference" />
     <attr name="buttonTextPrimary" format="reference" />
+    <attr name="colorBackground" format="reference|color" />
 </resources>
