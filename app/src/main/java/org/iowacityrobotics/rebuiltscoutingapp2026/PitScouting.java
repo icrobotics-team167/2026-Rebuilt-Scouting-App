@@ -3,6 +3,8 @@
 //This manages the Pit Scouting user interface.
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
+import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.EVENT_KEY;
+import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.tabletNumber;
 import static org.iowacityrobotics.rebuiltscoutingapp2026.data.TeamData.teamsObject;
 
 import android.app.Activity;
@@ -12,6 +14,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,12 +34,15 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.iowacityrobotics.rebuiltscoutingapp2026.data.DataEntry;
+import org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.StorageManager;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.TeamData;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -44,6 +51,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class PitScouting extends AppCompatActivity {
     private boolean suppressSpinnerEvents;
@@ -117,6 +126,31 @@ public class PitScouting extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadEditTeamSpinner();
+
+        File matchFile = new File(getFilesDir(), "match_data.json");
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+
+        if (!matchFile.exists()) {
+            MatchDataGenerator.generate(this, EVENT_KEY, () -> {
+                // onComplete runs on main thread
+                executor.execute(() -> {
+                    MatchSchedule.loadSchedule(PitScouting.this);
+                    File teamFile = new File(getFilesDir(), "team_data.json");
+                    if (!teamFile.exists()) {
+                        TeamData.generateTeamFile(PitScouting.this);
+                    }
+                    TeamData.loadTeamFile(PitScouting.this);
+                });
+            });
+        } else {
+            // This branch had the same bug — also move it off main
+            executor.execute(() -> {
+                MatchSchedule.loadSchedule(PitScouting.this);
+                TeamData.loadTeamFile(PitScouting.this);
+            });
+        }
     }
 
     @Override
@@ -587,8 +621,6 @@ public class PitScouting extends AppCompatActivity {
         Map<String, Object> pitData = new LinkedHashMap<>();
         if (editingIndex != -1) {
             pitData = GlobalVariables.dataList.get(editingIndex);
-        } else {
-            pitData = new LinkedHashMap<>();
         }
 
         pitData.put(PitKeys.RECORD_TYPE, PitKeys.TYPE_PIT);
@@ -835,7 +867,7 @@ public class PitScouting extends AppCompatActivity {
                                 String[] parts = rawDay.split("_");
                                 String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
                                         + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
-                                fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data";
+                                fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data - Tablet " + tabletNumber;
                             }
                         }
                         intent.putExtra(Intent.EXTRA_TITLE, fileName);
@@ -858,9 +890,9 @@ public class PitScouting extends AppCompatActivity {
                     String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
                             + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
                     if (teamsFound > 1) {
-                        fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data";
+                        fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data - Tablet " + tabletNumber;
                     } else {
-                        fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " Pit Data";
+                        fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " Pit Data - Tablet " + tabletNumber;
                     }
                 }
             }

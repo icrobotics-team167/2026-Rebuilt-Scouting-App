@@ -3,6 +3,9 @@
 //Home screen of app
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
+import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.tabletNumber;
+
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +15,7 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -19,46 +23,24 @@ import androidx.core.os.LocaleListCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.data.TeamData;
+import org.json.JSONArray;
 
 import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class StartScreen extends AppCompatActivity {
-    private static final String EVENT_KEY = "2026mnwi";
+    public static final String PREFS_NAME = "tabletData";
+    public static final String NUMBER_KEY = "tabletNumber";
+    public static final String INIT_FLAG_KEY = "initialized";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_screen);
         setAppLocale("en");
-
-        File matchFile = new File(getFilesDir(), "match_data.json");
-
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Handler mainHandler = new Handler(Looper.getMainLooper());
-
-        if (!matchFile.exists()) {
-            MatchDataGenerator.generate(this, EVENT_KEY, () -> {
-                // onComplete now runs on main thread — push the I/O off it
-                executor.execute(() -> {
-                    MatchSchedule.loadSchedule(StartScreen.this);
-                    File teamFile = new File(getFilesDir(), "team_data.json");
-                    if (!teamFile.exists()) {
-                        TeamData.generateTeamFile(StartScreen.this);
-                    }
-                    TeamData.loadTeamFile(StartScreen.this);
-                    // If you ever need to update UI after this, do it here:
-                    // mainHandler.post(() -> { /* UI update */ });
-                });
-            });
-        } else {
-            // This branch had the same bug — also move it off main
-            executor.execute(() -> {
-                MatchSchedule.loadSchedule(StartScreen.this);
-                TeamData.loadTeamFile(StartScreen.this);
-            });
-        }
+        saveTabletNumber();
 
         Button matchScoutBtn = findViewById(R.id.button);
         matchScoutBtn.setOnClickListener(new View.OnClickListener() {
@@ -111,5 +93,32 @@ public class StartScreen extends AppCompatActivity {
     private boolean loadPitScoutingDay() {
         return getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE)
                 .getBoolean("pit_scouting_day2", false); // false = Day 1 by default
+    }
+
+    private void saveTabletNumber() {
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean initialized = prefs.getBoolean(INIT_FLAG_KEY, false);
+
+        if (!initialized) {
+            String[] options = {"1", "2", "3", "4", "5", "6", "7"};
+            final int[] selectedItem = {0};
+
+            new AlertDialog.Builder(this)
+                    .setTitle("What tablet number is this tablet?")
+                    .setSingleChoiceItems(options, 0, (dialog, which) -> {
+                        selectedItem[0] = which;
+                    })
+                    .setPositiveButton("OK", (dialog, which) -> {
+                        tabletNumber = Integer.parseInt(options[selectedItem[0]]);
+                        prefs.edit()
+                                .putInt(NUMBER_KEY, tabletNumber)
+                                .putBoolean(INIT_FLAG_KEY, true)
+                                .apply();
+                        Toast.makeText(this, "Successfully saved tablet number", Toast.LENGTH_SHORT).show();
+                    })
+                    .show();
+        } else {
+            tabletNumber = prefs.getInt(NUMBER_KEY, 1);
+        }
     }
 }
