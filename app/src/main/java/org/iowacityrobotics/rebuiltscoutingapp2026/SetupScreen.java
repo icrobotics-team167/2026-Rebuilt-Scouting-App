@@ -345,7 +345,7 @@ public class SetupScreen extends AppCompatActivity {
                         if (matchesFound == 1) {
                             fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " Match Data - Tablet " + tabletNumber;
                         } else if (matchesFound > 1) {
-                            fileName = match.get(day + " " + DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data - Tablet " + tabletNumber;
+                            fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data - Tablet " + tabletNumber;
                         } else {
                             Toast.makeText(this, "Error finding matches.", Toast.LENGTH_SHORT).show();
                         }

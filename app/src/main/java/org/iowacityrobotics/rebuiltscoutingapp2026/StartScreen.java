@@ -30,8 +30,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class StartScreen extends AppCompatActivity {
-    private static final String EVENT_KEY = "2026mnwi";
-
     public static final String PREFS_NAME = "tabletData";
     public static final String NUMBER_KEY = "tabletNumber";
     public static final String INIT_FLAG_KEY = "initialized";
@@ -42,31 +40,6 @@ public class StartScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_screen);
         setAppLocale("en");
-
-        File matchFile = new File(getFilesDir(), "match_data.json");
-
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Handler mainHandler = new Handler(Looper.getMainLooper());
-
-        if (!matchFile.exists()) {
-            MatchDataGenerator.generate(this, EVENT_KEY, () -> {
-                // onComplete runs on main thread
-                executor.execute(() -> {
-                    MatchSchedule.loadSchedule(StartScreen.this);
-                    File teamFile = new File(getFilesDir(), "team_data.json");
-                    if (!teamFile.exists()) {
-                        TeamData.generateTeamFile(StartScreen.this);
-                    }
-                    TeamData.loadTeamFile(StartScreen.this);
-                });
-            });
-        } else {
-            // This branch had the same bug — also move it off main
-            executor.execute(() -> {
-                MatchSchedule.loadSchedule(StartScreen.this);
-                TeamData.loadTeamFile(StartScreen.this);
-            });
-        }
         saveTabletNumber();
 
         Button matchScoutBtn = findViewById(R.id.button);
@@ -141,7 +114,7 @@ public class StartScreen extends AppCompatActivity {
                                 .putInt(NUMBER_KEY, tabletNumber)
                                 .putBoolean(INIT_FLAG_KEY, true)
                                 .apply();
-                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Successfully saved tablet number", Toast.LENGTH_SHORT).show();
                     })
                     .show();
         } else {

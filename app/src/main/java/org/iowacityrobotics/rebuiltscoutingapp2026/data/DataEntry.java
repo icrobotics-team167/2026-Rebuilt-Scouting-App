@@ -3,11 +3,15 @@
 //This is the data entry activity.
 package org.iowacityrobotics.rebuiltscoutingapp2026.data;
 
+import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.EVENT_KEY;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -24,11 +28,17 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.os.LocaleListCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
+import org.iowacityrobotics.rebuiltscoutingapp2026.MatchDataGenerator;
+import org.iowacityrobotics.rebuiltscoutingapp2026.PitScouting;
 import org.iowacityrobotics.rebuiltscoutingapp2026.R;
+import org.iowacityrobotics.rebuiltscoutingapp2026.StartScreen;
 
+import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class DataEntry extends AppCompatActivity {
     private boolean isDay3;
@@ -54,6 +64,34 @@ public class DataEntry extends AppCompatActivity {
 
         findViewById(R.id.saveExitButton).setOnClickListener(v -> checkFieldsAndSave());
         findViewById(R.id.saveExitButtonDay3).setOnClickListener(v -> checkFieldsAndSave());
+    }
+
+    protected void onResume() {
+        super.onResume();
+        File matchFile = new File(getFilesDir(), "match_data.json");
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+
+        if (!matchFile.exists()) {
+            MatchDataGenerator.generate(this, EVENT_KEY, () -> {
+                // onComplete runs on main thread
+                executor.execute(() -> {
+                    MatchSchedule.loadSchedule(DataEntry.this);
+                    File teamFile = new File(getFilesDir(), "team_data.json");
+                    if (!teamFile.exists()) {
+                        TeamData.generateTeamFile(DataEntry.this);
+                    }
+                    TeamData.loadTeamFile(DataEntry.this);
+                });
+            });
+        } else {
+            // This branch had the same bug — also move it off main
+            executor.execute(() -> {
+                MatchSchedule.loadSchedule(DataEntry.this);
+                TeamData.loadTeamFile(DataEntry.this);
+            });
+        }
     }
 
     @Override

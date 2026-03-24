@@ -7,6 +7,7 @@ package org.iowacityrobotics.rebuiltscoutingapp2026;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -85,7 +86,9 @@ public class MatchDataGenerator {
 
             @Override
             public void onResponse(Call<List<TBAMatch>> call, Response<List<TBAMatch>> response) {
-                if (!response.isSuccessful() || response.body() == null) return;
+                if (!response.isSuccessful() || response.body() == null) {
+                    return;
+                }
 
                 List<MatchEntry> converted = convert(response.body());
                 MatchDataFile file = new MatchDataFile();
@@ -105,6 +108,7 @@ public class MatchDataGenerator {
             @Override
             public void onFailure(Call<List<TBAMatch>> call, Throwable t) {
                 t.printStackTrace();
+                Toast.makeText(context, "Connect to internet to load competition teams", Toast.LENGTH_LONG).show();
             }
         });
     }
