@@ -22,7 +22,7 @@ public class DataEditor extends AppCompatActivity {
     private LinearLayout day1, day3;
 
     private EditText matchNum, teamNum, scouterName, assignment;
-    private CheckBox playedDefense, shootOnMove, autoMoved, autoPassedFuel;
+    private CheckBox playedDefense, shootOnMove, autoMoved, autoPassedFuel, autoNeutralZone;
     private EditText startingPosition;
     private EditText fuelScored, shootingAccuracy, strategy;
     private EditText comments, autoComments;
@@ -53,6 +53,7 @@ public class DataEditor extends AppCompatActivity {
         autoMoved = findViewById(R.id.autoMoved);
         startingPosition = findViewById(R.id.startingPosition);
         autoPassedFuel = findViewById(R.id.autoPassedFuel);
+        autoNeutralZone = findViewById(R.id.autoNeutralZone);
 
         playedDefense = findViewById(R.id.playedDefense);
         shootOnMove = findViewById(R.id.shootOnMove);
@@ -80,6 +81,7 @@ public class DataEditor extends AppCompatActivity {
             autoMoved.setChecked(getBooleanSafe(data, DataKeys.AUTO_MOVED));
             setTextSafe(startingPosition, data.get(DataKeys.STARTING_POSITION));
             autoPassedFuel.setChecked(getBooleanSafe(data, DataKeys.AUTO_PASSED_FUEL));
+            autoNeutralZone.setChecked(getBooleanSafe(data, DataKeys.AUTO_NEUTRAL_ZONE));
 
             playedDefense.setChecked(getBooleanSafe(data, DataKeys.PLAYED_DEFENSE));
             shootOnMove.setChecked(getBooleanSafe(data, DataKeys.SHOOT_ON_MOVE));
@@ -116,6 +118,7 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.AUTO_MOVED, autoMoved.isChecked());
             data.put(DataKeys.STARTING_POSITION, startingPosition.getText().toString());
             data.put(DataKeys.AUTO_PASSED_FUEL, autoPassedFuel.isChecked());
+            data.put(DataKeys.AUTO_NEUTRAL_ZONE, autoNeutralZone.isChecked());
 
             data.put(DataKeys.PLAYED_DEFENSE, playedDefense.isChecked());
             data.put(DataKeys.SHOOT_ON_MOVE, shootOnMove.isChecked());

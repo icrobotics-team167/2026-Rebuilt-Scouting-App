@@ -24,6 +24,7 @@ public class DataKeys {
     public static final String AUTO_MOVED = "auto_moved";
     public static final String STARTING_POSITION = "starting_position";
     public static final String AUTO_PASSED_FUEL = "auto_passed_fuel";
+    public static final String AUTO_NEUTRAL_ZONE = "auto_neutral_zone";
 
     public static final String FUEL_SCORED = "fuel_scored";
     public static final String SHOOTING_ACCURACY = "shot_accuracy";

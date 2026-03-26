@@ -18,6 +18,7 @@ public class Day1Config {
         INPUTS.add(new BaseConfig.Field(R.id.autoMoved, DataKeys.AUTO_MOVED, BaseConfig.DataType.BOOLEAN));
         INPUTS.add(new BaseConfig.Field(R.id.startingPosition, DataKeys.STARTING_POSITION, BaseConfig.DataType.TEXT));
         INPUTS.add(new BaseConfig.Field(R.id.autoPassedFuel, DataKeys.AUTO_PASSED_FUEL, BaseConfig.DataType.BOOLEAN));
+        INPUTS.add(new BaseConfig.Field(R.id.autoNeutralZone, DataKeys.AUTO_NEUTRAL_ZONE, BaseConfig.DataType.BOOLEAN));
 
         INPUTS.add(new BaseConfig.Field(R.id.fuelScoredBar, DataKeys.FUEL_SCORED, BaseConfig.DataType.NUMBER));
         INPUTS.add(new BaseConfig.Field(R.id.shootingAccuracyBar, DataKeys.SHOOTING_ACCURACY, BaseConfig.DataType.NUMBER));

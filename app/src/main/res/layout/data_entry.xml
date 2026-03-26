@@ -117,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:weightSum="123">
 
                 <View
@@ -281,7 +281,7 @@
                             style="@style/AutoResize20"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="30"
+                            android:layout_weight="25"
                             android:gravity="center"
                             android:text="@string/data_entry_starting_position_header" />
 
@@ -289,7 +289,7 @@
                             android:id="@+id/startingPositionDay3"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="30" />
+                            android:layout_weight="25" />
 
                         <View
                             android:id="@+id/divider87"
@@ -303,7 +303,7 @@
                             style="@style/AutoResize20"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="30"
+                            android:layout_weight="20"
                             android:text="@string/data_entry_moved" />
 
                         <CheckBox
@@ -311,8 +311,16 @@
                             style="@style/AutoResize20"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="30"
+                            android:layout_weight="25"
                             android:text="@string/data_entry_passed_fuel" />
+
+                        <CheckBox
+                            android:id="@+id/autoNeutralZoneDay3"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="25"
+                            android:text="@string/data_entry_auto_neutral_zone" />
                     </LinearLayout>
 
                     <View
@@ -476,7 +484,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:weightSum="123">
 
                 <View
@@ -838,7 +846,7 @@
                             style="@style/AutoResize20"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="30"
+                            android:layout_weight="25"
                             android:gravity="center"
                             android:text="@string/data_entry_starting_position_header" />
 
@@ -846,7 +854,7 @@
                             android:id="@+id/startingPosition"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="30" />
+                            android:layout_weight="25" />
 
                         <View
                             android:id="@+id/divider7"
@@ -860,7 +868,7 @@
                             style="@style/AutoResize20"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="30"
+                            android:layout_weight="20"
                             android:text="@string/data_entry_moved" />
 
                         <CheckBox
@@ -868,8 +876,16 @@
                             style="@style/AutoResize20"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="30"
+                            android:layout_weight="25"
                             android:text="@string/data_entry_passed_fuel" />
+
+                        <CheckBox
+                            android:id="@+id/autoNeutralZone"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="25"
+                            android:text="@string/data_entry_auto_neutral_zone" />
                     </LinearLayout>
 
                     <View

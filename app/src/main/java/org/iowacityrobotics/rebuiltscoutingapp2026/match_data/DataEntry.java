@@ -214,9 +214,9 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.AUTO_MOVED, temp.get(DataKeys.AUTO_MOVED));
         data.put(DataKeys.STARTING_POSITION, temp.get(DataKeys.STARTING_POSITION));
         data.put(DataKeys.AUTO_PASSED_FUEL, temp.get(DataKeys.AUTO_PASSED_FUEL));
+        data.put(DataKeys.AUTO_NEUTRAL_ZONE, temp.get(DataKeys.AUTO_NEUTRAL_ZONE));
         data.put(DataKeys.AUTO_COMMENTS, temp.get(DataKeys.AUTO_COMMENTS));
-        data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
-        data.put(DataKeys.SHOOT_ON_MOVE, temp.get(DataKeys.SHOOT_ON_MOVE));
+        data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
 
         if (!isDay3) {
             data.put(DataKeys.FUEL_SCORED, temp.get(DataKeys.FUEL_SCORED));
@@ -226,7 +226,9 @@ public class DataEntry extends AppCompatActivity {
             data.put(DataKeys.ACTIVE_COMMENTS, temp.get(DataKeys.ACTIVE_COMMENTS));
             data.put(DataKeys.INACTIVE_COMMENTS, temp.get(DataKeys.INACTIVE_COMMENTS));
         }
-        data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
+
+        data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
+        data.put(DataKeys.SHOOT_ON_MOVE, temp.get(DataKeys.SHOOT_ON_MOVE));
         data.put(DataKeys.EXPORTED, false);
 
         if (GlobalVariables.objectIndex != -1)
