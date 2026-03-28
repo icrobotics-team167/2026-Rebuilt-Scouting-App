@@ -247,11 +247,13 @@ public class PitScouting extends AppCompatActivity {
     private void setupDay2Teams() {
         SharedPreferences prefs = getSharedPreferences(PitKeys.PREFS_NAME, MODE_PRIVATE);
         boolean initialized = prefs.getBoolean(PitKeys.INIT_FLAG_KEY, false);
+        int[] teams = {};
 
         if (!initialized) {
             JSONArray defaultTeams = new JSONArray();
-            // defaultTeams.put(167); // Example day 2 team because we are so good
-            // Add more teams here to Day 2 list
+            for (int team : teams) {
+                defaultTeams.put(team);
+            }
             prefs.edit()
                     .putString(PitKeys.TEAMS_KEY, defaultTeams.toString())
                     .putBoolean(PitKeys.INIT_FLAG_KEY, true)
