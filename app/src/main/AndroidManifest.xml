@@ -11,7 +11,7 @@
         android:theme="@style/main_theme">
 
         <activity
-            android:name=".StartScreen"
+            android:name=".main_screens.StartScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,15 +19,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SetupScreen" />
+        <activity android:name=".main_screens.SetupScreen" />
 
-        <activity android:name=".PitScouting" />
+        <activity android:name=".pit_data.PitScouting" />
 
-        <activity android:name=".data.DataEditor" />
-        <activity android:name=".data.DataEntry" />
+        <activity android:name=".match_data.DataEditor" />
+        <activity android:name=".match_data.DataEntry" />
 
-        <activity android:name=".InstructionsScreen" />
-        <activity android:name=".Slider" />
+        <activity android:name=".main_screens.InstructionsScreen" />
+        <activity android:name=".main_screens.Slider" />
 
     </application>
 
