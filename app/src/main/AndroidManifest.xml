@@ -2,6 +2,10 @@
     package="org.iowacityrobotics.rebuiltscoutingapp2026">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,14 +24,23 @@
         </activity>
 
         <activity android:name=".main_screens.SetupScreen" />
-
         <activity android:name=".pit_data.PitScouting" />
-
         <activity android:name=".match_data.DataEditor" />
         <activity android:name=".match_data.DataEntry" />
-
         <activity android:name=".main_screens.InstructionsScreen" />
         <activity android:name=".main_screens.Slider" />
+
+        <service android:name=".wireless_export.UploadService" />
+        <receiver android:name=".wireless_export.BootReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".wireless_export.WifiReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
