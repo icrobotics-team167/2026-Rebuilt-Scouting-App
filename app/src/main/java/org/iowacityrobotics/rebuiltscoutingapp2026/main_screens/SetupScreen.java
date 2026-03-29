@@ -118,15 +118,7 @@ public class SetupScreen extends AppCompatActivity {
     private void setupDay3Teams() {
         JSONArray teams = new JSONArray();
         // Add day 3 team numbers here
-        teams.put(4646);
-        teams.put(4728);
-        teams.put(59);
-        teams.put(5442);
-        teams.put(7848);
-        teams.put(525);
-        teams.put(7531);
-        teams.put(2227);
-        teams.put(6420);
+        // teams.put(167);
 
         getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
                 .edit()
@@ -250,7 +242,7 @@ public class SetupScreen extends AppCompatActivity {
     private void autoIncrementMatchNumber() {
         int maxMatch = 0;
         for (Map<String, Object> data : GlobalVariables.dataList) {
-            if (isMatchRecord(data) && isCurrentDay(data)) {
+            if (isMatchRecord(data)) {
                 try {
                     int current = Integer.parseInt(String.valueOf(data.get(DataKeys.MATCH_NUM)));
                     if (current > maxMatch) maxMatch = current;
