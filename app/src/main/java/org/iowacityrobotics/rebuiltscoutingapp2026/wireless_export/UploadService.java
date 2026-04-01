@@ -1,11 +1,13 @@
 package org.iowacityrobotics.rebuiltscoutingapp2026.wireless_export;
 
-import android.app.Service;
+import android.app.*;
+import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.os.IBinder;
+import android.net.*;
+import android.os.*;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
 import org.iowacityrobotics.rebuiltscoutingapp2026.match_data.DataKeys;
@@ -14,28 +16,23 @@ import org.iowacityrobotics.rebuiltscoutingapp2026.storage.StorageManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.LinkedHashMap;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 
 public class UploadService extends Service {
 
-    private static final String HOTSPOT_NAME = "ScoutingNetwork";
-    private static final String SHEET_URL    = "";
+    private static final String SHEET_URL = "https://script.google.com/macros/s/AKfycbzcmUM8muhY72pHrxagofKkyLkWvpJatQatMaMysjF0qiCbAQbXamuHxVLGhhOKDR1y/exec";
+    private static final String CHANNEL_ID = "UploadServiceChannel";
+    private static final int NOTIFICATION_ID = 1;
+
+    private ConnectivityManager connectivityManager;
+    private ConnectivityManager.NetworkCallback networkCallback;
+
+    private Network lastNetwork = null;
+    private boolean isUploading = false;
 
     private static final Set<String> KEYS_TO_REMOVE = new HashSet<>(Arrays.asList(
             DataKeys.EXPORTED,
@@ -50,23 +47,64 @@ public class UploadService extends Service {
     ));
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        if (isConnectedToHotspot()) {
-            uploadData();
-        }
-        return START_STICKY;
+    public void onCreate() {
+        super.onCreate();
+
+        startForegroundServiceNotification();
+
+        connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkRequest request = new NetworkRequest.Builder()
+                .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                .build();
+
+        networkCallback = new ConnectivityManager.NetworkCallback() {
+
+            @Override
+            public void onAvailable(Network network) {
+                if (!network.equals(lastNetwork)) {
+                    lastNetwork = network;
+                    Log.d("Upload", "New Wi-Fi network detected → uploading");
+                    tryUpload();
+                }
+            }
+
+            @Override
+            public void onLost(Network network) {
+                if (network.equals(lastNetwork)) {
+                    Log.d("Upload", "Network lost → reset state");
+                    lastNetwork = null;
+                }
+            }
+        };
+
+        connectivityManager.registerNetworkCallback(request, networkCallback);
     }
 
-    private boolean isConnectedToHotspot() {
-        WifiManager wifiManager = (WifiManager)
-                getApplicationContext().getSystemService(WIFI_SERVICE);
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        String ssid = wifiInfo.getSSID().replace("\"", "");
-        return ssid.equals(HOTSPOT_NAME);
+    private void tryUpload() {
+        if (isUploading) return;
+
+        if (isOnWifi()) {
+            uploadData();
+        } else {
+            Log.d("Upload", "Not on Wi-Fi");
+        }
+    }
+
+    private boolean isOnWifi() {
+        Network activeNetwork = connectivityManager.getActiveNetwork();
+        if (activeNetwork == null) return false;
+
+        NetworkCapabilities caps = connectivityManager.getNetworkCapabilities(activeNetwork);
+        return caps != null && caps.hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
     }
 
     private void uploadData() {
+        isUploading = true;
+
         try {
+            StorageManager.loadData(getApplicationContext());
+
             JSONArray jsonArray = new JSONArray();
 
             for (Map<String, Object> entry : GlobalVariables.dataList) {
@@ -82,21 +120,23 @@ public class UploadService extends Service {
                     }
                 }
 
-                if (cleaned.containsKey(PitKeys.PIT_SWERVE)) {
-                    String swerveVal = String.valueOf(cleaned.get(PitKeys.PIT_SWERVE));
-                    cleaned.put(PitKeys.PIT_SWERVE, swerveVal.equals("Swerve") ? "Yes" : "No");
-                }
-
                 jsonArray.put(new JSONObject(cleaned));
             }
 
             String json = jsonArray.toString();
+
             if (json.equals("[]")) {
                 Log.d("Upload", "No data to upload");
+                isUploading = false;
                 return;
             }
 
-            OkHttpClient client = new OkHttpClient();
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .writeTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
+                    .build();
+
             RequestBody body = RequestBody.create(
                     json, MediaType.parse("application/json; charset=utf-8"));
 
@@ -108,19 +148,69 @@ public class UploadService extends Service {
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
-                    Log.e("Upload", "Failed: " + e.getMessage());
+                    isUploading = false;
+                    Log.e("Upload", "Upload failed: " + e.getMessage());
                 }
+
                 @Override
-                public void onResponse(Call call, Response response) {
-                    Log.d("Upload", "Upload complete: " + response.code());
+                public void onResponse(Call call, Response response) throws IOException {
+                    String responseBody = response.body() != null ? response.body().string() : "";
+                    isUploading = false;
+
+                    if (response.isSuccessful()) {
+                        Log.d("Upload", "Upload successful");
+                    } else {
+                        Log.e("Upload", "Server error: " + response.code());
+                    }
                 }
             });
 
         } catch (Exception e) {
-            Log.e("Upload", "Error building upload: " + e.getMessage());
+            isUploading = false;
+            Log.e("Upload", "Error: " + e.getMessage());
+        }
+    }
+
+    private void startForegroundServiceNotification() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Upload Service",
+                    NotificationManager.IMPORTANCE_LOW
+            );
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            if (manager != null) {
+                manager.createNotificationChannel(channel);
+            }
+        }
+
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle("Scouting App")
+                .setContentText("Waiting for Wi-Fi connection...")
+                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .build();
+
+        startForeground(NOTIFICATION_ID, notification);
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return START_STICKY;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (connectivityManager != null && networkCallback != null) {
+            connectivityManager.unregisterNetworkCallback(networkCallback);
         }
     }
 
     @Override
-    public IBinder onBind(Intent intent) { return null; }
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
 }

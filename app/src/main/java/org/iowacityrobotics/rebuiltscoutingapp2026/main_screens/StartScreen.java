@@ -5,28 +5,35 @@ package org.iowacityrobotics.rebuiltscoutingapp2026.main_screens;
 
 import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.tabletNumber;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.os.LocaleListCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.R;
 import org.iowacityrobotics.rebuiltscoutingapp2026.storage.MatchDataLoader;
 import org.iowacityrobotics.rebuiltscoutingapp2026.pit_data.PitScouting;
+import org.iowacityrobotics.rebuiltscoutingapp2026.wireless_export.UploadService;
 
 public class StartScreen extends AppCompatActivity {
     public static final String PREFS_NAME = "tabletData";
     public static final String NUMBER_KEY = "tabletNumber";
     public static final String INIT_FLAG_KEY = "initialized";
+    private static final int LOCATION_PERMISSION_REQUEST = 1;
 
 
     @Override
@@ -37,6 +44,8 @@ public class StartScreen extends AppCompatActivity {
         saveTabletNumber();
 
         MatchDataLoader.loadMatchData(this);
+
+        requestPermissionsIfNeeded();
 
         Button matchScoutBtn = findViewById(R.id.button);
         matchScoutBtn.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +84,7 @@ public class StartScreen extends AppCompatActivity {
             }
         });
     }
+
     public void setAppLocale(String languageCode) {
         LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(languageCode);
         AppCompatDelegate.setApplicationLocales(appLocale);
@@ -115,6 +125,41 @@ public class StartScreen extends AppCompatActivity {
                     .show();
         } else {
             tabletNumber = prefs.getInt(NUMBER_KEY, 1);
+        }
+    }
+
+    private void requestPermissionsIfNeeded() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                    },
+                    LOCATION_PERMISSION_REQUEST);
+
+        } else {
+            startUploadService();
+        }
+    }
+
+    private void startUploadService() {
+        Intent intent = new Intent(this, UploadService.class);
+        ContextCompat.startForegroundService(this, intent);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == LOCATION_PERMISSION_REQUEST) {
+            if (grantResults.length > 0 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startUploadService();
+            }
         }
     }
 }
