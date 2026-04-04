@@ -1,3 +1,6 @@
+//Claude, James A
+//3-20-2026 - 4-03-2026
+//Class that uploads data to the spreadsheet
 package org.iowacityrobotics.rebuiltscoutingapp2026.wireless_export;
 
 import android.app.*;
@@ -27,9 +30,11 @@ public class UploadService extends Service {
     private static final String SHEET_URL = "https://script.google.com/macros/s/AKfycbzcmUM8muhY72pHrxagofKkyLkWvpJatQatMaMysjF0qiCbAQbXamuHxVLGhhOKDR1y/exec";
     private static final String CHANNEL_ID = "UploadServiceChannel";
     private static final int NOTIFICATION_ID = 1;
+    private static final long RETRY_DELAY_MS = 5000;
 
     private ConnectivityManager connectivityManager;
     private ConnectivityManager.NetworkCallback networkCallback;
+    private final Handler retryHandler = new Handler(Looper.getMainLooper());
 
     private Network lastNetwork = null;
     private boolean isUploading = false;
@@ -74,6 +79,7 @@ public class UploadService extends Service {
                 if (network.equals(lastNetwork)) {
                     Log.d("Upload", "Network lost → reset state");
                     lastNetwork = null;
+                    retryHandler.removeCallbacksAndMessages(null);
                 }
             }
         };
@@ -117,6 +123,11 @@ public class UploadService extends Service {
                 for (Map.Entry<String, Object> field : cleaned.entrySet()) {
                     if (field.getValue() instanceof Boolean) {
                         field.setValue((Boolean) field.getValue() ? "Yes" : "No");
+                    } else if (field.getValue() != null && !field.getValue().toString().isEmpty()) {
+                        String strValue = field.getValue().toString();
+                        strValue = strValue.toLowerCase();
+                        strValue = strValue.substring(0, 1).toUpperCase() + strValue.substring(1);
+                        field.setValue(strValue);
                     }
                 }
 
@@ -148,8 +159,9 @@ public class UploadService extends Service {
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
-                    isUploading = false;
                     Log.e("Upload", "Upload failed: " + e.getMessage());
+                    isUploading = false;
+                    retryHandler.postDelayed(() -> tryUpload(), RETRY_DELAY_MS);
                 }
 
                 @Override
@@ -161,6 +173,7 @@ public class UploadService extends Service {
                         Log.d("Upload", "Upload successful");
                     } else {
                         Log.e("Upload", "Server error: " + response.code());
+                        retryHandler.postDelayed(() -> tryUpload(), RETRY_DELAY_MS);
                     }
                 }
             });
@@ -168,6 +181,7 @@ public class UploadService extends Service {
         } catch (Exception e) {
             isUploading = false;
             Log.e("Upload", "Error: " + e.getMessage());
+            retryHandler.postDelayed(() -> tryUpload(), RETRY_DELAY_MS);
         }
     }
 
@@ -203,7 +217,7 @@ public class UploadService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+        retryHandler.removeCallbacksAndMessages(null);
         if (connectivityManager != null && networkCallback != null) {
             connectivityManager.unregisterNetworkCallback(networkCallback);
         }

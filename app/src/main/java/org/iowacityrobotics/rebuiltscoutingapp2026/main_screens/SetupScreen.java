@@ -136,7 +136,7 @@ public class SetupScreen extends AppCompatActivity {
 
         if (teamNumStr.isEmpty()) {
             Toast.makeText(this,
-                    "Could not find team for this match/assignment in schedule.",
+                    matchType + " Match " + matchNum + " is not scheduled to take place at this event",
                     Toast.LENGTH_SHORT).show();
             return false;
         }

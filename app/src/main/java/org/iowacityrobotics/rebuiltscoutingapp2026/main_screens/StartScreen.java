@@ -33,7 +33,6 @@ public class StartScreen extends AppCompatActivity {
     public static final String PREFS_NAME = "tabletData";
     public static final String NUMBER_KEY = "tabletNumber";
     public static final String INIT_FLAG_KEY = "initialized";
-    private static final int LOCATION_PERMISSION_REQUEST = 1;
 
 
     @Override
@@ -45,7 +44,7 @@ public class StartScreen extends AppCompatActivity {
 
         MatchDataLoader.loadMatchData(this);
 
-        requestPermissionsIfNeeded();
+        startUploadService();
 
         Button matchScoutBtn = findViewById(R.id.button);
         matchScoutBtn.setOnClickListener(new View.OnClickListener() {
@@ -89,17 +88,6 @@ public class StartScreen extends AppCompatActivity {
         LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(languageCode);
         AppCompatDelegate.setApplicationLocales(appLocale);
     }
-    private void savePitScoutingDay(boolean isDay2) {
-        getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE)
-                .edit()
-                .putBoolean("pit_scouting_day2", isDay2)
-                .apply();
-    }
-
-    private boolean loadPitScoutingDay() {
-        return getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE)
-                .getBoolean("pit_scouting_day2", false); // false = Day 1 by default
-    }
 
     private void saveTabletNumber() {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -128,38 +116,8 @@ public class StartScreen extends AppCompatActivity {
         }
     }
 
-    private void requestPermissionsIfNeeded() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this,
-                    new String[]{
-                            Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION
-                    },
-                    LOCATION_PERMISSION_REQUEST);
-
-        } else {
-            startUploadService();
-        }
-    }
-
     private void startUploadService() {
         Intent intent = new Intent(this, UploadService.class);
         ContextCompat.startForegroundService(this, intent);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == LOCATION_PERMISSION_REQUEST) {
-            if (grantResults.length > 0 &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startUploadService();
-            }
-        }
     }
 }
