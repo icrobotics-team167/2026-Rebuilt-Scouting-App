@@ -95,7 +95,12 @@ public class DataEntry extends AppCompatActivity {
         fuelScoredBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                fuelScored.setText(String.valueOf(progress));
+                if (progress == 100) {
+                    fuelScored.setText("100+");
+                }
+                else {
+                    fuelScored.setText(String.valueOf(progress));
+                }
             }
 
             @Override

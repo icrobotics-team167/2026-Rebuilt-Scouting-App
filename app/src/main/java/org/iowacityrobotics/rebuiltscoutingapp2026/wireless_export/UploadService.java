@@ -13,8 +13,10 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
+import org.iowacityrobotics.rebuiltscoutingapp2026.main_screens.StartScreen;
 import org.iowacityrobotics.rebuiltscoutingapp2026.match_data.DataKeys;
 import org.iowacityrobotics.rebuiltscoutingapp2026.pit_data.PitKeys;
+import org.iowacityrobotics.rebuiltscoutingapp2026.storage.MatchDataLoader;
 import org.iowacityrobotics.rebuiltscoutingapp2026.storage.StorageManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -123,11 +125,9 @@ public class UploadService extends Service {
                 for (Map.Entry<String, Object> field : cleaned.entrySet()) {
                     if (field.getValue() instanceof Boolean) {
                         field.setValue((Boolean) field.getValue() ? "Yes" : "No");
-                    } else if (field.getValue() != null && !field.getValue().toString().isEmpty()) {
-                        String strValue = field.getValue().toString();
-                        strValue = strValue.toLowerCase();
-                        strValue = strValue.substring(0, 1).toUpperCase() + strValue.substring(1);
-                        field.setValue(strValue);
+                    } else if (field.getKey().equals("scouter_name") && field.getValue() != null && !field.getValue().toString().isEmpty()) {
+                        String strValue = field.getValue().toString().toLowerCase();
+                        field.setValue(strValue.substring(0, 1).toUpperCase() + strValue.substring(1));
                     }
                 }
 
