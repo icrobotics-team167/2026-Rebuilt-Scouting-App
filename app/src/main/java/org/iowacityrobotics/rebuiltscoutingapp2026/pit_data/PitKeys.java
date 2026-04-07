@@ -34,6 +34,7 @@ public class PitKeys {
     public static final String PIT_INTAKE = "intake_info";
     public static final String PIT_INTAKE_WIDTH = "intake_width";
     public static final String PIT_CROSSING = "crossing_method";
+    public static final String PIT_AWARD = "award";
 
     public static final String AUTO_CLIMB = "climb_auto";
     public static final String NUMBER_AUTOS = "number_of_autos";

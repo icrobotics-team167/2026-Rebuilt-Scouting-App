@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="128"
+        android:background="@color/background"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="16"
+            android:weightSum="32"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+
+            <TextView
+                android:id="@+id/scoutingShiftsHeader"
+                style="@style/AutoResize60"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="22"
+                android:gravity="center"
+                android:text="Scouting Shifts" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/doneButton"
+                    style="@style/AutoResize30"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/primaryForeground"
+                    android:textColor="@color/white"
+                    android:text="Done" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider43"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="110"
+            android:weightSum="128"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="63"
+                android:weightSum="64"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/matchScoutingHeader"
+                    style="@style/AutoResize45"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:text="Match Scouting" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="59"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:weightSum="64"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/sheetCompletionHeader2"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Practice Matches:" />
+
+                        <TextView
+                            android:id="@+id/topRowText5"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 1-5:" />
+
+                        <TextView
+                            android:id="@+id/topRowText6"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: James, Mert, Tommy" />
+
+                        <TextView
+                            android:id="@+id/topRowText7"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Jaynou, Ashvid, Farhan" />
+
+                        <TextView
+                            android:id="@+id/topRowText2"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 6-10:" />
+
+                        <TextView
+                            android:id="@+id/topRowText3"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_margin="5dp"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: Parshwa, Soma, Cody" />
+
+                        <TextView
+                            android:id="@+id/topRowText4"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_margin="5dp"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Daniel, Jack, Jerry" />
+
+                        <TextView
+                            android:id="@+id/sheetCompletionHeader3"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Qualification Matches:" />
+
+                        <TextView
+                            android:id="@+id/topRowText8"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 1-10:" />
+
+                        <TextView
+                            android:id="@+id/topRowText9"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: James, Mert, Ashvid" />
+
+                        <TextView
+                            android:id="@+id/topRowText10"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Cody, Daniel, Farhan" />
+
+                        <TextView
+                            android:id="@+id/topRowText11"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 11-20:" />
+
+                        <TextView
+                            android:id="@+id/topRowText12"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: Jack, Jaynou, Jerry" />
+
+                        <TextView
+                            android:id="@+id/topRowText13"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Tommy, Parshwa, Soma" />
+
+                        <TextView
+                            android:id="@+id/topRowText14"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 21-30:" />
+
+                        <TextView
+                            android:id="@+id/topRowText15"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: James, Mert, Cody" />
+
+                        <TextView
+                            android:id="@+id/topRowText16"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Ashvid, Daniel, Farhan" />
+
+                        <TextView
+                            android:id="@+id/topRowText17"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 31-40:" />
+
+                        <TextView
+                            android:id="@+id/topRowText18"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: Jack, Jaynou, Tommy" />
+
+                        <TextView
+                            android:id="@+id/topRowText19"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Jerry, Parshwa, Soma" />
+
+                        <TextView
+                            android:id="@+id/topRowText20"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 41-50:" />
+
+                        <TextView
+                            android:id="@+id/topRowText21"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: James, Mert, Daniel" />
+
+                        <TextView
+                            android:id="@+id/topRowText22"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Ashvid, Cody, Farhan" />
+
+                        <TextView
+                            android:id="@+id/topRowText23"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 51-60:" />
+
+                        <TextView
+                            android:id="@+id/topRowText24"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: Jack, Jerry, Parshwa" />
+
+                        <TextView
+                            android:id="@+id/topRowText25"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Jaynou, Tommy, Soma" />
+
+                        <TextView
+                            android:id="@+id/topRowText26"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 61-70:" />
+
+                        <TextView
+                            android:id="@+id/topRowText27"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: James, Mert, Farhan" />
+
+                        <TextView
+                            android:id="@+id/topRowText28"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Ashvid, Cody, Daniel" />
+
+                        <TextView
+                            android:id="@+id/topRowText29"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 71-80:" />
+
+                        <TextView
+                            android:id="@+id/topRowText30"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: Jaynou, Jerry, Soma" />
+
+                        <TextView
+                            android:id="@+id/topRowText31"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Jack, Tommy, Parshwa" />
+
+                        <TextView
+                            android:id="@+id/topRowText32"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 81-90:" />
+
+                        <TextView
+                            android:id="@+id/topRowText33"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: James, Mert, Ashvid" />
+
+                        <TextView
+                            android:id="@+id/topRowText34"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Cody, Daniel, Farhan" />
+
+                        <TextView
+                            android:id="@+id/topRowText35"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 91-100:" />
+
+                        <TextView
+                            android:id="@+id/topRowText36"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: Jack, Jaynou, Jerry" />
+
+                        <TextView
+                            android:id="@+id/topRowText37"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Tommy, Parshwa, Soma" />
+
+                        <TextView
+                            android:id="@+id/topRowText38"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 101-110:" />
+
+                        <TextView
+                            android:id="@+id/topRowText39"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: James, Mert, Cody" />
+
+                        <TextView
+                            android:id="@+id/topRowText40"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Ashvid, Daniel, Farhan" />
+
+                        <TextView
+                            android:id="@+id/topRowText41"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="Matches 111-120:" />
+
+                        <TextView
+                            android:id="@+id/topRowText42"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Red Alliance: Jack, Jaynou, Tommy" />
+
+                        <TextView
+                            android:id="@+id/topRowText43"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="50dp"
+                            android:text="Blue Alliance: Jerry, Parshwa, Soma" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider30"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="63"
+                android:weightSum="64"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/pitScoutingHeader"
+                    style="@style/AutoResize45"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:text="Pit Scouting" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="60"
+                    android:inputType="textMultiLine">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/sheetCompletionHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Teams 1-3000: James and Mert" />
+
+                        <TextView
+                            android:id="@+id/sheetCompletionHeader4"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Teams 3001-6000: Jaynou and Tommy" />
+
+                        <TextView
+                            android:id="@+id/sheetCompletionHeader5"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Teams 6001-9000: Daniel and Farhan" />
+
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

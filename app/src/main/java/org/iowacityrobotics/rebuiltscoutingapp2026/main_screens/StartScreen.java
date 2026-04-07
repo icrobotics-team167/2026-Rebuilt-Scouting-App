@@ -82,6 +82,15 @@ public class StartScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button scoutingShiftBtn = findViewById(R.id.scoutingShiftButton);
+        scoutingShiftBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)   {
+                Intent intent = new Intent(StartScreen.this, ScoutingShiftsScreen.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void setAppLocale(String languageCode) {

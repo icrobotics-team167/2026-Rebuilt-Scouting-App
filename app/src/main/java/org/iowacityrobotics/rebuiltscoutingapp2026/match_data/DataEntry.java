@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -39,7 +40,6 @@ public class DataEntry extends AppCompatActivity {
     private TextView matchNumView, scouterView, assignmentView;
     private EditText teamNumView;
     private Spinner startingPosition, startingPositionDay3;
-    private TextView fuelScored;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,6 @@ public class DataEntry extends AppCompatActivity {
         isDay3 = getIntent().getBooleanExtra("PASS_DAY", false);
         initializeViews();
         setDayView();
-        setupSeekbar();
         setupSpinners();
         loadHeaderData();
         setupAutoFill();
@@ -84,33 +83,9 @@ public class DataEntry extends AppCompatActivity {
         assignmentView = findViewById(R.id.scoutingAssignment);
         startingPosition = findViewById(R.id.startingPosition);
         startingPositionDay3 = findViewById(R.id.startingPositionDay3);
-        fuelScored = findViewById(R.id.fuelScored);
 
         day1 = findViewById(R.id.day1);
         day3 = findViewById(R.id.day3);
-    }
-
-    private void setupSeekbar() {
-        SeekBar fuelScoredBar = findViewById(R.id.fuelScoredBar);
-        fuelScoredBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (progress == 100) {
-                    fuelScored.setText("100+");
-                }
-                else {
-                    fuelScored.setText(String.valueOf(progress));
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
     }
 
     private void setupSpinners() {
@@ -202,6 +177,7 @@ public class DataEntry extends AppCompatActivity {
             else if (v instanceof Spinner)
                 temp.put(field.jsonKey, ((Spinner) v).getSelectedItem().toString());
             else if (v instanceof SeekBar) temp.put(field.jsonKey, ((SeekBar) v).getProgress());
+            else if (v instanceof RatingBar) temp.put(field.jsonKey, String.valueOf(((RatingBar) v).getRating()));
             else if (v instanceof TextView) {
                 String val = ((TextView) v).getText().toString();
                 temp.put(field.jsonKey, field.type == BaseConfig.DataType.NUMBER ? parseIntSafe(val) : val);
@@ -224,9 +200,9 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
 
         if (!isDay3) {
-            data.put(DataKeys.FUEL_SCORED, temp.get(DataKeys.FUEL_SCORED));
-            data.put(DataKeys.SHOOTING_ACCURACY, ACCURACY_LABELS[(int) temp.get(DataKeys.SHOOTING_ACCURACY)]);
-            data.put(DataKeys.STRATEGY, STRATEGY_LABELS[(int) temp.get(DataKeys.STRATEGY)]);
+            data.put(DataKeys.SUSCEPTIBLE_DEFENSE, temp.get(DataKeys.SUSCEPTIBLE_DEFENSE));
+            data.put(DataKeys.DEFENSE_RATING, temp.get(DataKeys.DEFENSE_RATING));
+            data.put(DataKeys.DRIVER_RATING, temp.get(DataKeys.DRIVER_RATING));
         } else {
             data.put(DataKeys.ACTIVE_COMMENTS, temp.get(DataKeys.ACTIVE_COMMENTS));
             data.put(DataKeys.INACTIVE_COMMENTS, temp.get(DataKeys.INACTIVE_COMMENTS));

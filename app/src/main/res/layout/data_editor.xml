@@ -278,14 +278,10 @@
                     android:orientation="horizontal"
                     android:weightSum="9">
 
-                    <TextView
-                        android:id="@+id/autoNeutralZoneHeader"
-                        style="@style/AutoResize25"
+                    <Space
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:gravity="center_vertical"
-                        android:text="Estimated Fuel Scored:" />
+                        android:layout_weight="3" />
 
                     <TextView
                         android:id="@+id/autoNeutralZoneHeader2"
@@ -294,7 +290,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:gravity="center_vertical"
-                        android:text="Shooting Accuracy:" />
+                        android:text="Defense Rating:" />
 
                     <TextView
                         android:id="@+id/textView19"
@@ -303,7 +299,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:gravity="center_vertical"
-                        android:text="Strategy:" />
+                        android:text="Driver Rating:" />
 
 
                 </LinearLayout>
@@ -315,8 +311,16 @@
                     android:orientation="horizontal"
                     android:weightSum="9">
 
+                    <CheckBox
+                        android:id="@+id/susceptibleDefense"
+                        style="@style/AutoResize20"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:text="Susceptible to Defense" />
+
                     <EditText
-                        android:id="@+id/fuelScored"
+                        android:id="@+id/defenseRating"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -326,17 +330,7 @@
                         android:inputType="text" />
 
                     <EditText
-                        android:id="@+id/shootingAccuracy"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="3"
-                        android:ems="10"
-                        android:hint="#"
-                        android:inputType="text" />
-
-                    <EditText
-                        android:id="@+id/strategy"
+                        android:id="@+id/driverRating"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"

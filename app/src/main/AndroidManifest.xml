@@ -32,6 +32,7 @@
         <activity android:name=".match_data.DataEditor" />
         <activity android:name=".match_data.DataEntry" />
         <activity android:name=".main_screens.InstructionsScreen" />
+        <activity android:name=".main_screens.ScoutingShiftsScreen" />
         <activity android:name=".main_screens.Slider" />
 
         <service

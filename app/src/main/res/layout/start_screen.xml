@@ -38,14 +38,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="20"
+                android:layout_weight="23"
                 android:weightSum="30"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="6"
-                    android:weightSum="10"
+                    android:weightSum="32"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
@@ -57,7 +57,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="3"
+                        android:layout_weight="9"
                         android:weightSum="10"
                         android:gravity="center"
                         android:orientation="horizontal">
@@ -67,7 +67,7 @@
                             style="@style/AutoResize25"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="7"
+                            android:layout_weight="8"
                             android:backgroundTint="@color/secondaryForeground"
                             android:text="Instructions"
                             android:textColor="@color/black" />
@@ -75,15 +75,39 @@
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_weight="1.5"
+                        android:layout_weight="1"
                         android:layout_height="0dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="9"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <Button
+                            android:id="@+id/scoutingShiftButton"
+                            style="@style/AutoResize25"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:backgroundTint="@color/secondaryForeground"
+                            android:text="Scouting Shifts"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/themeSwitchHeader"
                         style="@style/AutoResize30"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="6"
                         android:gravity="center"
                         android:paddingStart="10dp"
                         android:text="Light / Dark Mode" />
@@ -94,7 +118,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_gravity="center"
-                        android:layout_weight="2"
+                        android:layout_weight="4"
                         android:gravity="center"
                         android:scaleX="1.5"
                         android:scaleY="1.5"
@@ -145,7 +169,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="41"
+                android:layout_weight="38"
                 android:weightSum="20"
                 android:orientation="horizontal">
 

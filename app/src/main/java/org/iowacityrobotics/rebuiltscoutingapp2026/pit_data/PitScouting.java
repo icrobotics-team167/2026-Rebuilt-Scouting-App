@@ -71,7 +71,7 @@ public class PitScouting extends AppCompatActivity {
     private CheckBox openHopper, extendableHopper;
     private CheckBox tiltTurret, turnTurret;
     private CheckBox throughBumperIntake, overBumperIntake;
-    private CheckBox bump, trench, swerve;
+    private CheckBox award, bump, trench, swerve;
     private CheckBox autoCanClimb;
     private CheckBox salt, pepper, butter;
 
@@ -181,6 +181,7 @@ public class PitScouting extends AppCompatActivity {
         openHopper = findViewById(R.id.openHopper);
         extendableHopper = findViewById(R.id.extendableHopper);
 
+        award = findViewById(R.id.award);
         bump = findViewById(R.id.bump);
         trench = findViewById(R.id.trench);
 
@@ -218,6 +219,7 @@ public class PitScouting extends AppCompatActivity {
         daySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                enableSwerveFields(false);
                 if (isChecked) {
                     day1.setVisibility(View.GONE);
                     day2.setVisibility(View.VISIBLE);
@@ -488,6 +490,7 @@ public class PitScouting extends AppCompatActivity {
         throughBumperIntake.setChecked(false);
         overBumperIntake.setChecked(false);
 
+        award.setChecked(false);
         bump.setChecked(false);
         trench.setChecked(false);
 
@@ -623,6 +626,7 @@ public class PitScouting extends AppCompatActivity {
             String weightUnits = weightUnitsSpinner.getSelectedItem().toString();
             String widthUnits = intakeWidthUnits.getSelectedItem().toString();
 
+            pitData.put(PitKeys.PIT_AWARD, getCheckBoxSelections(award));
             pitData.put(PitKeys.PIT_BOT_HEIGHT, convertToInches(botHeight.getText().toString(), heightUnits));
             pitData.put(PitKeys.PIT_BOT_WEIGHT, convertToPounds(botWeight.getText().toString(), weightUnits));
             pitData.put(PitKeys.PIT_INTAKE_WIDTH, convertToInches(intakeWidth.getText().toString(), widthUnits));
@@ -787,6 +791,7 @@ public class PitScouting extends AppCompatActivity {
                         setSpinnerSelection(intakeWidthUnits, (String) match.get(PitKeys.PIT_INTAKE_UNITS));
 
                         setCheckBoxSelections((String) match.get(PitKeys.PIT_HOPPER_TYPE), openHopper, extendableHopper);
+                        setCheckBoxSelections((String) match.get(PitKeys.PIT_AWARD), award);
                         setCheckBoxSelections((String) match.get(PitKeys.PIT_CROSSING), bump, trench);
                         setCheckBoxSelections((String) match.get(PitKeys.PIT_SWERVE), swerve);
                         setCheckBoxSelections((String) match.get(PitKeys.PIT_TURRET), tiltTurret, turnTurret);

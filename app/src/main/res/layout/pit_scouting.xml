@@ -166,6 +166,7 @@
                     android:layout_height="match_parent"
                     android:id="@+id/day2"
                     android:weightSum="68"
+                    android:visibility="gone"
                     android:orientation="vertical">
 
                     <TextView
@@ -246,7 +247,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/day1"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -267,11 +268,19 @@
                             android:text="Robot:" />
 
                         <CheckBox
+                            android:id="@+id/award"
+                            style="@style/AutoResize20"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:text="Award" />
+
+                        <CheckBox
                             android:id="@+id/bump"
                             style="@style/AutoResize20"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="7"
+                            android:layout_weight="5"
                             android:text="Bump" />
 
                         <CheckBox
@@ -279,7 +288,7 @@
                             style="@style/AutoResize20"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="6"
+                            android:layout_weight="5"
                             android:text="Trench" />
 
                         <TextView
@@ -309,12 +318,7 @@
                             android:id="@+id/heightUnitsSpinner"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="6" />
-
-                        <Space
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="5.5" />
 
                         <TextView
                             android:id="@+id/botWeightHeader"
@@ -343,7 +347,7 @@
                             android:id="@+id/weightUnitsSpinner"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="6" />
+                            android:layout_weight="5.5" />
 
                     </LinearLayout>
 

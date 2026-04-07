@@ -525,263 +525,19 @@
                         android:weightSum="240">
 
                         <TextView
-                            android:id="@+id/estimatedFuelScoredHeader"
+                            android:id="@+id/robotHeader"
                             style="@style/AutoResize25"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="22"
+                            android:layout_weight="16"
                             android:gravity="center"
-                            android:text="@string/data_entry_fuel_scored_header" />
-
+                            android:text="Robot" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="15"
+                            android:layout_weight="42"
                             android:orientation="horizontal"
-                            android:weightSum="120">
-
-                            <TextView
-                                android:id="@+id/zero"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="15"
-                                android:gravity="center_vertical"
-                                android:paddingStart="10dp"
-                                android:text="0" />
-
-                            <Space
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="35" />
-
-                            <TextView
-                                android:id="@+id/fuelScored"
-                                style="@style/AutoResize25"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="20"
-                                android:gravity="center"
-                                android:text="0" />
-
-                            <Space
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="35" />
-
-                            <TextView
-                                android:id="@+id/hundred"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="15"
-                                android:gravity="center"
-                                android:text="100+" />
-                        </LinearLayout>
-
-                        <SeekBar
-                            android:id="@+id/fuelScoredBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="24" />
-
-                        <TextView
-                            android:id="@+id/shootingAccuracyHeader"
-                            style="@style/AutoResize25"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="22"
-                            android:gravity="center"
-                            android:text="@string/data_entry_shooting_accuracy" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="20"
-                            android:orientation="horizontal"
-                            android:weightSum="120">
-
-                            <TextView
-                                android:id="@+id/percent0"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="12"
-                                android:gravity="center"
-                                android:text="0%" />
-
-                            <Space
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="10" />
-
-                            <TextView
-                                android:id="@+id/percent25"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="20"
-                                android:gravity="center"
-                                android:text="25%" />
-
-                            <Space
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="9" />
-
-                            <TextView
-                                android:id="@+id/percent50"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="20"
-                                android:gravity="center"
-                                android:text="50%" />
-
-                            <Space
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="9" />
-
-                            <TextView
-                                android:id="@+id/percent75"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="20"
-                                android:gravity="center"
-                                android:text="75%" />
-
-                            <Space
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="10" />
-
-                            <TextView
-                                android:id="@+id/percent100"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="10"
-                                android:gravity="center"
-                                android:text="100%" />
-                        </LinearLayout>
-
-                        <SeekBar
-                            android:id="@+id/shootingAccuracyBar"
-                            style="@style/Widget.AppCompat.SeekBar.Discrete"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="28"
-                            android:max="4"
-                            android:progress="2" />
-
-                        <TextView
-                            android:id="@+id/strategyHeader"
-                            style="@style/AutoResize25"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="22"
-                            android:gravity="center"
-                            android:text="@string/data_entry_strategy_header" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="20"
-                            android:orientation="horizontal"
-                            android:weightSum="120">
-
-                            <TextView
-                                android:id="@+id/allPass"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="15"
-                                android:gravity="center"
-                                android:text="@string/data_entry_all_pass" />
-
-                            <Space
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="7" />
-
-                            <TextView
-                                android:id="@+id/mostlyPass"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="20"
-                                android:gravity="center"
-                                android:text="@string/data_entry_mostly_pass" />
-
-                            <Space
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="8" />
-
-                            <TextView
-                                android:id="@+id/equal"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="20"
-                                android:gravity="center"
-                                android:text="@string/data_entry_equal" />
-
-                            <Space
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="8" />
-
-                            <TextView
-                                android:id="@+id/partlyScore"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="20"
-                                android:gravity="center"
-                                android:text="@string/data_entry_mostly_score" />
-
-                            <Space
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="7" />
-
-                            <TextView
-                                android:id="@+id/allScore"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="15"
-                                android:gravity="center"
-                                android:text="@string/data_entry_all_score" />
-                        </LinearLayout>
-
-                        <SeekBar
-                            android:id="@+id/strategyBar"
-                            style="@style/Widget.AppCompat.SeekBar.Discrete"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="28"
-                            android:max="4"
-                            android:progress="2" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="34"
-                            android:orientation="horizontal"
-                            android:weightSum="121">
-
-                            <CheckBox
-                                android:id="@+id/playedDefense"
-                                style="@style/AutoResize20"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="60"
-                                android:text="@string/data_entry_played_defense" />
+                            android:weightSum="4">
 
                             <CheckBox
                                 android:id="@+id/shootOnMove"
@@ -789,8 +545,104 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="60"
+                                android:layout_weight="2"
                                 android:text="@string/data_entry_shoot_on_move" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:weightSum="4"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/driverRatingHeader"
+                                    style = "@style/AutoResize20"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="4"
+                                    android:gravity="center"
+                                    android:text="Driver Rating" />
+
+                                <RatingBar
+                                    android:id="@+id/driverRating"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:isIndicator="false"
+                                    android:numStars="5"
+                                    android:stepSize="0.5" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/divider21"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="3"
+                            android:foreground="?attr/dividerColor" />
+
+                        <TextView
+                            android:id="@+id/defenseHeader"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="16"
+                            android:gravity="center"
+                            android:text="Defense" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="42"
+                            android:orientation="horizontal"
+                            android:weightSum="121">
+
+                            <CheckBox
+                                android:id="@+id/susceptibleDefense"
+                                style="@style/AutoResize20"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="30"
+                                android:text="Susceptible to Defense" />
+
+                            <CheckBox
+                                android:id="@+id/playedDefense"
+                                style="@style/AutoResize20"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="30"
+                                android:text="@string/data_entry_played_defense" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="60"
+                                android:orientation="vertical"
+                                android:weightSum="4">
+
+                                <TextView
+                                    android:id="@+id/defenseRatingHeader"
+                                    style="@style/AutoResize20"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="4"
+                                    android:gravity="center"
+                                    android:text="Defense Rating" />
+
+                                <RatingBar
+                                    android:id="@+id/defenseRating"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:isIndicator="false"
+                                    android:numStars="5"
+                                    android:stepSize="0.5" />
+                            </LinearLayout>
+
                         </LinearLayout>
 
                         <View

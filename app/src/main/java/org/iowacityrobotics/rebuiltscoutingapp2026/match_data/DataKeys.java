@@ -21,14 +21,14 @@ public class DataKeys {
     public static final String PLAYED_DEFENSE = "played_defense";
     public static final String SHOOT_ON_MOVE = "shoot_on_move";
 
+    public static final String SUSCEPTIBLE_DEFENSE = "susceptible_to_defense";
+    public static final String DRIVER_RATING = "driver_rating";
+    public static final String DEFENSE_RATING = "defense_rating";
+
     public static final String AUTO_MOVED = "auto_moved";
     public static final String STARTING_POSITION = "starting_position";
     public static final String AUTO_PASSED_FUEL = "auto_passed_fuel";
     public static final String AUTO_NEUTRAL_ZONE = "auto_neutral_zone";
-
-    public static final String FUEL_SCORED = "fuel_scored";
-    public static final String SHOOTING_ACCURACY = "shot_accuracy";
-    public static final String STRATEGY = "strategy";
 
     public static final String COMMENTS = "comments";
     public static final String AUTO_COMMENTS = "auto_comments";

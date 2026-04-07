@@ -22,9 +22,9 @@ public class DataEditor extends AppCompatActivity {
     private LinearLayout day1, day3;
 
     private EditText matchNum, teamNum, scouterName, assignment;
-    private CheckBox playedDefense, shootOnMove, autoMoved, autoPassedFuel, autoNeutralZone;
+    private CheckBox playedDefense, susceptibleDefense, shootOnMove, autoMoved, autoPassedFuel, autoNeutralZone;
+    private EditText defenseRating, driverRating;
     private EditText startingPosition;
-    private EditText fuelScored, shootingAccuracy, strategy;
     private EditText comments, autoComments;
 
     private EditText activeComments, inactiveComments;
@@ -56,11 +56,11 @@ public class DataEditor extends AppCompatActivity {
         autoNeutralZone = findViewById(R.id.autoNeutralZone);
 
         playedDefense = findViewById(R.id.playedDefense);
+        susceptibleDefense = findViewById(R.id.susceptibleDefense);
         shootOnMove = findViewById(R.id.shootOnMove);
 
-        fuelScored = findViewById(R.id.fuelScored);
-        shootingAccuracy = findViewById(R.id.shootingAccuracy);
-        strategy = findViewById(R.id.strategy);
+        defenseRating = findViewById(R.id.defenseRating);
+        driverRating = findViewById(R.id.driverRating);
 
         comments = findViewById(R.id.comments);
         autoComments = findViewById(R.id.autoComments);
@@ -84,15 +84,15 @@ public class DataEditor extends AppCompatActivity {
             autoNeutralZone.setChecked(getBooleanSafe(data, DataKeys.AUTO_NEUTRAL_ZONE));
 
             playedDefense.setChecked(getBooleanSafe(data, DataKeys.PLAYED_DEFENSE));
+            susceptibleDefense.setChecked(getBooleanSafe(data, DataKeys.SUSCEPTIBLE_DEFENSE));
             shootOnMove.setChecked(getBooleanSafe(data, DataKeys.SHOOT_ON_MOVE));
+
+            setTextSafe(defenseRating, data.get(DataKeys.DEFENSE_RATING));
+            setTextSafe(driverRating, data.get(DataKeys.DRIVER_RATING));
 
             if (DataKeys.DAY_ONE.equals(data.get(DataKeys.MATCH_DAY))) {
                 day1.setVisibility(View.VISIBLE);
                 day3.setVisibility(View.GONE);
-
-                setTextSafe(fuelScored, data.get(DataKeys.FUEL_SCORED));
-                setTextSafe(shootingAccuracy, data.get(DataKeys.SHOOTING_ACCURACY));
-                setTextSafe(strategy, data.get(DataKeys.STRATEGY));
             } else {
                 day1.setVisibility(View.GONE);
                 day3.setVisibility(View.VISIBLE);
@@ -121,12 +121,14 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.AUTO_NEUTRAL_ZONE, autoNeutralZone.isChecked());
 
             data.put(DataKeys.PLAYED_DEFENSE, playedDefense.isChecked());
+            data.put(DataKeys.SUSCEPTIBLE_DEFENSE, susceptibleDefense.isChecked());
             data.put(DataKeys.SHOOT_ON_MOVE, shootOnMove.isChecked());
 
+            data.put(DataKeys.DEFENSE_RATING, defenseRating.getText().toString());
+            data.put(DataKeys.DRIVER_RATING, driverRating.getText().toString());
+
             if (DataKeys.DAY_ONE.equals(data.get(DataKeys.MATCH_DAY))) {
-                data.put(DataKeys.FUEL_SCORED, fuelScored.getText().toString());
-                data.put(DataKeys.SHOOTING_ACCURACY, shootingAccuracy.getText().toString());
-                data.put(DataKeys.STRATEGY, strategy.getText().toString());
+//               data.put(DataKeys.FUEL_SCORED, fuelScored.getText().toString());
             }
             else {
                 data.put(DataKeys.ACTIVE_COMMENTS, activeComments.getText().toString());
