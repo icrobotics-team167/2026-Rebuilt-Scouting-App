@@ -6,6 +6,7 @@ package org.iowacityrobotics.rebuiltscoutingapp2026.match_data;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +14,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -40,6 +42,9 @@ public class DataEntry extends AppCompatActivity {
     private TextView matchNumView, scouterView, assignmentView;
     private EditText teamNumView;
     private Spinner startingPosition, startingPositionDay3;
+    private CheckBox playedDefense;
+    private TextView defenseRatingHeader;
+    private RatingBar defenseRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,7 @@ public class DataEntry extends AppCompatActivity {
         setupSpinners();
         loadHeaderData();
         setupAutoFill();
+        setupDefenseRatingListener();
 
         findViewById(R.id.saveExitButton).setOnClickListener(v -> checkFieldsAndSave());
         findViewById(R.id.saveExitButtonDay3).setOnClickListener(v -> checkFieldsAndSave());
@@ -84,8 +90,36 @@ public class DataEntry extends AppCompatActivity {
         startingPosition = findViewById(R.id.startingPosition);
         startingPositionDay3 = findViewById(R.id.startingPositionDay3);
 
+        playedDefense = findViewById(R.id.playedDefense);
+        defenseRatingHeader = findViewById(R.id.defenseRatingHeader);
+        defenseRating = findViewById(R.id.defenseRating);
+
+        defenseRating.setIsIndicator(true);
+        defenseRatingHeader.setTextColor(Color.GRAY);
+
         day1 = findViewById(R.id.day1);
         day3 = findViewById(R.id.day3);
+    }
+
+    private void setupDefenseRatingListener() {
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        playedDefense.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    defenseRating.setIsIndicator(false);
+                    if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
+                        defenseRatingHeader.setTextColor(Color.WHITE);
+                    } else {
+                        defenseRatingHeader.setTextColor(Color.BLACK);
+                    }
+                } else {
+                    defenseRating.setIsIndicator(true);
+                    defenseRating.setRating(0);
+                    defenseRatingHeader.setTextColor(Color.GRAY);
+                }
+            }
+        });
     }
 
     private void setupSpinners() {
@@ -203,6 +237,7 @@ public class DataEntry extends AppCompatActivity {
             data.put(DataKeys.SUSCEPTIBLE_DEFENSE, temp.get(DataKeys.SUSCEPTIBLE_DEFENSE));
             data.put(DataKeys.DEFENSE_RATING, temp.get(DataKeys.DEFENSE_RATING));
             data.put(DataKeys.DRIVER_RATING, temp.get(DataKeys.DRIVER_RATING));
+            data.put(DataKeys.TELEOP_COMMENTS, temp.get(DataKeys.TELEOP_COMMENTS));
         } else {
             data.put(DataKeys.ACTIVE_COMMENTS, temp.get(DataKeys.ACTIVE_COMMENTS));
             data.put(DataKeys.INACTIVE_COMMENTS, temp.get(DataKeys.INACTIVE_COMMENTS));

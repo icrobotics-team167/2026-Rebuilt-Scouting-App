@@ -30,5 +30,7 @@ public class Day1Config {
 
         INPUTS.add(new BaseConfig.Field(R.id.comments, DataKeys.COMMENTS, BaseConfig.DataType.TEXT));
         INPUTS.add(new BaseConfig.Field(R.id.autoComments, DataKeys.AUTO_COMMENTS, BaseConfig.DataType.TEXT));
+        INPUTS.add(new BaseConfig.Field(R.id.teleopComments, DataKeys.TELEOP_COMMENTS, BaseConfig.DataType.TEXT));
+
     }
 }

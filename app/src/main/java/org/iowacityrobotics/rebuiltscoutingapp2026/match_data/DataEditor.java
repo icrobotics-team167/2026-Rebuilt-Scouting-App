@@ -27,7 +27,7 @@ public class DataEditor extends AppCompatActivity {
     private EditText startingPosition;
     private EditText comments, autoComments;
 
-    private EditText activeComments, inactiveComments;
+    private EditText teleopComments, activeCommentsDay3, inactiveCommentsDay3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +65,10 @@ public class DataEditor extends AppCompatActivity {
         comments = findViewById(R.id.comments);
         autoComments = findViewById(R.id.autoComments);
 
-        activeComments = findViewById(R.id.activeComments);
-        inactiveComments = findViewById(R.id.inactiveComments);
+        teleopComments = findViewById(R.id.teleopComments);
+
+        activeCommentsDay3 = findViewById(R.id.activeCommentsDay3);
+        inactiveCommentsDay3 = findViewById(R.id.inactiveCommentsDay3);
     }
 
     private void loadExistingData() {
@@ -83,21 +85,24 @@ public class DataEditor extends AppCompatActivity {
             autoPassedFuel.setChecked(getBooleanSafe(data, DataKeys.AUTO_PASSED_FUEL));
             autoNeutralZone.setChecked(getBooleanSafe(data, DataKeys.AUTO_NEUTRAL_ZONE));
 
-            playedDefense.setChecked(getBooleanSafe(data, DataKeys.PLAYED_DEFENSE));
-            susceptibleDefense.setChecked(getBooleanSafe(data, DataKeys.SUSCEPTIBLE_DEFENSE));
-            shootOnMove.setChecked(getBooleanSafe(data, DataKeys.SHOOT_ON_MOVE));
-
-            setTextSafe(defenseRating, data.get(DataKeys.DEFENSE_RATING));
-            setTextSafe(driverRating, data.get(DataKeys.DRIVER_RATING));
-
             if (DataKeys.DAY_ONE.equals(data.get(DataKeys.MATCH_DAY))) {
                 day1.setVisibility(View.VISIBLE);
                 day3.setVisibility(View.GONE);
+
+                playedDefense.setChecked(getBooleanSafe(data, DataKeys.PLAYED_DEFENSE));
+                susceptibleDefense.setChecked(getBooleanSafe(data, DataKeys.SUSCEPTIBLE_DEFENSE));
+                shootOnMove.setChecked(getBooleanSafe(data, DataKeys.SHOOT_ON_MOVE));
+
+                setTextSafe(defenseRating, data.get(DataKeys.DEFENSE_RATING));
+                setTextSafe(driverRating, data.get(DataKeys.DRIVER_RATING));
+
+                setTextSafe(teleopComments, data.get(DataKeys.TELEOP_COMMENTS));
+
             } else {
                 day1.setVisibility(View.GONE);
                 day3.setVisibility(View.VISIBLE);
-                setTextSafe(activeComments, data.get(DataKeys.ACTIVE_COMMENTS));
-                setTextSafe(inactiveComments, data.get(DataKeys.INACTIVE_COMMENTS));
+                setTextSafe(activeCommentsDay3, data.get(DataKeys.ACTIVE_COMMENTS));
+                setTextSafe(inactiveCommentsDay3, data.get(DataKeys.INACTIVE_COMMENTS));
             }
 
             setTextSafe(comments, data.get(DataKeys.COMMENTS));
@@ -120,19 +125,19 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.AUTO_PASSED_FUEL, autoPassedFuel.isChecked());
             data.put(DataKeys.AUTO_NEUTRAL_ZONE, autoNeutralZone.isChecked());
 
-            data.put(DataKeys.PLAYED_DEFENSE, playedDefense.isChecked());
-            data.put(DataKeys.SUSCEPTIBLE_DEFENSE, susceptibleDefense.isChecked());
-            data.put(DataKeys.SHOOT_ON_MOVE, shootOnMove.isChecked());
-
-            data.put(DataKeys.DEFENSE_RATING, defenseRating.getText().toString());
-            data.put(DataKeys.DRIVER_RATING, driverRating.getText().toString());
-
             if (DataKeys.DAY_ONE.equals(data.get(DataKeys.MATCH_DAY))) {
-//               data.put(DataKeys.FUEL_SCORED, fuelScored.getText().toString());
+                data.put(DataKeys.PLAYED_DEFENSE, playedDefense.isChecked());
+                data.put(DataKeys.SUSCEPTIBLE_DEFENSE, susceptibleDefense.isChecked());
+                data.put(DataKeys.SHOOT_ON_MOVE, shootOnMove.isChecked());
+
+                data.put(DataKeys.DEFENSE_RATING, defenseRating.getText().toString());
+                data.put(DataKeys.DRIVER_RATING, driverRating.getText().toString());
+
+                data.put(DataKeys.TELEOP_COMMENTS, teleopComments.getText().toString());
             }
             else {
-                data.put(DataKeys.ACTIVE_COMMENTS, activeComments.getText().toString());
-                data.put(DataKeys.INACTIVE_COMMENTS, inactiveComments.getText().toString());
+                data.put(DataKeys.ACTIVE_COMMENTS, activeCommentsDay3.getText().toString());
+                data.put(DataKeys.INACTIVE_COMMENTS, inactiveCommentsDay3.getText().toString());
             }
 
             data.put(DataKeys.COMMENTS, comments.getText().toString());

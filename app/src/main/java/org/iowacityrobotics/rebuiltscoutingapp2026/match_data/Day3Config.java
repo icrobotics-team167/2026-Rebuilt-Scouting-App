@@ -25,7 +25,7 @@ public class Day3Config {
 
         INPUTS.add(new BaseConfig.Field(R.id.commentsDay3, DataKeys.COMMENTS, BaseConfig.DataType.TEXT));
         INPUTS.add(new BaseConfig.Field(R.id.autoCommentsDay3, DataKeys.AUTO_COMMENTS, BaseConfig.DataType.TEXT));
-        INPUTS.add(new BaseConfig.Field(R.id.activeComments, DataKeys.ACTIVE_COMMENTS, BaseConfig.DataType.TEXT));
-        INPUTS.add(new BaseConfig.Field(R.id.inactiveComments, DataKeys.INACTIVE_COMMENTS, BaseConfig.DataType.TEXT));
+        INPUTS.add(new BaseConfig.Field(R.id.activeCommentsDay3, DataKeys.ACTIVE_COMMENTS, BaseConfig.DataType.TEXT));
+        INPUTS.add(new BaseConfig.Field(R.id.inactiveCommentsDay3, DataKeys.INACTIVE_COMMENTS, BaseConfig.DataType.TEXT));
     }
 }

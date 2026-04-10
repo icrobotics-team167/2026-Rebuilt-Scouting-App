@@ -606,7 +606,7 @@
                             android:layout_margin="10dp"
                             android:gravity="center_vertical"
                             android:paddingStart="10dp"
-                            android:text="Teams 6001-9000: Daniel and Farhan" />
+                            android:text="Teams 6001-9000+: Daniel and Farhan" />
 
                     </LinearLayout>
                 </ScrollView>

@@ -214,7 +214,7 @@
                     android:weightSum="2">
 
                     <TextView
-                        android:id="@+id/activeCommentsHeader"
+                        android:id="@+id/activeCommentsHeaderDay3"
                         style="@style/AutoResize25"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -223,7 +223,7 @@
                         android:text="Active Hub Notes:" />
 
                     <TextView
-                        android:id="@+id/inactiveCommentsHeader"
+                        android:id="@+id/inactiveCommentsHeaderDay3"
                         style="@style/AutoResize25"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -240,7 +240,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/activeComments"
+                        android:id="@+id/activeCommentsDay3"
                         style="@style/AutoResize20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -251,7 +251,7 @@
                         android:text="" />
 
                     <EditText
-                        android:id="@+id/inactiveComments"
+                        android:id="@+id/inactiveCommentsDay3"
                         style="@style/AutoResize20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -355,27 +355,29 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="4"
-            android:weightSum="5"
+            android:weightSum="1"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/endAutoHeader"
+                android:id="@+id/teleopCommentsHeader"
                 style="@style/AutoResize25"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Auto Notes:" />
+                android:text="Teleop Notes Notes:" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="12"
+            android:weightSum="1"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/autoComments"
+                android:id="@+id/teleopComments"
                 style="@style/AutoResize20"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -397,8 +399,17 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="4"
-            android:weightSum="5"
+            android:weightSum="2"
             android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/autoCommentsHeader"
+                style="@style/AutoResize25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Auto Notes:" />
 
             <TextView
                 android:id="@+id/commentsHeader"
@@ -414,16 +425,29 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="11"
+            android:weightSum="2"
             android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/autoComments"
+                style="@style/AutoResize20"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:layout_weight="1"
+                android:hint="#"
+                android:text="" />
 
             <EditText
                 android:id="@+id/comments"
                 style="@style/AutoResize20"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textMultiLine"
                 android:hint="#"
+                android:inputType="textMultiLine"
                 android:text="" />
 
         </LinearLayout>

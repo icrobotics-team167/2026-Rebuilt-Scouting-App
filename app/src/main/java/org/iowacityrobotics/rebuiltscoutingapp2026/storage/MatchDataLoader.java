@@ -1,8 +1,10 @@
 package org.iowacityrobotics.rebuiltscoutingapp2026.storage;
 
-import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.EVENT_KEY;
+import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.DIVISION_KEY;
 
 import android.content.Context;
+
+import org.iowacityrobotics.rebuiltscoutingapp2026.pit_data.PitScouting;
 
 import java.io.File;
 import java.util.concurrent.ExecutorService;
@@ -17,7 +19,7 @@ public class MatchDataLoader {
             executor.execute(() -> {
                 MatchSchedule.loadScheduleFromAssets(context);
             });
-            MatchDataGenerator.generate(context, EVENT_KEY, () -> {
+            MatchDataGenerator.generate(context, DIVISION_KEY, () -> {
                 executor.execute(() -> {
                     MatchSchedule.loadSchedule(context);
                     File teamFile = new File(context.getFilesDir(), "team_data.json");

@@ -34,5 +34,6 @@ public class DataKeys {
     public static final String AUTO_COMMENTS = "auto_comments";
     public static final String ACTIVE_COMMENTS = "active_comments";
     public static final String INACTIVE_COMMENTS = "inactive_comments";
+    public static final String TELEOP_COMMENTS = "teleop_comments";
 
 }

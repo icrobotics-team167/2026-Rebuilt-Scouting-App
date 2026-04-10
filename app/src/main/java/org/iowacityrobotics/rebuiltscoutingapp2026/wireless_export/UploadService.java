@@ -93,6 +93,7 @@ public class UploadService extends Service {
         if (isUploading) return;
 
         if (isOnWifi()) {
+            MatchDataLoader.loadMatchData(getApplicationContext());
             uploadData();
         } else {
             Log.d("Upload", "Not on Wi-Fi");

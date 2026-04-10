@@ -161,7 +161,7 @@
                         android:text="@string/data_entry_active_hub_notes" />
 
                     <EditText
-                        android:id="@+id/activeComments"
+                        android:id="@+id/activeCommentsDay3"
                         style="@style/AutoResize20"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -188,7 +188,7 @@
                         android:text="@string/data_entry_inactive_hub_notes" />
 
                     <EditText
-                        android:id="@+id/inactiveComments"
+                        android:id="@+id/inactiveCommentsDay3"
                         style="@style/AutoResize20"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -529,13 +529,13 @@
                             style="@style/AutoResize25"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="16"
+                            android:layout_weight="17"
                             android:gravity="center"
                             android:text="Robot" />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="42"
+                            android:layout_weight="46"
                             android:orientation="horizontal"
                             android:weightSum="4">
 
@@ -552,7 +552,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:weightSum="4"
+                                android:weightSum="12"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -560,17 +560,18 @@
                                     style = "@style/AutoResize20"
                                     android:layout_width="match_parent"
                                     android:layout_height="0dp"
-                                    android:layout_weight="4"
+                                    android:layout_weight="5"
                                     android:gravity="center"
                                     android:text="Driver Rating" />
 
                                 <RatingBar
                                     android:id="@+id/driverRating"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="0dp"
                                     android:layout_gravity="center"
                                     android:isIndicator="false"
                                     android:numStars="5"
+                                    android:layout_weight="6"
                                     android:stepSize="0.5" />
                             </LinearLayout>
 
@@ -580,7 +581,7 @@
                             android:id="@+id/divider21"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="3"
+                            android:layout_weight="2"
                             android:foreground="?attr/dividerColor" />
 
                         <TextView
@@ -588,14 +589,14 @@
                             style="@style/AutoResize25"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="16"
+                            android:layout_weight="17"
                             android:gravity="center"
                             android:text="Defense" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="42"
+                            android:layout_weight="46.5"
                             android:orientation="horizontal"
                             android:weightSum="121">
 
@@ -622,24 +623,25 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="60"
                                 android:orientation="vertical"
-                                android:weightSum="4">
+                                android:weightSum="12">
 
                                 <TextView
                                     android:id="@+id/defenseRatingHeader"
                                     style="@style/AutoResize20"
                                     android:layout_width="match_parent"
                                     android:layout_height="0dp"
-                                    android:layout_weight="4"
+                                    android:layout_weight="5"
                                     android:gravity="center"
                                     android:text="Defense Rating" />
 
                                 <RatingBar
                                     android:id="@+id/defenseRating"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="0dp"
                                     android:layout_gravity="center"
                                     android:isIndicator="false"
                                     android:numStars="5"
+                                    android:layout_weight="6"
                                     android:stepSize="0.5" />
                             </LinearLayout>
 
@@ -649,7 +651,40 @@
                             android:id="@+id/divider19"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="5"
+                            android:layout_weight="4"
+                            android:foreground="?attr/dividerColor" />
+
+                        <TextView
+                            android:id="@+id/activeCommentsHeader"
+                            style = "@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="29"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Teleop Notes" />
+
+                        <View
+                            android:id="@+id/divider45"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:foreground="?attr/dividerColor" />
+
+                        <EditText
+                            android:id="@+id/teleopComments"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:ems="10"
+                            android:inputType="text"
+                            android:layout_weight="73.5"
+                            android:hint="What did they do during their scoring period?" />
+
+                        <View
+                            android:id="@+id/divider23"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="3"
                             android:foreground="?attr/dividerColor" />
 
                     </LinearLayout>
@@ -698,15 +733,16 @@
                             style="@style/AutoResize20"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="25"
+                            android:layout_weight="32"
                             android:gravity="center"
+                            android:paddingStart="5dp"
                             android:text="@string/data_entry_starting_position_header" />
 
                         <Spinner
                             android:id="@+id/startingPosition"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="25" />
+                            android:layout_weight="34" />
 
                         <View
                             android:id="@+id/divider7"
@@ -720,8 +756,23 @@
                             style="@style/AutoResize20"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="20"
+                            android:layout_weight="54"
                             android:text="@string/data_entry_moved" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider13"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:foreground="?attr/dividerColor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="13"
+                        android:orientation="horizontal">
 
                         <CheckBox
                             android:id="@+id/autoPassedFuel"
@@ -741,7 +792,7 @@
                     </LinearLayout>
 
                     <View
-                        android:id="@+id/divider13"
+                        android:id="@+id/divider42"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -750,7 +801,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="33"
+                        android:layout_weight="30"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -765,7 +816,7 @@
                                 style="@style/AutoResize25"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="14"
+                                android:layout_weight="15"
                                 android:gravity="center"
                                 android:text="Auto Notes:" />
 
@@ -774,7 +825,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_weight="50"
+                                android:layout_weight="49"
                                 android:ems="10"
                                 android:hint="@string/data_entry_auto_notes"
                                 android:inputType="textMultiLine" />
@@ -824,7 +875,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="44"
+                        android:layout_weight="34"
                         android:orientation="horizontal"
                         android:weightSum="6">
 

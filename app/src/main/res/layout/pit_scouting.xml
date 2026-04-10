@@ -52,6 +52,7 @@
 
                 <Spinner
                     android:id="@+id/teamNumberSpinner"
+                    style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5.6" />
@@ -127,6 +128,7 @@
 
                 <Spinner
                     android:id="@+id/editTeamSpinner"
+                    style="@style/AutoResize25"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="8" />
@@ -316,6 +318,7 @@
 
                         <Spinner
                             android:id="@+id/heightUnitsSpinner"
+                            style="@style/AutoResize25"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="5.5" />
@@ -345,6 +348,7 @@
 
                         <Spinner
                             android:id="@+id/weightUnitsSpinner"
+                            style="@style/AutoResize25"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="5.5" />
@@ -395,6 +399,7 @@
 
                         <Spinner
                             android:id="@+id/motorTypeSpinner"
+                            style="@style/AutoResize25"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="9" />

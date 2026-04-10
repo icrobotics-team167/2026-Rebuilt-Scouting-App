@@ -6,10 +6,13 @@ package org.iowacityrobotics.rebuiltscoutingapp2026.pit_data;
 import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.tabletNumber;
 import static org.iowacityrobotics.rebuiltscoutingapp2026.storage.TeamData.teamsObject;
 
+import static java.security.AccessController.getContext;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -271,7 +274,6 @@ public class PitScouting extends AppCompatActivity {
                 suppressSpinnerEvents = true;
                 editTeamSpinner.setSelection(0);
                 suppressSpinnerEvents = false;
-                clearFields();
             }
 
             @Override
@@ -297,17 +299,30 @@ public class PitScouting extends AppCompatActivity {
 
     private void enableSwerveFields(boolean on) {
         if (on) {
+            int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
             motorTypeSpinner.setEnabled(true);
             swerveModule.setEnabled(true);
             gearRatio.setEnabled(true);
             View selectedView = motorTypeSpinner.getSelectedView();
             if (selectedView instanceof TextView) {
                 TextView selectedTextView = (TextView) selectedView;
-                selectedTextView.setTextColor(Color.BLACK);
+                switch (currentNightMode) {
+                    case Configuration.UI_MODE_NIGHT_YES:
+                        selectedTextView.setTextColor(Color.WHITE);
+                        break;
+                    default:
+                        selectedTextView.setTextColor(Color.BLACK);
+                }
             }
             TextView[] views = {motorTypeHeader, swerveModuleHeader, gearRatioHeader};
             for (TextView v : views) {
-                v.setTextColor(Color.BLACK);
+                switch (currentNightMode) {
+                    case Configuration.UI_MODE_NIGHT_YES:
+                        v.setTextColor(Color.WHITE);
+                        break;
+                    default:
+                        v.setTextColor(Color.BLACK);
+                }
             }
         }
         else {
@@ -330,7 +345,7 @@ public class PitScouting extends AppCompatActivity {
             }
         }
     }
-    private void loadEditTeamSpinner() {
+    public void loadEditTeamSpinner() {
         boolean isDay2 = daySwitch.isChecked();
         List<Map<String, Object>> snapshot = new ArrayList<>(GlobalVariables.dataList);
         new Thread(() -> {
@@ -369,7 +384,7 @@ public class PitScouting extends AppCompatActivity {
             });
         }).start();
     }
-    private void loadTeamNumberSpinner(Context context) {
+    public void loadTeamNumberSpinner(Context context) {
             ArrayList<Integer> teamNumbers = new ArrayList<>();
             boolean isDay1 = !daySwitch.isChecked();
             new Thread(() -> {
@@ -503,8 +518,29 @@ public class PitScouting extends AppCompatActivity {
         heightUnitsSpinner.setSelection(0);
         weightUnitsSpinner.setSelection(0);
         intakeWidthUnits.setSelection(0);
-
         motorTypeSpinner.setSelection(0);
+
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        Spinner[] spinners = {teamNumberSpinner, editTeamSpinner, heightUnitsSpinner, weightUnitsSpinner, intakeWidthUnits, motorTypeSpinner};
+        for (Spinner spinner: spinners) {
+            View selectedView = spinner.getSelectedView();
+            if (selectedView instanceof TextView) {
+                TextView selectedTextView = (TextView) selectedView;
+                if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
+                    if (spinner.isEnabled()) {
+                        selectedTextView.setTextColor(Color.WHITE);
+                    } else {
+                        selectedTextView.setTextColor(Color.GRAY);
+                    }
+                } else {
+                    if (spinner.isEnabled()) {
+                        selectedTextView.setTextColor(Color.BLACK);
+                    } else {
+                        selectedTextView.setTextColor(Color.GRAY);
+                    }
+                }
+            }
+        }
 
         editingIndex = -1;
 
