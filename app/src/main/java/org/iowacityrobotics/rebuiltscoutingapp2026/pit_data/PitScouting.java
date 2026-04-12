@@ -880,7 +880,7 @@ public class PitScouting extends AppCompatActivity {
         }
 
         StorageManager.saveData(this);
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("application/json");
 
@@ -889,17 +889,6 @@ public class PitScouting extends AppCompatActivity {
                     .setTitle("No New Data To Export")
                     .setMessage("Are you sure you want to re-export all data?")
                     .setPositiveButton("Yes", (dialog, which) -> {
-                        String fileName = "";
-                        for (Map<String, Object> entry : GlobalVariables.dataList) {
-                            if (isPitRecord(entry) && isCurrentDay(entry)) {
-                                String rawDay = entry.get(PitKeys.PIT_DAY).toString();
-                                String[] parts = rawDay.split("_");
-                                String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
-                                        + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
-                                fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data - Tablet " + tabletNumber;
-                            }
-                        }
-                        intent.putExtra(Intent.EXTRA_TITLE, fileName);
                         exportLauncher.launch(intent);
                     })
                     .setNegativeButton("No", (dialog, which) -> {
@@ -907,26 +896,6 @@ public class PitScouting extends AppCompatActivity {
                     .show();
             return;
         }
-
-        String fileName = "";
-        for (Map<String, Object> entry : GlobalVariables.dataList) {
-            if (isPitRecord(entry) && isCurrentDay(entry)) {
-                boolean exported = Boolean.TRUE.equals(entry.get(PitKeys.EXPORTED));
-                if (!exported) {
-                    teamsFound++;
-                    String rawDay = entry.get(PitKeys.PIT_DAY).toString();
-                    String[] parts = rawDay.split("_");
-                    String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
-                            + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
-                    if (teamsFound > 1) {
-                        fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " All Pit Data - Tablet " + tabletNumber;
-                    } else {
-                        fileName = day + " Team " + entry.get(PitKeys.TEAM_NUMBER).toString() + " Pit Data - Tablet " + tabletNumber;
-                    }
-                }
-            }
-        }
-        intent.putExtra(Intent.EXTRA_TITLE, fileName);
         exportLauncher.launch(intent);
     }
     private void performExport(Uri uri) {

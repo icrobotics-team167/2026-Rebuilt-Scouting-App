@@ -1,6 +1,6 @@
-//Ben M
-//1-18-2026 - 1-19-2026
-//This is the Global variables of data storage.
+// Ben M, JamesA
+// 1/18/2026 - 04/12/2026
+// These are the global variables used in the app.
 package org.iowacityrobotics.rebuiltscoutingapp2026;
 
 import java.util.ArrayList;

@@ -325,43 +325,24 @@ public class SetupScreen extends AppCompatActivity {
         }
 
         if (hasNewData) {
-            String fileName = "";
             for (Map<String, Object> match : GlobalVariables.dataList) {
                 if (isMatchRecord(match) && isCurrentDay(match)) {
                     boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
                     if (!isExported) {
                         matchesFound++;
-                        String rawDay = match.get(DataKeys.MATCH_DAY).toString();
-                        String[] parts = rawDay.split("_");
-                        String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
-                                + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
-                        if (matchesFound == 1) {
-                            fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " Match Data - Tablet " + tabletNumber;
-                        } else if (matchesFound > 1) {
-                            fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data - Tablet " + tabletNumber;
-                        } else {
+                        if (matchesFound < 1) {
                             Toast.makeText(this, "Error finding matches.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
             }
-            launchFilePicker(fileName);
+            launchFilePicker();
         } else if (hasData){
             new AlertDialog.Builder(this)
                     .setTitle("No New Matches")
                     .setMessage("All matches have already been exported. Do you want to re-export EVERYTHING?")
                     .setPositiveButton("Re-Export All", (dialog, which) -> {
-                        String fileName = "";
-                        for (Map<String, Object> match : GlobalVariables.dataList) {
-                            if (isMatchRecord(match) && isCurrentDay(match)) {
-                                String rawDay = match.get(DataKeys.MATCH_DAY).toString();
-                                String[] parts = rawDay.split("_");
-                                String day = Character.toUpperCase(parts[0].charAt(0)) + parts[0].substring(1) + " "
-                                        + Character.toUpperCase(parts[1].charAt(0)) + parts[1].substring(1);
-                                fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + match.get(DataKeys.MATCH_NUM) + " All Match Data - Tablet " + tabletNumber;
-                            }
-                        }
-                        launchFilePicker(fileName);
+                        launchFilePicker();
                     })
                     .setNegativeButton("Cancel", null)
                     .show();
@@ -374,7 +355,6 @@ public class SetupScreen extends AppCompatActivity {
     private void exportSelected() {
         StorageManager.saveData(this);
         isExportingAll = false;
-        String fileName = "";
         String selectedItem = matchListSpinner.getSelectedItem().toString();
 
         String[] parts = selectedItem.split("\\D+");
@@ -385,12 +365,7 @@ public class SetupScreen extends AppCompatActivity {
 
             if (!teamNum.isEmpty()) {
                 if (matchNum.equals(parts[1]) && teamNum.equals(parts[2]) && isCurrentDay(match)) {
-                    String rawDay = match.get(DataKeys.MATCH_DAY).toString();
-                    String[] dayParts = rawDay.split("_");
-                    String day = Character.toUpperCase(dayParts[0].charAt(0)) + dayParts[0].substring(1) + " "
-                            + Character.toUpperCase(dayParts[1].charAt(0)) + dayParts[1].substring(1);
-                    fileName = day + " " + match.get(DataKeys.MATCH_TYPE).toString() + " " + matchNum + " Match Data - Tablet " + tabletNumber;
-                    launchFilePicker(fileName);
+                    launchFilePicker();
                     break;
                 }
             } else if (!matchNum.isEmpty()) {
@@ -403,11 +378,10 @@ public class SetupScreen extends AppCompatActivity {
         }
     }
 
-    private void launchFilePicker(String fileName) {
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+    private void launchFilePicker() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("application/json");
-        intent.putExtra(Intent.EXTRA_TITLE, fileName);
         exportLauncher.launch(intent);
     }
 

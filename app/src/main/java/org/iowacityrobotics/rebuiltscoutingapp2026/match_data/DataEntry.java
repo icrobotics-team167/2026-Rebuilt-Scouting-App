@@ -226,24 +226,25 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
         data.put(DataKeys.ASSIGNMENT, getIntent().getStringExtra("PASS_ASSIGNMENT"));
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
-        data.put(DataKeys.AUTO_MOVED, temp.get(DataKeys.AUTO_MOVED));
         data.put(DataKeys.STARTING_POSITION, temp.get(DataKeys.STARTING_POSITION));
+        data.put(DataKeys.AUTO_MOVED, temp.get(DataKeys.AUTO_MOVED));
         data.put(DataKeys.AUTO_PASSED_FUEL, temp.get(DataKeys.AUTO_PASSED_FUEL));
         data.put(DataKeys.AUTO_NEUTRAL_ZONE, temp.get(DataKeys.AUTO_NEUTRAL_ZONE));
         data.put(DataKeys.AUTO_COMMENTS, temp.get(DataKeys.AUTO_COMMENTS));
         data.put(DataKeys.COMMENTS, temp.get(DataKeys.COMMENTS));
 
         if (!isDay3) {
-            data.put(DataKeys.SUSCEPTIBLE_DEFENSE, temp.get(DataKeys.SUSCEPTIBLE_DEFENSE));
-            data.put(DataKeys.DEFENSE_RATING, temp.get(DataKeys.DEFENSE_RATING));
-            data.put(DataKeys.DRIVER_RATING, temp.get(DataKeys.DRIVER_RATING));
             data.put(DataKeys.TELEOP_COMMENTS, temp.get(DataKeys.TELEOP_COMMENTS));
+            data.put(DataKeys.DRIVER_RATING, temp.get(DataKeys.DRIVER_RATING));
+            data.put(DataKeys.SUSCEPTIBLE_DEFENSE, temp.get(DataKeys.SUSCEPTIBLE_DEFENSE));
+            data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
+            data.put(DataKeys.DEFENSE_RATING, temp.get(DataKeys.DEFENSE_RATING));
         } else {
             data.put(DataKeys.ACTIVE_COMMENTS, temp.get(DataKeys.ACTIVE_COMMENTS));
             data.put(DataKeys.INACTIVE_COMMENTS, temp.get(DataKeys.INACTIVE_COMMENTS));
+            data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
         }
 
-        data.put(DataKeys.PLAYED_DEFENSE, temp.get(DataKeys.PLAYED_DEFENSE));
         data.put(DataKeys.SHOOT_ON_MOVE, temp.get(DataKeys.SHOOT_ON_MOVE));
         data.put(DataKeys.EXPORTED, false);
 
