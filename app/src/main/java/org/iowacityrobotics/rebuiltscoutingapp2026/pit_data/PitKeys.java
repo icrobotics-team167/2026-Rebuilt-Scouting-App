@@ -1,6 +1,6 @@
-//Ben M, James A
-//1-21-2026 - 2-27-2026
-//This is the format of json for pit scouting
+// Ben M, James A
+// 1/21/2026 - 04/12/2026
+// These are the keys used in the pit scouting JSON files.
 package org.iowacityrobotics.rebuiltscoutingapp2026.pit_data;
 
 public class PitKeys {

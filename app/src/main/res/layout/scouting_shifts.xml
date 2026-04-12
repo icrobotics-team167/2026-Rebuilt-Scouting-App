@@ -596,7 +596,7 @@
                             android:layout_margin="10dp"
                             android:gravity="center_vertical"
                             android:paddingStart="10dp"
-                            android:text="Teams 3001-6000: Jaynou and Tommy" />
+                            android:text="Teams 3001-6000: Daniel and Farhan" />
 
                         <TextView
                             android:id="@+id/sheetCompletionHeader5"
@@ -606,7 +606,7 @@
                             android:layout_margin="10dp"
                             android:gravity="center_vertical"
                             android:paddingStart="10dp"
-                            android:text="Teams 6001-9000+: Daniel and Farhan" />
+                            android:text="Teams 6001-9000+: Jaynou and Tommy" />
 
                     </LinearLayout>
                 </ScrollView>

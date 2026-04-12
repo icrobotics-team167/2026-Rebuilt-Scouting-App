@@ -1,6 +1,6 @@
-// ZeeKonCal, ChatGPT
-// 2/28/2026
-// A class for handling match list generation with TBA API
+// ZeeKonCal, ChatGPT, JamesA
+// 2/28/2026 - 04/12/2026
+// A class for handling match list generation with TBA API.
 
 package org.iowacityrobotics.rebuiltscoutingapp2026.storage;
 

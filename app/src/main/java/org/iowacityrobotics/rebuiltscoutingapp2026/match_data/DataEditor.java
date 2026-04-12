@@ -1,6 +1,6 @@
-//Ben M, James A
-//1-16-2026 - 2-27-2026
-//This activity allows people to view and modify saved match data
+// Ben M, James A
+// 1/16/2026 - 2/27/2026
+// This activity allows people to view and modify saved match data
 package org.iowacityrobotics.rebuiltscoutingapp2026.match_data;
 
 import android.app.AlertDialog;

@@ -127,17 +127,6 @@
                             android:text='Select "Unknown" if you are unsure — do not guess' />
 
                         <TextView
-                            android:id="@+id/cyclesText"
-                            style="@style/AutoResize20"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:paddingStart="30dp"
-                            android:layout_margin="10dp"
-                            android:inputType="textMultiLine"
-                            android:text="Remember that fuel scored is just an estimate — get the best you can" />
-
-                        <TextView
                             android:id="@+id/focusAttentionHeader"
                             style="@style/AutoResize25"
                             android:layout_width="match_parent"
@@ -265,7 +254,7 @@
                             android:layout_margin="10dp"
                             android:gravity="center_vertical"
                             android:paddingStart="30dp"
-                            android:text="Don't ask teams about the top or bottom sections" />
+                            android:text="Don't ask teams to fill out the notes for you" />
 
                         <TextView
                             android:id="@+id/nextTeamText"
@@ -286,16 +275,6 @@
                             android:gravity="center_vertical"
                             android:paddingStart="30dp"
                             android:text="Don't go to heavy into notes for Day 1" />
-
-                        <TextView
-                            android:id="@+id/unknownMeasurementText"
-                            style="@style/AutoResize20"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:gravity="center_vertical"
-                            android:paddingStart="30dp"
-                            android:text="If for some reason you couldn't get a measurement, input -1 to refer to notes" />
 
                         <TextView
                             android:id="@+id/measurementsHeader"

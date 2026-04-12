@@ -1,6 +1,6 @@
-//Claude, James A
-//3-20-2026 - 4-03-2026
-//Class that uploads data to the spreadsheet
+// Claude, James A
+// 3/20/2026 - 4/12/2026
+// Class that uploads data to the spreadsheet.
 package org.iowacityrobotics.rebuiltscoutingapp2026.wireless_export;
 
 import android.app.*;

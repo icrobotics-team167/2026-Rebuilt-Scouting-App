@@ -1,6 +1,6 @@
-//Ben M, James A
-//1-21-2026 - 2-27-2026
-//This manages the Pit Scouting user interface.
+// Ben M, James A
+// 1/21/2026 - 2/27/2026
+// This manages the Pit Scouting user interface.
 package org.iowacityrobotics.rebuiltscoutingapp2026.pit_data;
 
 import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.tabletNumber;

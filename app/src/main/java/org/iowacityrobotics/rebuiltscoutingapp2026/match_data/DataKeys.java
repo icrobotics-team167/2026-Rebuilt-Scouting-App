@@ -1,6 +1,6 @@
-// Ben M, James A
-//1-19-2026 - 1-21-2026
-//This file contains a list of constant static strings used to label and retrieve data values across the app.
+//  Ben M, James A, ZeeKonCal
+// 1-19-2026 - 04/12/2026
+// These are the keys used in the match scouting JSON files.
 package org.iowacityrobotics.rebuiltscoutingapp2026.match_data;
 
 public class DataKeys {

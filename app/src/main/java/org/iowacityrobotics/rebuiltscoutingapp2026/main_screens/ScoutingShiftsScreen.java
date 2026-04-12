@@ -1,6 +1,6 @@
-//James A
-//2-26-2026 - 2-27-2026
-//Activity for Instructions Page
+// James A
+// 04/04/2026 - 04/12/2026
+// Activity for scouting shifts screen.
 package org.iowacityrobotics.rebuiltscoutingapp2026.main_screens;
 
 import android.os.Bundle;

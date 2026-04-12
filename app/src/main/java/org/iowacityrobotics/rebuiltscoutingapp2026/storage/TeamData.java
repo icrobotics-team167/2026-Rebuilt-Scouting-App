@@ -1,3 +1,6 @@
+// Claude, James A
+// 3/20/2026 - 4/12/2026
+// Class that creates the teamsObject that is used for keeping track of teams that have been already scouted.
 package org.iowacityrobotics.rebuiltscoutingapp2026.storage;
 
 import static org.iowacityrobotics.rebuiltscoutingapp2026.storage.MatchSchedule.matchesArray;

@@ -1,6 +1,6 @@
 // Ben M, James A, ZeeKonCal
-// 1/18/2026-2/27/2026
-// Activity for Setup Screen
+// 1/18/2026 - 04/12/2026
+// Activity for the setup match screen.
 package org.iowacityrobotics.rebuiltscoutingapp2026.main_screens;
 
 import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.tabletNumber;
@@ -133,13 +133,6 @@ public class SetupScreen extends AppCompatActivity {
         String matchType  = matchTypeSpinner.getSelectedItem().toString();
 
         String teamNumStr = MatchSchedule.getTeamNumber(matchNum, assignment, matchType);
-
-        if (teamNumStr.isEmpty()) {
-            Toast.makeText(this,
-                    matchType + " Match " + matchNum + " is not scheduled to take place at this event",
-                    Toast.LENGTH_SHORT).show();
-            return false;
-        }
 
         int teamNum = Integer.parseInt(teamNumStr);
 
@@ -502,6 +495,19 @@ public class SetupScreen extends AppCompatActivity {
 
     private boolean validateInputs() {
         boolean error = false;
+
+        String matchNum   = matchNumberInput.getText().toString().trim();
+        String assignment = assignmentSpinner.getSelectedItem().toString();
+        String matchType  = matchTypeSpinner.getSelectedItem().toString();
+        String teamNumStr = MatchSchedule.getTeamNumber(matchNum, assignment, matchType);
+
+        if (teamNumStr.isEmpty()) {
+            Toast.makeText(this,
+                    matchType + " Match " + matchNum + " is not scheduled to take place at this event",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         if (scouterNameInput.getText().toString().isEmpty()) {
             scouterNameInput.setError("Name is required");
             error = true;

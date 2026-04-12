@@ -1,6 +1,6 @@
-//Ben M
-//1-11-2026 - 2-1-2026
-//Creates json file order
+// JamesA, Claude
+// 3-20-2026 - 04/12/2026
+// Declares fields used in Day 3 Match Scouting.
 package org.iowacityrobotics.rebuiltscoutingapp2026.match_data;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.R;

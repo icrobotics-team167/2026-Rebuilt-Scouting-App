@@ -304,6 +304,7 @@
         <item name="colorPrimary">#455A64</item>
         <item name="colorSecondary">#90A4AE</item>
         <item name="colorBackground">#ECEFF1</item>
+        <item name="dividerColor">#90A4AE</item>
     </style>
 
 

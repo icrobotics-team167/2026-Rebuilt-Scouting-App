@@ -1,3 +1,6 @@
+// Claude, James A
+// 3/20/2026 - 4/12/2026
+// Class that receives data from The Blue Alliance API
 package org.iowacityrobotics.rebuiltscoutingapp2026.storage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

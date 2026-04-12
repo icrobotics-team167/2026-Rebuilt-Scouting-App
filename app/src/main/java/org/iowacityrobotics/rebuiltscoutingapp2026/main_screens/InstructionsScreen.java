@@ -1,6 +1,6 @@
-//James A
-//2-26-2026 - 2-27-2026
-//Activity for Instructions Page
+// James A
+// 2/26/2026 - 2/27/2026
+// Activity for instructions page.
 package org.iowacityrobotics.rebuiltscoutingapp2026.main_screens;
 
 import android.os.Bundle;

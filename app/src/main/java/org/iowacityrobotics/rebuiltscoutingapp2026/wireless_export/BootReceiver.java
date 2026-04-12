@@ -1,6 +1,6 @@
-//Claude, James A
-//3-20-2026 - 4-03-2026
-//Receiver for Hotspot
+// Claude, James A
+// 3/20/2026 - 04/12/2026
+// Receiver for Hotspot.
 package org.iowacityrobotics.rebuiltscoutingapp2026.wireless_export;
 
 import android.content.BroadcastReceiver;

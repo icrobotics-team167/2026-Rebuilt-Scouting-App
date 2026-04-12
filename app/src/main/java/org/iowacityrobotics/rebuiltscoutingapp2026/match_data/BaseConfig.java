@@ -1,3 +1,6 @@
+// Claude, James A
+// 03/20/2026 - 4/12/2026
+// Base interface for scouting match fields.
 package org.iowacityrobotics.rebuiltscoutingapp2026.match_data;
 
 public interface BaseConfig {

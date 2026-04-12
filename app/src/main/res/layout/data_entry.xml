@@ -678,7 +678,7 @@
                             android:ems="10"
                             android:inputType="text"
                             android:layout_weight="73.5"
-                            android:hint="What did they do during their scoring period?" />
+                            android:hint="What was good about their robot? What was bad?" />
 
                         <View
                             android:id="@+id/divider23"

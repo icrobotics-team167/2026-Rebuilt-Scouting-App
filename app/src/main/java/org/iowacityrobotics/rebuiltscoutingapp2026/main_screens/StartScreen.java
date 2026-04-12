@@ -1,6 +1,6 @@
-//Ben M, James A
-//1-21-2026 - 2-27-2026
-//Home screen of app
+// Ben M, James A
+// 1/21/2026 - 04/12/2026
+// Home screen of app
 package org.iowacityrobotics.rebuiltscoutingapp2026.main_screens;
 
 import static org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables.tabletNumber;

@@ -1,6 +1,6 @@
-//James A
-//2-26-2026 - 2-27-2026
-//Activity for Special Slider Screen
+// James A
+// 2/26/2026 - 2/27/2026
+// Activity for special slider screen.
 
 package org.iowacityrobotics.rebuiltscoutingapp2026.main_screens;
 

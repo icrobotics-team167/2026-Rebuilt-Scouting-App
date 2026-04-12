@@ -1,6 +1,6 @@
-//Ben M
-//1-17-2026 - 1-19-2026
-//Saves data list to a json file on the storage and reading it back when the app opens.
+// Ben M
+// 1/17/2026 - 1/19/2026
+// Saves data list to a JSON file on the storage and reading it back when the app opens.
 package org.iowacityrobotics.rebuiltscoutingapp2026.storage;
 
 import android.content.Context;
