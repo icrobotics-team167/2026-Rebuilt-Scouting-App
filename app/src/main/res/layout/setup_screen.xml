@@ -34,7 +34,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:gravity="center"
-                    android:text="Day 1" />
+                    android:text="Day 1/2" />
 
                 <Switch
                     android:id="@+id/dataEntrySwitch"

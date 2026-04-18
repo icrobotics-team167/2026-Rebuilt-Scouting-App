@@ -27,6 +27,8 @@ public class Day1Config {
         INPUTS.add(new BaseConfig.Field(R.id.driverRating, DataKeys.DRIVER_RATING, BaseConfig.DataType.NUMBER));
         INPUTS.add(new BaseConfig.Field(R.id.defenseRating, DataKeys.DEFENSE_RATING, BaseConfig.DataType.NUMBER));
 
+        INPUTS.add(new BaseConfig.Field(R.id.lessThan100, DataKeys.LESS_THAN_100, BaseConfig.DataType.BOOLEAN));
+        INPUTS.add(new BaseConfig.Field(R.id.badMatch, DataKeys.BAD_MATCH, BaseConfig.DataType.BOOLEAN));
 
         INPUTS.add(new BaseConfig.Field(R.id.comments, DataKeys.COMMENTS, BaseConfig.DataType.TEXT));
         INPUTS.add(new BaseConfig.Field(R.id.autoComments, DataKeys.AUTO_COMMENTS, BaseConfig.DataType.TEXT));

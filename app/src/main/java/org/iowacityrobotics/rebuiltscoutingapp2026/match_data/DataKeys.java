@@ -21,6 +21,8 @@ public class DataKeys {
     public static final String PLAYED_DEFENSE = "played_defense";
     public static final String SHOOT_ON_MOVE = "shoot_on_move";
 
+    public static final String LESS_THAN_100 = "scored_less_than_100";
+    public static final String BAD_MATCH = "bad_match";
     public static final String SUSCEPTIBLE_DEFENSE = "susceptible_to_defense";
     public static final String DRIVER_RATING = "driver_rating";
     public static final String DEFENSE_RATING = "defense_rating";

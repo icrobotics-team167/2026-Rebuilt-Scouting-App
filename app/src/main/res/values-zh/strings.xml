@@ -33,4 +33,15 @@
     <string name="data_entry_general_notes_hint">例：机器人发生故障</string>
     <string name="data_entry_active_hub_notes_hint">例：三管发射器射速很快</string>
     <string name="data_entry_inactive_hub_notes_hint">例：取球速度快，传球表现出色</string>
+    <string name="data_entry_auto_neutral_zone">中立区</string>
+    <string name="data_entry_auto_notes_header">自动备注：</string>
+    <string name="data_entry_scored_lt_100_points"><![CDATA[得分 < 100 分]]></string>
+    <string name="data_entry_flag_outlier_match">标记异常比赛</string>
+    <string name="data_entry_driver_rating">驾驶评分</string>
+    <string name="data_entry_defense_rating">防守评分</string>
+    <string name="data_entry_susceptible_to_defense">易受防守影响</string>
+    <string name="data_entry_teleop_notes">遥控阶段备注</string>
+    <string name="data_entry_example_teleop_notes">他们的机器人有什么优点？有什么缺点？</string>
+    <string name="data_entry_robot_header">机器人</string>
+    <string name="data_entry_defense_header">防守</string>
 </resources>

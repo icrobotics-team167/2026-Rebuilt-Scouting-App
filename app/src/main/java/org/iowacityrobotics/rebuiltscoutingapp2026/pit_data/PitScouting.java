@@ -61,6 +61,7 @@ public class PitScouting extends AppCompatActivity {
     private LinearLayout day1, day2;
     private EditText scouterName;
     private Spinner teamNumberSpinner, editTeamSpinner;
+    private EditText teamNumberText;
     private EditText botHeight, botWeight;
     private Spinner heightUnitsSpinner, weightUnitsSpinner, intakeWidthUnits;
     private Spinner motorTypeSpinner;
@@ -108,6 +109,10 @@ public class PitScouting extends AppCompatActivity {
         day2.setVisibility(View.GONE);
 
         initializeViews();
+
+        teamNumberSpinner.setVisibility(View.VISIBLE);
+        teamNumberText.setVisibility(View.GONE);
+
         setupDayListener();
         setupDay2Teams();
         setSwitchState();
@@ -160,6 +165,7 @@ public class PitScouting extends AppCompatActivity {
 
         scouterName = findViewById(R.id.scouter);
         teamNumberSpinner = findViewById(R.id.teamNumberSpinner);
+        teamNumberText = findViewById(R.id.teamNumberText);
         editTeamSpinner = findViewById(R.id.editTeamSpinner);
 
         botHeight = findViewById(R.id.botHeight);
@@ -223,6 +229,8 @@ public class PitScouting extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 enableSwerveFields(false);
+                teamNumberSpinner.setVisibility(View.VISIBLE);
+                teamNumberText.setVisibility(View.GONE);
                 if (isChecked) {
                     day1.setVisibility(View.GONE);
                     day2.setVisibility(View.VISIBLE);
@@ -273,6 +281,10 @@ public class PitScouting extends AppCompatActivity {
                 if (suppressSpinnerEvents || position == 0) return;
                 suppressSpinnerEvents = true;
                 editTeamSpinner.setSelection(0);
+                if (teamNumberSpinner.getSelectedItem().toString().equals("Add")) {
+                    teamNumberSpinner.setVisibility(View.GONE);
+                    teamNumberText.setVisibility(View.VISIBLE);
+                }
                 suppressSpinnerEvents = false;
             }
 
@@ -422,9 +434,11 @@ public class PitScouting extends AppCompatActivity {
 
                 if (teamNumbers.isEmpty()) {
                     teamNumberStrings.add("None");
+                    teamNumberStrings.add("Add");
                 } else {
                     teamNumberStrings.add("Select");
                     for (int num : teamNumbers) teamNumberStrings.add(String.valueOf(num));
+                    teamNumberStrings.add("Add");
                 }
                 runOnUiThread(() -> {
                     ArrayAdapter<String> newAdapter = new ArrayAdapter<>(context,
@@ -478,6 +492,7 @@ public class PitScouting extends AppCompatActivity {
     private void clearFields() {
         clearErrors();
 
+        teamNumberText.setText("");
         scouterName.setText("");
         botHeight.setText("");
         botWeight.setText("");
@@ -571,15 +586,22 @@ public class PitScouting extends AppCompatActivity {
 
     private void checkFieldsAndSave() {
         boolean error = false;
-        String teamNum = teamNumberSpinner.getSelectedItem().toString();
+        String teamNumSpinner = teamNumberSpinner.getSelectedItem().toString();
+        String teamNumText = teamNumberText.getText().toString();
         String editTeamNum = editTeamSpinner.getSelectedItem().toString();
 
         // Saving New Data
         if (editingIndex == -1) {
-            boolean noTeamSelected = teamNum.equals("Select") || teamNum.equals("None");
+            boolean noTeamSelected;
+            if (teamNumberSpinner.isShown()) {
+                noTeamSelected = teamNumSpinner.equals("Select") || teamNumSpinner.equals("None");
+            }
+            else {
+                noTeamSelected = teamNumText.isEmpty() || teamNumSpinner.equals("None");
+            }
             boolean editHasData = !editTeamNum.contains("Select") && !editTeamNum.equals("None");
 
-            if (teamNum.equals("None") && !editHasData) {
+            if (teamNumSpinner.equals("None") && !editHasData) {
                 setSpinnerError(teamNumberSpinner, "", "No Teams Left to Scout");
                 return;
             } else if (noTeamSelected && editHasData) {
@@ -587,6 +609,7 @@ public class PitScouting extends AppCompatActivity {
                 return;
             } else if (noTeamSelected) {
                 setSpinnerError(teamNumberSpinner, "Select Team", "Select Team Number");
+                teamNumberText.setError("Enter New Team");
                 return;
             }
         // Editing Old Data
@@ -633,6 +656,9 @@ public class PitScouting extends AppCompatActivity {
     }
     private void savePitData() {
         String selectedTeamNumber = teamNumberSpinner.getSelectedItem().toString().trim();
+        if (selectedTeamNumber.equals("Add")) {
+            selectedTeamNumber = teamNumberText.getText().toString().trim();
+        }
         String selectedEditTeamNumber = editTeamSpinner.getSelectedItem().toString().trim();
         String team = "";
         if (!selectedTeamNumber.equals("Select") && !selectedTeamNumber.equals("None")) {

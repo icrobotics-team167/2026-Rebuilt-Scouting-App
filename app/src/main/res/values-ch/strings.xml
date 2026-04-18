@@ -34,4 +34,15 @@
     <string name="data_entry_general_notes_hint">Ex: ROBOT E-STOPPPPED REFFFFF</string>
     <string name="data_entry_active_hub_notes_hint">Ex: buns shooting rate from TRIPLE-BARREL PUKER</string>
     <string name="data_entry_inactive_hub_notes_hint">Ex: semi buns intake, made chuzz passes</string>
+    <string name="data_entry_auto_neutral_zone">went to neutral</string>
+    <string name="data_entry_auto_notes_header">bum auto notes faaah</string>
+    <string name="data_entry_scored_lt_100_points"><![CDATA[chuzz team def scored < 100 points]]></string>
+    <string name="data_entry_flag_outlier_match">flag as chuzz match</string>
+    <string name="data_entry_driver_rating">bum driver rating:</string>
+    <string name="data_entry_defense_rating">rate that chuzz defense:</string>
+    <string name="data_entry_susceptible_to_defense">was getting defensed on faaah</string>
+    <string name="data_entry_teleop_notes">ts notes from teleop faaah:</string>
+    <string name="data_entry_example_teleop_notes">ts notes better be good</string>
+    <string name="data_entry_robot_header">ts robot things:</string>
+    <string name="data_entry_defense_header">defense stuff chuzz</string>
 </resources>

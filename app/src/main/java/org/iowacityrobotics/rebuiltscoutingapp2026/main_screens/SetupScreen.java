@@ -132,6 +132,8 @@ public class SetupScreen extends AppCompatActivity {
         String assignment = assignmentSpinner.getSelectedItem().toString();
         String matchType  = matchTypeSpinner.getSelectedItem().toString();
 
+        if (matchType.equals("Pre-Scouting")) return true;
+
         String teamNumStr = MatchSchedule.getTeamNumber(matchNum, assignment, matchType);
 
         int teamNum = Integer.parseInt(teamNumStr);
@@ -187,7 +189,7 @@ public class SetupScreen extends AppCompatActivity {
         assignAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         assignmentSpinner.setAdapter(assignAdapter);
 
-        String[] matchTypes = {"Select", "Practice", "Qualification"};
+        String[] matchTypes = {"Select", "Pre-Scouting", "Practice", "Qualification"};
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, matchTypes);
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         matchTypeSpinner.setAdapter(typeAdapter);
@@ -473,14 +475,8 @@ public class SetupScreen extends AppCompatActivity {
         String matchNum   = matchNumberInput.getText().toString().trim();
         String assignment = assignmentSpinner.getSelectedItem().toString();
         String matchType  = matchTypeSpinner.getSelectedItem().toString();
+        if (matchType.equals("Pre-Scouting")) return true;
         String teamNumStr = MatchSchedule.getTeamNumber(matchNum, assignment, matchType);
-
-        if (teamNumStr.isEmpty()) {
-            Toast.makeText(this,
-                    matchType + " Match " + matchNum + " is not scheduled to take place at this event",
-                    Toast.LENGTH_SHORT).show();
-            return false;
-        }
 
         if (scouterNameInput.getText().toString().isEmpty()) {
             scouterNameInput.setError("Name is required");
@@ -489,6 +485,13 @@ public class SetupScreen extends AppCompatActivity {
         if (matchNumberInput.getText().toString().isEmpty()) {
             matchNumberInput.setError("Match # is required");
             error = true;
+        }
+
+        if (teamNumStr.isEmpty()) {
+            Toast.makeText(this,
+                    matchType + " Match " + matchNum + " is not scheduled to take place at this event",
+                    Toast.LENGTH_SHORT).show();
+            return false;
         }
 
         String selectedMatchType = matchTypeSpinner.getSelectedItem().toString();

@@ -476,17 +476,20 @@
                 android:textColor="@color/white"
                 android:text="Delete" />
 
-            <Space
+            <CheckBox
+                android:id="@+id/lessThan100"
+                style="@style/AutoResize20"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2" />
+                android:layout_weight="4.5"
+                android:text="Scored &lt; 100 Points" />
 
             <CheckBox
                 android:id="@+id/playedDefense"
                 style="@style/AutoResize20"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="7"
+                android:layout_weight="4.5"
                 android:text="Played Defense" />
 
             <CheckBox
@@ -494,13 +497,16 @@
                 style="@style/AutoResize20"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="7"
+                android:layout_weight="4.5"
                 android:text="Shoot on the Move" />
 
-            <Space
+            <CheckBox
+                android:id="@+id/badMatch"
+                style="@style/AutoResize20"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2" />
+                android:layout_weight="4.5"
+                android:text="Data Outlier" />
 
             <Button
                 android:id="@+id/saveExitButton"

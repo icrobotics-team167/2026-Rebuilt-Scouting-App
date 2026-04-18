@@ -33,4 +33,15 @@
     <string name="data_entry_general_notes_hint">Ör: Robot arızalandı</string>
     <string name="data_entry_active_hub_notes_hint">Ör: Üçlü namludan hızlı atış hızı</string>
     <string name="data_entry_inactive_hub_notes_hint">Ör: Hızlı toplama, çok iyi pas attı</string>
+    <string name="data_entry_auto_neutral_zone">Nötr Bölge</string>
+    <string name="data_entry_auto_notes_header">Otomatik Notlar:</string>
+    <string name="data_entry_scored_lt_100_points"><![CDATA[Alınan Puan < 100]]></string>
+    <string name="data_entry_flag_outlier_match">Aykırı Maçı İşaretle</string>
+    <string name="data_entry_driver_rating">Sürücü Puanı</string>
+    <string name="data_entry_defense_rating">Savunma Puanı</string>
+    <string name="data_entry_susceptible_to_defense">Savunmaya Duyarlı</string>
+    <string name="data_entry_teleop_notes">Teleop Notları</string>
+    <string name="data_entry_example_teleop_notes">Robotlarının iyi yönleri nelerdi? Kötü yönleri nelerdi?</string>
+    <string name="data_entry_robot_header">Robot</string>
+    <string name="data_entry_defense_header">Savunma</string>
 </resources>

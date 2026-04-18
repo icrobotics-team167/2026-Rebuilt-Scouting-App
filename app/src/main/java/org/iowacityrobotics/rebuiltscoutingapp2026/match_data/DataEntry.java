@@ -226,6 +226,8 @@ public class DataEntry extends AppCompatActivity {
         data.put(DataKeys.MATCH_NUM, temp.get(DataKeys.MATCH_NUM));
         data.put(DataKeys.ASSIGNMENT, getIntent().getStringExtra("PASS_ASSIGNMENT"));
         data.put(DataKeys.SCOUTER, temp.get(DataKeys.SCOUTER));
+        data.put(DataKeys.BAD_MATCH, temp.get(DataKeys.BAD_MATCH));
+        data.put(DataKeys.LESS_THAN_100, temp.get(DataKeys.LESS_THAN_100));
         data.put(DataKeys.STARTING_POSITION, temp.get(DataKeys.STARTING_POSITION));
         data.put(DataKeys.AUTO_MOVED, temp.get(DataKeys.AUTO_MOVED));
         data.put(DataKeys.AUTO_PASSED_FUEL, temp.get(DataKeys.AUTO_PASSED_FUEL));

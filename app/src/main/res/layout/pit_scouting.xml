@@ -36,7 +36,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="8"
+                android:layout_weight="8.25"
                 android:orientation="horizontal"
                 android:weightSum="48">
 
@@ -50,12 +50,27 @@
                     android:paddingStart="10dp"
                     android:text="Team Number:" />
 
-                <Spinner
-                    android:id="@+id/teamNumberSpinner"
-                    style="@style/AutoResize25"
+                <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="5.6" />
+                    android:layout_weight="5.6">
+
+                    <Spinner
+                        android:id="@+id/teamNumberSpinner"
+                        android:visibility="visible"
+                        style="@style/AutoResize25"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <EditText
+                        android:id="@+id/teamNumberText"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:inputType="numberSigned"
+                        android:hint="Enter" />
+                </FrameLayout>
 
                 <TextView
                     android:id="@+id/scouterHeader"
@@ -164,12 +179,12 @@
                 android:layout_weight="57">
 
                 <LinearLayout
+                    android:id="@+id/day2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/day2"
-                    android:weightSum="68"
+                    android:orientation="vertical"
                     android:visibility="gone"
-                    android:orientation="vertical">
+                    android:weightSum="68">
 
                     <TextView
                         android:id="@+id/autoNotesHeader"
@@ -185,10 +200,10 @@
                         style="@style/AutoResize20"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:ems="10"
-                        android:inputType="text"
                         android:layout_weight="15.5"
-                        android:hint="Auto Notes" />
+                        android:ems="10"
+                        android:hint="Auto Notes"
+                        android:inputType="text" />
 
                     <TextView
                         android:id="@+id/teleopNotesHeader"
@@ -223,19 +238,20 @@
                         style="@style/AutoResize20"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:ems="10"
                         android:layout_weight="16"
-                        android:inputType="text"
-                        android:hint="General Notes" />
+                        android:ems="10"
+                        android:hint="General Notes"
+                        android:inputType="text" />
 
                     <Button
                         android:id="@+id/day2SaveExitButton"
                         style="@style/AutoResize25"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        android:layout_weight="7"
                         android:layout_gravity="center"
-                        android:text="Save and Exit" />
+                        android:layout_weight="7"
+                        android:text="Save and Exit"
+                        android:textColor="@color/white" />
 
                     <View
                         android:id="@+id/divider20"
@@ -246,11 +262,11 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/day1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/day1"
-                    android:visibility="visible"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -872,7 +888,7 @@
                         android:id="@+id/divider34"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="1.25"
                         android:background="?android:attr/listDivider" />
                 </LinearLayout>
             </FrameLayout>

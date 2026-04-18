@@ -22,7 +22,7 @@ public class DataEditor extends AppCompatActivity {
     private LinearLayout day1, day3;
 
     private EditText matchNum, teamNum, scouterName, assignment;
-    private CheckBox playedDefense, susceptibleDefense, shootOnMove, autoMoved, autoPassedFuel, autoNeutralZone;
+    private CheckBox playedDefense, susceptibleDefense, shootOnMove, autoMoved, autoPassedFuel, autoNeutralZone, lessThan100, badMatch;
     private EditText defenseRating, driverRating;
     private EditText startingPosition;
     private EditText comments, autoComments;
@@ -62,6 +62,9 @@ public class DataEditor extends AppCompatActivity {
         defenseRating = findViewById(R.id.defenseRating);
         driverRating = findViewById(R.id.driverRating);
 
+        badMatch = findViewById(R.id.badMatch);
+        lessThan100 = findViewById(R.id.lessThan100);
+
         comments = findViewById(R.id.comments);
         autoComments = findViewById(R.id.autoComments);
 
@@ -79,6 +82,9 @@ public class DataEditor extends AppCompatActivity {
             setTextSafe(teamNum, data.get(DataKeys.TEAM_NUM));
             setTextSafe(scouterName, data.get(DataKeys.SCOUTER));
             setTextSafe(assignment, data.get(DataKeys.ASSIGNMENT));
+
+            badMatch.setChecked(getBooleanSafe(data, DataKeys.BAD_MATCH));
+            lessThan100.setChecked(getBooleanSafe(data, DataKeys.LESS_THAN_100));
 
             autoMoved.setChecked(getBooleanSafe(data, DataKeys.AUTO_MOVED));
             setTextSafe(startingPosition, data.get(DataKeys.STARTING_POSITION));
@@ -119,6 +125,9 @@ public class DataEditor extends AppCompatActivity {
             data.put(DataKeys.TEAM_NUM, teamNum.getText().toString());
             data.put(DataKeys.SCOUTER, scouterName.getText().toString());
             data.put(DataKeys.ASSIGNMENT, assignment.getText().toString());
+
+            data.put(DataKeys.BAD_MATCH, badMatch.isChecked());
+            data.put(DataKeys.LESS_THAN_100, lessThan100.isChecked());
 
             data.put(DataKeys.AUTO_MOVED, autoMoved.isChecked());
             data.put(DataKeys.STARTING_POSITION, startingPosition.getText().toString());
