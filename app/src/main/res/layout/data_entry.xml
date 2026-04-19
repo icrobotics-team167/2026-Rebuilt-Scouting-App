@@ -64,7 +64,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
-                android:hint="#" />
+                android:hint="None" />
 
             <TextView
                 android:id="@+id/scouter"
@@ -622,7 +622,7 @@
                                     android:layout_weight="6"
                                     android:isIndicator="false"
                                     android:numStars="5"
-                                    android:stepSize="0.5" />
+                                    android:stepSize="1" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -692,7 +692,7 @@
                                     android:layout_weight="6"
                                     android:isIndicator="false"
                                     android:numStars="5"
-                                    android:stepSize="0.5" />
+                                    android:stepSize="1" />
                             </LinearLayout>
 
                         </LinearLayout>

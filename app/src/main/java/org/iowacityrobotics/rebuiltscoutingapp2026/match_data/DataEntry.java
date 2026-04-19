@@ -43,8 +43,8 @@ public class DataEntry extends AppCompatActivity {
     private EditText teamNumView;
     private Spinner startingPosition, startingPositionDay3;
     private CheckBox playedDefense;
-    private TextView defenseRatingHeader;
-    private RatingBar defenseRating;
+    private TextView defenseRatingHeader, driverRatingHeader;
+    private RatingBar defenseRating, driverRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +93,8 @@ public class DataEntry extends AppCompatActivity {
         playedDefense = findViewById(R.id.playedDefense);
         defenseRatingHeader = findViewById(R.id.defenseRatingHeader);
         defenseRating = findViewById(R.id.defenseRating);
+        driverRatingHeader = findViewById(R.id.driverRatingHeader);
+        driverRating = findViewById(R.id.driverRating);
 
         defenseRating.setIsIndicator(true);
         defenseRatingHeader.setTextColor(Color.GRAY);
@@ -170,7 +172,7 @@ public class DataEntry extends AppCompatActivity {
         String foundTeam = MatchSchedule.getTeamNumber(matchNumView.getText().toString(),
                 assignmentView.getText().toString(),
                 getIntent().getStringExtra("PASS_MATCH_TYPE"));
-        teamNumView.setText(!foundTeam.isEmpty() ? foundTeam : "");
+        teamNumView.setText(!foundTeam.isEmpty() ? foundTeam : getIntent().getStringExtra("PASS_TEAM"));
     }
 
     private void checkFieldsAndSave() {
@@ -189,6 +191,16 @@ public class DataEntry extends AppCompatActivity {
                 selectedTextView.setTextColor(Color.RED);
                 selectedTextView.setError("Select Starting Position");
             }
+            error = true;
+        }
+        int selectedDriverRating = (int) driverRating.getRating();
+        if (selectedDriverRating == 0) {
+            driverRatingHeader.setError("Select Driver Rating");
+            error = true;
+        }
+        int selectedDefenseRating = (int) defenseRating.getRating();
+        if (!(defenseRating.isIndicator()) && selectedDefenseRating == 0) {
+            defenseRatingHeader.setError("Select Defense Rating");
             error = true;
         }
         if (error) {

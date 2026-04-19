@@ -127,6 +127,28 @@
                             android:text='Select "Unknown" if you are unsure — do not guess' />
 
                         <TextView
+                            android:id="@+id/unsureText3"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:inputType="textMultiLine"
+                            android:paddingStart="30dp"
+                            android:text="Notes are important this year — write useful ones" />
+
+                        <TextView
+                            android:id="@+id/unsureText2"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:inputType="textMultiLine"
+                            android:paddingStart="30dp"
+                            android:text="---CALDER ADD HERE STAR RATINGS MEANING (Driver and Defense)---" />
+
+                        <TextView
                             android:id="@+id/focusAttentionHeader"
                             style="@style/AutoResize25"
                             android:layout_width="match_parent"
@@ -144,7 +166,17 @@
                             android:layout_margin="10dp"
                             android:gravity="center_vertical"
                             android:paddingStart="30dp"
-                            android:text="Remember to pay attention during matches. If you need a break, talk to A.P.P." />
+                            android:text="Remember to pay attention during matches. If you need a break, talk to James/Calder" />
+
+                        <TextView
+                            android:id="@+id/payAttentionText2"
+                            style="@style/AutoResize20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="30dp"
+                            android:text="If you want to go somewhere during your scouting shift, hand the tablet off to another available person willing to scout" />
 
                         <TextView
                             android:id="@+id/messedUpText"
@@ -155,7 +187,7 @@
                             android:gravity="center_vertical"
                             android:inputType="textMultiLine"
                             android:paddingStart="30dp"
-                            android:text="If you don't pay attention in a match, skip the match with the back button" />
+                            android:text="If you don't pay attention in a match, skip the match with the back button ( &lt; ) in the very bottom-right of your screen" />
 
                         <TextView
                             android:id="@+id/nameSettingsHeader"

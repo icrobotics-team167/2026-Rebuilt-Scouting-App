@@ -135,7 +135,9 @@ public class StorageManager {
                 if (output == null) throw new Exception("Could not open USB file");
                 output.write(existingArray.toString().getBytes());
             }
-
+            Toast.makeText(context, "Exporting...", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Exporting...", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Exporting...", Toast.LENGTH_LONG).show();
             Toast.makeText(context, "Successfully Exported!", Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {

@@ -211,17 +211,35 @@
                 android:paddingStart="10dp"
                 android:layout_weight="4" />
 
-            <EditText
-                android:id="@+id/matchNumber"
-                style="@style/AutoResize20"
+            <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:ems="10"
-                android:gravity="bottom"
-                android:paddingBottom="20dp"
-                android:inputType="number"
-                android:hint="Match Number" />
+                android:layout_weight="3">
+
+                <EditText
+                    android:id="@+id/matchNumber"
+                    style="@style/AutoResize20"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible"
+                    android:ems="10"
+                    android:gravity="bottom"
+                    android:hint="Match Number"
+                    android:inputType="number"
+                    android:paddingBottom="20dp" />
+
+                <EditText
+                    android:id="@+id/teamNumber"
+                    style="@style/AutoResize20"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="bottom"
+                    android:hint="Team Number"
+                    android:inputType="number"
+                    android:paddingBottom="20dp"  />
+            </FrameLayout>
 
         </LinearLayout>
 

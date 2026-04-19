@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -50,7 +51,7 @@ public class SetupScreen extends AppCompatActivity {
     private static final String TEAMS_KEY = "day3_teams";
 
 
-    private EditText scouterNameInput, matchNumberInput;
+    private EditText scouterNameInput, matchNumberInput, teamNumber;
     private Spinner assignmentSpinner, matchTypeSpinner, matchListSpinner;
 
     private boolean isExportingAll = false;
@@ -84,6 +85,7 @@ public class SetupScreen extends AppCompatActivity {
         setupDayListener();
         setupStaticSpinners();
         setupButtons();
+        setupPreScoutingListener();
         restorePreferences();
     }
 
@@ -98,10 +100,14 @@ public class SetupScreen extends AppCompatActivity {
     private void initializeViews() {
         scouterNameInput = findViewById(R.id.scouter);
         matchNumberInput = findViewById(R.id.matchNumber);
+        teamNumber = findViewById(R.id.teamNumber);
         assignmentSpinner = findViewById(R.id.scoutingAssignmentAndTeamNumber);
         matchTypeSpinner = findViewById(R.id.matchHeader);
         matchListSpinner = findViewById(R.id.matchListSpinner);
         dataEntrySwitch = findViewById((R.id.dataEntrySwitch));
+
+        matchNumberInput.setVisibility(View.VISIBLE);
+        teamNumber.setVisibility(View.GONE);
     }
 
     private void setupDayListener() {
@@ -113,6 +119,26 @@ public class SetupScreen extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setupPreScoutingListener() {
+        matchTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (matchTypeSpinner.getSelectedItem().toString().equals("Pre-Scouting")) {
+                    matchNumberInput.setVisibility(View.GONE);
+                    teamNumber.setVisibility(View.VISIBLE);
+                }
+                else {
+                    matchNumberInput.setVisibility(View.VISIBLE);
+                    teamNumber.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     private void setupDay3Teams() {
@@ -263,8 +289,13 @@ public class SetupScreen extends AppCompatActivity {
                 } else {
                     intent = new Intent(SetupScreen.this, DataEntry.class);
                 }
+                if (matchTypeSpinner.getSelectedItem().toString().equals("Pre-Scouting")) {
+                    intent.putExtra("PASS_TEAM", teamNumber.getText().toString());
+                }
+                else {
+                    intent.putExtra("PASS_MATCH",        matchNumberInput.getText().toString());
+                }
                 intent.putExtra("PASS_SCOUTER",      scouterNameInput.getText().toString());
-                intent.putExtra("PASS_MATCH",        matchNumberInput.getText().toString());
                 intent.putExtra("PASS_ASSIGNMENT",   assignmentSpinner.getSelectedItem().toString());
                 intent.putExtra("PASS_MATCH_TYPE",   matchTypeSpinner.getSelectedItem().toString());
                 intent.putExtra("PASS_DAY",          dataEntrySwitch.isChecked());
@@ -366,7 +397,11 @@ public class SetupScreen extends AppCompatActivity {
             String teamNum = match.get(DataKeys.TEAM_NUM).toString();
 
             if (!teamNum.isEmpty()) {
-                if (matchNum.equals(parts[1]) && teamNum.equals(parts[2]) && isCurrentDay(match)) {
+                if (matchNum.isEmpty() && teamNum.equals(parts[1]) && isCurrentDay(match)) {
+                    launchFilePicker();
+                    break;
+                }
+                else if (matchNum.equals(parts[1]) && teamNum.equals(parts[2]) && isCurrentDay(match)) {
                     launchFilePicker();
                     break;
                 }
@@ -409,22 +444,27 @@ public class SetupScreen extends AppCompatActivity {
             String selectedItem = matchListSpinner.getSelectedItem().toString();
 
             String[] parts = selectedItem.split("\\D+");
-
+            String selectedMatchNum;
+            String selectedTeamNum;
             if (parts.length < 3) {
-                Toast.makeText(this, "Invalid match format", Toast.LENGTH_SHORT).show();
-                return;
+                selectedTeamNum = parts[1];
+                for (Map<String, Object> match : GlobalVariables.dataList) {
+                    String teamNum = match.get(DataKeys.TEAM_NUM).toString();
+                    if (teamNum.equals(selectedTeamNum) && isCurrentDay(match)) {
+                        exportBatch.add(match);
+                    }
+                }
             }
-
-            String selectedMatchNum = parts[1];
-            String selectedTeamNum = parts[2];
-
-            for (Map<String, Object> match : GlobalVariables.dataList) {
-                String matchNum = match.get(DataKeys.MATCH_NUM).toString();
-                String teamNum = match.get(DataKeys.TEAM_NUM).toString();
-
-                if (matchNum.equals(selectedMatchNum) && teamNum.equals(selectedTeamNum) && isCurrentDay(match)) {
-                    exportBatch.add(match);
-                    break;
+            else {
+                selectedMatchNum = parts[1];
+                selectedTeamNum = parts[2];
+                for (Map<String, Object> match : GlobalVariables.dataList) {
+                    String matchNum = match.get(DataKeys.MATCH_NUM).toString();
+                    String teamNum = match.get(DataKeys.TEAM_NUM).toString();
+                    if (matchNum.equals(selectedMatchNum) && teamNum.equals(selectedTeamNum) && isCurrentDay(match)) {
+                        exportBatch.add(match);
+                        break;
+                    }
                 }
             }
         }
@@ -475,7 +515,15 @@ public class SetupScreen extends AppCompatActivity {
         String matchNum   = matchNumberInput.getText().toString().trim();
         String assignment = assignmentSpinner.getSelectedItem().toString();
         String matchType  = matchTypeSpinner.getSelectedItem().toString();
-        if (matchType.equals("Pre-Scouting")) return true;
+        if (matchType.equals("Pre-Scouting")) {
+            if (teamNumber.getText().toString().isEmpty()) {
+                teamNumber.setError("Team # is required");
+                return false;
+            }
+            else {
+                return true;
+            }
+        };
         String teamNumStr = MatchSchedule.getTeamNumber(matchNum, assignment, matchType);
 
         if (scouterNameInput.getText().toString().isEmpty()) {
