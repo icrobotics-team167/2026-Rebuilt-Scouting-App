@@ -193,15 +193,17 @@ public class DataEntry extends AppCompatActivity {
             }
             error = true;
         }
-        int selectedDriverRating = (int) driverRating.getRating();
-        if (selectedDriverRating == 0) {
-            driverRatingHeader.setError("Select Driver Rating");
-            error = true;
-        }
-        int selectedDefenseRating = (int) defenseRating.getRating();
-        if (!(defenseRating.isIndicator()) && selectedDefenseRating == 0) {
-            defenseRatingHeader.setError("Select Defense Rating");
-            error = true;
+        if (!isDay3) {
+            int selectedDriverRating = (int) driverRating.getRating();
+            if (selectedDriverRating == 0) {
+                driverRatingHeader.setError("Select Driver Rating");
+                error = true;
+            }
+            int selectedDefenseRating = (int) defenseRating.getRating();
+            if (!(defenseRating.isIndicator()) && selectedDefenseRating == 0) {
+                defenseRatingHeader.setError("Select Defense Rating");
+                error = true;
+            }
         }
         if (error) {
             Toast.makeText(this, "Incomplete Entry", Toast.LENGTH_SHORT).show();

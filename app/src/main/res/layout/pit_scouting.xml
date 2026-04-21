@@ -69,7 +69,7 @@
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:inputType="numberSigned"
-                        android:hint="Enter" />
+                        android:hint="Enter Team" />
                 </FrameLayout>
 
                 <TextView

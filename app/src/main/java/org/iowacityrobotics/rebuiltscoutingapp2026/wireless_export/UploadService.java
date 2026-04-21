@@ -29,7 +29,7 @@ import okhttp3.*;
 
 public class UploadService extends Service {
 
-    private static final String SHEET_URL = "https://script.google.com/macros/s/AKfycbyC6lj2b-9ec11bBNPfkUjG_tuubhjTsuQTg-rlym2rC2bYv_eYYUMaEVxHAR7R8k7hJA/exec";
+    private static final String SHEET_URL = "https://script.google.com/macros/s/AKfycbwM4bDSOLLRKNY_hcbTQde2EHbJWTSHLfbkMnPp_c5zkekO5XehwzN2fkD0F0nx1aTxMw/exec";
     private static final String CHANNEL_ID = "UploadServiceChannel";
     private static final int NOTIFICATION_ID = 1;
     private static final long RETRY_DELAY_MS = 5000;

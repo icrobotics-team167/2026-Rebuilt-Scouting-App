@@ -535,11 +535,11 @@ public class SetupScreen extends AppCompatActivity {
             error = true;
         }
 
-        if (teamNumStr.isEmpty()) {
+        if (teamNumStr.isEmpty() && !matchTypeSpinner.getSelectedItem().toString().equals("Select") && !assignmentSpinner.getSelectedItem().toString().equals("Select")) {
             Toast.makeText(this,
                     matchType + " Match " + matchNum + " is not scheduled to take place at this event",
                     Toast.LENGTH_SHORT).show();
-            return false;
+            error = true;
         }
 
         String selectedMatchType = matchTypeSpinner.getSelectedItem().toString();
