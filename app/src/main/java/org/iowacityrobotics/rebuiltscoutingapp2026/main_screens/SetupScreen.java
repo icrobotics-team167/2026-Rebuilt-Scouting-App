@@ -10,7 +10,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,6 +31,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.core.os.LocaleListCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
@@ -37,10 +41,12 @@ import org.iowacityrobotics.rebuiltscoutingapp2026.match_data.DataEntry;
 import org.iowacityrobotics.rebuiltscoutingapp2026.match_data.DataKeys;
 import org.iowacityrobotics.rebuiltscoutingapp2026.storage.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.storage.StorageManager;
+import org.iowacityrobotics.rebuiltscoutingapp2026.wireless_export.UploadService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -341,47 +347,61 @@ public class SetupScreen extends AppCompatActivity {
 
     private void exportUnExported() {
         StorageManager.saveData(this);
-        boolean hasNewData = false;
-        boolean hasData = false;
-        int matchesFound = 0;
-        isExportingAll = true;
 
-        for (Map<String, Object> match : GlobalVariables.dataList) {
-            if (isMatchRecord(match) && isCurrentDay(match)) {
-                hasData = true;
-                boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
-                if (!isExported) {
-                    hasNewData = true;
-                    break;
-                }
+        UsbManager usbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
+        HashMap<String, UsbDevice> deviceList = usbManager.getDeviceList();
+
+        if (deviceList.isEmpty()) {
+            Intent serviceIntent = new Intent(this, UploadService.class);
+            serviceIntent.setAction(UploadService.ACTION_MANUAL_UPLOAD);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                ContextCompat.startForegroundService(this, serviceIntent);
+            } else {
+                this.startService(serviceIntent);
             }
-        }
+        } else {
+            boolean hasNewData = false;
+            boolean hasData = false;
+            int matchesFound = 0;
+            isExportingAll = true;
 
-        if (hasNewData) {
             for (Map<String, Object> match : GlobalVariables.dataList) {
                 if (isMatchRecord(match) && isCurrentDay(match)) {
+                    hasData = true;
                     boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
                     if (!isExported) {
-                        matchesFound++;
-                        if (matchesFound < 1) {
-                            Toast.makeText(this, "Error finding matches.", Toast.LENGTH_SHORT).show();
-                        }
+                        hasNewData = true;
+                        break;
                     }
                 }
             }
-            launchFilePicker();
-        } else if (hasData){
-            new AlertDialog.Builder(this)
-                    .setTitle("No New Matches")
-                    .setMessage("All matches have already been exported. Do you want to re-export EVERYTHING?")
-                    .setPositiveButton("Re-Export All", (dialog, which) -> {
-                        launchFilePicker();
-                    })
-                    .setNegativeButton("Cancel", null)
-                    .show();
-        }
-        else {
-            Toast.makeText(this, "No Matches to Export", Toast.LENGTH_SHORT).show();
+
+            if (hasNewData) {
+                for (Map<String, Object> match : GlobalVariables.dataList) {
+                    if (isMatchRecord(match) && isCurrentDay(match)) {
+                        boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
+                        if (!isExported) {
+                            matchesFound++;
+                            if (matchesFound < 1) {
+                                Toast.makeText(this, "Error finding matches.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+                launchFilePicker();
+            } else if (hasData) {
+                new AlertDialog.Builder(this)
+                        .setTitle("No New Matches")
+                        .setMessage("All matches have already been exported. Do you want to re-export EVERYTHING?")
+                        .setPositiveButton("Re-Export All", (dialog, which) -> {
+                            launchFilePicker();
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
+            } else {
+                Toast.makeText(this, "No Matches to Export", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

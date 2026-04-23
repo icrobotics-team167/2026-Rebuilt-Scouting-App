@@ -14,7 +14,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,6 +36,7 @@ import android.app.AlertDialog;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import org.iowacityrobotics.rebuiltscoutingapp2026.GlobalVariables;
 import org.iowacityrobotics.rebuiltscoutingapp2026.R;
@@ -40,6 +44,7 @@ import org.iowacityrobotics.rebuiltscoutingapp2026.storage.MatchDataLoader;
 import org.iowacityrobotics.rebuiltscoutingapp2026.storage.MatchSchedule;
 import org.iowacityrobotics.rebuiltscoutingapp2026.storage.StorageManager;
 import org.iowacityrobotics.rebuiltscoutingapp2026.storage.TeamData;
+import org.iowacityrobotics.rebuiltscoutingapp2026.wireless_export.UploadService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,6 +52,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -483,7 +489,21 @@ public class PitScouting extends AppCompatActivity {
         day2SaveBtn.setOnClickListener(v -> checkFieldsAndSave());
 
         exportBtn.setOnClickListener(v -> {
-            launchFilePicker();
+            UsbManager usbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
+            HashMap<String, UsbDevice> deviceList = usbManager.getDeviceList();
+
+            if (deviceList.isEmpty()) {
+                Intent serviceIntent = new Intent(this, UploadService.class);
+                serviceIntent.setAction(UploadService.ACTION_MANUAL_UPLOAD);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    ContextCompat.startForegroundService(this, serviceIntent);
+                } else {
+                    this.startService(serviceIntent);
+                }
+            } else {
+                launchFilePicker();
+            }
         });
 
         editBtn.setOnClickListener(v -> loadTeamData());

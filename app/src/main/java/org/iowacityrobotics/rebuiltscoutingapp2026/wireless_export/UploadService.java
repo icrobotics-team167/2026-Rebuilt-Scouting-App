@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.*;
 import android.os.*;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
@@ -28,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.*;
 
 public class UploadService extends Service {
+    public static final String ACTION_MANUAL_UPLOAD = "ACTION_MANUAL_UPLOAD";
 
     private static final String SHEET_URL = "https://script.google.com/macros/s/AKfycbwM4bDSOLLRKNY_hcbTQde2EHbJWTSHLfbkMnPp_c5zkekO5XehwzN2fkD0F0nx1aTxMw/exec";
     private static final String CHANNEL_ID = "UploadServiceChannel";
@@ -160,7 +162,9 @@ public class UploadService extends Service {
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
-                    Log.e("Upload", "Upload failed: " + e.getMessage());
+                    new Handler(Looper.getMainLooper()).post(() ->
+                            Toast.makeText(getApplicationContext(), "Export Failed.", Toast.LENGTH_LONG).show()
+                    );
                     isUploading = false;
                     retryHandler.postDelayed(() -> tryUpload(), RETRY_DELAY_MS);
                 }
@@ -171,9 +175,13 @@ public class UploadService extends Service {
                     isUploading = false;
 
                     if (response.isSuccessful()) {
-                        Log.d("Upload", "Upload successful");
+                        new Handler(Looper.getMainLooper()).post(() ->
+                                Toast.makeText(getApplicationContext(), "Successfully Exported!", Toast.LENGTH_LONG).show()
+                        );
                     } else {
-                        Log.e("Upload", "Server error: " + response.code());
+                        new Handler(Looper.getMainLooper()).post(() ->
+                                Toast.makeText(getApplicationContext(), "Export Failed.", Toast.LENGTH_LONG).show()
+                        );
                         retryHandler.postDelayed(() -> tryUpload(), RETRY_DELAY_MS);
                     }
                 }
@@ -212,6 +220,9 @@ public class UploadService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null && ACTION_MANUAL_UPLOAD.equals(intent.getAction())) {
+            tryUpload();
+        }
         return START_STICKY;
     }
 
