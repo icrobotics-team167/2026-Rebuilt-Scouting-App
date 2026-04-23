@@ -698,7 +698,6 @@ public class PitScouting extends AppCompatActivity {
 
         pitData.put(PitKeys.RECORD_TYPE, PitKeys.TYPE_PIT);
         pitData.put(PitKeys.TEAM_NUMBER, team);
-        pitData.put("match_number", "PIT");
         pitData.put("ScouterName", scouterName.getText().toString());
 
         if (!daySwitch.isChecked()) {
@@ -974,7 +973,6 @@ public class PitScouting extends AppCompatActivity {
 
         Set<String> keysToRemove = Set.of(
                 PitKeys.RECORD_TYPE,
-                "match_number", // For some reason named match_number actually just "PIT"
                 "rawBotHeight",
                 "rawBotWeight",
                 "rawIntakeWidth",

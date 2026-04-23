@@ -98,7 +98,9 @@ public class UploadService extends Service {
             MatchDataLoader.loadMatchData(getApplicationContext());
             uploadData();
         } else {
-            Log.d("Upload", "Not on Wi-Fi");
+            new Handler(Looper.getMainLooper()).post(() ->
+                    Toast.makeText(getApplicationContext(), "Export Failed. No WiFi Connection.", Toast.LENGTH_LONG).show()
+            );
         }
     }
 
@@ -140,7 +142,9 @@ public class UploadService extends Service {
             String json = jsonArray.toString();
 
             if (json.equals("[]")) {
-                Log.d("Upload", "No data to upload");
+                new Handler(Looper.getMainLooper()).post(() ->
+                        Toast.makeText(getApplicationContext(), "No Data to Export!", Toast.LENGTH_LONG).show()
+                );
                 isUploading = false;
                 return;
             }
@@ -189,7 +193,9 @@ public class UploadService extends Service {
 
         } catch (Exception e) {
             isUploading = false;
-            Log.e("Upload", "Error: " + e.getMessage());
+            new Handler(Looper.getMainLooper()).post(() ->
+                    Toast.makeText(getApplicationContext(), "Export Failed. Trying Again...", Toast.LENGTH_LONG).show()
+            );
             retryHandler.postDelayed(() -> tryUpload(), RETRY_DELAY_MS);
         }
     }
