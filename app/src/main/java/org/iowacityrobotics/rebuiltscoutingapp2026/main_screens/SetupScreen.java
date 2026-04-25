@@ -50,6 +50,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 public class SetupScreen extends AppCompatActivity {
@@ -297,6 +298,17 @@ public class SetupScreen extends AppCompatActivity {
                 }
                 if (matchTypeSpinner.getSelectedItem().toString().equals("Pre-Scouting")) {
                     intent.putExtra("PASS_TEAM", teamNumber.getText().toString());
+                    int maxMatchNum = 0;
+                    for (Map<String, Object> match : GlobalVariables.dataList) {
+                        if ("Pre-Scouting".equals(match.get(DataKeys.MATCH_TYPE))) {
+                            Object val = match.get(DataKeys.MATCH_NUM);
+                            if (val == null) continue;
+                            int num = Integer.parseInt(val.toString());
+                            if (num > maxMatchNum) maxMatchNum = num;
+                        }
+                    }
+                    String newMatchNum = String.valueOf(maxMatchNum + 1);
+                    intent.putExtra("PASS_MATCH",        newMatchNum);
                 }
                 else {
                     intent.putExtra("PASS_MATCH",        matchNumberInput.getText().toString());

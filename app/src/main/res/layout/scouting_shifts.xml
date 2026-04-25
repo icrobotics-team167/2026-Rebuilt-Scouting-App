@@ -616,7 +616,7 @@
                             android:layout_margin="10dp"
                             android:gravity="center_vertical"
                             android:paddingStart="10dp"
-                            android:text="Teams 1-3000: James and Mert" />
+                            android:text="Teams 1-2500: James and Mert" />
 
                         <TextView
                             android:id="@+id/sheetCompletionHeader4"
@@ -626,7 +626,17 @@
                             android:layout_margin="10dp"
                             android:gravity="center_vertical"
                             android:paddingStart="10dp"
-                            android:text="Teams 3001+ Daniel and Jaynou" />
+                            android:text="Teams 2500-5500 Daniel and Farhan" />
+
+                        <TextView
+                            android:id="@+id/sheetCompletionHeader5"
+                            style="@style/AutoResize25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:gravity="center_vertical"
+                            android:paddingStart="10dp"
+                            android:text="Teams 5500+ Jaynou and Tommy" />
 
                     </LinearLayout>
                 </ScrollView>

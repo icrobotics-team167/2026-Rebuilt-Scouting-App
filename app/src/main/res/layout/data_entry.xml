@@ -728,7 +728,7 @@
                             android:layout_weight="73.5"
                             android:ems="10"
                             android:hint="@string/data_entry_example_teleop_notes"
-                            android:inputType="text" />
+                            android:inputType="textMultiLine" />
 
                         <View
                             android:id="@+id/divider23"
