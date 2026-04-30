@@ -1,0 +1,17 @@
+{
+  "matches": [
+    { "match_type": "Practice", "match_id": 1, "red_alliance": [1511, 8817, 1114], "blue_alliance": [2767, 7166, 2847] },
+    { "match_type": "Practice", "match_id": 2, "red_alliance": [4096, 4593, 3572], "blue_alliance": [5338, 8608, 2075] },
+    { "match_type": "Practice", "match_id": 3, "red_alliance": [5066, 2960, 9084], "blue_alliance": [5829, 4728, 1912] },
+    { "match_type": "Practice", "match_id": 4, "red_alliance": [9427, 1731, 7598], "blue_alliance": [971, 11019, 3604] },
+    { "match_type": "Practice", "match_id": 5, "red_alliance": [3006, 1241, 2583], "blue_alliance": [9032, 11297, 9001] },
+    { "match_type": "Practice", "match_id": 6, "red_alliance": [1868, 1261, 1648], "blue_alliance": [2539, 3284, 4272] },
+    { "match_type": "Practice", "match_id": 7, "red_alliance": [5665, 103, 1619], "blue_alliance": [11387, 1218, 2137] },
+    { "match_type": "Practice", "match_id": 8, "red_alliance": [5801, 1189, 167], "blue_alliance": [9401, 3045, 5940] },
+    { "match_type": "Practice", "match_id": 9, "red_alliance": [10162, 27, 2881], "blue_alliance": [4403, 9126, 4646] },
+    { "match_type": "Practice", "match_id": 10, "red_alliance": [9771, 10015, 2106], "blue_alliance": [1646, 3494, 5468] },
+    { "match_type": "Practice", "match_id": 11, "red_alliance": [7525, 8884, 7407], "blue_alliance": [2826, 1501, 587] },
+    { "match_type": "Practice", "match_id": 12, "red_alliance": [10021, 5010, 9470], "blue_alliance": [3476, 131, 548] },
+    { "match_type": "Practice", "match_id": 13, "red_alliance": [2851, 6907, 3572], "blue_alliance": [6459, 1114, 2847] }
+  ]
+}
