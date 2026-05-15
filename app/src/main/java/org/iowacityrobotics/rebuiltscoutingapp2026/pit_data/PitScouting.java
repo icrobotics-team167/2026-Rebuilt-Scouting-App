@@ -230,6 +230,9 @@ public class PitScouting extends AppCompatActivity {
         daySwitch.setChecked(GlobalVariables.pitScoutingIsDay2);
     }
 
+    /**
+     * This method sets up the switch listener that changes the data fields based on day (Day 1 or Day 2 pit scouting)
+     */
     private void setupDayListener() {
         daySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -262,7 +265,9 @@ public class PitScouting extends AppCompatActivity {
         });
 
     }
-
+    /**
+     * Sets up the f
+     */
     private void setupDay2Teams() {
         SharedPreferences prefs = getSharedPreferences(PitKeys.PREFS_NAME, MODE_PRIVATE);
         boolean initialized = prefs.getBoolean(PitKeys.INIT_FLAG_KEY, false);

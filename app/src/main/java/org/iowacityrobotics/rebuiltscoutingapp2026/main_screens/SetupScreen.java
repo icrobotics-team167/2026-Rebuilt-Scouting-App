@@ -67,18 +67,6 @@ public class SetupScreen extends AppCompatActivity {
 
     private List<Integer> filteredIndices = new ArrayList<>();
 
-    private final ActivityResultLauncher<Intent> exportLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                    Uri uri = result.getData().getData();
-                    if (uri != null) {
-                        processAndExportAll(uri);
-                    }
-                }
-            }
-    );
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,24 +139,24 @@ public class SetupScreen extends AppCompatActivity {
     private void setupDay3Teams() {
         JSONArray teams = new JSONArray();
         // Add day 3 team numbers here
-        // teams.put(167);
-
+        // Example: teams.put(167);
         getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
                 .edit()
                 .putString(TEAMS_KEY, teams.toString())
                 .apply();
     }
     private boolean validateDay3Team() {
+        // This method isn't needed for day 1 matches:
         if (!dataEntrySwitch.isChecked()) return true;
 
         String matchNum   = matchNumberInput.getText().toString().trim();
         String assignment = assignmentSpinner.getSelectedItem().toString();
         String matchType  = matchTypeSpinner.getSelectedItem().toString();
 
+        // We don't need to validate that a Pre-Scouting team is in the re-scout list for day 3. We are scouting whatever teams we please.
         if (matchType.equals("Pre-Scouting")) return true;
 
         String teamNumStr = MatchSchedule.getTeamNumber(matchNum, assignment, matchType);
-
         int teamNum = Integer.parseInt(teamNumStr);
 
         String savedTeamsJson = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
@@ -176,9 +164,9 @@ public class SetupScreen extends AppCompatActivity {
 
         try {
             JSONArray day3Teams = new JSONArray(savedTeamsJson);
-
             for (int i = 0; i < day3Teams.length(); i++) {
                 if (day3Teams.getInt(i) == teamNum) {
+                    // Team is being re-scouted on day 3
                     return true;
                 }
             }
@@ -188,6 +176,7 @@ public class SetupScreen extends AppCompatActivity {
                     .setMessage("Team " + teamNum + " is not being re-scouted. You get a break! Hooray.")
                     .setPositiveButton("Ok", null)
                     .setNeutralButton("Continue", (dialog, which) -> {
+                        // User is ignoring that the team is not being re-scouted:
                         if (validateInputs()) {
                             savePreferences();
                             GlobalVariables.objectIndex = -1;
@@ -229,6 +218,7 @@ public class SetupScreen extends AppCompatActivity {
     }
 
     private void updateMatchListSpinner() {
+        // This method sets up the spinner that shows the matches available to edit (all matches that have been scouted of that day)
         List<String> matchOptions = new ArrayList<>();
         filteredIndices.clear();
 
@@ -291,6 +281,7 @@ public class SetupScreen extends AppCompatActivity {
                 savePreferences();
                 GlobalVariables.objectIndex = -1;
                 Intent intent;
+                // Special screen for Madison:
                 if (scouterNameInput.getText().toString().equals("MADISON")) {
                     intent = new Intent(SetupScreen.this, Slider.class);
                 } else {
@@ -358,11 +349,13 @@ public class SetupScreen extends AppCompatActivity {
     }
 
     private void exportUnExported() {
+        // This method runs when the user clicks the button "Export All", meaning -> export all not already exported data
         StorageManager.saveData(this);
 
         UsbManager usbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
         HashMap<String, UsbDevice> deviceList = usbManager.getDeviceList();
 
+        // Runs Wireless export because there is no flash drive connected
         if (deviceList.isEmpty()) {
             Intent serviceIntent = new Intent(this, UploadService.class);
             serviceIntent.setAction(UploadService.ACTION_MANUAL_UPLOAD);
@@ -372,12 +365,15 @@ public class SetupScreen extends AppCompatActivity {
             } else {
                 this.startService(serviceIntent);
             }
-        } else {
+        }
+        // This runs when there is a flash drive detected in the tablet
+        else {
             boolean hasNewData = false;
             boolean hasData = false;
             int matchesFound = 0;
             isExportingAll = true;
 
+            // This checks if there is new data that has yet to be exported to the flash drive on the tablet
             for (Map<String, Object> match : GlobalVariables.dataList) {
                 if (isMatchRecord(match) && isCurrentDay(match)) {
                     hasData = true;
@@ -389,6 +385,7 @@ public class SetupScreen extends AppCompatActivity {
                 }
             }
 
+            // If there is new data that has not already been exported, it exports all of those specific matches.
             if (hasNewData) {
                 for (Map<String, Object> match : GlobalVariables.dataList) {
                     if (isMatchRecord(match) && isCurrentDay(match)) {
@@ -402,7 +399,9 @@ public class SetupScreen extends AppCompatActivity {
                     }
                 }
                 launchFilePicker();
-            } else if (hasData) {
+            }
+            // If all data has already been exported:
+            else if (hasData) {
                 new AlertDialog.Builder(this)
                         .setTitle("No New Matches")
                         .setMessage("All matches have already been exported. Do you want to re-export EVERYTHING?")
@@ -418,10 +417,12 @@ public class SetupScreen extends AppCompatActivity {
     }
 
     private void exportSelected() {
+        // This method runs when the user clicks the button "Export", meaning -> export only the match that is selected in the spinner.
         StorageManager.saveData(this);
         isExportingAll = false;
         String selectedItem = matchListSpinner.getSelectedItem().toString();
 
+        // This gets rid of the -'s, etc and splits the spinner text into an array of data that we want (match number, team number)
         String[] parts = selectedItem.split("\\D+");
         for (Map<String, Object> match : GlobalVariables.dataList) {
             if (!isMatchRecord(match) || !isCurrentDay(match)) continue;
@@ -455,15 +456,19 @@ public class SetupScreen extends AppCompatActivity {
     }
 
     private void processAndExportAll(Uri uri) {
+        // The final exporting method that runs whether you click the "Export" button or "Export ALl" button
         List<Map<String, Object>> exportBatch = new ArrayList<>();
 
         if (isExportingAll) {
+            // "Export All" button was clicked:
             for (Map<String, Object> match : GlobalVariables.dataList) {
                 boolean isExported = match.containsKey(DataKeys.EXPORTED) && (boolean) match.get(DataKeys.EXPORTED);
                 if (!isExported && isCurrentDay(match) && isMatchRecord(match)) {
+                    // Add the match only if it has not already been exported, is the correct day, and is a match data record
                     exportBatch.add(match);
                 }
             }
+            // If all match records have already been exported, re-export all of them
             if (exportBatch.isEmpty()) {
                 for (Map<String, Object> match : GlobalVariables.dataList) {
                     if (isCurrentDay(match) && isMatchRecord(match)) {
@@ -473,6 +478,7 @@ public class SetupScreen extends AppCompatActivity {
             }
         }
         else {
+            // "Export" button was clicked (export only selected match):
             String selectedItem = matchListSpinner.getSelectedItem().toString();
 
             String[] parts = selectedItem.split("\\D+");
@@ -507,12 +513,14 @@ public class SetupScreen extends AppCompatActivity {
         }
 
         JSONArray jsonArray = new JSONArray();
+        // App-level data that doesn't need to be sent to the spreadsheet:
         Set<String> keysToRemove = Set.of(
                 DataKeys.RECORD_TYPE,
                 DataKeys.ASSIGNMENT,
                 DataKeys.EXPORTED,
                 DataKeys.MATCH_DAY
         );
+        // Data formatting:
         for (Map<String, Object> match : exportBatch) {
             Map<String, Object> exportMap = new LinkedHashMap<>(match);
             keysToRemove.forEach(exportMap::remove);
@@ -529,8 +537,6 @@ public class SetupScreen extends AppCompatActivity {
             }
             jsonArray.put(new JSONObject(exportMap));
         }
-        System.out.println(jsonArray);
-
         StorageManager.writeJsonToUsb(this, findViewById(android.R.id.content), uri, jsonArray.toString());
 
         for (Map<String, Object> match : exportBatch) {
@@ -598,6 +604,18 @@ public class SetupScreen extends AppCompatActivity {
 
         return !error;
     }
+
+    private final ActivityResultLauncher<Intent> exportLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                    Uri uri = result.getData().getData();
+                    if (uri != null) {
+                        processAndExportAll(uri);
+                    }
+                }
+            }
+    );
 
     private boolean isMatchRecord(Map<String, Object> match) {
         return match.containsKey(DataKeys.RECORD_TYPE) &&

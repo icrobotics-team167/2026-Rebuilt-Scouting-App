@@ -1,3 +1,5 @@
+Example match_data.json (create new file) for future years. Needed to be written for practice matches at each competition.
+
 {
   "matches": [
     { "match_type": "Practice", "match_id": 1, "red_alliance": [1511, 8817, 1114], "blue_alliance": [2767, 7166, 2847] },
