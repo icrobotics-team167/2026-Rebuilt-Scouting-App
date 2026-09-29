@@ -85,7 +85,7 @@ public class MatchDataGenerator {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler mainHandler = new Handler(Looper.getMainLooper());
 
-        TBAService service = RetrofitClient.getClient().create(TBAService.class);
+        TBAService service = RetrofitClient.getClient(context).create(TBAService.class);
 
         service.getEventMatches(eventKey).enqueue(new Callback<List<TBAMatch>>() {
 

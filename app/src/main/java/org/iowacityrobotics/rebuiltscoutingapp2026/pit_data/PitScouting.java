@@ -223,6 +223,9 @@ public class PitScouting extends AppCompatActivity {
         gearRatioHeader = findViewById(R.id.gearRatioHeader);
     }
 
+    /**
+     * Changes the switch state on opening based on what was used last (Day 1 or Day 2)
+     */
     private void setSwitchState() {
         GlobalVariables.pitScoutingIsDay2 = getSharedPreferences("ScoutingPrefs", Context.MODE_PRIVATE)
                 .getBoolean("pit_scouting_day2", false);
@@ -257,6 +260,8 @@ public class PitScouting extends AppCompatActivity {
                             .putBoolean("pit_scouting_day2", false)
                             .apply();
                 }
+                // When you switch the pit day switch, it clears the previous fields and updates the team number spinners accordingly, for example:
+                // (Day 1 teams being scouted vs Day 2 teams being re-scouted in the spinner, or switching the edit spinner to have Day 1/Day 2 teams
                 clearFields();
                 loadTeamNumberSpinner(PitScouting.this);
                 loadEditTeamSpinner();
@@ -265,9 +270,6 @@ public class PitScouting extends AppCompatActivity {
         });
 
     }
-    /**
-     * Sets up the f
-     */
     private void setupDay2Teams() {
         SharedPreferences prefs = getSharedPreferences(PitKeys.PREFS_NAME, MODE_PRIVATE);
         boolean initialized = prefs.getBoolean(PitKeys.INIT_FLAG_KEY, false);
@@ -320,12 +322,19 @@ public class PitScouting extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method for the swerve fields becoming gray/unclickable when swerve checkbox is unchecked
+     */
+
     private void enableSwerveFields(boolean on) {
         if (on) {
             int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            // setEnabled() sets it to clickable/unclickable
             motorTypeSpinner.setEnabled(true);
             swerveModule.setEnabled(true);
             gearRatio.setEnabled(true);
+
+            // Sets text color to black/white in the swerve spinner to make visually clickable
             View selectedView = motorTypeSpinner.getSelectedView();
             if (selectedView instanceof TextView) {
                 TextView selectedTextView = (TextView) selectedView;
@@ -337,6 +346,8 @@ public class PitScouting extends AppCompatActivity {
                         selectedTextView.setTextColor(Color.BLACK);
                 }
             }
+
+            // Makes other swerve TextViews visually "turned on" / available
             TextView[] views = {motorTypeHeader, swerveModuleHeader, gearRatioHeader};
             for (TextView v : views) {
                 switch (currentNightMode) {
@@ -349,25 +360,35 @@ public class PitScouting extends AppCompatActivity {
             }
         }
         else {
+            // Sets the swerve spinners to unclickable
             motorTypeSpinner.setEnabled(false);
             swerveModule.setEnabled(false);
             gearRatio.setEnabled(false);
+
+            // Changes text in spinner to gray to make visually unclickable
             motorTypeSpinner.post(() -> {
                 TextView tv = (TextView) motorTypeSpinner.getSelectedView();
                 if (tv != null) tv.setTextColor(Color.GRAY);
             });
             motorTypeSpinner.setSelection(0);
+
+            // Sets other swerve TextView headers to gray to show "turned off" / unavailable
             TextView[] views = {motorTypeHeader, swerveModuleHeader, gearRatioHeader};
             for (TextView v : views) {
                 v.setTextColor(Color.GRAY);
             }
 
+            // Clears the other swerve fields; swerve checkbox unchecked -> the robot doesn't have swerve -> no text in the swerve textboxes
             EditText[] editTexts = {swerveModule, gearRatio};
             for (EditText v : editTexts) {
                 v.setText("");
             }
         }
     }
+
+    /**
+     * This method updates the edit team spinner with all currently recorded teams of that day
+     */
     public void loadEditTeamSpinner() {
         boolean isDay2 = daySwitch.isChecked();
         List<Map<String, Object>> snapshot = new ArrayList<>(GlobalVariables.dataList);
@@ -407,6 +428,10 @@ public class PitScouting extends AppCompatActivity {
             });
         }).start();
     }
+
+    /**
+     * This method reloads the team number spinner based on the day with not-yet-scouted teams / teams left to be scouted
+     */
     public void loadTeamNumberSpinner(Context context) {
             ArrayList<Integer> teamNumbers = new ArrayList<>();
             boolean isDay1 = !daySwitch.isChecked();
@@ -460,6 +485,9 @@ public class PitScouting extends AppCompatActivity {
             }).start();
     }
 
+    /**
+     * Sets up the various spinners used for units
+     */
     private void setupUnitsSpinners() {
         String[] heightUnits = {"Select", "in", "ft", "cm", "m"};
         ArrayAdapter<String> heightAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, heightUnits);
@@ -586,6 +614,9 @@ public class PitScouting extends AppCompatActivity {
 
     }
 
+    /**
+     * Clears the errors that were on fields when no longer needed (day was switched)
+     */
     private void clearErrors() {
         EditText[] editTexts = {
                 scouterName, botHeight, botWeight, hopperCapacity,
@@ -680,6 +711,7 @@ public class PitScouting extends AppCompatActivity {
         }
     }
     private void savePitData() {
+        // Gets the correct team number; if the team that was scouted was added with text rather than selected in the spinner, it uses that instead
         String selectedTeamNumber = teamNumberSpinner.getSelectedItem().toString().trim();
         if (selectedTeamNumber.equals("Add")) {
             selectedTeamNumber = teamNumberText.getText().toString().trim();

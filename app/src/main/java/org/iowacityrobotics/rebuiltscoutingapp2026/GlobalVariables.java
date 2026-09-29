@@ -14,5 +14,5 @@ public class GlobalVariables {
     public static int objectIndex = -1;
     public static boolean pitScoutingIsDay2 = false;
     public static int tabletNumber = 0;
-    public static final String DIVISION_KEY = "2026arc";
+    public static final String DIVISION_KEY = "2026arc"; // TBA Code for Archimedes Division at worlds
 }

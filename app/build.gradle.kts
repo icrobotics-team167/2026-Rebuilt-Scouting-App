@@ -1,7 +1,22 @@
+import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
 }
+
+val applicationsProperties = Properties()
+val propertiesFile = rootProject.file("applications.properties")
+
+if (propertiesFile.exists()) {
+    applicationsProperties.load(propertiesFile.inputStream())
+}
+
 android {
+    defaultConfig {
+
+        val apiKey = applicationsProperties.getProperty("API_KEY") ?: ""
+
+        resValue("string", "api_key", apiKey)
+    }
     namespace = "org.iowacityrobotics.rebuiltscoutingapp2026"
     compileSdk = 36
 
