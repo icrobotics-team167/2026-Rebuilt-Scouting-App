@@ -1,0 +1,17 @@
+{
+  "matches": [
+    { "match_type": "Practice", "match_id": 1, "red_alliance": [1], "blue_alliance": [1] },
+    { "match_type": "Practice", "match_id": 2, "red_alliance": [1], "blue_alliance": [1] },
+    { "match_type": "Practice", "match_id": 3, "red_alliance": [1], "blue_alliance": [1] },
+    { "match_type": "Practice", "match_id": 4, "red_alliance": [1], "blue_alliance": [1] },
+    { "match_type": "Practice", "match_id": 5, "red_alliance": [1], "blue_alliance": [11] },
+    { "match_type": "Practice", "match_id": 6, "red_alliance": [1], "blue_alliance": [1] },
+    { "match_type": "Practice", "match_id": 7, "red_alliance": [1], "blue_alliance": [1] },
+    { "match_type": "Practice", "match_id": 8, "red_alliance": [1], "blue_alliance": [1] },
+    { "match_type": "Practice", "match_id": 9, "red_alliance": [1], "blue_alliance": [1] },
+    { "match_type": "Practice", "match_id": 10, "red_alliance": [1], "blue_alliance": [1] },
+    { "match_type": "Practice", "match_id": 11, "red_alliance": [1], "blue_alliance": [1] },
+    { "match_type": "Practice", "match_id": 12, "red_alliance": [1], "blue_alliance": [1] },
+    { "match_type": "Practice", "match_id": 13, "red_alliance": [1], "blue_alliance": [1] }
+  ]
+}

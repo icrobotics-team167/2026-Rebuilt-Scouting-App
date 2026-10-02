@@ -31,7 +31,7 @@ import okhttp3.*;
 public class UploadService extends Service {
     public static final String ACTION_MANUAL_UPLOAD = "ACTION_MANUAL_UPLOAD";
 
-    private static final String SHEET_URL = "https://script.google.com/macros/s/AKfycbyC6lj2b-9ec11bBNPfkUjG_tuubhjTsuQTg-rlym2rC2bYv_eYYUMaEVxHAR7R8k7hJA/exec";
+    private static final String SHEET_URL = " https://script.google.com/macros/s/AKfycbwrHAOW1DHtay5-2sr6dT9U6VniiyAV0eeMdC0VqzGPEbAvJdOyWAkAf6KP9cePZGF6BQ/exec";
     private static final String CHANNEL_ID = "UploadServiceChannel";
     private static final int NOTIFICATION_ID = 1;
     private static final long RETRY_DELAY_MS = 5000;
